@@ -1,0 +1,15 @@
+#Tmuxinator config to fire up gitbook and vim for editing the docs
+# ~/.tmuxinator/event-logging-schema-docs.yml
+
+name: event-logging-schema-docs
+root: ~/git_work/event-logging-schema/
+
+windows:
+  - vim: cd docs && vim SUMMARY.md ../book.json
+  - shells:
+      layout: even-vertical
+      panes:
+        - cd docs && ls -l
+        - gitbook serve
+  #cheeky sleep to wait for the gitbook server to fire up
+  - chrome: sleep 5 && /usr/bin/google-chrome-stable http://localhost:4000
