@@ -24,7 +24,7 @@ The following is an example of an alert from a network device performing packet 
     <Type>Network</Type>
     <Network>
       <Source>
-        <IPAddress>192.168.0.4/IPAddress>
+        <IPAddress>192.168.0.4</IPAddress>
       </Source>
       <Destination>
         <IPAddress>192.168.7.5</IPAddress>
