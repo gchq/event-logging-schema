@@ -1,16 +1,5 @@
-# Complete Examples
-A number of examples of complete events are provided below, in order to illustrate use of the schema.
-
-N.B. All entities including organisations, persons, devices and applications are imaginary.
-All details (e.g. MAC Address, Name, IP Address) are similarly imaginary and any relationship to any 
-real entities is entirely coincidental!
- 
-A version of the examples as a complete XML document is available [here](./completeExamples.xml) .
-## Send
-
-This example illustrates an (imaginary) application transferring a file to a remote server.
-
-```xml
+<?xml version="1.1" encoding="UTF-8"?>
+<Events xmlns="event-logging:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="event-logging:3 file://event-logging-v3.0.0.xsd" Version="3.0.0">
       <Event>
          <EventTime>
             <TimeCreated>2017-01-02T03:04:05.678Z</TimeCreated>
@@ -48,9 +37,6 @@ This example illustrates an (imaginary) application transferring a file to a rem
             </Send>
          </EventDetail>
       </Event>
-```
-This example illustrates an (imaginary) application being used to transfer a file to another user.
-```xml
       <Event>
          <EventTime>
             <TimeCreated>2017-01-02T03:04:05.678Z</TimeCreated>
@@ -135,9 +121,9 @@ This example illustrates an (imaginary) application being used to transfer a fil
                </Source>
                <Destination>
                   <User>
-                     <Id>C=GB, O=WeDoRocksCo, OU=Space, CN=Tom Thumb(UID=tthumb01)</Id>
+                     <Id>C=GB, O=WeDoRocksCo, OU=Space, CN=Tom Thumb (UID=tthumb01)</Id>
                      <UserDetails>
-                        <Id>tthumb01</Id>
+                        <Id>tthumb011</Id>
                         <Surname>Thumb</Surname>
                         <Initials>T</Initials>
                         <Group>Space</Group>
@@ -159,10 +145,6 @@ This example illustrates an (imaginary) application being used to transfer a fil
             </Send>
          </EventDetail>
       </Event>
-```
-##Search
-The following example illustrates a query against an (imaginary) database application.
-```xml
       <Event>
          <EventTime>
             <TimeCreated>2017-01-02T03:04:05.678Z</TimeCreated>
@@ -234,11 +216,6 @@ The following example illustrates a query against an (imaginary) database applic
             </Search>
          </EventDetail>
       </Event>
-```
-
-##Import
-The following example illustrates how removable media use could be represented within the events-logging schema. 
-```xml
       <Event>
          <EventTime>
             <TimeCreated>2017-01-02T03:04:05.678Z</TimeCreated>
@@ -340,10 +317,6 @@ The following example illustrates how removable media use could be represented w
             </Import>
          </EventDetail>
       </Event>
-```
-
-The following example illustrates some data being imported into an (imaginary) application
-```xml
       <Event>
          <EventTime>
             <TimeCreated>2017-01-02T03:04:05.678Z</TimeCreated>
@@ -405,4 +378,4 @@ The following example illustrates some data being imported into an (imaginary) a
             </Import>
          </EventDetail>
       </Event>
-```
+</Events>
