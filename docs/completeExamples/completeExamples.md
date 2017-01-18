@@ -238,16 +238,11 @@ The results were two Objects. Both were of type ```Rock```. The first with an id
       </Event>
 ```
 
-##Import
+##Read
 The following example illustrates how removable media use could be represented within the events-logging schema.
 
-Removable media operations can be modelled as standard file operations (modelled using
- [Copy, Move](../schemaActions/copyMove.md), [Delete](../schemaActions/createViewDelete.md), 
-etc).  However, due to the increased risk of malware and data loss, removable media use may be modelled using
-Import and Export.
- 
 The action is that user ```jc101``` has read the file ```E:/DCIM/Spacecam101/141516.jpg``` from a removable 
-USB drive onto the workstation ```LUNA/LUNADESK35```.  This event is modelled as an Import.
+USB drive onto the workstation ```LUNA/LUNADESK35```.
 
 ```xml
       <Event>
@@ -281,39 +276,39 @@ USB drive onto the workstation ```LUNA/LUNADESK35```.  This event is modelled as
          <EventDetail>
             <TypeId>ReadRM</TypeId>
             <Description>User has read a file from removable media</Description>
-            <Import>
-               <Source>
-                  <File>
-                     <Name>141516.jpg</Name>
-                     <Description>JPG Image</Description>
-                     <Permissions>
-                        <Permission>
-                           <User>
-                              <Id>jc101</Id>
-                              <Domain>ACMECoolResearch/Users</Domain>
-                              <UserDetails>
-                                 ...
-                              </UserDetails>
-                           </User>
-                           <Allow>Read</Allow>
-                        </Permission>
-                     </Permissions>
-                     <Path>E:/DCIM/Spacecam101/141516.jpg</Path>
-                     <Size>5445121</Size>
-                     <Hash>f4d3a2b1ffac</Hash>
-                     <Media>
-                        <Type>USBMassStorage</Type>
-                        <Removable>true</Removable>
-                     </Media>
-                  </File>
-               </Source>
+            <Read>
+              <File>
+                 <Name>141516.jpg</Name>
+                 <Description>JPG Image</Description>
+                 <Permissions>
+                    <Permission>
+                       <User>
+                          <Id>jc101</Id>
+                          <Domain>ACMECoolResearch/Users</Domain>
+                          <UserDetails>
+                             ...
+                          </UserDetails>
+                       </User>
+                       <Allow>Read</Allow>
+                    </Permission>
+                 </Permissions>
+                 <Path>E:/DCIM/Spacecam101/141516.jpg</Path>
+                 <Size>5445121</Size>
+                 <Hash>f4d3a2b1ffac</Hash>
+                 <Media>
+                    <Type>USBMassStorage</Type>
+                    <Removable>true</Removable>
+                 </Media>
+              </File>
                <Outcome>
                   <Permitted>true</Permitted>
                </Outcome>
-            </Import>
+            </Read>
          </EventDetail>
       </Event>
 ```
+
+#Import
 
 The following example illustrates user ```jc101``` importing some data into an application 
 called ```Geology Image Database```.  The application is based on ```geoimg v4.1``` and is running on the server ```geodb.servers.mycloud.myorg```.
