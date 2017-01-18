@@ -248,6 +248,7 @@ Import and Export.
  
 The action is that user ```jc101``` has read the file ```E:/DCIM/Spacecam101/141516.jpg``` from a removable 
 USB drive onto the workstation ```LUNA/LUNADESK35```.  This event is modelled as an Import.
+
 ```xml
       <Event>
          <EventTime>
@@ -315,12 +316,12 @@ USB drive onto the workstation ```LUNA/LUNADESK35```.  This event is modelled as
 ```
 
 The following example illustrates user ```jc101``` importing some data into an application 
-called ```Geology Image Database```.  The application is based on ```geoimg v4.1``` and is running on the server
-```geodb.servers.mycloud.myorg```.
+called ```Geology Image Database```.  The application is based on ```geoimg v4.1``` and is running on the server ```geodb.servers.mycloud.myorg```.
 
 The Object is of Type ```Image Archive``` and has an id ```14131A```.  It has a Classification of ```Geology```.
 
 There is no Success element on ```<Outcome>```, so it is assumed that the action completed successfully.
+
 ```xml
       <Event>
          <EventTime>
