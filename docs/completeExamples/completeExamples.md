@@ -178,7 +178,8 @@ The Outcome of the event is not defined, so we assume that the transfer was succ
 ##Search
 The following example illustrates a query against a database application.
 The action is that user ```jc101``` execute a query ```type=r, size=large, colour=white``` which returned 
-2 results. 
+2 results. The Interactive field is set to ```false```, so it may be inferred that this was an automated operation of
+some kind.
 
 The results were two Objects. Both were of type ```Rock```. The first with an id of ```7811``` and a name of
 ```Surpisingly Heavy Chunk``` and the second with an id of ```11418``` and a name of ```Possible Gold Ore```.
@@ -211,7 +212,7 @@ The results were two Objects. Both were of type ```Rock```. The first with an id
                   ...
                </UserDetails>
             </User>
-            <Interactive>true</Interactive>
+            <Interactive>false</Interactive>
          </EventSource>
          <EventDetail>
             <TypeId>findByConstraint</TypeId>
@@ -411,3 +412,52 @@ The user ```jc101``` has run an antimalware scan on ```LUNA/LUNADESK35``` using 
          </EventDetail>
       </Event>
 ```
+
+#Print
+
+The following example illustrates a document with the title ```Resume - J Coder``` being printed on ```prn01.luna1.lan.myorg.com```.
+
+The document is ```2``` pages in length and ```3410212``` bytes in length.
+
+
+```xml
+      <Event>
+          <EventTime>
+              <TimeCreated>2017-01-02T03:04:05.678Z</TimeCreated>
+          </EventTime>
+          <EventSource>
+              <System>
+                  <Name>SPACEPRINT</Name>
+                  <Environment>Luna1</Environment>
+                  <Organisation>ACMECoolResearch</Organisation>
+              </System>
+              <Generator>ZeroGPrinter v2.2</Generator>
+              <Device>
+                  <HostName>prn01.luna1.lan.myorg.com</HostName>
+              </Device>
+              <User>
+                  <Id>jc101</Id>
+              </User>
+              <Interactive>true</Interactive>
+          </EventSource>
+          <EventDetail>
+              <TypeId>BWPrint</TypeId>
+              <Description>System has finished printing</Description>
+              <Print>
+                  <Action>FinishPrint</Action>
+                  <PrintJob>
+                      <Document>
+                          <Title>Resume - J Coder</Title>
+                      </Document>
+                      <Pages>2</Pages>
+                      <Size>3410212</Size>
+                      <Submitted>2017-01-02T03:03:51.234Z</Submitted>
+                  </PrintJob>
+                  <Outcome>
+                      <Success>true</Success>
+                  </Outcome>
+              </Print>
+          </EventDetail>
+      </Event>
+```
+
