@@ -415,7 +415,8 @@ The user ```jc101``` has run an antimalware scan on ```LUNA/LUNADESK35``` using 
 
 #Print
 
-The following example illustrates a document with the title ```Resume - J Coder``` being printed on ```prn01.luna1.lan.myorg.com```.
+The following example illustrates a document with the title ```Resume - J Coder``` being printed on ```prn01.luna1.lan.myorg.com```
+by user ```jc101```.
 
 The document is ```2``` pages in length and ```3410212``` bytes in length.
 
