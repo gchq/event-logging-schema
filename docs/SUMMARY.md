@@ -62,6 +62,7 @@
     * [Voip](./objectTypes/voip.md)
 * [Unstructured Data](unstructuredData.md)
 * [Data Types](dataTypes.md)
+* [Illustrative Example Events](completeExamples/completeExamples.md)
 * [FAQ](FAQ.md)
 * [Glossary](Glossary.md)
 * [Change Log](CHANGELOG.md)

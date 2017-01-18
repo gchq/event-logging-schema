@@ -50,3 +50,7 @@ There are many different types of event that are recorded for analysis. These in
 Each type of event needs to include specific data that is relevant to the event, e.g. logon would need to contain details of the user who logged on.
 
 The schema includes a number of 'schema actions' that encompass most auditable events, e.g. Create, Update, Export, Send, etc.  Where an event has to be recorded that doesn’t fit into one of these predefined categories then the Unknown 'schema action' can be used, but this should be a last resort as its content is unstructured and reduces the normalisation benefits.
+
+### Putting it all together
+It can be hard to imagine what complete events look like, so a number of [illustrative examples](completeEvents/completeExamples.md)
+are available.
