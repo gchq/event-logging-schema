@@ -239,11 +239,13 @@ The results were two Objects. Both were of type ```Rock```. The first with an id
       </Event>
 ```
 
-##Read
+##View
 The following example illustrates how removable media use could be represented within the events-logging schema.
 
 The action is that user ```jc101``` has read the file ```E:/DCIM/Spacecam101/141516.jpg``` from a removable 
 USB drive onto the workstation ```LUNA/LUNADESK35```.
+
+N.B. Although the user might not have actually read the event, all read operations are represented by the schema as View.
 
 ```xml
       <Event>
@@ -277,7 +279,7 @@ USB drive onto the workstation ```LUNA/LUNADESK35```.
          <EventDetail>
             <TypeId>ReadRM</TypeId>
             <Description>User has read a file from removable media</Description>
-            <Read>
+            <View>
               <File>
                  <Name>141516.jpg</Name>
                  <Description>JPG Image</Description>
@@ -304,7 +306,7 @@ USB drive onto the workstation ```LUNA/LUNADESK35```.
                <Outcome>
                   <Permitted>true</Permitted>
                </Outcome>
-            </Read>
+            </View>
          </EventDetail>
       </Event>
 ```
