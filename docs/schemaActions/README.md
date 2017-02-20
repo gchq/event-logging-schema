@@ -67,4 +67,4 @@ For example, a delete operation could actually just mark a record in such a way 
 and is effectively (internally) an update, but from the user's point of view it is a destructive operation - a delete.
  
 However, it is important that events with similar effects are modelled similarly, in order that analytics can operate
-effectively.  Examples that illustrate how the schema should be used are described [here](eventModelling.md). 
+effectively.  Examples that illustrate how the schema should be used are described [here](../eventModelling.md). 
