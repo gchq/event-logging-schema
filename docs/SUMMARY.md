@@ -1,6 +1,6 @@
 # Table of Contents
 
-* [Read Me](rootREADME.md)
+* [Read Me](../README.md)
 * [Introduction](README.md)
 * [Basic Structure](basicStructure/README.md)
     * [Describing an Event](./basicStructure/README.md#describing-an-event)
