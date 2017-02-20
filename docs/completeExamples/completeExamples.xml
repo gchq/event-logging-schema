@@ -268,54 +268,56 @@
         <EventDetail>
             <TypeId>ReadRM</TypeId>
             <Description>User has read a file from removable media</Description>
-            <View>
-                <File>
-                    <Name>141516.jpg</Name>
-                    <Description>JPG Image</Description>
-                    <Permissions>
-                        <Permission>
-                            <User>
-                                <Id>jc101</Id>
-                                <Domain>ACMECoolResearch/Users</Domain>
-                                <UserDetails>
+            <Import>
+                <Source>
+                    <File>
+                        <Name>141516.jpg</Name>
+                        <Description>JPG Image</Description>
+                        <Permissions>
+                            <Permission>
+                                <User>
                                     <Id>jc101</Id>
-                                    <StaffNumber>101</StaffNumber>
-                                    <Surname>Coder</Surname>
-                                    <Initials>JD</Initials>
-                                    <Title>Mr</Title>
-                                    <KnownAs>Jolly</KnownAs>
-                                    <PersonType>Employee</PersonType>
-                                    <Group>Technology</Group>
-                                    <Unit>Geology</Unit>
-                                    <Position>T.SD/42</Position>
-                                    <Role>Geologist</Role>
-                                    <GradeOfPost>E.5</GradeOfPost>
-                                    <EmploymentType>Employee</EmploymentType>
-                                    <EmploymentStatus>Active</EmploymentStatus>
-                                    <Nationality>GB</Nationality>
-                                    <Location>Moon Base Alpha</Location>
-                                    <RoomNumber>4/31</RoomNumber>
-                                    <Phone>11223</Phone>
-                                    <SupervisorStaffNumber>421</SupervisorStaffNumber>
-                                    <Organisation>ACMECoolResearch</Organisation>
-                                    <HostOrganisation>MoonCo</HostOrganisation>
-                                </UserDetails>
-                            </User>
-                            <Allow>Read</Allow>
-                        </Permission>
-                    </Permissions>
-                    <Path>E:/DCIM/Spacecam101/141516.jpg</Path>
-                    <Size>5445121</Size>
-                    <Hash>efd1dffd90296a69a8aecd7ecb1832b7</Hash>
-                    <Media>
-                        <Type>USBMassStorage</Type>
-                        <Removable>true</Removable>
-                    </Media>
-                </File>
+                                    <Domain>ACMECoolResearch/Users</Domain>
+                                    <UserDetails>
+                                        <Id>jc101</Id>
+                                        <StaffNumber>101</StaffNumber>
+                                        <Surname>Coder</Surname>
+                                        <Initials>JD</Initials>
+                                        <Title>Mr</Title>
+                                        <KnownAs>Jolly</KnownAs>
+                                        <PersonType>Employee</PersonType>
+                                        <Group>Technology</Group>
+                                        <Unit>Geology</Unit>
+                                        <Position>T.SD/42</Position>
+                                        <Role>Geologist</Role>
+                                        <GradeOfPost>E.5</GradeOfPost>
+                                        <EmploymentType>Employee</EmploymentType>
+                                        <EmploymentStatus>Active</EmploymentStatus>
+                                        <Nationality>GB</Nationality>
+                                        <Location>Moon Base Alpha</Location>
+                                        <RoomNumber>4/31</RoomNumber>
+                                        <Phone>11223</Phone>
+                                        <SupervisorStaffNumber>421</SupervisorStaffNumber>
+                                        <Organisation>ACMECoolResearch</Organisation>
+                                        <HostOrganisation>MoonCo</HostOrganisation>
+                                    </UserDetails>
+                                </User>
+                                <Allow>Read</Allow>
+                            </Permission>
+                        </Permissions>
+                        <Path>E:/DCIM/Spacecam101/141516.jpg</Path>
+                        <Size>5445121</Size>
+                        <Hash>efd1dffd90296a69a8aecd7ecb1832b7</Hash>
+                        <Media>
+                            <Type>USBMassStorage</Type>
+                            <Removable>true</Removable>
+                        </Media>
+                    </File>
+                </Source>
                 <Outcome>
                     <Permitted>true</Permitted>
                 </Outcome>
-            </View>
+            </Import>
         </EventDetail>
     </Event>
     <Event>
