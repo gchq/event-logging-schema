@@ -10,7 +10,8 @@ then the schema expresses events from the point of view of the device/generator 
 
 For example, a log file from a web proxy may contain events that describe events from its point of view.  
 Perhaps that it has not relayed a web page to an authenticated session ID
-due to a rule violation.  In such a case, the correct way to represent the event as a known user attempting to access a web page and being denied.
+due to a rule violation.  In such a case, the correct way to represent the event as a known user attempting to access 
+a web page and being denied.
 Which in XML would be as a ```<View>``` with ```<Outcome>``` elements set appropriately.
 
 ## Common Structural Elements
@@ -50,6 +51,34 @@ This provides a flexible structure for describing aspects of the schema action t
 The majority of the 'schema action' elements include the MultiObjectComplexType structure (or some child of it)
  to allow for recording various forms of objects that were involved in the event.
 
+##Defined Schema Actions
+A number of schema actions are defined that aim to be broadly representative of the kinds of activity that are 
+most likely to be of interest from an audit point of view.
+
+Schema Action|Rough Description |
+|---|---|
+| [Alert](alert.md) | A potentially concerning situation has been identified *that requires user attention to resolve*.|
+| [AntiMalware](antiMalware.md) | Events relating to functioning of antimalware softwrae *Will be removed in a future version of the schema*.|
+| [Authorise](authorise.md) | Events relating to authorisation changes, e.g. to group membership within LDAP or AD.|
+| [Copy](copyMove.md) | Making copies of data. |
+| [Create](createViewDelete.md) | Creating new items of data. |
+| [Delete](createViewDelete.md) | Destroying data. |
+| [Export](importExport.md) | Moving data out of a controlled area (e.g. database, application or network). |
+| [Import](importExport.md) | Moving data into a controlled area (e.g. database, application or network). |
+| [Install](installUninstall.md) | Installing hardware, software or removable media.|
+| [Move](copyMove.md) | Moving data. |
+| [Network](network.md) | Events that relate to networking between computers. |
+| [Print](printing.md) | Events relating to printing (i.e. making hard-copies). |
+| [Process](process.md) | Generic processing events, including starting processes and services on computers. |
+| [Receive](sendReceive.md) | Obtaining data over the network. |
+| [Search](search.md) | Search operations, e.g. querying a database. |
+| [Send](sendReceive.md) | Transmitting data over the network. |
+| [Uninstall](installUninstall.md) | Events relating to removal of hardware, software or removable media.|
+| [Unknown](unknown.md) | A type of event that is dissimilar to any in the schema. |
+| [Update](update.md) | Modification to data. |
+| [View](createViewDelete.md) | All events relating to accessing data.|
+
+
 ##Event Modelling
 The schema does not aim to provide an exhaustive list of all possible computer operations.
 
@@ -59,12 +88,14 @@ This is because:
 1. It would result in a schema that would be very difficult to use
  
 Instead, the schema should be used in such a way to describe the operation using the elements of the schema that most
-closely capture the nature of the kind of operation that was taking place *from the user's point of view*.  
+closely capture the nature of the kind of operation that was taking place *from the user's point of view*, or where
+there is no user *from the reporting device's point of view*. 
 
 Judgement is needed to find the best way to model a particular event.
 
-For example, a delete operation could actually just mark a record in such a way as to prevent it from being displayed
-and is effectively (internally) an update, but from the user's point of view it is a destructive operation - a delete.
+For example, a delete operation could actually just mark a record within the database in such a way as to prevent it
+from being displayed and so is effectively (at least internally) an update. But from the user's point of view it is a 
+destructive operation - so it should be modelled as a delete.
  
-However, it is important that events with similar effects are modelled similarly, in order that analytics can operate
+It is important that events with similar effects are modelled similarly, in order that analytics can operate
 effectively.  Examples that illustrate how the schema should be used are described [here](../eventModelling.md). 

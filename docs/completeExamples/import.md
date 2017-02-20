@@ -104,7 +104,7 @@ N.B. Although the user might not have actually read the object represented in th
          <EventDetail>
             <TypeId>ReadRM</TypeId>
             <Description>User has read a file from removable media</Description>
-            <View>
+            <Import>
               <File>
                  <Name>141516.jpg</Name>
                  <Description>JPG Image</Description>
@@ -131,7 +131,7 @@ N.B. Although the user might not have actually read the object represented in th
                <Outcome>
                   <Permitted>true</Permitted>
                </Outcome>
-            </View>
+            </Import>
          </EventDetail>
       </Event>
 ```

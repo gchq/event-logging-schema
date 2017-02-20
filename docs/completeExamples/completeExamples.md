@@ -26,7 +26,7 @@ these examples vary in the level of detail provided, e.g. within ```<UserDetails
 Organisations may wish to standardise, to maximise consistency and simplify analytic development.  However, in most
 real-world situations, the level of detail is likely to vary due to gaps in the data available to the organisation.
 For example, an event that describes the sending of an email from a company employee to an external email address may be
-expected to provide significantly more detail about the sender than the recipient in ```<UserDetails>```
+expected to provide significantly more detail about the sender than the recipient within ```<UserDetails>```.
 
 Schema Action within ```<EventDetail>```|
 :---:
@@ -34,7 +34,6 @@ Schema Action within ```<EventDetail>```|
 [Print](print.md)|
 [Search](search.md)|
 [Send](send.md)|
-[View](view.md)|
 
  
 
