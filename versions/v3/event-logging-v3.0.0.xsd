@@ -593,7 +593,7 @@
                                                                         </xs:annotation>
                                                                     </xs:element>
                                                                     <xs:element name="Pages"
-                                                                        type="xs:positiveInteger"
+                                                                        type="xs:nonNegativeInteger"
                                                                         minOccurs="0"
                                                                         maxOccurs="1">
                                                                         <xs:annotation>
@@ -601,7 +601,7 @@
                                                                         </xs:annotation>
                                                                     </xs:element>
                                                                     <xs:element name="Size"
-                                                                        type="xs:positiveInteger"
+                                                                        type="xs:nonNegativeInteger"
                                                                         minOccurs="0"
                                                                         maxOccurs="1">
                                                                         <xs:annotation>
