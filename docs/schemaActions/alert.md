@@ -5,7 +5,7 @@ The enumerated `<Type>` of the alert must be provided to categorise the alert.  
 
 An example alert action for a disk usage monitoring system is as follows:
 
-``` xml
+```xml
 <EventDetail>
   <TypeId>er1234</TypeId>
   <Alert>
@@ -16,7 +16,7 @@ An example alert action for a disk usage monitoring system is as follows:
 ```
 
 The following is an example of an alert from a network device performing packet filtering:
-``` xml
+```xml
 <EventDetail>
   <TypeId>4921</TypeId>
   <Description>A packet was rejected by filter xyz</Description>
@@ -24,7 +24,7 @@ The following is an example of an alert from a network device performing packet 
     <Type>Network</Type>
     <Network>
       <Source>
-        <IPAddress>192.168.0.3</IPAddress>
+        <IPAddress>192.168.0.4</IPAddress>
       </Source>
       <Destination>
         <IPAddress>192.168.7.5</IPAddress>

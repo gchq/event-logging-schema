@@ -5,7 +5,7 @@
     "plugins": ["prism", "-highlight", "github", "anchorjs"],
     "pluginsConfig": {
         "github": {
-            "url": "https://github.com/TODO"
+            "url": "https://github.com/gchq/event-logging-schema"
         },
         "theme-default": {
             "showLevel": true,
