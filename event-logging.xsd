@@ -399,7 +399,7 @@
                                                 </xs:annotation>
                                             </xs:element>
                                             <xs:element name="Create"
-                                                type="evt:ObjectOutcomeDataComplexType"
+                                                type="evt:ObjectOutcomeComplexType"
                                                 minOccurs="1"
                                                 maxOccurs="1">
                                                 <xs:annotation>
@@ -407,7 +407,7 @@
                                                 </xs:annotation>
                                             </xs:element>
                                             <xs:element name="View"
-                                                type="evt:ObjectOutcomeDataComplexType"
+                                                type="evt:ObjectOutcomeComplexType"
                                                 minOccurs="1"
                                                 maxOccurs="1">
                                                 <xs:annotation>
@@ -472,7 +472,7 @@
                                                 </xs:complexType>
                                             </xs:element>
                                             <xs:element name="Delete"
-                                                type="evt:ObjectOutcomeDataComplexType"
+                                                type="evt:ObjectOutcomeComplexType"
                                                 minOccurs="1"
                                                 maxOccurs="1">
                                                 <xs:annotation>
@@ -2226,7 +2226,7 @@
             </xs:extension>
         </xs:complexContent>
     </xs:complexType>
-    <xs:complexType name="ObjectOutcomeDataComplexType">
+    <xs:complexType name="ObjectOutcomeComplexType">
         <xs:annotation>
             <xs:documentation>Contains an item of data, e.g. a file, document, etc, and describes the outcome of the event as well as providing for additional event data that does not fit ito the item of data element.</xs:documentation>
         </xs:annotation>
