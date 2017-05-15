@@ -63,6 +63,7 @@
 * [Unstructured Data](unstructuredData.md)
 * [Data Types](dataTypes.md)
 * [FAQ](FAQ.md)
+* [Release Process](releaseProcess.md)
 * [Glossary](Glossary.md)
 * [Change Log](CHANGELOG.md)
 
