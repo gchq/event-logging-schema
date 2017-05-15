@@ -2,11 +2,11 @@
 
 See [Change Log](CHANGELOG.md) for details of the version numbering approach.
 
-The definition of breaking change is one which is no backwards compitable with the latest release.  This is both in terms of an XML document conforming to the event-logging schema and the Java JAXB api in [event-logging](https://github.com/gchq/event-loggin). A non-exhaustive list of examples of a breaking change are:
+The definition of breaking change is one which is not backwards compatible with the latest release.  This is both in terms of an XML document conforming to the event-logging schema and the Java JAXB api in [event-logging](https://github.com/gchq/event-loggin). A non-exhaustive list of examples of a breaking change are:
 
 * New mandatory `xs:element` or `xs:attribute`
 * Removal of an `xs:element` or `xs:attribute`
-* Changing an `xs:eleemnt` to be mandatory
+* Changing an `xs:element` to be mandatory
 * Changing the position of an element within an `xs:sequence`
 * Changing the position of an attribute within an `xs:element`
 * Renaming an `xs:element` or `xs:attribute`
