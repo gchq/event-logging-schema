@@ -2228,7 +2228,7 @@
     </xs:complexType>
     <xs:complexType name="ObjectOutcomeComplexType">
         <xs:annotation>
-            <xs:documentation>Contains an item of data, e.g. a file, document, etc, and describes the outcome of the event as well as providing for additional event data that does not fit ito the item of data element.</xs:documentation>
+            <xs:documentation>Contains an item of data, e.g. a file, document, etc, and describes the outcome of the event as well as providing for additional event data that does not fit into the item of data element.</xs:documentation>
         </xs:annotation>
         <xs:complexContent>
             <xs:extension base="evt:BaseMultiObjectComplexType">
