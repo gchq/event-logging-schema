@@ -659,6 +659,14 @@
                                                                             <xs:documentation>True if fonts are to be used on the printing device. Using device fonts reduces the size of the print job as no font information needs to be supplied to the printer. However, using device fonts will result in different output on different printers. Most print jobs will not use device fonts so this defaults to false and can therefore be omitted if device fonts are not being used.</xs:documentation>
                                                                         </xs:annotation>
                                                                     </xs:element>
+                                                                    <xs:element name="Data"
+                                                                        type="evt:DataComplexType"
+                                                                        minOccurs="0"
+                                                                        maxOccurs="unbounded">
+                                                                        <xs:annotation>
+                                                                            <xs:documentation>Any other event data that does not fit into a schema element but may be useful for the purpose of audit.</xs:documentation>
+                                                                        </xs:annotation>
+                                                                    </xs:element>
                                                                 </xs:sequence>
                                                             </xs:complexType>
                                                         </xs:element>
