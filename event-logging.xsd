@@ -2963,6 +2963,8 @@
             <xs:enumeration value="Reconnect"/>
             <xs:enumeration value="Disconnect"/>
             <xs:enumeration value="Connect"/>
+            <xs:enumeration value="ElevatePrivilege"/>
+            <xs:enumeration value="Other"/>
         </xs:restriction>
     </xs:simpleType>
     <xs:simpleType name="AuthenticateLogonTypeSimpleType">
