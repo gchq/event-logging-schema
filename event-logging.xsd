@@ -3106,9 +3106,13 @@
         <xs:restriction base="xs:string">
             <xs:enumeration value="CreateJob"/>
             <xs:enumeration value="CancelJob"/>
+            <xs:enumeration value="PauseJob"/>
+            <xs:enumeration value="ResumeJob"/>
             <xs:enumeration value="StartPrint"/>
             <xs:enumeration value="FinishPrint"/>
             <xs:enumeration value="CancelPrint"/>
+            <xs:enumeration value="FailedPrint"/>
+            <xs:enumeration value="Other"/>
         </xs:restriction>
     </xs:simpleType>
     <xs:simpleType name="PrintSettingsOrientationSimpleType">
