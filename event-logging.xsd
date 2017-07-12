@@ -593,7 +593,7 @@
                                                                         </xs:annotation>
                                                                     </xs:element>
                                                                     <xs:element name="Pages"
-                                                                        type="xs:positiveInteger"
+                                                                        type="xs:nonNegativeInteger"
                                                                         minOccurs="0"
                                                                         maxOccurs="1">
                                                                         <xs:annotation>
@@ -601,7 +601,7 @@
                                                                         </xs:annotation>
                                                                     </xs:element>
                                                                     <xs:element name="Size"
-                                                                        type="xs:positiveInteger"
+                                                                        type="xs:nonNegativeInteger"
                                                                         minOccurs="0"
                                                                         maxOccurs="1">
                                                                         <xs:annotation>
@@ -1817,7 +1817,7 @@
                         minOccurs="0"
                         maxOccurs="1"/>
                     <xs:element name="Pages"
-                        type="xs:positiveInteger"
+                        type="xs:nonNegativeInteger"
                         minOccurs="0"
                         maxOccurs="1"/>
                     <xs:element name="Size"
@@ -2404,7 +2404,7 @@
                         </xs:annotation>
                     </xs:element>
                     <xs:element name="InboundSize"
-                        type="xs:positiveInteger"
+                        type="xs:nonNegativeInteger"
                         minOccurs="0"
                         maxOccurs="1">
                         <xs:annotation>
@@ -2412,7 +2412,7 @@
                         </xs:annotation>
                     </xs:element>
                     <xs:element name="InboundContentSize"
-                        type="xs:positiveInteger"
+                        type="xs:nonNegativeInteger"
                         minOccurs="0"
                         maxOccurs="1">
                         <xs:annotation>
@@ -2428,7 +2428,7 @@
                         </xs:annotation>
                     </xs:element>
                     <xs:element name="OutboundSize"
-                        type="xs:positiveInteger"
+                        type="xs:nonNegativeInteger"
                         minOccurs="0"
                         maxOccurs="1">
                         <xs:annotation>
@@ -2436,7 +2436,7 @@
                         </xs:annotation>
                     </xs:element>
                     <xs:element name="OutboundContentSize"
-                        type="xs:positiveInteger"
+                        type="xs:nonNegativeInteger"
                         minOccurs="0"
                         maxOccurs="1">
                         <xs:annotation>
@@ -2452,7 +2452,7 @@
                         </xs:annotation>
                     </xs:element>
                     <xs:element name="RequestTime"
-                        type="xs:positiveInteger"
+                        type="xs:nonNegativeInteger"
                         minOccurs="0"
                         maxOccurs="1">
                         <xs:annotation>
