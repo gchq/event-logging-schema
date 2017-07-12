@@ -287,6 +287,14 @@
                                                                     <xs:documentation>Where a device authenticates with another device, this is the device that initiates the authentication action.</xs:documentation>
                                                                 </xs:annotation>
                                                             </xs:element>
+                                                            <xs:element name="Group"
+                                                                type="evt:GroupComplexType"
+                                                                minOccurs="1"
+                                                                maxOccurs="1">
+                                                                <xs:annotation>
+                                                                    <xs:documentation>The group the authentication action relates to.</xs:documentation>
+                                                                </xs:annotation>
+                                                            </xs:element>
                                                         </xs:choice>
                                                         <xs:element name="Outcome"
                                                             type="evt:AuthenticateOutcomeComplexType"
