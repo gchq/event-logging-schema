@@ -2228,7 +2228,7 @@
     </xs:complexType>
     <xs:complexType name="ObjectOutcomeComplexType">
         <xs:annotation>
-            <xs:documentation>Contains an item of data, e.g. a file, document, etc, and describes the outcome of the event.</xs:documentation>
+            <xs:documentation>Contains an item of data, e.g. a file, document, etc, and describes the outcome of the event as well as providing for additional event data that does not fit into the item of data element.</xs:documentation>
         </xs:annotation>
         <xs:complexContent>
             <xs:extension base="evt:BaseMultiObjectComplexType">
@@ -2239,6 +2239,14 @@
                         maxOccurs="1">
                         <xs:annotation>
                             <xs:documentation>Used to determine if the action was successful. If omitted it is assumed that the event was successful and was permitted.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Data"
+                        type="evt:DataComplexType"
+                        minOccurs="0"
+                        maxOccurs="unbounded">
+                        <xs:annotation>
+                            <xs:documentation>Any other event data that does not fit into a schema element but may be useful for the purpose of audit.</xs:documentation>
                         </xs:annotation>
                     </xs:element>
                 </xs:sequence>
