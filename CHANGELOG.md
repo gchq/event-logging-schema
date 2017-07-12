@@ -20,9 +20,30 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 ### Changed
 
+## [v3.1.0] - 2017-07-12
+
+### Added
+
+* Issue **#16** : Add _Data_ element to _PrintSettings_ element
+
+* Issue **#13** : Add _Group_ to the list of items an _Authenticate_ action can occur on
+
+* Issue **#12** : Add _ElevatePrivilege_ and _Other_ to list of _Authenticate_ Actions
+
+* Issue **#6** : Add _PauseJob_, _ResumeJob_, _FailedPrint_ and _Other_ to _PrintActionSimpleType_
+
+* Issue **#4** : Extend _ObjectOutcomeComplexType_ to have _Data_ sub elements
+
+### Changed
+
+* Issue **#5** : Change certain instances of _xs:positiveInteger_ to _xs:nonNegativeInteger_ to allow zero values
+
 ## [v3.0.0] - 2016-10-31
 
 ### Added
+
 * Intial open source release
 
-[Unreleased]: https://github.com/gchq/event-logging-schema/compare/v3.0.0...HEAD
+[Unreleased]: https://github.com/gchq/event-logging-schema/compare/v3.1.0...HEAD
+[v3.1.0]: https://github.com/gchq/event-logging-schema/compare/v3.0.0...v3.1.0
+[v3.0.0]: https://github.com/gchq/event-logging-schema/compare/v3.0.0...v3.0.0
