@@ -22,8 +22,24 @@ The definition of breaking change is one which is not backwards compatible with 
     1. Increment the major version number in `targetNamespace`, e.g. `event-logging:4`
 1. Change the `version` attribute to the intended version number, e.g. `4.1.2`
 1. Change the `id` attribute to the intended version number, e.g. `event-logging-v4.1.2`
+1. Ensure CHANGELOG.md has all changes documented in it
 1. Commit and push the new version number changes
 1. Create a tag in git for the new release, e.g. `git tag v4.1.2`
-1. Push the tag to the remote `git push v4.1.2`. Travis will create a release in github, adding the xsd file as a release artifact
-
+1. TODO Push the tag to the remote `git push v4.1.2`. Travis will create a release in github, adding the xsd file as a release artifact
+1. Add the new schema to stroom-content
+    1. Copy the new schema file into `stroom-content/source/event-logging-xml-schema/stroomContent/XML Schemas/event-logging/` naming it something like `event-logging v4.1.2.XMLSchema.data.xsd`.
+    1. Copy the latest `.XMLSchema.xml` files into one named for the new version, e.g. `event-logging v4.1.2.XMLSchema.xml`
+    1. Edit this new `.XMLSchema.xml` file:
+        1. Update the `<name>` tag to reflect the new version number
+        1. If the major version number has changed update the `<namespaceURI>` tag with the new major version number
+        1. Update the `<systemId>` tag to reflect the new version number
+        1. Replace the content of the `<uuid>` tag with a newly generated UUID.  You can use the linux binary `uuidgen` to generate a new UUID.
+    1. Update the `CHANGELOG.md` file in `stroom-content/source/event-logging-xml-schema/`, probably copying the content from the CHANGELOG in the event-logging-schema git repo.
+    1. Run the build to build the new pack
+    1. Commit and push the changes
+    1. In GitHUb create a new release for the updated pack.
+1. Update the version numbers in `event-logging.xsd`
+    1. Change the `version` attribute to the next intended version number with a SNAPSHOT suffix, e.g. `4.2.0-SNAPSHOT`
+    1. Change the `id` attribute to the next intended version number with a SNAPSHOT suffix, e.g. `event-logging-v4.2.0-SNAPSHOT`
+    1. Commit and push the change
 
