@@ -19,8 +19,8 @@
     targetNamespace="event-logging:3"
     elementFormDefault="qualified"
     attributeFormDefault="unqualified"
-    version="3.2.0-SNAPSHOT"
-    id="event-logging-v3.2.0-SNAPSHOT">
+    version="3.1.1"
+    id="event-logging-v3.1.1">
     <xs:annotation>
         <xs:documentation>This schema describes the allowed element structure for event logging. Please refer to the documentation and examples for a description of how to use this schema in addition to the descriptions given for each element within this schema.</xs:documentation>
     </xs:annotation>
@@ -3192,11 +3192,12 @@
     </xs:simpleType>
     <xs:simpleType name="VersionSimpleType">
         <xs:annotation>
-            <xs:documentation>Type for specifying version numbers in a common way, e.g. 2.4</xs:documentation>
+            <xs:documentation>Type for specifying the version numbers of XML documents that are supported by this version of the XMLSchema. A version of the schema will support XML documents conforming to its version and all past version where the major version number is the same.</xs:documentation>
         </xs:annotation>
         <xs:restriction base="xs:string">
-            <xs:pattern value="[0-9]+(\.[0-9]+)*"/>
             <xs:enumeration value="3.0.0"/>
+            <xs:enumeration value="3.1.0"/>
+            <xs:enumeration value="3.1.1"/>
         </xs:restriction>
     </xs:simpleType>
     <xs:simpleType name="VirtualSessionSessionStateSimpleType">

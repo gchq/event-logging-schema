@@ -11,7 +11,7 @@ The namespace of the schema includes the major version, e.g. _event-logging:3_. 
 
 Minor and patch versions will be backwards compatible with other versions at the same major version number. The minor and patch version numbers are included in the _version_ and _id_ attributes of the _xs:schema_ element.
 
-Minor version changes may included new optional elements or attributes. They may also include changes to such things as enumerations or paterns that are addative in nature.
+Minor version changes may included new optional elements or attributes. They may also include changes to such things as enumerations or patterns that are additive in nature.
 
 Patch version changes will typically include cosmetic changes (e.g. _xs:documentation_ changes. 
 
@@ -19,6 +19,13 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 ### Added
 
 ### Changed
+
+## [v3.1.1] - 2017-07-17
+
+### Changed
+
+* Issue **#18** : Remove `pattern` from `VersionSimpleType` as this is trumped by the enumerations. Add past versions as enumerations.
+
 
 ## [v3.1.0] - 2017-07-12
 
@@ -44,6 +51,7 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 * Intial open source release
 
-[Unreleased]: https://github.com/gchq/event-logging-schema/compare/v3.1.0...HEAD
+[Unreleased]: https://github.com/gchq/event-logging-schema/compare/v3.1.1...HEAD
+[v3.1.1]: https://github.com/gchq/event-logging-schema/compare/v3.1.0...v3.1.1
 [v3.1.0]: https://github.com/gchq/event-logging-schema/compare/v3.0.0...v3.1.0
 [v3.0.0]: https://github.com/gchq/event-logging-schema/compare/v3.0.0...v3.0.0
