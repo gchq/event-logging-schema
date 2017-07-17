@@ -22,6 +22,7 @@ The definition of breaking change is one which is not backwards compatible with 
     1. Increment the major version number in `targetNamespace`, e.g. `event-logging:4`
 1. Change the `version` attribute to the intended version number, e.g. `4.1.2`
 1. Change the `id` attribute to the intended version number, e.g. `event-logging-v4.1.2`
+1. Change or add to the list of enumerations in `VersionSimplType`. If the change is a breaking change the remove all existign enumerations and add in one for the new version. If it is not a breaking changed add the new version to the list of existing versions.
 1. Ensure CHANGELOG.md has all changes documented in it
 1. Commit and push the new version number changes
 1. Create a tag in git for the new release, e.g. `git tag v4.1.2`
