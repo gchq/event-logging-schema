@@ -73,6 +73,10 @@ def validateVersions():
     if (namespaceVersion != targetNamespaceVersion):
         raise ValueError("namespace version and targetNamespace version do not match", namespaceVersion, targetNamespaceVersion)
 
+    versionRegex = "[0-9]+\.[0-9]+\.[0-9]+"
+    if (not re.match(versionRegex, versionAttrVersion)):
+        raise ValueError("version attribute does not match the valid regex", versionAttrVersion, versionRegex)
+
     if (versionAttrVersion != idAttrVersion):
         raise ValueError("version attribute and id attribute do not match", versionAttrVersion, idAttrVersion)
 
