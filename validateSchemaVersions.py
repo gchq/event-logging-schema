@@ -51,14 +51,14 @@ def validateVersions():
     xml_root = ET.parse(SCHEMA_FILENAME).getroot()
 
     targetNamespaceAttr = xml_root.get("targetNamespace")
-    targetNamespaceVersion = re.match(".*:([0-9]*)$", targetNamespaceAttr).group(1)
+    targetNamespaceVersion = re.match(".*:(.*)$", targetNamespaceAttr).group(1)
     print "targetNamespace: %s" % targetNamespaceVersion
 
     versionAttrVersion = xml_root.get("version")
     print "version: %s" % versionAttrVersion
 
     idAttr = xml_root.get("id")
-    idAttrVersion = re.match("event-logging-v([0-9\.]*)", idAttr).group(1)
+    idAttrVersion = re.match("event-logging-v(.*)$", idAttr).group(1)
     print "id: %s" % idAttrVersion
 
     ns = {'xs': 'http://www.w3.org/2001/XMLSchema'}
