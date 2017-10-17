@@ -6,6 +6,7 @@ classes/
 generated/
 libs/
 jars/
+/event-logging-transformations/pipelines/generated
 
 
 # IntelliJ

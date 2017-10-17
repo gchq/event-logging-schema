@@ -1,0 +1,27 @@
+#The path to the XMLSchema that the following transformation pipelines
+#should be applied to. The path is relative to the directory of this
+#configuration file
+sourceSchemaPath: "../../event-logging.xsd"
+
+#Each pipeline configuration will be run against the sourceSchema
+#name - the name of the pipeline to run
+#suffix - the suffix to apply to the generated xsd file
+#transformations - An ordered list of the xslt files that make up a pipeline of relative transformations
+pipelines:
+
+  - name: "clean"
+    suffix: "cleaned"
+    transformations:
+      - "ensureOccurrence.xsl"
+      - "extractSimpleTypes.xsl"
+      - "orderElements.xsl"
+          
+  - name: "jaxb-redaction"
+    suffix: "jaxb"
+    transformations:
+      - "ensureOccurrence.xsl"
+      - "extractSimpleTypes.xsl"
+      - "orderElements.xsl"
+      - "jaxbEventRoot.xsl"
+      - "jaxbNoEventId.xsl"
+      - "jaxbNoUserDetails.xsl"

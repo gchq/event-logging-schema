@@ -8,4 +8,6 @@
  * in the user guide at https://docs.gradle.org/3.5.1/userguide/multi_project_builds.html
  */
 
-rootProject.name = 'event-logging-transformations'
+rootProject.name = 'event-logging'
+
+include 'event-logging-transformations'
