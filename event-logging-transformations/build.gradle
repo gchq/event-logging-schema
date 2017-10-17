@@ -6,15 +6,19 @@ def jarName = "event-logging-transformations-${versions.eventLogging}.jar"
 def fatJarName = "event-logging-transformations-${versions.eventLogging}-all.jar"
 
 apply plugin: 'java'
+apply plugin: 'application'
 apply plugin: 'ca.cutterslade.analyze'
 apply plugin: 'idea'
+
+//required for application plugin
+mainClassName = "event.logging.transformation.SchemaGenerator"
 
 jar {
     manifest {
         attributes(
                 "Implementation-Title": "Event-Logging-Transformations",
                 "Implementation-Version": versions.eventLogging,
-                "Main-Class" : "event.logging.transformation.SchemaGenerator"
+                "Main-Class" : mainClassName
         )
     }
     archiveName jarName
@@ -42,6 +46,14 @@ dependencies {
     runtime "ch.qos.logback:logback-classic:${versions.logback}"
 
     //testCompile 'junit:junit:4.12'
+}
+
+run {
+    args project.file('pipelines')
+}
+
+runShadow {
+    args project.file('pipelines')
 }
 
 tasks.build.dependsOn shadowJar

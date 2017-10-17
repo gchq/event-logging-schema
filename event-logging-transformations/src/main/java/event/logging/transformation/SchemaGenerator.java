@@ -4,6 +4,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import event.logging.transformation.configuration.Configuration;
 import event.logging.transformation.configuration.Pipeline;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
@@ -35,6 +37,8 @@ import java.util.stream.Collectors;
 
 public class SchemaGenerator {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(SchemaGenerator.class);
+
     // set this value to the version that you want to build the schemas for
 
     private static final String CONFIG_FILE = "configuration.yml";
@@ -61,13 +65,20 @@ public class SchemaGenerator {
         if (args.length == 1 && args[0].length() > 1) {
             String basePathStr = args[0];
             Path basePath = Paths.get(basePathStr);
+            System.out.println(String.format("Using basePath [%s]", basePath.toAbsolutePath().toString()));
+
             if (!Files.isDirectory(basePath)) {
                 System.out.println(String.format("basePath [%s] is not a valid directory", basePath));
                 displayUsageAndExit();
             }
 
-            Configuration configuration = loadConfiguration(basePath);
-            new SchemaGenerator(basePath, configuration).build();
+            try {
+                Configuration configuration = loadConfiguration(basePath);
+                new SchemaGenerator(basePath, configuration).build();
+            } catch (IOException e) {
+                LOGGER.error("Error transforming schema", e);
+                System.exit(1);
+            }
 
             System.out.println("Finished!");
             System.exit(0);
