@@ -1,6 +1,8 @@
-#No language required so just use ruby to avoid warnings in travis yml linter
-language: ruby
+language: java
 dist: trusty
+group: edge
+jdk: oraclejdk8
+sudo: false
 
 before_install:
   - sudo apt-get -qq update
@@ -10,4 +12,19 @@ script:
    - xmllint --noout --schema http://www.w3.org/2001/XMLSchema.xsd ./event-logging.xsd
    - ./validateSchemaVersions.py
 
-##TODO Gte travis to push the xsd file as an artifact in a github release, renaming the file to event-logging-vX.xsd
+install: echo "skip 'gradle assemble' step to speed up build"
+
+script: ./travis.script.sh
+    
+#clean out gradle caches as per travis docs
+before_cache:
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+
+# Cache dependencies to speed up the build
+cache:
+  directories:
+    - .autoconf
+    - $HOME/.m2
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
