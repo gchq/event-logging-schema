@@ -1,0 +1,79 @@
+def projectGroup = "event-logging-transformations"
+def projectVersion = "${version}"
+
+buildscript {
+    repositories {
+        mavenLocal()
+        jcenter()
+    }
+    dependencies {
+        classpath group: 'ca.cutterslade.gradle', name: 'gradle-dependency-analyze', version: '1.2.0'
+    }
+}
+
+//must be applied to all projects including root
+apply plugin: 'ca.cutterslade.analyze'
+
+//if the project has a value for the passed property (i.e from the cmd line via -PpropName=xxx)
+//use that, else use a default value
+ext.getPropertyOrDefault = { propName, defaultValue -> 
+    def val;
+    if (project.hasProperty(propName) && project.getProperty(propName) != "unspecified") {
+        val = project.getProperty(propName)
+        println "Using propery $propName with value $val"
+    } else {
+        val = defaultValue
+        println "Propery $propName has no value, using default value $val"
+    }
+    return val;
+}
+
+ext.versions = [
+    //------event-logging--------------
+    eventLogging: getPropertyOrDefault('version', 'SNAPSHOT'),
+
+    //------------3rd-party------------
+    jackson: '2.8.9',
+    logback: '1.2.3',
+    saxon: '9.6.0-6',
+    slf4j: '1.7.22',
+    zzDUMMYzz: 'makes sorting easier'
+]
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.1'
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'ca.cutterslade.analyze'
+    apply plugin: 'idea'
+
+    group "$projectGroup"
+    version "$projectVersion"
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    repositories {
+        jcenter()
+        mavenLocal()
+    }
+
+    configurations {
+        all {
+            exclude group: "org.slf4j", module: "slf4j-log4j12"
+            exclude group: "log4j", module: "log4j"
+
+            resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+                if (details.requested.name == 'log4j') {
+                    details.useTarget "org.slf4j:log4j-over-slf4j:$versions.slf4j"
+                }
+            }
+            resolutionStrategy {
+                forcedModules = [
+                ]
+            }
+        }
+    }
+}
