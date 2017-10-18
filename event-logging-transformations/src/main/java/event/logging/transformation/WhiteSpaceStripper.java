@@ -13,7 +13,9 @@ class WhiteSpaceStripper extends XMLFilterImpl implements LexicalHandler {
     private LexicalHandler lexicalHandler;
 
     @Override
-    public void startElement(final String uri, final String localName, final String name,
+    public void startElement(final String uri,
+                             final String localName,
+                             final String name,
                              final Attributes atts) throws SAXException {
         outputChars();
 
@@ -22,6 +24,11 @@ class WhiteSpaceStripper extends XMLFilterImpl implements LexicalHandler {
         super.startElement(uri, localName, name, newAtts);
     }
 
+    /**
+     * Ensure certain attributes are in a consistent order. Any attributes matching those in the order argument
+     * will be placed first, in the order they appear in 'order'. All others will appear in their original
+     * order after that.
+     */
     private Attributes rearrangeAtts(final Attributes atts,
                                      final String[] order) {
         final AttributesImpl newAtts = new AttributesImpl();

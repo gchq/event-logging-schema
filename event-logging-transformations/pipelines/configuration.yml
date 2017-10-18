@@ -10,14 +10,14 @@ sourceSchemaPath: "../../event-logging.xsd"
 pipelines:
 
   - name: "clean"
-    suffix: "cleaned"
+    suffix: "v3"
     transformations:
       - "ensureOccurrence.xsl"
       - "extractSimpleTypes.xsl"
       - "orderElements.xsl"
           
   - name: "jaxb-redaction"
-    suffix: "jaxb"
+    suffix: "v3-jaxb"
     transformations:
       - "ensureOccurrence.xsl"
       - "extractSimpleTypes.xsl"
