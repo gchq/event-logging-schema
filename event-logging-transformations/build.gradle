@@ -56,4 +56,4 @@ runShadow {
     args project.file('pipelines')
 }
 
-tasks.build.dependsOn shadowJar
+tasks.build.dependsOn runShadow
