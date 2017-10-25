@@ -10,15 +10,11 @@
 		</xsl:copy>
 	</xsl:template>
 
+        <!-- Remove any appinfo appinfo elements-->
 	<xsl:template match="xs:appinfo" />
 
-
-
-
-	<!-- Remove everything from user details except Organisation and HostOrganisation -->
-	<xsl:template
-		match="xs:complexType[@name = 'UserDetailsComplexType']/xs:sequence/xs:element[@name != 'Organisation' and @name != 'HostOrganisation']" />
-
-
+        <!-- Remove all elements inside the UserDetailsComplexType as clients will not be expected to -->
+        <!-- populate this section-->
+	<xsl:template match="xs:complexType[@name = 'UserDetailsComplexType']/xs:sequence/xs:element" />
 
 </xsl:stylesheet>
