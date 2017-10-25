@@ -213,7 +213,7 @@ public class SchemaGenerator {
 
         final Path sourceSchema = configuration.getSourceSchemaPath(basePath);
 
-        String replacement = pipeline.getSuffix() == null || pipeline.getSuffix().isEmpty() ?
+        String replacement = (pipeline.getSuffix() == null || pipeline.getSuffix().isEmpty()) ?
                 UNFORMATTED_SUFFIX :
                 "-" + pipeline.getSuffix() + UNFORMATTED_SUFFIX;
         //add the suffix to the output file
@@ -257,6 +257,13 @@ public class SchemaGenerator {
 
         System.out.println("Formatting the file");
         formatFile(outputFile, formattedFile);
+
+        try {
+            Files.deleteIfExists(outputFile);
+        } catch (IOException e) {
+            throw new RuntimeException(String.format("Error deleting un-formatted file %s",
+                    outputFile.toAbsolutePath().toString()), e);
+        }
 
         validateSchema(Paths.get(formattedFile.toUri()));
     }
