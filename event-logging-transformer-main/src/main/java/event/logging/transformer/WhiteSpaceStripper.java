@@ -1,4 +1,4 @@
-package event.logging.transformation;
+package event.logging.transformer;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;

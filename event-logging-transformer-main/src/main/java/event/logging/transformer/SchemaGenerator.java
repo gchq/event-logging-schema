@@ -1,9 +1,9 @@
-package event.logging.transformation;
+package event.logging.transformer;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
-import event.logging.transformation.configuration.Configuration;
-import event.logging.transformation.configuration.Pipeline;
+import event.logging.transformer.configuration.Configuration;
+import event.logging.transformer.configuration.Pipeline;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xml.sax.InputSource;
@@ -33,7 +33,10 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.Comparator;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class SchemaGenerator {
 
@@ -94,7 +97,7 @@ public class SchemaGenerator {
                         .getCodeSource()
                         .getLocation()
                         .getPath()
-                ).getName();
+        ).getName();
 
         System.out.println(String.format("Usage: java -jar %s basePath", jarName));
         System.out.println("Where basePath is the path where the configuration.yml lives \n" +
@@ -213,11 +216,21 @@ public class SchemaGenerator {
 
         final Path sourceSchema = configuration.getSourceSchemaPath(basePath);
 
-        String replacement = (pipeline.getSuffix() == null || pipeline.getSuffix().isEmpty()) ?
-                UNFORMATTED_SUFFIX :
-                "-" + pipeline.getSuffix() + UNFORMATTED_SUFFIX;
+        //build a replacement for the file end of the source schema
+        StringBuilder replacement = new StringBuilder()
+                .append("-v")
+                .append(getNamespaceVersion(sourceSchema));
+
+        if (pipeline.getSuffix() != null && !pipeline.getSuffix().isEmpty()) {
+            replacement.append("-")
+                    .append(pipeline.getSuffix());
+        }
+        replacement.append(UNFORMATTED_SUFFIX);
+
         //add the suffix to the output file
-        String outputFileName = sourceSchema.getFileName().toString().replaceAll( "\\.xsd$", replacement);
+        String outputFileName = sourceSchema.getFileName().toString()
+                .replaceAll("\\.xsd$", replacement.toString());
+
         final Path outputFile = getGeneratedPath().resolve(outputFileName);
 
         int i = 0;
@@ -251,8 +264,8 @@ public class SchemaGenerator {
         }
 
         String formattedFileName = outputFile.getFileName()
-                        .toString()
-                        .replaceAll(UNFORMATTED_SUFFIX, ".xsd");
+                .toString()
+                .replaceAll(UNFORMATTED_SUFFIX, ".xsd");
         Path formattedFile = getGeneratedPath().resolve(formattedFileName);
 
         System.out.println("Formatting the file");
@@ -266,6 +279,35 @@ public class SchemaGenerator {
         }
 
         validateSchema(Paths.get(formattedFile.toUri()));
+    }
+
+    private String getNamespaceVersion(final Path schemaPath) {
+//        final String linePattern = "targetNamespace=\"event-logging:(.*?)\"";
+        final Pattern linePattern = Pattern.compile("targetNamespace=\"event-logging:(?<version>.*?)\"");
+
+        String targetNameSpaceLine;
+        try (Stream<String> lines = Files.lines(schemaPath)) {
+            targetNameSpaceLine = lines
+                    .filter(linePattern.asPredicate())
+                    .findFirst()
+                    .orElseThrow(() -> new RuntimeException(String.format("Could not find pattern [%s] in file %s",
+                            linePattern, schemaPath.toAbsolutePath().toString())));
+        } catch (IOException e) {
+            throw new RuntimeException(String.format("Error reading file %S",
+                    schemaPath.toAbsolutePath().toString()), e);
+        }
+        Matcher matcher = linePattern.matcher(targetNameSpaceLine);
+        String version = null;
+        while (matcher.find()) {
+            //extract the version group from the match
+            version = matcher.group("version");
+            break;
+        }
+        if (version == null) {
+            throw new RuntimeException(String.format("Something has gone wrong, could not find version in line [%s] using pattern[%s]",
+                    targetNameSpaceLine, linePattern.toString()));
+        }
+        return version;
     }
 
     private void validateSchema(final Path safeSchemaPath) {

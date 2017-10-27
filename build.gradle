@@ -1,4 +1,4 @@
-def projectGroup = "event-logging-transformations"
+def projectGroup = "event-logging-transformer"
 def projectVersion = "${version}"
 
 buildscript {
@@ -30,7 +30,7 @@ ext.getPropertyOrDefault = { propName, defaultValue ->
 
 ext.versions = [
     //------event-logging--------------
-    eventLogging: getPropertyOrDefault('version', 'SNAPSHOT'),
+    eventLoggingTransformer: getPropertyOrDefault('version', 'SNAPSHOT'),
 
     //------------3rd-party------------
     jackson: '2.8.9',

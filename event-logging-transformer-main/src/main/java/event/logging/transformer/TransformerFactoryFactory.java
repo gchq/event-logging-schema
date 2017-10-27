@@ -1,4 +1,4 @@
-package event.logging.transformation;
+package event.logging.transformer;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

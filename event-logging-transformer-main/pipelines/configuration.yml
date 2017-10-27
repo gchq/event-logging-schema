@@ -10,15 +10,15 @@ sourceSchemaPath: "../../event-logging.xsd"
 #                  Each transformation will be applied to the result of the preceding transformation
 pipelines:
 
-  - name: "clean"
-    suffix: "v3"
+  - name: "fullSchema"
+    suffix: ""
     transformations:
       - "ensureOccurrence.xsl"
       - "extractSimpleTypes.xsl"
       - "orderElements.xsl"
           
   - name: "client-variant"
-    suffix: "v3-client"
+    suffix: "client"
     transformations:
       - "ensureOccurrence.xsl"
       - "extractSimpleTypes.xsl"

@@ -1,4 +1,4 @@
-package event.logging.transformation.configuration;
+package event.logging.transformer.configuration;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

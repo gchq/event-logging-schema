@@ -2,8 +2,8 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '1.2.4'
 }
 
-def jarName = "event-logging-transformations-${versions.eventLogging}.jar"
-def fatJarName = "event-logging-transformations-${versions.eventLogging}-all.jar"
+def jarName = "event-logging-transformer-${versions.eventLoggingTransformer}.jar"
+def fatJarName = "event-logging-transformer-${versions.eventLoggingTransformer}-all.jar"
 
 apply plugin: 'java'
 apply plugin: 'application'
@@ -11,13 +11,13 @@ apply plugin: 'ca.cutterslade.analyze'
 apply plugin: 'idea'
 
 //required for application plugin
-mainClassName = "event.logging.transformation.SchemaGenerator"
+mainClassName = "event.logging.transformer.SchemaGenerator"
 
 jar {
     manifest {
         attributes(
-                "Implementation-Title": "Event-Logging-Transformations",
-                "Implementation-Version": versions.eventLogging,
+                "Implementation-Title": "event-Logging-transformer",
+                "Implementation-Version": versions.eventLoggingTransformer,
                 "Main-Class" : mainClassName
         )
     }
