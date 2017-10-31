@@ -18,6 +18,8 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 ## [Unreleased]
 ### Added
 
+* Issue **#3** : Add `Type` attribute to `Hash` element in `BaseFileComplexType`
+
 ### Changed
 
 ## [v3.1.1] - 2017-07-17
