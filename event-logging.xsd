@@ -1437,15 +1437,10 @@
                                     <xs:annotation>
                                         <xs:documentation>A hash of the file contents.</xs:documentation>
                                     </xs:annotation>
-                                    <xs:attribute name="Type" use="optional">
-                                        <xs:simpleType>
-                                            <xs:annotation>
-                                                <xs:documentation>The type of hash algorithm used</xs:documentation>
-                                            </xs:annotation>
-                                            <xs:restriction base="xs:string">
-                                                <xs:pattern value="[A-Z\-0-9]+"/>
-                                            </xs:restriction>
-                                        </xs:simpleType>
+                                    <xs:attribute name="Type" type="xs:string" use="optional">
+                                        <xs:annotation>
+                                            <xs:documentation>The type of hash algorithm used</xs:documentation>
+                                        </xs:annotation>
                                     </xs:attribute>
                                 </xs:extension>
                             </xs:simpleContent>
