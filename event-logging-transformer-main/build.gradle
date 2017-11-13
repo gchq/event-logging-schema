@@ -57,3 +57,10 @@ runShadow {
 }
 
 tasks.build.dependsOn runShadow
+
+task validateSchemaVersions(type: Exec) {
+    workingDir '../'
+    executable "./validateSchemaVersions.py"
+}
+
+tasks.compileJava.dependsOn validateSchemaVersions

@@ -24,6 +24,7 @@
 
 import os
 import re
+import sys
 import xml.etree.ElementTree as ET
 
 SCHEMA_FILENAME = "event-logging.xsd"
@@ -34,8 +35,11 @@ def getMinorVersion(versionStr):
     minorVer = re.match("[0-9]*\.([0-9]*)\..*", versionStr).group(1)
     return minorVer
 
-def validateVersions():
+def validateVersions(newVersion):
     print "Validating file %s" % SCHEMA_FILENAME
+    if (newVersion):
+        newVersionNum = re.sub(r'^v', "", newVersion)
+        print "Validating schema versions against new version [%s]" % newVersionNum
     print ""
 
     # pattern = re.compile("xmlns:evt\"event-logging:.*\"")
@@ -97,8 +101,15 @@ def validateVersions():
             raise ValueError("Minor version of enumeration version is higher than the minor version of the schema version. Should be less than or equal to the schema version", enumVer, versionAttrVersion)
 
 
+# Script starts here
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+if len(sys.argv) == 2:
+    newVersion = sys.argv[1]
+else:
+    newVersion = None
     
-validateVersions()
+validateVersions(newVersion)
 
 print ""
 print "Done!"

@@ -20,6 +20,14 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 ### Changed
 
+## [v3.1.2] - 2017-11-13
+
+### Added
+
+* Add a client version of the schema for use in the [event-logging jaxb library](https://github.com/gchq/event-logging)
+
+* Add a transformation pipleline process for running multile XSLTs against the schema
+
 ## [v3.1.1] - 2017-07-17
 
 ### Changed
@@ -51,7 +59,8 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 * Intial open source release
 
-[Unreleased]: https://github.com/gchq/event-logging-schema/compare/v3.1.1...HEAD
+[Unreleased]: https://github.com/gchq/event-logging-schema/compare/v3.1.2...HEAD
+[v3.1.2]: https://github.com/gchq/event-logging-schema/compare/v3.1.1...v3.1.2
 [v3.1.1]: https://github.com/gchq/event-logging-schema/compare/v3.1.0...v3.1.1
 [v3.1.0]: https://github.com/gchq/event-logging-schema/compare/v3.0.0...v3.1.0
 [v3.0.0]: https://github.com/gchq/event-logging-schema/compare/v3.0.0...v3.0.0

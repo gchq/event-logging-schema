@@ -20,10 +20,10 @@ ext.getPropertyOrDefault = { propName, defaultValue ->
     def val;
     if (project.hasProperty(propName) && project.getProperty(propName) != "unspecified") {
         val = project.getProperty(propName)
-        println "Using propery $propName with value $val"
+        println "Using propery [${propName}] with value [${val}]"
     } else {
         val = defaultValue
-        println "Propery $propName has no value, using default value $val"
+        println "Propery [${propName}] has no value, using default value [${val}]"
     }
     return val;
 }
@@ -77,3 +77,4 @@ subprojects {
         }
     }
 }
+
