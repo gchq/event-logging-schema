@@ -20,7 +20,7 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 ### Changed
 
-## [v3.1.2] - 2017-11-13
+## [v3.1.2] - 2017-11-14
 
 ### Added
 
