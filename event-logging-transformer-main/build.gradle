@@ -58,9 +58,10 @@ runShadow {
 
 tasks.build.dependsOn runShadow
 
+//Run the python script to validate all the version numbers in the schema file
 task validateSchemaVersions(type: Exec) {
     workingDir '../'
-    executable "./validateSchemaVersions.py"
+    commandLine "python", "validateSchemaVersions.py", versions.eventLoggingTransformer
 }
 
 tasks.compileJava.dependsOn validateSchemaVersions
