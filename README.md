@@ -51,7 +51,7 @@ When you are ready to release a new version of the schema ensure you have done t
 
     `git tag -a vX.Y.Z`
 
-    (When prompted to enter the commit message set the first line to `event-logging-vX.Y.Z` and lines 3+ to be the changes made, as extracted from the CHANGELOG.md file. Once the tag is picked up by Travis, the build will be run and the variants will be released to GitHub.)
+    When prompted to enter the commit message set the first line to `event-logging-vX.Y.Z` and lines 3+ to be the changes made, as extracted from the CHANGELOG.md file. Once the tag is picked up by Travis, the build will be run and the variants will be released to GitHub.
 
 1. Once the release has been tagged and built Update the versions in the schema to be something like `X.Y.0-SNAPSHOT` where X.Y.0 is the next minor version number. This makes it clear that the version in source control is not a release version.
 
