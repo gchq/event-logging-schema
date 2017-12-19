@@ -39,23 +39,23 @@ A number of schema actions are defined that aim to be broadly representative of 
 | [Alert](alert.md)                | A potentially concerning situation has been identified *that requires user attention to resolve*.           |
 | [AntiMalware](antiMalware.md)    | Events relating to functioning of antimalware software *Will be removed in a future version of the schema*. |
 | [Authorise](authorise.md)        | Events relating to authorisation changes, e.g. to group membership within LDAP or AD.                       |
-| [Copy](copyMove.md)              | Making copies of data.                                                                                      |
-| [Create](createViewDelete.md)    | Creating new items of data.                                                                                 |
-| [Delete](createViewDelete.md)    | Destroying data.                                                                                            |
-| [Export](importExport.md)        | Moving data out of a controlled area (e.g. database, application or network).                               |
-| [Import](importExport.md)        | Moving data into a controlled area (e.g. database, application or network).                                 |
+| [Copy](copyMove.md)              | Making copies of entities or data.                                                                          |
+| [Create](createViewDelete.md)    | Creating new items of entities or data.                                                                     |
+| [Delete](createViewDelete.md)    | Destroying entities or data.                                                                                |
+| [Export](importExport.md)        | Moving entities or data out of a controlled area (e.g. database, application or network).                   |
+| [Import](importExport.md)        | Moving entities or data into a controlled area (e.g. database, application or network).                     |
 | [Install](installUninstall.md)   | Installing hardware, software or removable media.                                                           |
-| [Move](copyMove.md)              | Moving data.                                                                                                |
+| [Move](copyMove.md)              | Moving entities or data.                                                                                    |
 | [Network](network.md)            | Events that relate to networking between computers.                                                         |
 | [Print](printing.md)             | Events relating to printing (i.e. making hard-copies).                                                      |
 | [Process](process.md)            | Generic processing events, including starting processes and services on computers.                          |
-| [Receive](sendReceive.md)        | Obtaining data over the network.                                                                            |
+| [Receive](sendReceive.md)        | Obtaining entities or data over the network.                                                                |
 | [Search](search.md)              | Search operations, e.g. querying a database.                                                                |
-| [Send](sendReceive.md)           | Transmitting data over the network.                                                                         |
+| [Send](sendReceive.md)           | Transmitting entities or data over the network.                                                             |
 | [Uninstall](installUninstall.md) | Events relating to removal of hardware, software or removable media.                                        |
 | [Unknown](unknown.md)            | A type of event that is dissimilar to any in the schema.                                                    |
-| [Update](update.md)              | Modification to data.                                                                                       |
-| [View](createViewDelete.md)      | All events relating to accessing data.                                                                      |
+| [Update](update.md)              | Modification to an entity or data.                                                                          |
+| [View](createViewDelete.md)      | All events relating to accessing an entity or data.                                                         |
 
 ## Event Modelling
 The schema does not aim to provide an exhaustive list of all possible computer operations.
