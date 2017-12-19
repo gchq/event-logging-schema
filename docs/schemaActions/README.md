@@ -53,7 +53,7 @@ A number of schema actions are defined that aim to be broadly representative of 
 | [Search](search.md)              | Search operations, e.g. querying a database.                                                                |
 | [Send](sendReceive.md)           | Transmitting entities or data over the network.                                                             |
 | [Uninstall](installUninstall.md) | Events relating to removal of hardware, software or removable media.                                        |
-| [Unknown](unknown.md)            | A type of event that is dissimilar to any in the schema.                                                    |
+| [Unknown](unknown.md)            | A type of event that is dissimilar to any in the schema (should only be needed in niche cases).             |
 | [Update](update.md)              | Modification to an entity or data.                                                                          |
 | [View](createViewDelete.md)      | All events relating to accessing an entity or data.                                                         |
 
