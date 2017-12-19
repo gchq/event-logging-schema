@@ -5,7 +5,7 @@ System events could be modelled from various points of view, and although it mak
  
 The schema is designed to express events in terms of the *intent of a user* wherever possible. Where there is no user, then the schema expresses events from the point of view of the device/generator creating the event.
 
-For example, a log file from a web proxy may contain events that describe events from its point of view. Perhaps that it has not relayed a web page to an authenticated session ID due to a rule violation. In such a case, the correct way to represent the event as a known user attempting to access a web page and being denied. Which in XML would be as a `<View>` with `<Outcome>` elements set appropriately.
+For example, a log file from a web proxy may contain events that describe events from its point of view. Perhaps that it has not relayed a web page to an authenticated session ID due to a rule violation. In such a case, the correct way to represent the event is as a known user attempting to access a web page and being denied. Which in XML would be as a `<View>` with `<Outcome>` elements set appropriately.
 
 ## Common Structural Elements
 While each schema action has a structure that is specific to the auditable event action, there are a number of structural elements that are common to multiple schema actions.
