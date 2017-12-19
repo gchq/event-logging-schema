@@ -15,7 +15,7 @@ Device control agent permits user to read a file from USB drive.|`<Import>` with
 Device control agent permits user to write a file to USB drive.|`<Export>`with an `<Object>` of type `<File>`.| An additional event might be created in order to describe the operation requested by the user/enacted by the OS, e.g. `<Copy>`|
 Firewall prevents a device talking to network by dropping ICMP Ping request.|`<Network>` with sub-element `<Deny>`.|It is presumed that this is a routine and fully automatic activity.  If this was not the case then `<Alert>` might be more appropriate.
 Host based, software firewall allows a process to listen on a port.|`<Network>` with sub-element `<Listen>`
-User badges into a building.|`<Authenticate>`|*There will be a new schema action for physical access / physical presence events in a future version of the schema*
+User enters a building using an access badge.|`<Authenticate>`|*There will be a new schema action for physical access / physical presence events in a future version of the schema*
 User attempts to badge into a building but is denied as they are not a member of the necessary group.|`<Authenticate>`|*There will be a new schema action for physical access / physical presence events in a future version of the schema*
 User saves a draft email.|`<Create>` with an `<Object>` of type `<Email>`
 User clicks on "Export results to XLS" within an application.|`<Export>`with an `<Object>` of type `<File>`|This is an `<Export>` as it relates to information being transferred out of a controlled area (the application).
