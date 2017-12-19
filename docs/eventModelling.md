@@ -11,15 +11,15 @@ Network file server reports that a user has authenticated by presenting kerberos
 Network file server checks that the authenticated user has permission to access a specific folder|This is considered internal system behaviour; nothing has changed as a result of the action. Therefore this is not modelled within the schema.|If there is a requirement to record these events, then `<Unknown>` should be used.
 Network file server reports that a user has failed to access a file within a specific folder due to insufficient privilege.|`<View>` of type `<File>` with `<Permitted>` element of `<Outcome>` set to false, and `<Description>` element assigned to a suitable string literal. 
 User writes an email and preses the send button.|`<Send>` of type `<Email>`.|
-Device control agent permits user to read a file from USB drive.|`<Import>` with an `<Object>` of type `<File>`.| An additional event might be created in order to describe the operation requested by the user/enacted by the OS, e.g. `<Copy>`|
-Device control agent permits user to write a file to USB drive.|`<Export>`with an `<Object>` of type `<File>`.| An additional event might be created in order to describe the operation requested by the user/enacted by the OS, e.g. `<Copy>`|
+Device control agent permits user to read a file from USB drive.|`<Import>` of type `<File>`.| An additional event might be created in order to describe the operation requested by the user/enacted by the OS, e.g. `<Copy>`|
+Device control agent permits user to write a file to USB drive.|`<Export>` of type `<File>`.| An additional event might be created in order to describe the operation requested by the user/enacted by the OS, e.g. `<Copy>`|
 Firewall prevents a device talking to network by dropping ICMP Ping request.|`<Network>` with sub-element `<Deny>`.|It is presumed that this is a routine and fully automatic activity.  If this was not the case then `<Alert>` might be more appropriate.
 Host based, software firewall allows a process to listen on a port.|`<Network>` with sub-element `<Listen>`
 User enters a building using an access badge.|`<Authenticate>`|*There will be a new schema action for physical access / physical presence events in a future version of the schema*
 User attempts to badge into a building but is denied as they are not a member of the necessary group.|`<Authenticate>`|*There will be a new schema action for physical access / physical presence events in a future version of the schema*
-User saves a draft email.|`<Create>` with an `<Object>` of type `<Email>`
-User clicks on "Export results to XLS" within an application.|`<Export>`with an `<Object>` of type `<File>`|This is an `<Export>` as it relates to information being transferred out of a controlled area (the application).
-User clicks on "Print to PDF" within an application.|`<Export>`with an `<Object>` of type `<File>`|N.B. not `<Print>`, as it doesn't relate to creating hard-copy, but it is an `<Export>` as it relates to information being transferred out of a controlled area (the application).
+User saves a draft email.|`<Create>` of type `<Email>`
+User clicks on "Export results to XLS" within an application.|`<Export>` of type `<File>`|This is an `<Export>` as it relates to information being transferred out of a controlled area (the application).
+User clicks on "Print to PDF" within an application.|`<Export>` of type `<File>`|N.B. not `<Print>`, as it doesn't relate to creating hard-copy, but it is an `<Export>` as it relates to information being transferred out of a controlled area (the application).
 Web proxy allows an authenticated user access to a website of known category.|`<View>` of type `<Resource>` that has `<Category>` element assigned to that reported by the web proxy|Events are modelled from the point of view of the user, where possible.
 Someone plugs a USB drive into a workstation while a user session is logged in.|`<Install>` of type `<Media>`.  `<User>` is the user currently logged into the workstation.|
 Someone unplugs a USB drive into a workstation while a user session is not logged in.|`<Uninstall>` of type `<Media>`.  There is no  `<User>`  element.|
