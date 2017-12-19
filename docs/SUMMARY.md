@@ -1,6 +1,6 @@
 # Table of Contents
 
-* [Read Me](rootREADME.md)
+* [Read Me](../README.md)
 * [Introduction](README.md)
 * [Basic Structure](basicStructure/README.md)
     * [Describing an Event](./basicStructure/README.md#describing-an-event)
@@ -62,6 +62,7 @@
     * [Voip](./objectTypes/voip.md)
 * [Unstructured Data](unstructuredData.md)
 * [Data Types](dataTypes.md)
+* [Illustrative Example Events](completeExamples/completeExamples.md)
 * [FAQ](FAQ.md)
 * [Release Process](releaseProcess.md)
 * [Glossary](Glossary.md)
