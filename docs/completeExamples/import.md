@@ -14,7 +14,7 @@ called `Geology Image Database`.  The application is based on `geoimg v4.1` and 
 
 The Object is of Type `Image Archive` and has an id `14131A`.  It has a Classification of `Geology`.
 
-There is no Success element on `<Outcome>`, so it is assumed that the action completed successfully.
+There is no Success element in `<Outcome>`, so it is assumed that the action completed successfully.
 
 ```xml
 <Event>
