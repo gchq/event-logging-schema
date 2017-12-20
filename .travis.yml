@@ -4,15 +4,15 @@ group: edge
 jdk: openjdk8
 sudo: required
 
-node_js:
-  - "stable"
-
 before_install:
   - sudo apt-get -qq update
   - sudo apt-get install -y libxml2-utils
   - sudo apt-get install -y calibre
+    #install node
+  - nvm install 8.9.3
 
 install: 
+  - npm test
   - npm install -g gitbook-cli
 
 script: ./travis.script.sh
