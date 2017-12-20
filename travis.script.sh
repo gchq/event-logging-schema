@@ -16,6 +16,9 @@ NC='\033[0m' # No Colour
 if [ -n "$TRAVIS_TAG" ]; then
     #Tagged commit so use that as our stroom version, e.g. v3.0.0
     SCHEMA_VERSION="${TRAVIS_TAG}"
+    DOCS_VERSION="${TRAVIS_TAG}"
+else
+    DOCS_VERSION="SNAPSHOT"
 fi
 
 #Dump all the travis env vars to the console for debugging
@@ -52,7 +55,9 @@ if [ ${mdFileCount} -gt 0 ]; then
     echo -e "${RED}ERROR${NC} - $mdFileCount unconverted markdown files exist, add them to the SUMMARY.md so they are converted"
     exit 1
 fi
-export BUILD_NAME=event-logging-schema-docs-v$TRAVIS_BUILD_NUMBER
+
+#build a pdf of the docs and genrate a zip of the static html, for release to github
+export BUILD_NAME=event-logging-schema-docs-$DOCS_VERSION
 export PDF_FILENAME=$BUILD_NAME.pdf
 export ZIP_FILENAME=$BUILD_NAME.zip
 echo "Build name - $BUILD_NAME, pdf file - $PDF_FILENAME, zip file - $ZIP_FILENAME"
