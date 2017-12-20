@@ -41,18 +41,22 @@ xmllint --noout --schema http://www.w3.org/2001/XMLSchema.xsd ./event-logging.xs
 #Now build the gitbook
 sudo mv ebook-convert /usr/local/bin/
 gitbook install
+
+#Convert our markdown into static html
 gitbook build
-echo "Highlighting un-converted markdown files as they could be missing from the SUMMARY.md" && find ./_book/ -name "*.md"
+
+echo "Highlighting un-converted markdown files as they could be missing from the SUMMARY.md" 
+find ./_book/ -name "*.md"
+mdFileCount=$(find ./_book/ -name "*.md" | wc -l)
+if [ ${mdFileCount} -gt 0 ]; then
+    echo -e "${RED}ERROR${NC} - $mdFileCount unconverted markdown files exist, add them to the SUMMARY.md so they are converted"
+    exit 1
+fi
 export BUILD_NAME=event-logging-schema-docs-v$TRAVIS_BUILD_NUMBER
 export PDF_FILENAME=$BUILD_NAME.pdf
 export ZIP_FILENAME=$BUILD_NAME.zip
 echo "Build name - $BUILD_NAME, pdf file - $PDF_FILENAME, zip file - $ZIP_FILENAME"
 gitbook pdf ./ ./$PDF_FILENAME
-echo "Removing unwanted files"
-rm -v _book/.travis.yml
-rm -v _book/*.yml
-rm -v _book/*.md
-rm -v _book/*.sh
 echo "Making a zip of the html content"
 pushd _book
 zip -r -9 ../$ZIP_FILENAME ./*
