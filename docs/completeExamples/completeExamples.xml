@@ -200,7 +200,7 @@
       <Description>User has queried database using specified constraints</Description>
       <Search>
         <Query>
-          <Raw>type=r, size=large, colour=white</Raw>
+          <Raw>select r.* from ROCK r where r.TYPE = 'r' and r.SIZE = 'large' and r.COLOUR = 'white'</Raw>
         </Query>
         <TotalResults>2</TotalResults>
         <Results>
