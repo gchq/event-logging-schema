@@ -2076,6 +2076,26 @@
                 maxOccurs="unbounded"/>
         </xs:sequence>
     </xs:complexType>
+    <xs:complexType name="CoordinatesComplexType">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+                <xs:element name="Latitude"
+                    type="evt:LatitudeSimpleType"
+                    minOccurs="1"
+                    maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>Geographic coordinate specifying the north/south position on the earth's surface, expressed as decimal degrees from the equator (0). -90 (South) to +90 (North).</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="Longitude"
+                    type="evt:LongitudeSimpleType"
+                    minOccurs="1"
+                    maxOccurs="1">
+                    <xs:annotation>
+                        <xs:documentation>Geographic coordinate specifying the east/west position on the earth's surface, expressed as decimal degrees from the Greenwich Meridian (0). -180 (West) to +180 (East).</xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+        </xs:sequence>
+    </xs:complexType>
     <xs:complexType name="LocationComplexType">
         <xs:sequence minOccurs="1" maxOccurs="1">
             <xs:element name="Country" type="xs:string" minOccurs="0" maxOccurs="1"/>
@@ -2097,6 +2117,10 @@
                     <xs:documentation>Timezone pair for location in RFC3339 time-numoffset format separated by a slash '/' character. The first offset is for the location's standard timezone and the second for the daylight savings timezone. For example, Bristol, UK would be +00:00/+01:00</xs:documentation>
                 </xs:annotation>
             </xs:element>
+            <xs:element name="Coordinates"
+                type="evt:CoordinatesComplexType"
+                minOccurs="0"
+                maxOccurs="1"/>
             <xs:element name="AccessZone" type="xs:string" minOccurs="0" maxOccurs="1"/>
         </xs:sequence>
     </xs:complexType>
@@ -3082,6 +3106,24 @@
             <xs:pattern value="([0-9a-f]{1,4}:){1,5}:(25[0-5]|2[0-4]\d|[0-1]?\d?\d)(\.(25[0-5]|2[0-4]\d|[0-1]?\d?\d)){3}"/>
             <xs:pattern value=":(:[0-9a-f]{1,4}){1,5}:(25[0-5]|2[0-4]\d|[0-1]?\d?\d)(\.(25[0-5]|2[0-4]\d|[0-1]?\d?\d)){3}"/>
             <xs:pattern value="([0-9a-f]{1,4}:){6}(25[0-5]|2[0-4]\d|[0-1]?\d?\d)(\.(25[0-5]|2[0-4]\d|[0-1]?\d?\d)){3}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="LatitudeSimpleType">
+        <xs:annotation>
+            <xs:documentation>Latitude from the equator in decimal degrees.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:decimal">
+            <xs:minInclusive value="-90"/>
+            <xs:maxInclusive value="90"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="LongitudeSimpleType">
+        <xs:annotation>
+            <xs:documentation>Longitude from the Greenwich Meridian in decimal degrees.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:decimal">
+            <xs:minInclusive value="-180"/>
+            <xs:maxInclusive value="180"/>
         </xs:restriction>
     </xs:simpleType>
     <xs:simpleType name="MediaTypeSimpleType">
