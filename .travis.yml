@@ -1,31 +1,41 @@
 language: java
 dist: trusty
 group: edge
-jdk: oraclejdk8
-sudo: false
+jdk: openjdk8
+sudo: required
+
+node_js:
+  - "stable"
 
 before_install:
   - sudo apt-get -qq update
   - sudo apt-get install -y libxml2-utils
+  - sudo apt-get install -y calibre
 
-script: 
-   - xmllint --noout --schema http://www.w3.org/2001/XMLSchema.xsd ./event-logging.xsd
-   - ./validateSchemaVersions.py
-
-install: echo "skip 'gradle assemble' step to speed up build"
+install: 
+  - npm install -g gitbook-cli
 
 script: ./travis.script.sh
     
+deploy:
+  - provider: pages
+    skip_cleanup: true
+    github_token: $GITHUB_TOKEN
+    local_dir: _book
+    target_branch: gh-pages
+    on:
+      branch: master
 # To generate the api-key for github go to https://github.com/settings/tokens and create a token
 # Then do travis 'travis encrypt -r gchq/event-logging-schema <token>'
 # where <token> is the token copied from github
-deploy:
   - provider: releases
     api_key:
       secure: TQeb/vUaaDL425Flpf9Sng2WXZYPwY9yWBi3wgHLvao5BQeCZJbKDQy3Ex4j7vky2qfD+xa7ELQ8bcnMwLix6uir0RchoZ872KHxprtiaWVNBFyZ4CElDwC+Rq+ocpLiFxprRIviVNp/Jn9pi7DZh1SjTjoCrktVeC3ahEJwqAYfQNMrL1ZKDe9/ouaba5/h6sw20iNWePr1c+6gGoMgJYxgmlKOCaSdPWs3aIYclGoGOdDTHkq82h/XYJ2S+35wjO2+ks3sq9iZEX39M4s1+k5vg/B1KGX8N7LtqY64oqsms2rpO4a27SxsQ4biGLwKyNqYOropFj1lg99iK1Nx0TeG8knfIUa3gsBSleYfw1dNvfJvm8y4o9yD7ODEDP7WAed0DG8OMWOuI95OGeKIsOEBgvxKPynROSwUpWfNh5uFYD68kQbeIoa99/pqY5cyZvoAPRaWK1cJWl+wbjh79PBJETWAPFGa3kxuwYJ+0ItHjnbr3lmPjwQw3PoObcShNsMrjcezNzTByCpQzPSPZKoVkf39Y2LzQ2Ufv9nVxxDZw11MnN4Gial0bckax4l/rgZXMH1dWYKJEU9a9m646UjPO+xMp/RrvXoFDnz84JaGu9H9x+GYgBQwl6AsvN5bBU1POO0OG0CMT5HoNvtUjh8jXqzuq3UZdbrY9kiAM8E=
     file_glob: true
     file: 
       - event-logging-transformer-main/pipelines/generated/event-logging-*.xsd
+      - event-logging-schema-docs-*.zip
+      - event-logging-schema-docs-*.pdf
     skip_cleanup: true
     on:
       tags: true
@@ -42,3 +52,4 @@ cache:
     - $HOME/.m2
     - $HOME/.gradle/caches/
     - $HOME/.gradle/wrapper/
+    - node_modules # NPM packages
