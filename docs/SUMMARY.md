@@ -1,6 +1,5 @@
 # Table of Contents
 
-* [Read Me](README.md)
 * [Introduction](README.md)
 * [Event Modelling](eventModelling.md)
 * [Basic Structure](basicStructure/README.md)
