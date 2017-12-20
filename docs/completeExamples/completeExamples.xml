@@ -1,0 +1,352 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<Events xmlns="event-logging:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="event-logging:3 file://event-logging-v3.0.0.xsd" Version="3.0.0">
+  <Event>
+    <EventTime>
+      <TimeCreated>2017-01-02T03:04:05.678Z</TimeCreated>
+    </EventTime>
+    <EventSource>
+      <System>
+        <Name>FileSharer21</Name>
+        <Description>Interactive File Sharing</Description>
+        <Environment>Operational</Environment>
+        <Organisation>ACMECoolResearch</Organisation>
+      </System>
+      <Generator>fs-21-v2.2</Generator>
+      <Device>
+        <HostName>fs04.fs.myorg.com</HostName>
+        <IPAddress>131.141.151.161</IPAddress>
+        <MACAddress>A1:B1:C1:D1:E1:F1</MACAddress>
+      </Device>
+      <Client>
+        <IPAddress>121.121.121.121</IPAddress>
+      </Client>
+      <User>
+        <Id>jc101</Id>
+        <UserDetails>
+          <!-- Fully populated here to illustrate a decorated event-->
+          <Id>jc101</Id>
+          <StaffNumber>101</StaffNumber>
+          <Surname>Coder</Surname>
+          <Initials>JD</Initials>
+          <Title>Mr</Title>
+          <KnownAs>Jolly</KnownAs>
+          <PersonType>Employee</PersonType>
+          <Group>Technology</Group>
+          <Unit>Geology</Unit>
+          <Position>T.SD/42</Position>
+          <Role>Geologist</Role>
+          <GradeOfPost>E.5</GradeOfPost>
+          <EmploymentType>Employee</EmploymentType>
+          <EmploymentStatus>Active</EmploymentStatus>
+          <Nationality>GB</Nationality>
+          <Location>Moon Base Alpha</Location>
+          <RoomNumber>4/31</RoomNumber>
+          <Phone>11223</Phone>
+          <SupervisorStaffNumber>421</SupervisorStaffNumber>
+          <Organisation>ACMECoolResearch</Organisation>
+          <HostOrganisation>MoonCo</HostOrganisation>
+        </UserDetails>
+      </User>
+    </EventSource>
+    <EventDetail>
+      <TypeId>NormalSend</TypeId>
+      <Description>A user sends a file to another user</Description>
+      <Purpose>
+        <Justification>Rock sample spectrum for analysis</Justification>
+      </Purpose>
+      <Send>
+        <Source>
+          <User>
+            <Id>jc101</Id>
+            <!-- User belongs to the organisation generating the event so only an Id is required -->
+          </User>
+        </Source>
+        <Destination>
+          <User>
+            <Id>C=GB, O=WeDoRocksCo, OU=Space, CN=Tom Thumb (UID=tthumb01)</Id>
+            <!-- User is external to the organisation generating the event so a rich UserDetails element is required-->
+            <UserDetails>
+              <Id>tthumb011</Id>
+              <Surname>Thumb</Surname>
+              <Initials>T</Initials>
+              <Group>Space</Group>
+              <Nationality>GB</Nationality>
+              <Organisation>WeDoRocksCo</Organisation>
+            </UserDetails>
+          </User>
+        </Destination>
+        <Payload>
+          <Document>
+            <Name>samples1.zip</Name>
+            <Size>14127312</Size>
+          </Document>
+        </Payload>
+        <Outcome>
+          <Success>true</Success>
+          <Description>Transfer Succeeded</Description>
+        </Outcome>
+      </Send>
+    </EventDetail>
+  </Event>
+  <Event>
+    <EventTime>
+      <TimeCreated>2017-01-02T03:04:05.678Z</TimeCreated>
+    </EventTime>
+    <EventSource>
+      <System>
+        <Name>File Distribution</Name>
+        <Environment>Live</Environment>
+        <Organisation>ACMECoolResearch</Organisation>
+      </System>
+      <Generator>File Distributor 1.5</Generator>
+      <Device>
+        <IPAddress>123.12.3.123</IPAddress>
+      </Device>
+    </EventSource>
+    <EventDetail>
+      <TypeId>File Transfer</TypeId>
+      <Send>
+        <Source>
+          <Device>
+            <HostName>myhost.mydomain.org</HostName>
+          </Device>
+        </Source>
+        <Destination>
+          <Device>
+            <HostName>yourhost.yourdomain.com</HostName>
+          </Device>
+        </Destination>
+        <Payload>
+          <File>
+            <Size>12345321</Size>
+            <Hash>efd1dffd90296a69a8aecd7ecb1832b7</Hash>
+            <Type>text/xml</Type>
+            <Path>/appdata/alldata/gooddata/bestdata.xml</Path>
+          </File>
+        </Payload>
+      </Send>
+    </EventDetail>
+  </Event>
+  <Event>
+    <EventTime>
+      <TimeCreated>2017-01-02T03:04:05.678Z</TimeCreated>
+    </EventTime>
+    <EventSource>
+      <System>
+        <Name>Rock Sample Database</Name>
+        <Environment>Space</Environment>
+        <Organisation>ACMECoolResearch</Organisation>
+        <Version>R8.1</Version>
+      </System>
+      <Generator>db-query</Generator>
+      <Device>
+        <HostName>db56.serverfarm.mydomain.org</HostName>
+        <IPAddress>191.181.171.161</IPAddress>
+      </Device>
+      <Client>
+        <HostName>desktop4.moonbase-a.mydomain.org</HostName>
+        <IPAddress>111.101.101.111</IPAddress>
+      </Client>
+      <User>
+        <Id>jc101</Id>
+      </User>
+      <Interactive>true</Interactive>
+    </EventSource>
+    <EventDetail>
+      <TypeId>findByConstraint</TypeId>
+      <Description>User has queried database using specified constraints</Description>
+      <Search>
+        <Query>
+          <Raw>select r.* from ROCK r where r.TYPE = 'r' and r.SIZE = 'large' and r.COLOUR = 'white'</Raw>
+        </Query>
+        <TotalResults>2</TotalResults>
+        <Results>
+          <Object>
+            <Type>Rock</Type>
+            <Id>78121</Id>
+            <Name>Surpisingly Heavy Chunk</Name>
+          </Object>
+          <Object>
+            <Type>Rock</Type>
+            <Id>11418</Id>
+            <Name>Possible Gold Ore</Name>
+          </Object>
+        </Results>
+      </Search>
+    </EventDetail>
+  </Event>
+  <Event>
+    <EventTime>
+      <TimeCreated>2017-01-02T03:04:05.678Z</TimeCreated>
+    </EventTime>
+    <EventSource>
+      <System>
+        <Name>Space Desk</Name>
+        <Environment>LunaDomain</Environment>
+        <Organisation>ACMECoolResearch</Organisation>
+      </System>
+      <Generator>RMMaster2000 RM Control</Generator>
+      <Device>
+        <HostName>rmmaster.luna.mydomain.org</HostName>
+      </Device>
+      <Client>
+        <Name>LUNA/LUNADESK35</Name>
+        <HostName>lunadesk35.lunadesk.luna.mydomain.org</HostName>
+      </Client>
+      <User>
+        <Id>jc101</Id>
+        <Domain>ACMECoolResearch/Users</Domain>
+      </User>
+      <Interactive>true</Interactive>
+    </EventSource>
+    <EventDetail>
+      <TypeId>ReadRM</TypeId>
+      <Description>User has read a file from removable media</Description>
+      <Import>
+        <Source>
+          <File>
+            <Name>141516.jpg</Name>
+            <Description>JPG Image</Description>
+            <Permissions>
+              <Permission>
+                <User>
+                  <Id>jc101</Id>
+                  <Domain>ACMECoolResearch/Users</Domain>
+                </User>
+                <Allow>Read</Allow>
+              </Permission>
+            </Permissions>
+            <Path>E:/DCIM/Spacecam101/141516.jpg</Path>
+            <Size>5445121</Size>
+            <Hash>efd1dffd90296a69a8aecd7ecb1832b7</Hash>
+            <Media>
+              <Type>USBMassStorage</Type>
+              <Removable>true</Removable>
+            </Media>
+          </File>
+        </Source>
+        <Outcome>
+          <Permitted>true</Permitted>
+        </Outcome>
+      </Import>
+    </EventDetail>
+  </Event>
+  <Event>
+    <EventTime>
+      <TimeCreated>2017-01-02T03:04:05.678Z</TimeCreated>
+    </EventTime>
+    <EventSource>
+      <System>
+        <Name>Geology Image Database</Name>
+        <Environment>Live</Environment>
+        <Organisation>ACMECoolResearch</Organisation>
+      </System>
+      <Generator>geoimg v4.1</Generator>
+      <Device>
+        <HostName>geodb.servers.mycloud.myorg</HostName>
+        <IPAddress>104.105.106.107</IPAddress>
+        <MACAddress>AB:CB:BC:DE:EE:FF</MACAddress>
+      </Device>
+      <User>
+        <Id>jc101</Id>
+      </User>
+    </EventSource>
+    <EventDetail>
+      <TypeId>IMAGE-IMPORT-ARCHIVE</TypeId>
+      <Description>User has imported an image archive</Description>
+      <Import>
+        <Destination>
+          <Object>
+            <Type>Image Archive</Type>
+            <Id>14131A</Id>
+            <Description>Crater images</Description>
+            <Classification>
+              <Text>Geology</Text>
+            </Classification>
+          </Object>
+        </Destination>
+        <Outcome>
+          <Description>Image archive successfully imported</Description>
+        </Outcome>
+      </Import>
+    </EventDetail>
+  </Event>
+  <Event>
+    <EventTime>
+      <TimeCreated>2017-01-02T03:04:05.678Z</TimeCreated>
+    </EventTime>
+    <EventSource>
+      <System>
+        <Name>VIRICIDE</Name>
+        <Environment>Op</Environment>
+        <Organisation>ACMECoolResearch</Organisation>
+      </System>
+      <Generator>viricide-av</Generator>
+      <Device>
+        <Name>LUNA/LUNADESK35</Name>
+        <HostName>lunadesk35.lunadesk.luna.mydomain.org</HostName>
+        <IPAddress>101.101.101.101</IPAddress>
+        <MACAddress>AA:BB:CC:DD:EE:FF</MACAddress>
+      </Device>
+      <User>
+        <Id>jc101</Id>
+      </User>
+    </EventSource>
+    <EventDetail>
+      <TypeId>Manual-Scan</TypeId>
+      <Description>User initiated a scan</Description>
+      <AntiMalware>
+        <StartScan>
+          <Product>
+            <Id>viricide7</Id>
+            <Name>Viricide Antivirus</Name>
+            <Version>7.2</Version>
+          </Product>
+          <Signature>
+            <Version>78.1.3-1</Version>
+          </Signature>
+        </StartScan>
+      </AntiMalware>
+    </EventDetail>
+  </Event>
+  <Event>
+    <EventTime>
+      <TimeCreated>2017-01-02T03:04:05.678Z</TimeCreated>
+    </EventTime>
+    <EventSource>
+      <System>
+        <Name>SPACEPRINT</Name>
+        <Environment>Luna1</Environment>
+        <Organisation>ACMECoolResearch</Organisation>
+      </System>
+      <Generator>ZeroGPrinter</Generator>
+      <Device>
+        <HostName>prn01.luna1.lan.myorg.com</HostName>
+      </Device>
+      <User>
+        <Id>jc101</Id>
+      </User>
+      <Interactive>true</Interactive>
+    </EventSource>
+    <EventDetail>
+      <TypeId>BWPrint</TypeId>
+      <Description>System has finished printing</Description>
+      <Print>
+        <Action>FinishPrint</Action>
+        <PrintJob>
+          <Document>
+            <Title>Resume - J Coder</Title>
+          </Document>
+          <Pages>2</Pages>
+          <Size>3410212</Size>
+          <Submitted>2017-01-02T03:03:51.234Z</Submitted>
+        </PrintJob>
+        <Outcome>
+          <Success>true</Success>
+        </Outcome>
+      </Print>
+    </EventDetail>
+  </Event>
+</Events>
+
+
