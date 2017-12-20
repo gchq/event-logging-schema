@@ -37,4 +37,25 @@ xmllint --noout --schema http://www.w3.org/2001/XMLSchema.xsd ./event-logging.xs
 #schemas from the configured pipelines
 ./gradlew -Pversion=$SCHEMA_VERSION clean build runShadow
 
+
+#Now build the gitbook
+sudo mv ebook-convert /usr/local/bin/
+gitbook install
+gitbook build
+echo "Highlighting un-converted markdown files as they could be missing from the SUMMARY.md" && find ./_book/ -name "*.md"
+export BUILD_NAME=event-logging-schema-docs-v$TRAVIS_BUILD_NUMBER
+export PDF_FILENAME=$BUILD_NAME.pdf
+export ZIP_FILENAME=$BUILD_NAME.zip
+echo "Build name - $BUILD_NAME, pdf file - $PDF_FILENAME, zip file - $ZIP_FILENAME"
+gitbook pdf ./ ./$PDF_FILENAME
+echo "Removing unwanted files"
+rm -v _book/.travis.yml
+rm -v _book/*.yml
+rm -v _book/*.md
+rm -v _book/*.sh
+echo "Making a zip of the html content"
+pushd _book
+zip -r -9 ../$ZIP_FILENAME ./*
+popd
+
 exit 0
