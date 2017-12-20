@@ -23,6 +23,7 @@
       <User>
         <Id>jc101</Id>
         <UserDetails>
+          <!-- Fully populated here to illustrate a decorated event-->
           <Id>jc101</Id>
           <StaffNumber>101</StaffNumber>
           <Surname>Coder</Surname>
@@ -57,34 +58,13 @@
         <Source>
           <User>
             <Id>jc101</Id>
-            <UserDetails>
-              <Id>jc101</Id>
-              <StaffNumber>101</StaffNumber>
-              <Surname>Coder</Surname>
-              <Initials>JD</Initials>
-              <Title>Mr</Title>
-              <KnownAs>Jolly</KnownAs>
-              <PersonType>Employee</PersonType>
-              <Group>Technology</Group>
-              <Unit>Geology</Unit>
-              <Position>T.SD/42</Position>
-              <Role>Geologist</Role>
-              <GradeOfPost>E.5</GradeOfPost>
-              <EmploymentType>Employee</EmploymentType>
-              <EmploymentStatus>Active</EmploymentStatus>
-              <Nationality>GB</Nationality>
-              <Location>Moon Base Alpha</Location>
-              <RoomNumber>4/31</RoomNumber>
-              <Phone>11223</Phone>
-              <SupervisorStaffNumber>421</SupervisorStaffNumber>
-              <Organisation>ACMECoolResearch</Organisation>
-              <HostOrganisation>MoonCo</HostOrganisation>
-            </UserDetails>
+            <!-- User belongs to the organisation generating the event so only an Id is required -->
           </User>
         </Source>
         <Destination>
           <User>
             <Id>C=GB, O=WeDoRocksCo, OU=Space, CN=Tom Thumb (UID=tthumb01)</Id>
+            <!-- User is external to the organisation generating the event so a rich UserDetails element is required-->
             <UserDetails>
               <Id>tthumb011</Id>
               <Surname>Thumb</Surname>
@@ -169,29 +149,6 @@
       </Client>
       <User>
         <Id>jc101</Id>
-        <UserDetails>
-          <Id>jc101</Id>
-          <StaffNumber>101</StaffNumber>
-          <Surname>Coder</Surname>
-          <Initials>JD</Initials>
-          <Title>Mr</Title>
-          <KnownAs>Jolly</KnownAs>
-          <PersonType>Employee</PersonType>
-          <Group>Technology</Group>
-          <Unit>Geology</Unit>
-          <Position>T.SD/42</Position>
-          <Role>Geologist</Role>
-          <GradeOfPost>E.5</GradeOfPost>
-          <EmploymentType>Employee</EmploymentType>
-          <EmploymentStatus>Active</EmploymentStatus>
-          <Nationality>GB</Nationality>
-          <Location>Moon Base Alpha</Location>
-          <RoomNumber>4/31</RoomNumber>
-          <Phone>11223</Phone>
-          <SupervisorStaffNumber>421</SupervisorStaffNumber>
-          <Organisation>ACMECoolResearch</Organisation>
-          <HostOrganisation>MoonCo</HostOrganisation>
-        </UserDetails>
       </User>
       <Interactive>true</Interactive>
     </EventSource>
@@ -239,29 +196,6 @@
       <User>
         <Id>jc101</Id>
         <Domain>ACMECoolResearch/Users</Domain>
-        <UserDetails>
-          <Id>jc101</Id>
-          <StaffNumber>101</StaffNumber>
-          <Surname>Coder</Surname>
-          <Initials>JD</Initials>
-          <Title>Mr</Title>
-          <KnownAs>Jolly</KnownAs>
-          <PersonType>Employee</PersonType>
-          <Group>Technology</Group>
-          <Unit>Geology</Unit>
-          <Position>T.SD/42</Position>
-          <Role>Geologist</Role>
-          <GradeOfPost>E.5</GradeOfPost>
-          <EmploymentType>Employee</EmploymentType>
-          <EmploymentStatus>Active</EmploymentStatus>
-          <Nationality>GB</Nationality>
-          <Location>Moon Base Alpha</Location>
-          <RoomNumber>4/31</RoomNumber>
-          <Phone>11223</Phone>
-          <SupervisorStaffNumber>421</SupervisorStaffNumber>
-          <Organisation>ACMECoolResearch</Organisation>
-          <HostOrganisation>MoonCo</HostOrganisation>
-        </UserDetails>
       </User>
       <Interactive>true</Interactive>
     </EventSource>
@@ -278,29 +212,6 @@
                 <User>
                   <Id>jc101</Id>
                   <Domain>ACMECoolResearch/Users</Domain>
-                  <UserDetails>
-                    <Id>jc101</Id>
-                    <StaffNumber>101</StaffNumber>
-                    <Surname>Coder</Surname>
-                    <Initials>JD</Initials>
-                    <Title>Mr</Title>
-                    <KnownAs>Jolly</KnownAs>
-                    <PersonType>Employee</PersonType>
-                    <Group>Technology</Group>
-                    <Unit>Geology</Unit>
-                    <Position>T.SD/42</Position>
-                    <Role>Geologist</Role>
-                    <GradeOfPost>E.5</GradeOfPost>
-                    <EmploymentType>Employee</EmploymentType>
-                    <EmploymentStatus>Active</EmploymentStatus>
-                    <Nationality>GB</Nationality>
-                    <Location>Moon Base Alpha</Location>
-                    <RoomNumber>4/31</RoomNumber>
-                    <Phone>11223</Phone>
-                    <SupervisorStaffNumber>421</SupervisorStaffNumber>
-                    <Organisation>ACMECoolResearch</Organisation>
-                    <HostOrganisation>MoonCo</HostOrganisation>
-                  </UserDetails>
                 </User>
                 <Allow>Read</Allow>
               </Permission>
@@ -338,27 +249,6 @@
       </Device>
       <User>
         <Id>jc101</Id>
-        <UserDetails>
-          <Id>jc101</Id>
-          <StaffNumber>101</StaffNumber>
-          <Surname>Coder</Surname>
-          <Initials>JD</Initials>
-          <Title>Mr</Title>
-          <KnownAs>Jolly</KnownAs>
-          <PersonType>Employee</PersonType>
-          <Group>Technology</Group>
-          <Unit>Geology</Unit>
-          <Position>T.SD/42</Position>
-          <Role>Geologist</Role>
-          <GradeOfPost>E.5</GradeOfPost>
-          <EmploymentStatus>Active</EmploymentStatus>
-          <Nationality>GB</Nationality>
-          <Location>Moon Base Alpha</Location>
-          <Phone>11223</Phone>
-          <SupervisorStaffNumber>421</SupervisorStaffNumber>
-          <Organisation>ACMECoolResearch</Organisation>
-          <HostOrganisation>MoonCo</HostOrganisation>
-        </UserDetails>
       </User>
     </EventSource>
     <EventDetail>
@@ -400,29 +290,6 @@
       </Device>
       <User>
         <Id>jc101</Id>
-        <UserDetails>
-          <Id>jc101</Id>
-          <StaffNumber>101</StaffNumber>
-          <Surname>Coder</Surname>
-          <Initials>JD</Initials>
-          <Title>Mr</Title>
-          <KnownAs>Jolly</KnownAs>
-          <PersonType>Employee</PersonType>
-          <Group>Technology</Group>
-          <Unit>Geology</Unit>
-          <Position>T.SD/42</Position>
-          <Role>Geologist</Role>
-          <GradeOfPost>E.5</GradeOfPost>
-          <EmploymentType>Employee</EmploymentType>
-          <EmploymentStatus>Active</EmploymentStatus>
-          <Nationality>GB</Nationality>
-          <Location>Moon Base Alpha</Location>
-          <RoomNumber>4/31</RoomNumber>
-          <Phone>11223</Phone>
-          <SupervisorStaffNumber>421</SupervisorStaffNumber>
-          <Organisation>ACMECoolResearch</Organisation>
-          <HostOrganisation>MoonCo</HostOrganisation>
-        </UserDetails>
       </User>
     </EventSource>
     <EventDetail>
