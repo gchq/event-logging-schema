@@ -12,7 +12,7 @@ For bespoke in-house systems the schema serves as common approach to creating au
 
 ## Documentation
 
-See [here](./docs/SUMMARY.md) for more detail about the structure of the schema.
+See [here](https://gchq.github.io/event-logging-schema/) for the full documention on the schema.
 
 ## Building the schema
 
