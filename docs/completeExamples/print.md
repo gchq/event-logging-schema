@@ -23,6 +23,9 @@ The document is `2` pages in length and `3410212` bytes in length.
     </Device>
     <User>
       <Id>jc101</Id>
+      <UserDetails>
+          ...
+      </UserDetails>
     </User>
     <Interactive>true</Interactive>
   </EventSource>

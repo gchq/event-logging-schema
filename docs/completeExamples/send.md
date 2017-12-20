@@ -31,27 +31,7 @@ The file was transferred successfully.
     <User>
       <Id>jc101</Id>
       <UserDetails>
-        <Id>jc101</Id>
-        <StaffNumber>101</StaffNumber>
-        <Surname>Coder</Surname>
-        <Initials>JD</Initials>
-        <Title>Mr</Title>
-        <KnownAs>Jolly</KnownAs>
-        <PersonType>Employee</PersonType>
-        <Group>Technology</Group>
-        <Unit>Geology</Unit>
-        <Position>T.SD/42</Position>
-        <Role>Geologist</Role>
-        <GradeOfPost>E.5</GradeOfPost>
-        <EmploymentType>Employee</EmploymentType>
-        <EmploymentStatus>Active</EmploymentStatus>
-        <Nationality>GB</Nationality>
-        <Location>Moon Base Alpha</Location>
-        <RoomNumber>4/31</RoomNumber>
-        <Phone>11223</Phone>
-        <SupervisorStaffNumber>421</SupervisorStaffNumber>
-        <Organisation>ACMECoolResearch</Organisation>
-        <HostOrganisation>MoonCo</HostOrganisation>
+          ...
       </UserDetails>
     </User>
   </EventSource>

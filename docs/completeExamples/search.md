@@ -28,7 +28,6 @@ The results were two Objects. Both were of type `Rock`. The first with an id of 
     <User>
       <Id>jc101</Id>
       <UserDetails>
-        <Id>jc101</Id>
           ...
       </UserDetails>
     </User>
