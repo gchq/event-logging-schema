@@ -1,3 +1,5 @@
+import java.util.regex.Pattern
+
 buildscript {
     repositories {
         jcenter()
@@ -11,6 +13,7 @@ plugins {
     id "com.github.johnrengelman.shadow" version "2.0.2" apply false
 }
 
+def CHANGE_LOG_FILENAME = "CHANGELOG.md"
 def projectGroup = "event-logging-transformer"
 
 //must be applied to all projects including root
@@ -32,7 +35,7 @@ ext.getPropertyOrDefault = { propName, defaultValue ->
 
 ext.versions = [
     //------event-logging--------------
-    eventLoggingTransformer: getPropertyOrDefault('version', 'SNAPSHOT'),
+    eventLogging: getPropertyOrDefault('version', 'SNAPSHOT'),
 
     //------------3rd-party------------
     jackson: '2.8.9',
@@ -42,12 +45,23 @@ ext.versions = [
     zzDUMMYzz: 'makes sorting easier'
 ]
 
+
+if (!(versions.eventLogging =~ /^SNAPSHOT\.*/)) {
+    def changeLogFile = new File(CHANGE_LOG_FILENAME)
+    def pattern = Pattern.compile(versions.eventLogging, Pattern.LITERAL)
+
+    //This is versioned build so ensure the version is in the CHANGELOG
+    if (!changeLogFile.getText("UTF-8").find(pattern)) {
+        throw new GradleException("Cannot find pattern [${pattern.toString()}] in file ${CHANGE_LOG_FILENAME}, add the new version to the change log")
+    }
+}
+
 task wrapper(type: Wrapper) {
     gradleVersion = '4.4.1'
 }
 
 allprojects {
-    version versions.eventLoggingTransformer
+    version versions.eventLogging
 }
 
 subprojects {

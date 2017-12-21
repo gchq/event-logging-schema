@@ -1,5 +1,5 @@
-def jarName = "event-logging-transformer-${versions.eventLoggingTransformer}.jar"
-def fatJarName = "event-logging-transformer-${versions.eventLoggingTransformer}-all.jar"
+def jarName = "event-logging-transformer-${versions.eventLogging}.jar"
+def fatJarName = "event-logging-transformer-${versions.eventLogging}-all.jar"
 
 apply plugin: 'java'
 apply plugin: 'application'
@@ -14,7 +14,7 @@ jar {
     manifest {
         attributes(
                 "Implementation-Title": "event-Logging-transformer",
-                "Implementation-Version": versions.eventLoggingTransformer,
+                "Implementation-Version": versions.eventLogging,
                 "Main-Class" : mainClassName
         )
     }
@@ -54,7 +54,7 @@ runShadow {
 }
 
 task transformersDist(type: Zip) {
-    archiveName "transformations-${versions.eventLoggingTransformer}.zip"
+    archiveName "transformations-${versions.eventLogging}.zip"
     from 'pipelines/transformations'
 }
 
@@ -65,7 +65,7 @@ tasks.build.dependsOn transformersDist
 //Run the python script to validate all the version numbers in the schema file
 task validateSchemaVersions(type: Exec) {
     workingDir '../'
-    commandLine "python", "validateSchemaVersions.py", versions.eventLoggingTransformer
+    commandLine "python", "validateSchemaVersions.py", versions.eventLogging
 }
 
 tasks.compileJava.dependsOn validateSchemaVersions
