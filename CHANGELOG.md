@@ -25,7 +25,7 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 ### Added
 
-* Issue **#23** : Added `Coordinates` element to `LocationComplexType` to capture lat/long
+* Issue **#23** : Added optional `Coordinates` element to `LocationComplexType` to capture lat/long
 
 * Add a build step to zip up the XSLTs used by the transformer
 
