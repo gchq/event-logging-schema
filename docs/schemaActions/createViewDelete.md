@@ -5,7 +5,7 @@ Although 'Read' is usually used to describe the act of viewing information it is
 
 The `<Create>`, `<View>` and `<Delete>` events all have the same content model that describes the data in question. An example event generated when viewing a document is shown in the following example.
 
-``` xml
+```xml
 <EventDetail>
   <TypeId>ViewDocument</TypeId>
   <View>
@@ -30,7 +30,7 @@ As with all data related events, other types of data can be described within thi
 ## Role/Permission Management
 Roles, permissions, communities and access groups are all treated as types of group that a user or other system actor can belong to. Groups that are added and removed from a system are described in CRUD operations the same way as any other entity. The following example demonstrates removing an access control group.
 
-``` xml
+```xml
 <EventDetail>
   <TypeId>RemoveGroup</TypeId>
   <Description>Removing an LDAP group.</Description>
@@ -46,7 +46,7 @@ Roles, permissions, communities and access groups are all treated as types of gr
 ## User Management
 Users that are added and removed from a system are described in CRUD operations the same way as any other entity. The following example demonstrates adding a user.
 
-``` xml
+```xml
 <EventDetail>
   <TypeId>AddUser</TypeId>
   <Description>Adding a User</Description>

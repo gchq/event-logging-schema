@@ -62,9 +62,10 @@ task transformersDist(type: Zip) {
 tasks.build.dependsOn runShadow
 tasks.build.dependsOn transformersDist
 
+//Run the python script to validate all the version numbers in the schema file
 task validateSchemaVersions(type: Exec) {
     workingDir '../'
-    executable "./validateSchemaVersions.py"
+    commandLine "python", "validateSchemaVersions.py", versions.eventLoggingTransformer
 }
 
 tasks.compileJava.dependsOn validateSchemaVersions
