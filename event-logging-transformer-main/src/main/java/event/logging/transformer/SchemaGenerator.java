@@ -104,9 +104,11 @@ public class SchemaGenerator {
                         .getPath()
         ).getName();
 
+        System.out.println();
         System.out.println(String.format("Usage: java -jar %s BASE_PATH", jarName));
-        System.out.println("Where 'BASE_PATH' is the path where the configuration.yml lives \n" +
-                "and all output will be created");
+        System.out.println("Where 'BASE_PATH' is the path where the configuration file 'configuration.yml' lives \n" +
+                "and all generated output will be created");
+        System.out.println("An example configuration file can be found inside this jar file [example.configuration.yml]");
         System.exit(1);
     }
 
