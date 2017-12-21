@@ -37,10 +37,12 @@ def getMinorVersion(versionStr):
 
 def validateVersions(newVersion):
     print "Validating file %s" % SCHEMA_FILENAME
+
+    print ""
+
     if (newVersion):
         newVersionNum = re.sub(r'^v', "", newVersion)
-        print "Validating schema versions against new version [%s]" % newVersionNum
-    print ""
+        print "Gradle build version: %s" % newVersionNum
 
     # pattern = re.compile("xmlns:evt\"event-logging:.*\"")
     xsdFile = open(SCHEMA_FILENAME, 'r')
@@ -71,6 +73,12 @@ def validateVersions(newVersion):
     for enumElm in xml_root.findall("./xs:simpleType[@name='VersionSimpleType']/xs:restriction/xs:enumeration", ns):
         print "  %s" % enumElm.get("value")
         enumVersions.append(enumElm.get("value"))
+
+    print ""
+
+    if (newVersion and not re.match(".*SNAPSHOT", newVersionNum)):
+        if (versionAttrVersion != newVersionNum):
+            raise ValueError("version attribute and planned version do not match", versionAttrVersion, newVersionNum)
 
     # print enumVersions
 

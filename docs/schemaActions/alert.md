@@ -7,7 +7,7 @@ An example alert action for a disk usage monitoring system is as follows:
 
 ```xml
 <EventDetail>
-  <TypeId>er1234</TypeId>
+  <TypeId>err1234</TypeId>
   <Alert>
     <Type>Error</Type>
     <Description>/dev/sda1 is 100% full</Description>

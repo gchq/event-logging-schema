@@ -18,9 +18,11 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 ## [Unreleased]
 ### Added
 
+* Issue **#23** : Added `Coordinates` element to `LocationComplexType` to capture lat/long
+
 ### Changed
 
-## [v3.1.2] - 2017-11-13
+## [v3.1.2] - 2017-11-14
 
 ### Added
 
