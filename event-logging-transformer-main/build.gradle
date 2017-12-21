@@ -1,7 +1,3 @@
-plugins {
-    id 'com.github.johnrengelman.shadow' version '1.2.4'
-}
-
 def jarName = "event-logging-transformer-${versions.eventLoggingTransformer}.jar"
 def fatJarName = "event-logging-transformer-${versions.eventLoggingTransformer}-all.jar"
 
@@ -9,6 +5,7 @@ apply plugin: 'java'
 apply plugin: 'application'
 apply plugin: 'ca.cutterslade.analyze'
 apply plugin: 'idea'
+apply plugin: 'com.github.johnrengelman.shadow'
 
 //required for application plugin
 mainClassName = "event.logging.transformer.SchemaGenerator"

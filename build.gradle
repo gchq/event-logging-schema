@@ -1,15 +1,18 @@
-def projectGroup = "event-logging-transformer"
-def projectVersion = "${version}"
-
 buildscript {
     repositories {
-        mavenLocal()
         jcenter()
     }
     dependencies {
         classpath group: 'ca.cutterslade.gradle', name: 'gradle-dependency-analyze', version: '1.2.0'
     }
 }
+
+plugins {
+    id "com.github.johnrengelman.shadow" version "2.0.2" apply false
+}
+
+def projectGroup = "event-logging-transformer"
+def projectVersion = "${version}"
 
 //must be applied to all projects including root
 apply plugin: 'ca.cutterslade.analyze'
@@ -41,7 +44,7 @@ ext.versions = [
 ]
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '4.1'
+    gradleVersion = '4.4.1'
 }
 
 subprojects {
@@ -65,12 +68,11 @@ subprojects {
             exclude group: "org.slf4j", module: "slf4j-log4j12"
             exclude group: "log4j", module: "log4j"
 
-            resolutionStrategy.eachDependency { DependencyResolveDetails details ->
-                if (details.requested.name == 'log4j') {
-                    details.useTarget "org.slf4j:log4j-over-slf4j:$versions.slf4j"
-                }
-            }
             resolutionStrategy {
+                dependencySubstitution {
+                    substitute module('log4j:log4j') with module('org.slf4j:log4j-over-slf4j:$versions.slf4j')
+                }
+
                 forcedModules = [
                 ]
             }
