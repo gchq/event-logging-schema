@@ -18,7 +18,13 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 ## [Unreleased]
 ### Added
 
+* Add a build step to zip up the XSLTs used by the transformer
+
+* Add the transformer fat jar and transformations zip to the github release artifacts
+
 ### Changed
+
+* Improve logging and error handling in the schema transformer
 
 ## [v3.1.2] - 2017-11-13
 
