@@ -33,11 +33,9 @@ echo -e "SCHEMA_VERSION:      [${GREEN}${SCHEMA_VERSION}${NC}]"
 # validate the source schema - probably overkill as java will validate the generated schemas
 xmllint --noout --schema http://www.w3.org/2001/XMLSchema.xsd ./event-logging.xsd
 
-#Ensure the versions in the schema are all correct
-./validateSchemaVersions.py
-
 #run the gradle build to compile the transformations code and generate the 
 #schemas from the configured pipelines
+#The build will also validate the versions in the source schema
 ./gradlew -Pversion=$SCHEMA_VERSION clean build runShadow
 
 
