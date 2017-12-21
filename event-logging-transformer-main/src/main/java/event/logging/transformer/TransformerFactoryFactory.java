@@ -21,7 +21,7 @@ public final class TransformerFactoryFactory {
 		final String factoryName = System
 				.getProperty(SYSPROP_TRANSFORMER_FACTORY);
 		if (factoryName == null) {
-			LOGGER.info(SYSPROP_NOT_SET);
+			LOGGER.debug(SYSPROP_NOT_SET);
 
 			System.setProperty(SYSPROP_TRANSFORMER_FACTORY,
 					SAXON_TRANSFORMER_FACTORY);

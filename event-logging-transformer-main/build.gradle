@@ -53,7 +53,14 @@ runShadow {
     args project.file('pipelines')
 }
 
+task transformersDist(type: Zip) {
+    archiveName "transformations-${versions.eventLoggingTransformer}.zip"
+    from 'pipelines/transformations'
+}
+
+//run the transformer code to build the schemas from the configured pipelines
 tasks.build.dependsOn runShadow
+tasks.build.dependsOn transformersDist
 
 //Run the python script to validate all the version numbers in the schema file
 task validateSchemaVersions(type: Exec) {

@@ -12,7 +12,6 @@ plugins {
 }
 
 def projectGroup = "event-logging-transformer"
-def projectVersion = "${version}"
 
 //must be applied to all projects including root
 apply plugin: 'ca.cutterslade.analyze'
@@ -47,13 +46,16 @@ task wrapper(type: Wrapper) {
     gradleVersion = '4.4.1'
 }
 
+allprojects {
+    version versions.eventLoggingTransformer
+}
+
 subprojects {
     apply plugin: 'java'
     apply plugin: 'ca.cutterslade.analyze'
     apply plugin: 'idea'
 
     group "$projectGroup"
-    version "$projectVersion"
 
     sourceCompatibility = 1.8
     targetCompatibility = 1.8

@@ -23,7 +23,7 @@ public class Configuration {
     }
 
     public Path getSourceSchemaPath(final Path basePath) {
-        return basePath.resolve(sourceSchemaPath);
+        return basePath.resolve(sourceSchemaPath).normalize();
     }
 
     public List<Pipeline> getPipelines() {

@@ -16,6 +16,19 @@ Minor version changes may included new optional elements or attributes. They may
 Patch version changes will typically include cosmetic changes (e.g. _xs:documentation_ changes. 
 
 ## [Unreleased]
+
+### Added
+
+* Add a build step to zip up the XSLTs used by the transformer
+
+* Add the transformer fat jar and transformations zip to the github release artifacts
+
+### Changed
+
+* Improve logging and error handling in the schema transformer
+
+## [v3.1.2] - 2017-11-13
+
 ### Added
 
 * Issue **#23** : Added `Coordinates` element to `LocationComplexType` to capture lat/long
