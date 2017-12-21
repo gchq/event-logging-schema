@@ -8,6 +8,8 @@ sourceSchemaPath: "../../event-logging.xsd"
 #suffix - the suffix to apply to the generated xsd file, e.g. event-logging-<suffix>.xsd
 #transformations - An ordered list of the xslt files that make up a pipeline of relative transformations.
 #                  Each transformation will be applied to the result of the preceding transformation
+#                  Each file must exist in the directory './transformations' where '.' is the directory
+#                  of this configuration file.
 pipelines:
 
   - name: "fullSchema"
