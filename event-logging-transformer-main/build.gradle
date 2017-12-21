@@ -53,6 +53,7 @@ runShadow {
     args project.file('pipelines')
 }
 
+//run the transformer code to build the schemas from the configured pipelines
 tasks.build.dependsOn runShadow
 
 task validateSchemaVersions(type: Exec) {
