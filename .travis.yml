@@ -37,7 +37,7 @@ deploy:
         #The fat jar for transforming a source schema
       - event-logging-transformer-main/build/libs/event-logging-transformer*-all.jar
         #The XSLT files used by the transformer
-      - event-logging-transformer-main/build/distributions/trasnformations*.zip
+      - event-logging-transformer-main/build/distributions/transformations-*.zip
         #The generated schema documentation
       - event-logging-schema-docs-*.zip
       - event-logging-schema-docs-*.pdf
