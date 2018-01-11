@@ -31,6 +31,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.Duration;
 import java.time.Instant;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -56,30 +57,45 @@ public class SchemaGenerator {
     }
 
     private final Path basePath;
-    private final Configuration configuration;
     private final Path sourceSchema;
+    private final Configuration configuration;
 
-    public SchemaGenerator(final Path basePath, final Configuration configuration) {
+    public SchemaGenerator(final Path basePath,
+                           final Path sourceSchema,
+                           final Configuration configuration) {
         this.basePath = basePath;
         this.configuration = configuration;
-        this.sourceSchema = configuration.getSourceSchemaPath(basePath);
+        this.sourceSchema = sourceSchema;
     }
 
-    public static void main(final String[] args) throws IOException, TransformerException {
+    public static void main(final String[] args) {
 
-        if (args.length == 1 && args[0].length() > 1) {
+        if (args.length == 2 &&
+                args[0].length() > 1 &&
+                args[1].length() > 1 ) {
+
             String basePathStr = args[0];
-            Path basePath = Paths.get(basePathStr);
-            LOGGER.info("Using basePath [{}]", basePath.toAbsolutePath().toString());
+            Path basePath = Paths.get(basePathStr).toAbsolutePath().normalize();
+            LOGGER.info("Using basePath [{}]", basePath.toString());
 
             if (!Files.isDirectory(basePath)) {
                 LOGGER.info("basePath [{}] is not a valid directory", basePath);
+                LOGGER.info("Supplied arguments: {}", Arrays.toString(args));
+                displayUsageAndExit();
+            }
+
+            String sourceSchemaPathStr = args[1];
+            Path sourceSchema = Paths.get(sourceSchemaPathStr).toAbsolutePath().normalize();
+
+            if (!Files.isReadable(basePath)) {
+                LOGGER.info("sourceSchema [{}] is not a readable file", sourceSchema);
+                LOGGER.info("Supplied arguments: {}", Arrays.toString(args));
                 displayUsageAndExit();
             }
 
             try {
                 Configuration configuration = loadConfiguration(basePath);
-                new SchemaGenerator(basePath, configuration).build();
+                new SchemaGenerator(basePath, sourceSchema, configuration).build();
             } catch (SchemaTransformerException ste) {
                 LOGGER.error("Error - {}", ste.getMessage());
                 System.exit(1);
@@ -92,6 +108,7 @@ public class SchemaGenerator {
             System.exit(0);
         } else {
             LOGGER.error("ERROR - Invalid arguments");
+            LOGGER.info("Supplied arguments: {}", Arrays.toString(args));
             displayUsageAndExit();
         }
     }
@@ -105,9 +122,10 @@ public class SchemaGenerator {
         ).getName();
 
         System.out.println();
-        System.out.println(String.format("Usage: java -jar %s BASE_PATH", jarName));
-        System.out.println("Where 'BASE_PATH' is the path where the configuration file 'configuration.yml' lives \n" +
-                "and all generated output will be created");
+        System.out.println(String.format("Usage: java -jar %s BASE_PATH SOURCE_SCHEMA_PATH", jarName));
+        System.out.println("BASE_PATH - the path where the configuration file 'configuration.yml' lives \n" +
+                           "            and all generated output will be created");
+        System.out.println("SOURCE_SCHEMA_PATH - Path to the source XMLSchema");
         System.out.println("An example configuration file can be found inside this jar file [example.configuration.yml]");
         System.exit(1);
     }
@@ -134,7 +152,7 @@ public class SchemaGenerator {
     /**
      * Recursively deletes everything inside dir without deleting dir itself
      */
-    private static void emptyDirectory(Path dir) throws IOException {
+    static void emptyDirectory(Path dir) throws IOException {
         LOGGER.info("Clearing directory {}", dir.toAbsolutePath().toString());
         Files.walk(dir)
                 .sorted(Comparator.reverseOrder())
@@ -144,7 +162,8 @@ public class SchemaGenerator {
                 .forEach(File::delete);
     }
 
-    private static void validateConfiguration(final Path basePath, final Configuration configuration) {
+    private static void validateConfiguration(final Path basePath,
+                                              final Configuration configuration) {
 
         try {
             long distinctPipelineNames = configuration.getPipelines().stream()
@@ -164,14 +183,6 @@ public class SchemaGenerator {
                     .allMatch(path -> !Files.isReadable(path));
 
 
-            Path sourceSchemaAbsPath = configuration.getSourceSchemaPath(basePath);
-
-            if (!Files.isReadable(sourceSchemaAbsPath)) {
-                throw new SchemaTransformerException(String.format(
-                        "sourceSchemaPath [%s] (as configured in %s) is not a readable file",
-                        sourceSchemaAbsPath.toAbsolutePath(),
-                        CONFIG_FILE));
-            }
             if (distinctPipelineNames != configuration.getPipelines().size()) {
                 throw new SchemaTransformerException("Duplicate pipeline names in configuration");
             }
@@ -243,8 +254,6 @@ public class SchemaGenerator {
                         return handler;
                     })
                     .collect(Collectors.toList());
-
-            final Path sourceSchema = configuration.getSourceSchemaPath(basePath);
 
             //build a replacement for the file end of the source schema
             StringBuilder replacement = new StringBuilder()
@@ -413,5 +422,9 @@ public class SchemaGenerator {
     Path getXsltsPath() {
         return basePath.resolve(XSL_SUB_DIR);
     }
+
+//    public Path getSourceSchemaPath(final Path basePath) {
+//        return basePath.resolve(sourceSchema).normalize();
+//    }
 
 }

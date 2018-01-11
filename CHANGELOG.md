@@ -21,6 +21,8 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 ### Changed
 
+* Change transformer code to accept the sourceSchema path as an argument to the jar rather than in the configuration yml.
+
 ## [v3.2.0] - 2017-12-21
 
 ### Added

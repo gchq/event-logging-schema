@@ -38,7 +38,9 @@ ext.versions = [
     eventLogging: getPropertyOrDefault('version', 'SNAPSHOT'),
 
     //------------3rd-party------------
+    assertj: '3.6.2',
     jackson: '2.8.9',
+    junit: '4.12',
     logback: '1.2.3',
     saxon: '9.6.0-6',
     slf4j: '1.7.22',

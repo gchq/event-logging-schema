@@ -1,8 +1,3 @@
-#The path to the XMLSchema that the following transformation pipelines
-#should be applied to. The path is relative to the directory of this
-#configuration file
-sourceSchemaPath: "event-logging.xsd"
-
 #Each pipeline configuration will be run against the sourceSchema
 #name - the name of the pipeline to run
 #suffix - the suffix to apply to the generated xsd file, e.g. event-logging-<suffix>.xsd
