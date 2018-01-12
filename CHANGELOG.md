@@ -21,6 +21,14 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 ### Changed
 
+## [v3.2.2] - 2018-01-12
+
+### Changed
+
+* Fix broken junit test in the transformer code
+
+* No changes to the schema.
+
 ## [v3.2.1] - 2018-01-12
 
 ### Changed
@@ -82,7 +90,8 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 * Intial open source release
 
-[Unreleased]: https://github.com/gchq/event-logging-schema/compare/v3.2.1...HEAD
+[Unreleased]: https://github.com/gchq/event-logging-schema/compare/v3.2.2...HEAD
+[v3.2.2]: https://github.com/gchq/event-logging-schema/compare/v3.2.1...v3.2.2
 [v3.2.1]: https://github.com/gchq/event-logging-schema/compare/v3.2.0...v3.2.1
 [v3.2.0]: https://github.com/gchq/event-logging-schema/compare/v3.1.2...v3.2.0
 [v3.1.2]: https://github.com/gchq/event-logging-schema/compare/v3.1.1...v3.1.2
