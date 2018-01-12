@@ -105,7 +105,6 @@ public class SchemaGenerator {
             }
 
             LOGGER.info("Finished!");
-            System.exit(0);
         } else {
             LOGGER.error("ERROR - Invalid arguments");
             LOGGER.info("Supplied arguments: {}", Arrays.toString(args));
