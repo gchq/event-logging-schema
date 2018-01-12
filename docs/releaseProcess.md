@@ -27,7 +27,7 @@ The definition of breaking change is one which is not backwards compatible with 
 1. Ensure CHANGELOG.md has all changes documented in it
 1. Commit and push the new version number changes
 1. Create a tag in git for the new release, e.g. `git tag v4.1.2`
-1. TODO Push the tag to the remote `git push v4.1.2`. Travis will create a release in github, adding the xsd file as a release artifact
+1. TODO Push the tag to the remote `git push origin v4.1.2`. Travis will create a release in github, adding the xsd file as a release artifact
 1. Add the new schema to stroom-content
     1. Copy the new schema file into `stroom-content/source/event-logging-xml-schema/stroomContent/XML Schemas/event-logging/` naming it something like `event-logging v4.1.2.XMLSchema.data.xsd`.
     1. Copy the latest `.XMLSchema.xml` files into one named for the new version, e.g. `event-logging v4.1.2.XMLSchema.xml`
