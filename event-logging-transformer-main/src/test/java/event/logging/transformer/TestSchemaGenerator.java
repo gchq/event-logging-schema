@@ -3,6 +3,8 @@ package event.logging.transformer;
 import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -11,14 +13,17 @@ import java.nio.file.Paths;
 
 public class TestSchemaGenerator {
 
-    private static final Path GENERATED_PATH = Paths.get("pipelines/generated");
+    private static final Logger LOGGER = LoggerFactory.getLogger(TestSchemaGenerator.class);
+
+    private static final Path GENERATED_PATH = Paths.get("./pipelines/generated");
 
     @Before
     public void setup() throws IOException {
 
-        Assertions.assertThat(GENERATED_PATH).isDirectory();
-
-        SchemaGenerator.emptyDirectory(GENERATED_PATH);
+        if (Files.exists(GENERATED_PATH)) {
+            Assertions.assertThat(GENERATED_PATH).isDirectory();
+            SchemaGenerator.emptyDirectory(GENERATED_PATH);
+        }
     }
 
     @Test
