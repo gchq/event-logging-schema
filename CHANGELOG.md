@@ -21,6 +21,16 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 ### Changed
 
+## [v3.2.3] - 2018-01-30
+
+* No changes to the schema.
+
+### Changed
+
+* Change transformer to support pipleline inheritance
+
+* Add diff-ing of released and generated schemas to build script
+
 ## [v3.2.2] - 2018-01-12
 
 ### Changed
@@ -90,7 +100,8 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 * Intial open source release
 
-[Unreleased]: https://github.com/gchq/event-logging-schema/compare/v3.2.2...HEAD
+[Unreleased]: https://github.com/gchq/event-logging-schema/compare/v3.2.3...HEAD
+[v3.2.3]: https://github.com/gchq/event-logging-schema/compare/v3.2.2...v3.2.3
 [v3.2.2]: https://github.com/gchq/event-logging-schema/compare/v3.2.1...v3.2.2
 [v3.2.1]: https://github.com/gchq/event-logging-schema/compare/v3.2.0...v3.2.1
 [v3.2.0]: https://github.com/gchq/event-logging-schema/compare/v3.1.2...v3.2.0
