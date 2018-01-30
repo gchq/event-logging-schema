@@ -58,15 +58,25 @@ task transformersDist(type: Zip) {
     from 'pipelines/transformations'
 }
 
-//run the transformer code to build the schemas from the configured pipelines
-tasks.build.dependsOn runShadow
-tasks.build.dependsOn transformersDist
 
 //Run the python script to validate all the version numbers in the schema file
 task validateSchemaVersions(type: Exec) {
     workingDir '../'
     commandLine "python", "validateSchemaVersions.py", versions.eventLogging
 }
+
+//Run a bash script to compare the currennt jaxb source with the latest released version so
+//we can see what impact schema changes have had on the library
+task diffAgainstLatest(type: Exec) {
+    dependsOn runShadow
+    executable "../diffAgainstLatestReleases.sh"
+    args "./pipelines/generated"
+}
+
+//run the transformer code to build the schemas from the configured pipelines
+tasks.build.dependsOn runShadow
+tasks.build.dependsOn transformersDist
+tasks.build.dependsOn diffAgainstLatest
 
 tasks.compileJava.dependsOn validateSchemaVersions
 
