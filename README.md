@@ -33,19 +33,42 @@ To test a build with a release version applied:
 
 When you are ready to release a new version of the schema ensure you have done the following: 
 
-1. Ensure the CHANGELOG.md file has details of all changes since the last released version.
+1. Ensure the CHANGELOG.md file has details of all changes since the last released version under a heading for the version that is about to be released. Also add the appropriate github compare url link to the bottom of the file. e.g. 
 
-1. Update the major version number in the `suffix` property of the `configuration.yml` file.
+    ```
+    ## [Unreleased]
+
+    ### Added
+
+    ### Changed
+
+    ## [v4.0.0] - 2020-12-25
+
+    ### Added
+
+    * Add new ABC element
+
+    ### Changed
+
+    * Removed XYZ element
+
+    ```
+
+    and
+
+    ```
+    [v4.0.0]: https://github.com/gchq/event-logging-schema/compare/v3.2.3...v4.0.0
+    ```
 
 1. Update the enumeration in the _VersionSimpleType_ in the master schema with the version number that is about to be released.
 
-1. Update the following attributes in the schema:
+1. Update the following attributes in the schema (if applicable):
 
-    * `schema/targetNamespace`
+    * `schema/@targetNamespace`, e.g. `event-logging:3` -> `event-logging:4`
 
-    * `schema/version`
+    * `schema/@version`, e.g. `3.2.3` -> `4.0.0`
 
-    * `schema/id`
+    * `schema/@id`, e.g. `event-logging-v3.2.3` -> `event-logging-v4.0.0`
 
 1. Then run the following command to trigger a build and release in Travis.
 
