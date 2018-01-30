@@ -70,7 +70,7 @@ task validateSchemaVersions(type: Exec) {
 task diffAgainstLatest(type: Exec) {
     dependsOn runShadow
     executable "../diffAgainstLatestReleases.sh"
-    args "./pipelines/generated"
+    args "./pipelines"
 }
 
 //run the transformer code to build the schemas from the configured pipelines
@@ -94,4 +94,5 @@ tasks.withType(Test) {
 
 clean {
     delete 'pipelines/generated'
+    delete 'pipelines/downloaded'
 }
