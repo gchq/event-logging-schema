@@ -2,6 +2,7 @@ package event.logging.transformer;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
+import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
 import event.logging.transformer.configuration.Configuration;
 import event.logging.transformer.configuration.Pipeline;
 import org.slf4j.Logger;
@@ -72,7 +73,7 @@ public class SchemaGenerator {
 
         if (args.length == 2 &&
                 args[0].length() > 1 &&
-                args[1].length() > 1 ) {
+                args[1].length() > 1) {
 
             String basePathStr = args[0];
             Path basePath = Paths.get(basePathStr).toAbsolutePath().normalize();
@@ -123,7 +124,7 @@ public class SchemaGenerator {
         System.out.println();
         System.out.println(String.format("Usage: java -jar %s BASE_PATH SOURCE_SCHEMA_PATH", jarName));
         System.out.println("BASE_PATH - the path where the configuration file 'configuration.yml' lives \n" +
-                           "            and all generated output will be created");
+                "            and all generated output will be created");
         System.out.println("SOURCE_SCHEMA_PATH - Path to the source XMLSchema");
         System.out.println("An example configuration file can be found inside this jar file [example.configuration.yml]");
         System.exit(1);
@@ -136,7 +137,8 @@ public class SchemaGenerator {
                     "Cannot read configuration file %s",
                     configFile.toAbsolutePath().toString()));
         }
-        ObjectMapper objectMapper = new ObjectMapper(new YAMLFactory());
+        ObjectMapper objectMapper = new ObjectMapper(new YAMLFactory())
+                .registerModule(new Jdk8Module());
         Configuration configuration = null;
         try {
             configuration = objectMapper.readValue(configFile.toFile(), Configuration.class);
@@ -153,12 +155,15 @@ public class SchemaGenerator {
      */
     static void emptyDirectory(Path dir) throws IOException {
         LOGGER.info("Clearing directory {}", dir.toAbsolutePath().toString());
-        Files.walk(dir)
-                .sorted(Comparator.reverseOrder())
-                .filter(path -> !path.equals(dir))
-                .peek(path -> LOGGER.info("  Deleting {}", path.toAbsolutePath().toString()))
-                .map(Path::toFile)
-                .forEach(File::delete);
+
+        try (Stream<Path> pathStream = Files.walk(dir)) {
+            pathStream
+                    .sorted(Comparator.reverseOrder())
+                    .filter(path -> !path.equals(dir))
+                    .peek(path -> LOGGER.info("  Deleting {}", path.toAbsolutePath().toString()))
+                    .map(Path::toFile)
+                    .forEach(File::delete);
+        }
     }
 
     private static void validateConfiguration(final Path basePath,
@@ -200,7 +205,7 @@ public class SchemaGenerator {
 
     private void build() throws IOException {
 
-       LOGGER.info("Using source schema file {}", sourceSchema.toAbsolutePath().toString());
+        LOGGER.info("Using source schema file {}", sourceSchema.toAbsolutePath().toString());
 
         Path generatedPath = getGeneratedPath();
         if (!Files.exists(generatedPath)) {
@@ -209,8 +214,11 @@ public class SchemaGenerator {
 
         emptyDirectory(getGeneratedPath());
 
-        configuration.getPipelines().forEach(this::buildPipeline);
+        List<Pipeline> effectivePipelines = configuration.getEffectiveOutputPipelines();
+
+        effectivePipelines.forEach(this::buildPipeline);
     }
+
 
     private void buildPipeline(final Pipeline pipeline) {
 
@@ -259,9 +267,9 @@ public class SchemaGenerator {
                     .append("-v")
                     .append(getNamespaceVersion(sourceSchema));
 
-            if (pipeline.getSuffix() != null && !pipeline.getSuffix().isEmpty()) {
+            if (pipeline.getSuffix() != null && pipeline.getSuffix().isPresent()) {
                 replacement.append("-")
-                        .append(pipeline.getSuffix());
+                        .append(pipeline.getSuffix().get());
             }
             replacement.append(UNFORMATTED_SUFFIX);
 
@@ -421,9 +429,4 @@ public class SchemaGenerator {
     Path getXsltsPath() {
         return basePath.resolve(XSL_SUB_DIR);
     }
-
-//    public Path getSourceSchemaPath(final Path basePath) {
-//        return basePath.resolve(sourceSchema).normalize();
-//    }
-
 }
