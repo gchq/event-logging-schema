@@ -4,10 +4,9 @@
 .gradle/
 classes/
 generated/
+downloaded/
 libs/
 jars/
-/event-logging-transformations/pipelines/generated
-/event-logging-transformations/pipelines/downloaded
 node_modules
 _book
 
