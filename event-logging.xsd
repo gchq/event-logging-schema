@@ -19,8 +19,8 @@
     targetNamespace="event-logging:3"
     elementFormDefault="qualified"
     attributeFormDefault="unqualified"
-    version="3.2.3"
-    id="event-logging-v3.2.3">
+    version="3.3.0-SNAPSHOT"
+    id="event-logging-v3.3.0-SNAPSHOT">
     <xs:annotation>
         <xs:documentation>This schema describes the allowed element structure for event logging. Please refer to the documentation and examples for a description of how to use this schema in addition to the descriptions given for each element within this schema.</xs:documentation>
     </xs:annotation>
@@ -3245,6 +3245,7 @@
             <xs:enumeration value="3.2.1"/>
             <xs:enumeration value="3.2.2"/>
             <xs:enumeration value="3.2.3"/>
+            <xs:enumeration value="3.3.0-SNAPSHOT"/>
         </xs:restriction>
     </xs:simpleType>
     <xs:simpleType name="VirtualSessionSessionStateSimpleType">
