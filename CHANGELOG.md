@@ -19,6 +19,8 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 ### Added
 
+* Issue **#35** : Add `Meta` element to `Event` and `BaseObjectGroup` to allow extension/decoration.
+
 ### Changed
 
 ## [v3.2.3] - 2018-01-30
