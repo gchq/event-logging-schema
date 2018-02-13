@@ -21,13 +21,15 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 ### Changed
 
+* Add the pipeline suffix to the end of `id` attribute value on the `schema` element. This provides a means of differentiating the different forms of the schema.
+
 ## [v3.2.3] - 2018-01-30
 
 * No changes to the schema.
 
 ### Changed
 
-* Change transformer to support pipleline inheritance
+* Change transformer to support pipeline inheritance
 
 * Add diff-ing of released and generated schemas to build script
 
@@ -67,7 +69,7 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 * Add a client version of the schema for use in the [event-logging jaxb library](https://github.com/gchq/event-logging)
 
-* Add a transformation pipleline process for running multile XSLTs against the schema
+* Add a transformation pipeline process for running multiple XSLTs against the schema
 
 ## [v3.1.1] - 2017-07-17
 
@@ -98,7 +100,7 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 ### Added
 
-* Intial open source release
+* Initial open source release
 
 [Unreleased]: https://github.com/gchq/event-logging-schema/compare/v3.2.3...HEAD
 [v3.2.3]: https://github.com/gchq/event-logging-schema/compare/v3.2.2...v3.2.3

@@ -50,6 +50,7 @@ public class SchemaGenerator {
     private static final String XSL_SUB_DIR = "transformations";
     private static final String GENERATED_FILES_SUB_DIR = "generated";
     private static final String UNFORMATTED_SUFFIX = "-unformatted.xsd";
+    private static final String ID_ATTR_REGEX = "(id=\"event-logging-v[^\"]+)\"";
     private static final SAXParserFactory PARSER_FACTORY;
 
     static {
@@ -267,9 +268,10 @@ public class SchemaGenerator {
                     .append("-v")
                     .append(getNamespaceVersion(sourceSchema));
 
+            String suffix = "";
             if (pipeline.getSuffix() != null && pipeline.getSuffix().isPresent()) {
-                replacement.append("-")
-                        .append(pipeline.getSuffix().get());
+                suffix = "-" + pipeline.getSuffix().get();
+                replacement.append(suffix);
             }
             replacement.append(UNFORMATTED_SUFFIX);
 
@@ -315,7 +317,7 @@ public class SchemaGenerator {
             Path formattedFile = getGeneratedPath().resolve(formattedFileName);
 
             LOGGER.info("Formatting the file");
-            formatFile(outputFile, formattedFile);
+            formatFile(outputFile, formattedFile, suffix);
 
             try {
                 Files.deleteIfExists(outputFile);
@@ -387,7 +389,7 @@ public class SchemaGenerator {
                 Duration.between(startTime, Instant.now()).toString());
     }
 
-    private void formatFile(final Path in, final Path out) {
+    private void formatFile(final Path in, final Path out, String idSuffix) {
         try {
             final SAXTransformerFactory stf = (SAXTransformerFactory) TransformerFactoryFactory.newInstance();
             final TransformerHandler transformerHandler = stf.newTransformerHandler();
@@ -414,6 +416,17 @@ public class SchemaGenerator {
 
             // Strip out empty annotations.
             xsd = xsd.replaceAll("<xs:annotation\\s*/>", "");
+            if (idSuffix != null && !idSuffix.isEmpty()) {
+                Pattern idAttrPattern = Pattern.compile(ID_ATTR_REGEX);
+                Matcher matcher = idAttrPattern.matcher(xsd);
+                if (matcher.find()) {
+                    //add our suffix to the id attribute on the schema element
+                    xsd = idAttrPattern.matcher(xsd).replaceFirst("$1" + idSuffix + "\"");
+                } else {
+                    throw new RuntimeException(String.format("Could not find pattern [%s] in schema %s",
+                            ID_ATTR_REGEX, in.toAbsolutePath().toString()));
+                }
+            }
             xmlReader.parse(new InputSource(new StringReader(xsd)));
 
         } catch (final Exception e) {
