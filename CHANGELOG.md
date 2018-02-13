@@ -21,6 +21,10 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 ### Changed
 
+## [v3.2.4] - 2018-02-13
+
+### Changed
+
 * Add the pipeline suffix to the end of `id` attribute value on the `schema` element. This provides a means of differentiating the different forms of the schema.
 
 ## [v3.2.3] - 2018-01-30
