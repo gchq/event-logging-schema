@@ -106,7 +106,8 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 * Initial open source release
 
-[Unreleased]: https://github.com/gchq/event-logging-schema/compare/v3.2.3...HEAD
+[Unreleased]: https://github.com/gchq/event-logging-schema/compare/v3.2.4...HEAD
+[v3.2.4]: https://github.com/gchq/event-logging-schema/compare/v3.2.3...v3.2.4
 [v3.2.3]: https://github.com/gchq/event-logging-schema/compare/v3.2.2...v3.2.3
 [v3.2.2]: https://github.com/gchq/event-logging-schema/compare/v3.2.1...v3.2.2
 [v3.2.1]: https://github.com/gchq/event-logging-schema/compare/v3.2.0...v3.2.1
