@@ -13,7 +13,7 @@ Minor and patch versions will be backwards compatible with other versions at the
 
 Minor version changes may included new optional elements or attributes. They may also include changes to such things as enumerations or patterns that are additive in nature.
 
-Patch version changes will typically include cosmetic changes (e.g. _xs:documentation_ changes. 
+Patch version changes will typically include cosmetic changes (e.g. _xs:documentation_ changes).
 
 ## [Unreleased]
 
