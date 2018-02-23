@@ -19,6 +19,8 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 ### Added
 
+* Issue **#33** : Add content to ClassificationComplexType to support richer protective marking schemes
+
 ### Changed
 
 ## [v3.2.4] - 2018-02-13
