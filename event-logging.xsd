@@ -1647,7 +1647,7 @@
             </xs:element>
             <xs:element name="Classification" type="xs:string" minOccurs="0">
                 <xs:annotation>
-                    <xs:documentation>The classification of the protectively marked item. E.g. 'OFFICIAL', 'COMERCIAL IN CONFIDENCE', 'CONFIDENTIAL', 'INTERNAL' etc.</xs:documentation>
+                    <xs:documentation>The classification of the protectively marked item. E.g. 'OFFICIAL', 'COMMERCIAL IN CONFIDENCE', 'CONFIDENTIAL', 'INTERNAL' etc.</xs:documentation>
                 </xs:annotation>
             </xs:element>
             <xs:element name="Descriptors" minOccurs="0">
