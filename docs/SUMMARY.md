@@ -62,6 +62,7 @@
     * [Voip](./objectTypes/voip.md)
 * [Unstructured Data](unstructuredData.md)
 * [Data Types](dataTypes.md)
+* [Meta Element](./meta.md)
 * [Illustrative Example Events](./completeExamples/README.md)
     * [Anti Malware](./completeExamples/antimalware.md)
     * [Import](./completeExamples/import.md)
