@@ -118,10 +118,10 @@
         </Destination>
         <Payload>
           <File>
-            <Size>12345321</Size>
-            <Hash>efd1dffd90296a69a8aecd7ecb1832b7</Hash>
             <Type>text/xml</Type>
             <Path>/appdata/alldata/gooddata/bestdata.xml</Path>
+            <Size>12345321</Size>
+            <Hash>efd1dffd90296a69a8aecd7ecb1832b7</Hash>
           </File>
         </Payload>
       </Send>
@@ -218,11 +218,11 @@
             </Permissions>
             <Path>E:/DCIM/Spacecam101/141516.jpg</Path>
             <Size>5445121</Size>
-            <Hash>efd1dffd90296a69a8aecd7ecb1832b7</Hash>
             <Media>
               <Type>USBMassStorage</Type>
               <Removable>true</Removable>
             </Media>
+            <Hash>efd1dffd90296a69a8aecd7ecb1832b7</Hash>
           </File>
         </Source>
         <Outcome>
