@@ -94,7 +94,8 @@ while read -r url; do
         diff ${localFile} ${downloadedFile} > ${diffFile} || true
         if [ $(cat ${diffFile} | wc -l) -gt 0 ]; then
             diff ${localFile} ${downloadedFile} || true
-            echo -e "\n${RED}Warning${NC}: Local schema ${BLUE}${localFile}${NC} differs from ${BLUE}${downloadedFile}${NC}"
+            echo -e "\n${RED}Warning${NC}: Local schema ${BLUE}${localFile}${NC} differs from the latest release ${BLUE}${downloadedFile}${NC}"
+            echo -e "This will likely be as intended but serves as a confirmation of what has changed since the latest release"
             echo -e "(see changes in $PWD/${diffFile})${NC}"
         else 
             echo -e "\n${GREEN}Local schema ${BLUE}${localFile}${NC} is identical to ${BLUE}${downloadedFile}${NC}"

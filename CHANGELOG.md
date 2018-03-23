@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) 
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-i.e. \<Major version\>.\<Minor version\>.\<Patch version\>
+i.e. `<Major version>.<Minor version>.<Patch version>`
 
 The namespace of the schema includes the major version, e.g. _event-logging:3_. This is to reflect the fact that a change to the major version number is a breaking change and thus a different namespace should be used. Similarly the filename of the schema as a release artifact will include the major version number to reflect a breaking change.
 
@@ -13,7 +13,7 @@ Minor and patch versions will be backwards compatible with other versions at the
 
 Minor version changes may included new optional elements or attributes. They may also include changes to such things as enumerations or patterns that are additive in nature.
 
-Patch version changes will typically include cosmetic changes (e.g. _xs:documentation_ changes. 
+Patch version changes will typically include cosmetic changes (e.g. _xs:documentation_ changes).
 
 ## [Unreleased]
 
@@ -21,7 +21,15 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 * Issue **#35** : Add `Meta` element to `Event` and `BaseObjectGroup` to allow extension/decoration.
 
+* Issue **#33** : Add content to ClassificationComplexType to support richer protective marking schemes
+
 ### Changed
+
+## [v3.2.4] - 2018-02-13
+
+### Changed
+
+* Add the pipeline suffix to the end of `id` attribute value on the `schema` element. This provides a means of differentiating the different forms of the schema.
 
 ## [v3.2.3] - 2018-01-30
 
@@ -29,7 +37,7 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 ### Changed
 
-* Change transformer to support pipleline inheritance
+* Change transformer to support pipeline inheritance
 
 * Add diff-ing of released and generated schemas to build script
 
@@ -69,7 +77,7 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 * Add a client version of the schema for use in the [event-logging jaxb library](https://github.com/gchq/event-logging)
 
-* Add a transformation pipleline process for running multile XSLTs against the schema
+* Add a transformation pipeline process for running multiple XSLTs against the schema
 
 ## [v3.1.1] - 2017-07-17
 
@@ -100,9 +108,10 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 ### Added
 
-* Intial open source release
+* Initial open source release
 
-[Unreleased]: https://github.com/gchq/event-logging-schema/compare/v3.2.3...HEAD
+[Unreleased]: https://github.com/gchq/event-logging-schema/compare/v3.2.4...HEAD
+[v3.2.4]: https://github.com/gchq/event-logging-schema/compare/v3.2.3...v3.2.4
 [v3.2.3]: https://github.com/gchq/event-logging-schema/compare/v3.2.2...v3.2.3
 [v3.2.2]: https://github.com/gchq/event-logging-schema/compare/v3.2.1...v3.2.2
 [v3.2.1]: https://github.com/gchq/event-logging-schema/compare/v3.2.0...v3.2.1

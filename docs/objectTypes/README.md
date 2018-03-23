@@ -29,7 +29,7 @@ The following elements are common to all of the above object types;
 * **Id** - An identifier for the object, e.g a document ID in a document management system
 * **Name** - The name of the object, e.g. a filename
 * **Description** - Human readable description of what the object is
-* **Classification** - Any classification or restrictions placed on the object, e.g. for commercially sensitive reports or user health records
+* **Classification** - Any classification or restrictions placed on the object, e.g. for commercially sensitive reports or user health records (see [Basic Structure](../basicStructure/README.md))
 * **State** - Any state information about the object, e.g. 'Archived' 
 * **Groups** - Any groups associated with the object, e.g. group membership of a user account
 * **Permissions** - Any permissions associated with the object, e.g. write access being granted to a list of named users or groups
