@@ -92,7 +92,7 @@ task validateExampleXmlAgainstSchema() {
         }
         println "Validating all XML files in [$EXAMPLE_XML_DIR] against schema [$schemaFile]"
         fileTree(dir: project.file(EXAMPLE_XML_DIR))
-            .include('*.xml')
+            .include('**/*.xml')
             .each { xmlFile -> 
                 def xmlFilePath = xmlFile.absolutePath
                 println "Validating [$xmlFilePath again]st the schema"
