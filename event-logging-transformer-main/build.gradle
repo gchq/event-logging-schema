@@ -81,8 +81,9 @@ task diffAgainstLatest(type: Exec) {
     args "./pipelines"
 }
 
-// Validate any XML files found in EXAMPLE_XML_DIR against the non-client generated schema.
-// This is to ensure that the examples are kept up to date and to highlight breaking changes
+// Validate any XML files found in EXAMPLE_XML_DIR (or sub directories of it) against the 
+// non-client generated schema. This is to ensure that the examples are kept up to date 
+// and to highlight breaking changes
 task validateExampleXmlAgainstSchema() {
     dependsOn runShadow
     doLast {
