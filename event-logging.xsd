@@ -2226,7 +2226,7 @@
             </xs:sequence>
             <xs:element name="TimeZone" type="xs:string" minOccurs="0" maxOccurs="1">
                 <xs:annotation>
-                    <xs:documentation>Timezone pair for location in RFC3339 time-numoffset format separated by a slash '/' character. The first offset is for the location's standard timezone and the second for the daylight savings timezone. For example, Bristol, UK would be +00:00/+01:00</xs:documentation>
+                    <xs:documentation>Timezone for location in ISO8601 Time zone designator format for the location at the time of the event. The format may be 'Z' for no offset from UTC, '+hh:mm', '+hhmm' or '+hh' for a positive offset from UTC in hours and minutes or just hours or '-hh:mm' or '-hhmm' or '-hh' for a negative offset from UTC in hours and minutes or just hours. Note that 'Z' can be represented as a positive zero offset from UTC i.e. '+00:00'</xs:documentation>
                 </xs:annotation>
             </xs:element>
             <xs:element name="Coordinates"
