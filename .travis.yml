@@ -4,6 +4,13 @@ group: edge
 jdk: openjdk8
 sudo: required
 
+env:
+  global:
+    #travis encrypt -r gchq/event-logging-schema GH_USER_AND_TOKEN="*****"
+    #where ***** is '<github username>:<github personal access token>'
+    #Required for curling the gh api to get the latest release sha
+    - secure: "R/Em1F2F3PKSvLfmukEMlJnlG/mR179rCclGBBy6bgcaHkTY1/kaksTb/4JIA2gv4sT9dyBPABwYOot+wIuqsvtDQ0tbB+V5VLqg2qKkFUNCdPi5ooILTlRvltdwNYG54NIFDpqpbBTndoGHQB4fzxuMOG2OQClv/haDxsHtJ+QC3Cf7oNTJxyWxXjPGcBfhjM/s/3AY1yS27vdQGlX4SQ3ZErpPTSYbB1y56jQS1EVFNHL0dI0WGb+FshLbTYknh8b/XcoPkbC53hnRRXchPKdDuOeSSCZhmkL9rOkaLWkfNdZsZUxt1eiWiORzIaP2//TEcWwCmiqZ4WPH8YeWjemyzJjc2ZsYuGIOpZci1+2CTsdN6uq27FLV/T5RpADp/IxOcbvOG7xnJk3bpEB2OG+f+q+xsLmHpmiTVWIes1dI1mkBnWnFZwGQDSTNgFbGypZDcJp+0w941cRCWFNm0D+EOfqce9U1S9rPiulRSX8FsXOBmTxw/30it1ZrW5xQYjWXAFVN2jVZYuV50wHz5HjXUTOabZgDW14UlhVx7+V/nZVZyy78VC/GQw26doYitUKNihBDl+qDgBEOnrIZ/AoB3wUuENvXk+nAIKFQ8mc+gM3mmcGZV8gwGq4FS76U4Z3tGP0+L/FrFPQjzOVgY8XMauf/n+Wjj/F+aswMPy0="
+
 before_install:
   - sudo apt-get -qq update
   - sudo apt-get install -y libxml2-utils
