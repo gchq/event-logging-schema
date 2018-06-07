@@ -1282,7 +1282,7 @@
             <xs:extension base="evt:ObjectOutcomeComplexType">
                 <xs:sequence minOccurs="1" maxOccurs="1">
                     <xs:element name="Reason"
-                        type="xs:String"
+                        type="xs:string"
                         minOccurs="0"
                         maxOccurs="1"/>
                 </xs:sequence>
