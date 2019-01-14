@@ -59,7 +59,7 @@ if (!(versions.eventLogging =~ /^SNAPSHOT\.*/)) {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '4.4.1'
+    gradleVersion = '4.10.3'
 }
 
 allprojects {

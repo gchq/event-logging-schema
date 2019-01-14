@@ -1,26 +1,33 @@
 #Each pipeline configuration will be run against the sourceSchema
-#name - the name of the pipeline to run
-#basePipelineName - the name of a pipeline that this pipeline extends, e.g. if pipeline X has transforms X1,X2 and
+
+#pipelineName     - The name of the pipeline
+#basePipelineName - The name of a pipeline that this pipeline extends, e.g. if pipeline X has transforms X1,X2 and
 #                   pipeline Y has transforms Y1,Y2 and the base pipeline of X is Y, then the effective transforms of
 #                   X will be Y1,Y2,X1,X2
-#suffix - optional suffix to apply to the generated xsd file, e.g. event-logging-<suffix>.xsd
-#hasOutput - true if this pipeline should produce a schema file
-#transformations - An ordered list of the xslt files that make up a pipeline of relative transformations.
-#                  Each transformation will be applied to the result of the preceding transformation
-#                  Each file must exist in the directory './transformations' where '.' is the directory
-#                  of this configuration file.
+#outputSuffix     - Optional suffix to apply to the generated xsd file and 'id' attribute,
+#                   e.g. event-logging-v<majorVersion>-<suffix>.xsd
+#                   e.g. id="event-logging-v<majorVersion>-<suffix>"
+#outputBaseName   - Optional base name for the generated xsd file and 'id' attribute, if not supplied the
+#                   name of the source schema will be used.
+#                   e.g. <baseName>-v<majorVersion>-<suffix>.xsd.
+#                   e.g. id="event-logging-v<majorVersion>-<suffix>"
+#hasOutput        - True if this pipeline should produce a schema file
+#transformations  - An ordered list of the xslt files that make up a pipeline of relative transformations.
+#                   Each transformation will be applied to the result of the preceding transformation
+#                   Each file must exist in the directory './transformations' where '.' is the directory
+#                   of this configuration file.
 pipelines:
 
-  - name: "fullSchema"
+  - pipelineName: "fullSchema"
     hasOutput: true
     transformations:
       - "ensureOccurrence.xsl"
       - "extractSimpleTypes.xsl"
       - "orderElements.xsl"
           
-  - name: "client-variant"
+  - pipelineName: "client-variant"
     basePipelineName: "fullSchema"
-    suffix: "client"
+    outputSuffix: "client"
     hasOutput: true
     transformations:
       - "jaxbEventRoot.xsl"
