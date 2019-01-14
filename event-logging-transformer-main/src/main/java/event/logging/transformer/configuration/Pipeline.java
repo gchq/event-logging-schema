@@ -1,5 +1,6 @@
 package event.logging.transformer.configuration;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,13 +14,16 @@ public class Pipeline {
     private static final Logger LOGGER = LoggerFactory.getLogger(Pipeline.class);
 
     @JsonProperty(required = true)
-    private String name;
+    private String pipelineName;
 
     @JsonProperty
-    private Optional<String> basePipelineName;
+    private String basePipelineName;
 
     @JsonProperty
-    private Optional<String> suffix;
+    private String outputBaseName;
+
+    @JsonProperty
+    private String outputSuffix;
 
     @JsonProperty(required = true)
     private boolean hasOutput;
@@ -31,24 +35,30 @@ public class Pipeline {
     public Pipeline() {
     }
 
-    public Pipeline(String name,
-                    Optional<String> suffix,
+    public Pipeline(String pipelineName,
+                    String outputBaseName,
+                    String outputSuffix,
                     boolean hasOutput,
-                    Optional<String> basePipelineName,
+                    String basePipelineName,
                     List<String> transformations) {
-        this.name = name;
-        this.suffix = suffix;
+        this.pipelineName = pipelineName;
+        this.outputBaseName = outputBaseName;
+        this.outputSuffix = outputSuffix;
         this.hasOutput = hasOutput;
         this.basePipelineName = basePipelineName;
         this.transformations = transformations;
     }
 
-    public String getName() {
-        return name;
+    public String getPipelineName() {
+        return pipelineName;
     }
 
-    public Optional<String> getSuffix() {
-        return suffix;
+    public Optional<String> getOutputSuffix() {
+        return Optional.ofNullable(outputSuffix);
+    }
+
+    public Optional<String> getOutputBaseName() {
+        return Optional.ofNullable(outputBaseName);
     }
 
     public boolean hasOutput() {
@@ -56,7 +66,7 @@ public class Pipeline {
     }
 
     public Optional<String> getBasePipelineName() {
-        return basePipelineName;
+        return Optional.ofNullable(basePipelineName);
     }
 
     public List<String> getTransformations() {
@@ -65,28 +75,30 @@ public class Pipeline {
 
     public Pipeline merge(final Pipeline basePipeline) {
         LOGGER.debug("Merging basePipeline {} into this {}", basePipeline, this);
-        if (!this.basePipelineName.orElse("").equals(basePipeline.name)) {
+        if (!this.getBasePipelineName().orElse("").equals(basePipeline.pipelineName)) {
             throw new RuntimeException(String.format("basePipelineName property [%s] of pipeline [%s] does not match " +
-                            "the name of the passed basePipeline [%s]",
-                    this.basePipelineName.orElse(""), this.name, basePipeline.name));
+                            "the pipelineName of the passed basePipeline [%s]",
+                    this.getBasePipelineName().orElse(""), this.pipelineName, basePipeline.pipelineName));
         }
         List<String> combinedTransformations = new ArrayList<>();
         combinedTransformations.addAll(basePipeline.getTransformations());
         combinedTransformations.addAll(this.getTransformations());
 
-        return new Pipeline(this.getName(),
-                this.getSuffix(),
+        return new Pipeline(this.getPipelineName(),
+                this.outputBaseName,
+                this.outputSuffix,
                 this.hasOutput(),
-                basePipeline.getBasePipelineName(),
+                basePipeline.getBasePipelineName().orElse(null),
                 combinedTransformations);
     }
 
     @Override
     public String toString() {
         return "Pipeline{" +
-                "name='" + name + '\'' +
+                "pipelineName='" + pipelineName + '\'' +
                 ", basePipelineName=" + basePipelineName +
-                ", suffix=" + suffix +
+                ", outputBaseName=" + outputBaseName +
+                ", outputSuffix=" + outputSuffix +
                 ", hasOutput=" + hasOutput +
                 '}';
     }

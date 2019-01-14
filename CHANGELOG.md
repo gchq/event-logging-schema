@@ -23,6 +23,12 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 ### Changed
 
+* Change `name` to `pipelineName` in Schema Generator `configuration.yml`.
+
+* Change `suffix` to `outputSuffix` in Schema Generator `configuration.yml`.
+
+* Add `outputBaseName` to Schema Generator `configuration.yml` to allow the filename and if of the output schema to be changed.
+
 ## [v3.2.4] - 2018-02-13
 
 ### Changed
