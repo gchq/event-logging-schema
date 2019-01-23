@@ -4,7 +4,6 @@ import com.github.difflib.DiffUtils;
 import com.github.difflib.algorithm.DiffException;
 import com.github.difflib.patch.AbstractDelta;
 import com.github.difflib.patch.Patch;
-import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -17,6 +16,9 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class TestSchemaGenerator {
     private static final Logger LOGGER = LoggerFactory.getLogger(TestRealPipelines.class);
@@ -25,11 +27,13 @@ public class TestSchemaGenerator {
     private static final Path TEST_DATA_ROOT_DIR = Paths.get("src/test/resources/test-data");
     private static final Path PIPELINES_RELATIVE_PATH = Paths.get("pipelines");
     private static final Path GENERATED_RELATIVE_PATH = Paths.get("pipelines/generated");
-    private static final Path UNCHANGED_FILE = GENERATED_RELATIVE_PATH.resolve("event-logging-v3.xsd");
+    private static final Path UNCHANGED_FILE = GENERATED_RELATIVE_PATH.resolve("event-logging-v3-unchanged.xsd");
 
     private static final String TEST_01 = "test-01";
+    private static final String TEST_02 = "test-02";
     private static final List<String> TEST_CASE_NAMES = Arrays.asList(
-            TEST_01
+            TEST_01,
+            TEST_02
     );
 
     @Before
@@ -41,7 +45,7 @@ public class TestSchemaGenerator {
            final Path generatedDir = testCaseDir.resolve(GENERATED_RELATIVE_PATH);
 
             if (Files.exists(generatedDir)) {
-                Assertions.assertThat(generatedDir).isDirectory();
+                assertThat(generatedDir).isDirectory();
                 try {
                     SchemaGenerator.emptyDirectory(generatedDir);
                 } catch (IOException e) {
@@ -54,10 +58,34 @@ public class TestSchemaGenerator {
     @Test
     public void test01_versionChange() throws IOException {
 
-        runTest(TEST_01);
+        List<Path> generatedFiles = runTest(TEST_01);
+
+        assertThat(generatedFiles).hasSize(2);
+
+        assertGeneratedFilenames(generatedFiles,
+                "my-new-schema-v7-variantOne.xsd",
+                "my-new-schema-v7-variantTwo.xsd");
     }
 
-    private void runTest(final String name) throws IOException {
+    @Test
+    public void test02_noChanges() throws IOException {
+
+        List<Path> generatedFiles = runTest(TEST_02);
+
+        assertThat(generatedFiles).hasSize(1);
+
+        assertGeneratedFilenames(generatedFiles,
+                "event-logging-v3.xsd");
+    }
+
+    private void assertGeneratedFilenames(final List<Path> generatedFiles, final String... expectedFileNames) {
+        assertThat(generatedFiles.stream()
+                .map(path -> path.getFileName().toString())
+                .collect(Collectors.toList())
+        ).containsExactlyInAnyOrder(expectedFileNames);
+    }
+
+    private List<Path> runTest(final String name) throws IOException {
 
         final Path testCaseDir = getTestCaseDir(name);
         final Path pipelinesDir = testCaseDir.resolve(PIPELINES_RELATIVE_PATH);
@@ -68,19 +96,25 @@ public class TestSchemaGenerator {
                 SOURCE_SCHEMA.toString()});
 
         // Our test should have generated an unchanged file plus at least one more
-        Assertions.assertThat(Files.list(generatedDir).count())
+        assertThat(Files.list(generatedDir).count())
                 .isGreaterThanOrEqualTo(2);
 
         final Path unchangedFile = testCaseDir.resolve(UNCHANGED_FILE);
 
-        Files.list(generatedDir)
+        // collect the paths of all generated files bar the special unchanged one
+        List<Path> generatedFiles = Files.list(generatedDir)
                 .filter(file -> ! file.getFileName().equals(unchangedFile.getFileName()))
+                .collect(Collectors.toList());
+
+        generatedFiles
                 .forEach(file -> {
-                    Assertions.assertThat(file)
+                    assertThat(file)
                             .isRegularFile();
 
                     diffFileAgainstSourceSchema(unchangedFile, file);
                 });
+
+        return generatedFiles;
     }
 
     private void diffFileAgainstSourceSchema(final Path originalFile, final Path revisedFile) {
@@ -97,7 +131,10 @@ public class TestSchemaGenerator {
             throw new RuntimeException("Error diffing files");
         }
 
-        LOGGER.info("Comparing {} to {}", originalFile.toString(), revisedFile.toString());
+        LOGGER.info("Comparing {} to {}",
+                originalFile.getFileName().toString(),
+                revisedFile.getFileName().toString());
+
         //simple output the computed patch to console
         for (AbstractDelta<String> delta : patch.getDeltas()) {
             System.out.println(String.format("Original [line %s]", delta.getSource().getPosition()));

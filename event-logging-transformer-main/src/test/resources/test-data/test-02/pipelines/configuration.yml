@@ -26,16 +26,8 @@ pipelines:
     transformations:
       - "noChange.xsl"
 
-  - pipelineName: "version-change-1"
-    outputSuffix: "variantOne"
-    outputBaseName: "my-new-schema"
+  - pipelineName: "identity"
     hasOutput: true
     transformations:
-      - "changeVersion.xsl"
+      - "noChange.xsl"
 
-  - pipelineName: "version-change-2"
-    outputSuffix: "variantTwo"
-    outputBaseName: "my-new-schema"
-    hasOutput: true
-    transformations:
-      - "changeVersion.xsl"
