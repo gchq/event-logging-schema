@@ -16,6 +16,17 @@
 #                   Each transformation will be applied to the result of the preceding transformation
 #                   Each file must exist in the directory './transformations' where '.' is the directory
 #                   of this configuration file.
+
+# The name of the generated schema for an output pipeline will be of the form:
+#   <outputBaseName>-vX<-outputSuffix>.xsd
+# Where X is the major version of the generated schema as extracted from its 'version' attribute
+# If outputBaseName is not set then the name of the source schema will be used as the outputBaseName
+
+# The 'id' attribute of the generate for an output pipeline will be of the form:
+#   <outputBaseName>-vX.Y.Z<-outputSuffix>
+# Where X.Y.Z is the full version of the generated schema as copied from its 'version' attribute
+# If outputBaseName is not set then the name of the source schema will be used as the outputBaseName
+
 pipelines:
 
   - name: "clean"
