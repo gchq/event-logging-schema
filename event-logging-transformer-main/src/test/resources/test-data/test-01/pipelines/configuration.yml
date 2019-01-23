@@ -18,24 +18,17 @@
 #                   of this configuration file.
 pipelines:
 
-  - name: "clean"
-    hasOutput: false
+  # Pipeline to created an unchanged, but formatted scheme to use for comparing
+  # the changes we make in other pipelines.
+  - pipelineName: "no-change"
+    hasOutput: true
     transformations:
-      - "removeUnused.xsl"
+      - "noChange.xsl"
 
-  - name: "fullSchema"
-    basePipelineName: "clean"
+  - pipelineName: "version-change"
+    outputSuffix: "newVersionSuffix"
+    outputBaseName: "newVersionBaseName"
     hasOutput: true
     transformations:
-      - "ensureOccurrence.xsl"
-      - "extractSimpleTypes.xsl"
-      - "orderElements.xsl"
-          
-  - name: "client-variant"
-    basePipelineName: "fullSchema"
-    outputSuffix: "client"
-    hasOutput: true
-    transformations:
-      - "jaxbEventRoot.xsl"
-      - "jaxbNoEventId.xsl"
-      - "jaxbNoUserDetails.xsl"
+      - "changeVersion.xsl"
+
