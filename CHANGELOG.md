@@ -17,6 +17,9 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 ## [Unreleased]
 
+
+## [v3.3.1] - 2019-01-23
+
 * No changes to the schema.
 
 ### Changed
@@ -131,7 +134,8 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 * Initial open source release
 
-[Unreleased]: https://github.com/gchq/event-logging-schema/compare/v3.3.0...HEAD
+[Unreleased]: https://github.com/gchq/event-logging-schema/compare/v3.3.1...HEAD
+[v3.3.1]: https://github.com/gchq/event-logging-schema/compare/v3.3.0...v3.3.1
 [v3.3.0]: https://github.com/gchq/event-logging-schema/compare/v3.2.4...v3.3.0
 [v3.2.4]: https://github.com/gchq/event-logging-schema/compare/v3.2.3...v3.2.4
 [v3.2.3]: https://github.com/gchq/event-logging-schema/compare/v3.2.2...v3.2.3
