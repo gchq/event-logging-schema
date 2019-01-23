@@ -58,13 +58,27 @@ public class TestSchemaGenerator {
     @Test
     public void test01_versionChange() throws IOException {
 
-        List<Path> generatedFiles = runTest(TEST_01);
+        final List<Path> generatedFiles = runTest(TEST_01);
 
-        assertThat(generatedFiles).hasSize(2);
+        assertThat(generatedFiles)
+                .hasSize(2);
 
-        assertGeneratedFilenames(generatedFiles,
-                "my-new-schema-v7-variantOne.xsd",
-                "my-new-schema-v7-variantTwo.xsd");
+        String majorVersion = "v7";
+        String fullVersion = majorVersion + ".8.9";
+        String baseName = "my-new-schema";
+        String suffix1 = "-variantOne";
+        String suffix2 = "-variantTwo";
+        String expectedFile1 = baseName + "-" + majorVersion + suffix1 + ".xsd";
+        String expectedFile2 = baseName + "-" + majorVersion + suffix2 + ".xsd";
+        String expectedId1 = baseName + "-" + fullVersion + suffix1;
+        String expectedId2 = baseName + "-" + fullVersion + suffix2;
+
+        assertGeneratedFilenames(generatedFiles, expectedFile1, expectedFile2);
+
+        assertThat(getFileText(generatedFiles.get(0)))
+                .contains(expectedId1);
+        assertThat(getFileText(generatedFiles.get(1)))
+                .contains(expectedId2);
     }
 
     @Test
@@ -74,8 +88,8 @@ public class TestSchemaGenerator {
 
         assertThat(generatedFiles).hasSize(1);
 
-        assertGeneratedFilenames(generatedFiles,
-                "event-logging-v3.xsd");
+        assertThat(generatedFiles.get(0).getFileName().toString())
+                .matches("event-logging-v[0-9].xsd");
     }
 
     private void assertGeneratedFilenames(final List<Path> generatedFiles, final String... expectedFileNames) {
@@ -104,6 +118,7 @@ public class TestSchemaGenerator {
         // collect the paths of all generated files bar the special unchanged one
         List<Path> generatedFiles = Files.list(generatedDir)
                 .filter(file -> ! file.getFileName().equals(unchangedFile.getFileName()))
+                .sorted()
                 .collect(Collectors.toList());
 
         generatedFiles
@@ -155,5 +170,9 @@ public class TestSchemaGenerator {
     private Path getTestCaseDir(final String testCaseName) {
         Objects.requireNonNull(testCaseName);
         return TEST_DATA_ROOT_DIR.resolve(testCaseName);
+    }
+
+    private String getFileText(final Path file) throws IOException {
+        return String.join("\n", Files.readAllLines(file));
     }
 }
