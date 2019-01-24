@@ -21,6 +21,8 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 * Issue **#31** : Add `Tags` element to `BaseObjectGroup`
 
+* Issue **#37** : Add `Tags` element to `SystemComplexType`
+
 ### Changed
 
 ## [v3.2.3] - 2018-01-30
