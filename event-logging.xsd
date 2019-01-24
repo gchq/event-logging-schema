@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  ~ Copyright 2016 Crown Copyright
+  ~ Copyright 2016 - 2018 Crown Copyright
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -19,8 +19,8 @@
     targetNamespace="event-logging:3"
     elementFormDefault="qualified"
     attributeFormDefault="unqualified"
-    version="3.3.0-SNAPSHOT"
-    id="event-logging-v3.3.0-SNAPSHOT">
+    version="3.3.1"
+    id="event-logging-v3.3.1">
     <xs:annotation>
         <xs:documentation>This schema describes the allowed element structure for event logging. Please refer to the documentation and examples for a description of how to use this schema in addition to the descriptions given for each element within this schema.</xs:documentation>
     </xs:annotation>
@@ -1184,6 +1184,18 @@
             </xs:element>
         </xs:sequence>
     </xs:group>
+    <xs:complexType name="AccessControlGroupsComplexType">
+        <xs:annotation>
+            <xs:documentation>Describes a set of groups used to control access to protectively marked items.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="AccessControlGroup" type="xs:string" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>The name of an access control group that is used to control access to protectively marked items. E.g. 'HR', 'Auditors', 'Management', etc.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
     <xs:complexType name="ActivityComplexType">
         <xs:annotation>
             <xs:documentation>Type that describes an activity used to create relationships between events.</xs:documentation>
@@ -1632,13 +1644,113 @@
     </xs:complexType>
     <xs:complexType name="ClassificationComplexType">
         <xs:annotation>
-            <xs:documentation>Describes a classification of something, such as a document being classified as 'Commercial in Confidence'.</xs:documentation>
+            <xs:documentation>Describes the classification and access controls for an item such as a document, record, file, etc.</xs:documentation>
         </xs:annotation>
         <xs:sequence minOccurs="1" maxOccurs="1">
             <xs:element name="Text" type="xs:string" minOccurs="0" maxOccurs="1">
                 <xs:annotation>
-                    <xs:documentation>The full human readable text of the classification, e.g 'Commerical in Confidence'.</xs:documentation>
+                    <xs:documentation>Optional full human readable text of the protective marking that can combine the various elements in this Classification structure, e.g 'Commerical in Confidence'.</xs:documentation>
                 </xs:annotation>
+            </xs:element>
+            <xs:element name="Originator" type="evt:OrganisationComplexType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>The originator or creator of the protectively marked item. The originator is described by an Organisation and optionally qualified by the organisation's Country.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Custodian" type="evt:OrganisationComplexType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>The custodian or owner of the protectively marked item. The custodian is responsible for the lifecycle of the marked item. The custodian is described by an Organisation and optionally qualified by the organisation's Country.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Classification" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>The classification of the protectively marked item. E.g. 'OFFICIAL', 'COMMERCIAL IN CONFIDENCE', 'CONFIDENTIAL', 'INTERNAL' etc.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Descriptors" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Additional descriptors or keywords to further qualify the Classification e.g. 'PERSONAL'</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Descriptor" type="xs:string" maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:documentation>Descriptor or keyword to further qualify the Classification e.g. 'PERSONAL'</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="OrGroups" type="evt:AccessControlGroupsComplexType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>The groups that a person must belong to AT LEAST ONE OF in order to be permitted to access the protectively marked item. E.g. 'HR' OR 'Auditors'.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="AndGroups" type="evt:AccessControlGroupsComplexType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>The groups that a person must belong to ALL OF in order to be permitted to access the protectively marked item. E.g. 'Sales' AND 'Management'.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="PermittedNationalities" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>The nationalities of people permitted to access this protectively marked item. E.g. 'GBR', 'USA'</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Nationality" type="evt:CountryTrigraphSimpleType" maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:documentation>An ISO 3166 alpha-3 trigraph for a nationality permitted to view this protectively marked item. E.g. 'GBR'.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="PermittedOrganisations" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>The organisations permitted to access the protectively marked item.</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="PermittedOrganisation" type="evt:OrganisationComplexType">
+                            <xs:annotation>
+                                <xs:documentation>An organisation permitted to access the protectively marked item. The PermittedOrganisation is described by an Organisation and optionally qualified by the organisation's country code.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="DisseminationControls" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Controls governing the onward handling of the protectively marked item</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="DisseminationControl" type="xs:string" maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:documentation>A policy or control governing the onward handling of a protectively marked item. E.g. ORIGINATOR_CONTROLLED</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Disposition" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Describes the timescale and process for the disposal of the protectively marked item</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Date" type="evt:DateTimeSimpleType">
+                            <xs:annotation>
+                                <xs:documentation>Date/time that the disposition process must be enacted by</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="Process" type="xs:string">
+                            <xs:annotation>
+                                <xs:documentation>The action to be taken on expiry of the disposition date. E.g. 'DELETE' to delete the item.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
             </xs:element>
             <xs:element name="Data"
                 type="evt:DataComplexType"
@@ -2309,6 +2421,23 @@
                 </xs:sequence>
             </xs:extension>
         </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="OrganisationComplexType">
+        <xs:annotation>
+            <xs:documentation>Describes an organisation optionally qualified by its country</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="Country" type="evt:CountryTrigraphSimpleType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>An ISO 3166 alpha-3 trigraph for the country the organisation belongs to. E.g. 'GBR'.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Organisation" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>The code or name for the organisation. E.g. 'Group HQ', 'Telecoms Division', etc.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
     </xs:complexType>
     <xs:complexType name="OutcomeComplexType">
         <xs:annotation>
@@ -3092,6 +3221,14 @@
             <xs:enumeration value="ReadOnly"/>
         </xs:restriction>
     </xs:simpleType>
+    <xs:simpleType name="CountryTrigraphSimpleType">
+        <xs:annotation>
+            <xs:documentation>An ISO 3166 alpha-3 country/nationality code. E.g 'GBR'</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[A-Z]{3}"/>
+        </xs:restriction>
+    </xs:simpleType>
     <xs:simpleType name="DateTimeSimpleType">
         <xs:annotation>
             <xs:documentation>This type constrains the date time format further so that it is always represented as 'yyyy-MM-ddThh:mm:ss.sssZ'.</xs:documentation>
@@ -3284,7 +3421,9 @@
             <xs:enumeration value="3.2.1"/>
             <xs:enumeration value="3.2.2"/>
             <xs:enumeration value="3.2.3"/>
-            <xs:enumeration value="3.3.0-SNAPSHOT"/>
+            <xs:enumeration value="3.2.4"/>
+            <xs:enumeration value="3.3.0"/>
+            <xs:enumeration value="3.3.1"/>
         </xs:restriction>
     </xs:simpleType>
     <xs:simpleType name="VirtualSessionSessionStateSimpleType">

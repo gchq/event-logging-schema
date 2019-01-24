@@ -35,6 +35,9 @@ import java.time.Instant;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -50,6 +53,7 @@ public class SchemaGenerator {
     private static final String XSL_SUB_DIR = "transformations";
     private static final String GENERATED_FILES_SUB_DIR = "generated";
     private static final String UNFORMATTED_SUFFIX = "-unformatted.xsd";
+    private static final String ID_ATTR_REGEX = "(id\\s*=\\s*\")[^\"]+\"";
     private static final SAXParserFactory PARSER_FACTORY;
 
     static {
@@ -137,8 +141,10 @@ public class SchemaGenerator {
                     "Cannot read configuration file %s",
                     configFile.toAbsolutePath().toString()));
         }
-        ObjectMapper objectMapper = new ObjectMapper(new YAMLFactory())
-                .registerModule(new Jdk8Module());
+        ObjectMapper objectMapper = new ObjectMapper(new YAMLFactory());
+        Jdk8Module module = new Jdk8Module();
+        module.configureAbsentsAsNulls(true);
+        objectMapper.registerModule(module);
         Configuration configuration = null;
         try {
             configuration = objectMapper.readValue(configFile.toFile(), Configuration.class);
@@ -170,15 +176,29 @@ public class SchemaGenerator {
                                               final Configuration configuration) {
 
         try {
+            if (configuration.getPipelines() == null) {
+                throw new SchemaTransformerException("Configuration contains no pipeline sections");
+            }
+
+            // validate each pipeline in isolation
+            configuration.getPipelines().forEach(SchemaGenerator::validatePipeline);
+
             long distinctPipelineNames = configuration.getPipelines().stream()
-                    .map(Pipeline::getName)
+                    .map(Pipeline::getPipelineName)
                     .distinct()
                     .count();
 
-            long distinctPipelineSuffixes = configuration.getPipelines().stream()
-                    .map(Pipeline::getSuffix)
-                    .distinct()
-                    .count();
+            Map<String, Long> duplicateCombos = configuration.getPipelines().stream()
+                    .map(pipeline ->
+                            // combine the basename and suffix
+                            String.format("outputBaseName: [%s], outputSuffix: [%s]",
+                                    pipeline.getOutputBaseName().orElse(""),
+                                    pipeline.getOutputSuffix().orElse(""))
+                    )
+                    .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
+                    .entrySet().stream()
+                    .filter(entry -> entry.getValue() > 1)
+                    .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
             boolean allTransformersExist = configuration.getPipelines().stream()
                     .flatMap(pipeline -> pipeline.getTransformations().stream())
@@ -190,8 +210,15 @@ public class SchemaGenerator {
             if (distinctPipelineNames != configuration.getPipelines().size()) {
                 throw new SchemaTransformerException("Duplicate pipeline names in configuration");
             }
-            if (distinctPipelineSuffixes != configuration.getPipelines().size()) {
-                throw new SchemaTransformerException("Duplicate pipeline suffixes in configuration");
+            if (!duplicateCombos.isEmpty()) {
+                String detail = duplicateCombos.entrySet().stream()
+                        .map(entry -> {
+                            return String.format("%s, count: %s",
+                                    entry.getKey(), entry.getValue());
+                        })
+                        .collect(Collectors.joining("\n"));
+                throw new SchemaTransformerException(
+                        "Duplicate pipeline outputBaseName and outputSuffix combinations exist in the configuration\n" + detail);
             }
             if (!allTransformersExist) {
                 throw new SchemaTransformerException("Transformers defined in configuration do not exist as files");
@@ -199,7 +226,21 @@ public class SchemaGenerator {
         } catch (SchemaTransformerException ste) {
             throw ste;
         } catch (RuntimeException e) {
-            throw new RuntimeException("Error validating configuration", e);
+            throw new SchemaTransformerException("Error validating configuration", e);
+        }
+    }
+
+    private static void validatePipeline(final Pipeline pipeline) {
+        Objects.requireNonNull(pipeline);
+
+        if (!pipeline.hasOutput() && pipeline.getOutputSuffix().isPresent()) {
+            throw new SchemaTransformerException(
+                    "outputSuffix is not supported when hasOutput is true (pipeline: " + pipeline.getPipelineName());
+        }
+
+        if (!pipeline.hasOutput() && pipeline.getOutputBaseName().isPresent()) {
+            throw new SchemaTransformerException(
+                    "outputBaseName is not supported when hasOutput is true (pipeline: " + pipeline.getPipelineName());
         }
     }
 
@@ -227,7 +268,7 @@ public class SchemaGenerator {
                 .newInstance();
 
         if (!pipeline.getTransformations().isEmpty()) {
-            LOGGER.info("Transforming schema with pipeline {}", pipeline.getName());
+            LOGGER.info("Transforming schema with pipeline {}", pipeline.getPipelineName());
 
             Path xsltsPath = getXsltsPath();
 
@@ -238,6 +279,7 @@ public class SchemaGenerator {
                         xsltsPath.toAbsolutePath().toString()));
             }
 
+            // Turn the xslt files defined in the pipeline into a list of SAX handlers
             final List<TransformerHandler> handlers = pipeline.getTransformations().stream()
                     .map(xsltsPath::resolve)
                     .peek(path -> {
@@ -263,22 +305,32 @@ public class SchemaGenerator {
                     .collect(Collectors.toList());
 
             //build a replacement for the file end of the source schema
-            StringBuilder replacement = new StringBuilder()
-                    .append("-v")
-                    .append(getNamespaceVersion(sourceSchema));
+//            StringBuilder replacement = new StringBuilder()
+//                    .append("-v")
+//                    .append(getMajorVersion(sourceSchema));
 
-            if (pipeline.getSuffix() != null && pipeline.getSuffix().isPresent()) {
-                replacement.append("-")
-                        .append(pipeline.getSuffix().get());
+            String suffix = "";
+            if (pipeline.getOutputSuffix() != null && pipeline.getOutputSuffix().isPresent()) {
+                suffix = "-" + pipeline.getOutputSuffix().get();
+//                replacement.append(suffix);
             }
-            replacement.append(UNFORMATTED_SUFFIX);
+//            replacement.append(UNFORMATTED_SUFFIX);
+
+            String baseName = pipeline.getOutputBaseName()
+                    .orElseGet(() ->
+                            sourceSchema.getFileName()
+                                    .toString()
+                                    .replaceAll("\\.xsd$", ""));
 
             //add the suffix to the output file
-            String outputFileName = sourceSchema.getFileName().toString()
-                    .replaceAll("\\.xsd$", replacement.toString());
+//            String outputFileName = sourceSchema.getFileName().toString()
+//                    .replaceAll("\\.xsd$", replacement.toString());
 
-            final Path outputFile = getGeneratedPath().resolve(outputFileName);
+            String outputFileName = String.join("", baseName, suffix, UNFORMATTED_SUFFIX);
 
+            final Path unformattedFile = getGeneratedPath().resolve(outputFileName);
+
+            // Join all the handlers into a chain, outputting to a file at the end
             int i = 0;
             for (final TransformerHandler handler : handlers) {
                 if (i > 0) {
@@ -288,7 +340,7 @@ public class SchemaGenerator {
 
                     } else {
                         // no more handlers in the chain so set the final output
-                        handler.setResult(new StreamResult(outputFile.toFile()));
+                        handler.setResult(new StreamResult(unformattedFile.toFile()));
                     }
                 }
                 i++;
@@ -302,42 +354,59 @@ public class SchemaGenerator {
                 } else {
                     handlers.get(0).getTransformer().transform(
                             new StreamSource(sourceSchema.toFile()),
-                            new StreamResult(outputFile.toFile()));
+                            new StreamResult(unformattedFile.toFile()));
                 }
             } catch (TransformerException e) {
                 throw new RuntimeException(String.format("Error transforming pipeline %s: %s",
-                        pipeline.getName(), e.getMessageAndLocation()), e);
+                        pipeline.getPipelineName(), e.getMessageAndLocation()), e);
             }
+            String outputVersion = getVersion(unformattedFile);
+            String majorVersion = getMajorVersion(outputVersion);
 
-            String formattedFileName = outputFile.getFileName()
-                    .toString()
-                    .replaceAll(UNFORMATTED_SUFFIX, ".xsd");
+            String formattedFileName = String.format("%s-v%s%s.xsd",
+                    baseName, majorVersion, suffix);
             Path formattedFile = getGeneratedPath().resolve(formattedFileName);
 
+            String idValue = String.format("%s-v%s%s", baseName, outputVersion, suffix);
+
             LOGGER.info("Formatting the file");
-            formatFile(outputFile, formattedFile);
+            formatFile(unformattedFile, formattedFile, idValue);
 
             try {
-                Files.deleteIfExists(outputFile);
+                Files.deleteIfExists(unformattedFile);
             } catch (IOException e) {
                 throw new RuntimeException(String.format("Error deleting un-formatted file %s",
-                        outputFile.toAbsolutePath().toString()), e);
+                        unformattedFile.toAbsolutePath().toString()), e);
             }
 
             validateSchema(Paths.get(formattedFile.toUri()));
         } else {
             LOGGER.info("Pipeline {} does not have any transformations configured",
-                    pipeline.getName());
+                    pipeline.getPipelineName());
         }
     }
 
-    private String getNamespaceVersion(final Path schemaPath) {
-//        final String linePattern = "targetNamespace=\"event-logging:(.*?)\"";
-        final Pattern linePattern = Pattern.compile("targetNamespace=\"event-logging:(?<version>.*?)\"");
+    private String getMajorVersion(final String version) {
+        String pattern = "(?<majorVersion>[^.]*)";
+        Matcher matcher = Pattern.compile(pattern).matcher(version);
 
-        String targetNameSpaceLine;
+        if (matcher.find()) {
+            return matcher.group("majorVersion");
+        } else {
+            throw new SchemaTransformerException(String.format(
+                    "Could not extract major version part from version [%s] using pattern [%s]",
+                    version, pattern));
+        }
+    }
+
+    private String getVersion(final Path schemaPath) {
+
+        final Pattern linePattern = Pattern.compile("version\\s*=\\s*\"(?<version>[^.]*\\..*?)\"");
+
+        final String versionLine;
         try (Stream<String> lines = Files.lines(schemaPath)) {
-            targetNameSpaceLine = lines
+            versionLine = lines
+                    .filter(line -> !line.startsWith("<?xml")) //skip top line
                     .filter(linePattern.asPredicate())
                     .findFirst()
                     .orElseThrow(() -> new SchemaTransformerException(String.format(
@@ -348,21 +417,22 @@ public class SchemaGenerator {
             throw new RuntimeException(String.format("Error reading file %S",
                     schemaPath.toAbsolutePath().toString()), e);
         }
-        Matcher matcher = linePattern.matcher(targetNameSpaceLine);
-        String version = null;
-        while (matcher.find()) {
+
+        LOGGER.debug(versionLine);
+        Matcher matcher = linePattern.matcher(versionLine);
+        final String version;
+        if (matcher.find()) {
             //extract the version group from the match
             version = matcher.group("version");
-            break;
-        }
-        if (version == null) {
+        } else {
             throw new SchemaTransformerException(String.format(
                     "Something has gone wrong, could not find version in line [%s] using pattern[%s]",
-                    targetNameSpaceLine,
+                    versionLine,
                     linePattern.toString()));
         }
         return version;
     }
+
 
     private void validateSchema(final Path safeSchemaPath) {
         final SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
@@ -373,7 +443,7 @@ public class SchemaGenerator {
         }
         // It seems to ignore this property
         // System.setProperty("jdk.xml.maxOccurLimit", "10000");
-        LOGGER.info("Validating file " + safeSchemaPath.toAbsolutePath().toString());
+        LOGGER.info("Validating file " + safeSchemaPath.getFileName().toString());
         final Instant startTime = Instant.now();
         try {
             // attempt to construct a schema object from the file. Will fail if our schema
@@ -387,7 +457,7 @@ public class SchemaGenerator {
                 Duration.between(startTime, Instant.now()).toString());
     }
 
-    private void formatFile(final Path in, final Path out) {
+    private void formatFile(final Path in, final Path out, String idValue) {
         try {
             final SAXTransformerFactory stf = (SAXTransformerFactory) TransformerFactoryFactory.newInstance();
             final TransformerHandler transformerHandler = stf.newTransformerHandler();
@@ -414,6 +484,19 @@ public class SchemaGenerator {
 
             // Strip out empty annotations.
             xsd = xsd.replaceAll("<xs:annotation\\s*/>", "");
+
+            // replace the id attribute
+            if (idValue != null && !idValue.isEmpty()) {
+                Pattern idAttrPattern = Pattern.compile(ID_ATTR_REGEX);
+                Matcher matcher = idAttrPattern.matcher(xsd);
+                if (matcher.find()) {
+                    //add our suffix to the id attribute on the schema element
+                    xsd = idAttrPattern.matcher(xsd).replaceFirst("$1" + idValue + "\"");
+                } else {
+                    throw new RuntimeException(String.format("Could not find pattern [%s] in schema %s",
+                            ID_ATTR_REGEX, in.toAbsolutePath().toString()));
+                }
+            }
             xmlReader.parse(new InputSource(new StringReader(xsd)));
 
         } catch (final Exception e) {

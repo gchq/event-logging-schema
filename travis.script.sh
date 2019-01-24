@@ -36,7 +36,7 @@ xmllint --noout --schema http://www.w3.org/2001/XMLSchema.xsd ./event-logging.xs
 #run the gradle build to compile the transformations code and generate the 
 #schemas from the configured pipelines
 #The build will also validate the versions in the source schema
-./gradlew -Pversion=$SCHEMA_VERSION clean build runShadow
+./gradlew -Pversion=$SCHEMA_VERSION clean build runShadow -x diffAgainstLatest 
 
 
 #Now build the gitbook
