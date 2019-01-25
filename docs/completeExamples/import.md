@@ -121,7 +121,7 @@ The action is that user `jc101` has read the file `E:/DCIM/Spacecam101/141516.jp
         </Permissions>
         <Path>E:/DCIM/Spacecam101/141516.jpg</Path>
         <Size>5445121</Size>
-        <Hash>f4d3a2b1ffac</Hash>
+        <Hash Type="SHA-256">66E0E8221E8B899F08658DA444064E631FA9B8ABE9068A208AFE051BD4E7B960</Hash>
         <Media>
           <Type>USBMassStorage</Type>
           <Removable>true</Removable>
