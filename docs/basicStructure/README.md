@@ -44,6 +44,9 @@ The `<EventSource>` element describes the event source, e.g. System, Environment
     <Name>Some System</Name>
     <Environment>Operational</Environment>
     <Organisation>Some Org</Organisation>
+    <Tags>
+      <Tag>critical-system</Tag>
+    </Tags>
   </System>
   <Generator>Some-Event-Log-Provider</Generator>
   <Device>
