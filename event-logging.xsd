@@ -1105,6 +1105,23 @@
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
+            <xs:element name="Tags" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Metadata tags that can be used for additional object tagging or categorisation. Object tagging allows for the labelling (or filtering) of objects using words that label, categorise or group similar items, using a taxonomy defined outside this schema. For example, an email could be tagged with tags like 'internal', 'spam', 'external', 'rich-content', etc.</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence minOccurs="1" maxOccurs="1">
+                        <xs:element name="Tag" 
+                            type="evt:TagSimpleType" 
+                            minOccurs="1" 
+                            maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:documentation>A categorisation tag or label</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
         </xs:sequence>
     </xs:group>
     <xs:group name="CriteriaExtensionGroup">
@@ -2864,6 +2881,23 @@
                     <xs:documentation>The version of the system's software, e.g. 1.3.2</xs:documentation>
                 </xs:annotation>
             </xs:element>
+            <xs:element name="Tags" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Optional tags that can be used for additional tagging or categorisation of the system. These tags allow for the grouping or filtering of similar systems.</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence minOccurs="1" maxOccurs="1">
+                        <xs:element name="Tag" 
+                            type="evt:TagSimpleType" 
+                            minOccurs="1" 
+                            maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:documentation>A categorisation tag or label, e.g. 'critical-system', 'operational-data', 'non-operational-test-data', etc.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="TermComplexType">
@@ -3337,6 +3371,9 @@
             <xs:enumeration value="Service"/>
             <xs:enumeration value="Application"/>
         </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="TagSimpleType">
+        <xs:restriction base="xs:string"/>
     </xs:simpleType>
     <xs:simpleType name="TermConditionSimpleType">
         <xs:restriction base="xs:string">
