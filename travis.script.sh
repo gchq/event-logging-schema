@@ -16,6 +16,9 @@ NC='\033[0m' # No Colour
 if [ -n "$TRAVIS_TAG" ]; then
     #Tagged commit so use that as our stroom version, e.g. v3.0.0
     SCHEMA_VERSION="${TRAVIS_TAG}"
+    DOCS_VERSION="${TRAVIS_TAG}"
+else
+    DOCS_VERSION="SNAPSHOT"
 fi
 
 #Dump all the travis env vars to the console for debugging
@@ -30,11 +33,36 @@ echo -e "SCHEMA_VERSION:      [${GREEN}${SCHEMA_VERSION}${NC}]"
 # validate the source schema - probably overkill as java will validate the generated schemas
 xmllint --noout --schema http://www.w3.org/2001/XMLSchema.xsd ./event-logging.xsd
 
-#Ensure the versions in the schema are all correct
-./validateSchemaVersions.py
-
 #run the gradle build to compile the transformations code and generate the 
 #schemas from the configured pipelines
-./gradlew -Pversion=$SCHEMA_VERSION clean build runShadow
+#The build will also validate the versions in the source schema
+./gradlew -Pversion=$SCHEMA_VERSION clean build runShadow -x diffAgainstLatest 
+
+
+#Now build the gitbook
+sudo mv ebook-convert /usr/local/bin/
+gitbook install
+
+#Convert our markdown into static html
+gitbook build
+
+echo "Highlighting un-converted markdown files as they could be missing from the SUMMARY.md" 
+find ./_book/ -name "*.md"
+mdFileCount=$(find ./_book/ -name "*.md" | wc -l)
+if [ ${mdFileCount} -gt 0 ]; then
+    echo -e "${RED}ERROR${NC} - $mdFileCount unconverted markdown files exist, add them to the SUMMARY.md so they are converted"
+    exit 1
+fi
+
+#build a pdf of the docs and genrate a zip of the static html, for release to github
+export BUILD_NAME=event-logging-schema-docs-$DOCS_VERSION
+export PDF_FILENAME=$BUILD_NAME.pdf
+export ZIP_FILENAME=$BUILD_NAME.zip
+echo "Build name - $BUILD_NAME, pdf file - $PDF_FILENAME, zip file - $ZIP_FILENAME"
+gitbook pdf ./ ./$PDF_FILENAME
+echo "Making a zip of the html content"
+pushd _book
+zip -r -9 ../$ZIP_FILENAME ./*
+popd
 
 exit 0

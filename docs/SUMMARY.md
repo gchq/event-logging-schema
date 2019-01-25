@@ -1,7 +1,7 @@
 # Table of Contents
 
-* [Read Me](rootREADME.md)
 * [Introduction](README.md)
+* [Event Modelling](eventModelling.md)
 * [Basic Structure](basicStructure/README.md)
     * [Describing an Event](./basicStructure/README.md#describing-an-event)
         * [Describing When?](./basicStructure/README.md#describing-when)
@@ -62,6 +62,14 @@
     * [Voip](./objectTypes/voip.md)
 * [Unstructured Data](unstructuredData.md)
 * [Data Types](dataTypes.md)
+* [Meta Element](./meta.md)
+* [Illustrative Example Events](./completeExamples/README.md)
+    * [Anti Malware](./completeExamples/antimalware.md)
+    * [Import](./completeExamples/import.md)
+    * [Print](./completeExamples/print.md)
+    * [process](./completeExamples/process.md)
+    * [Search](./completeExamples/search.md)
+    * [Send](./completeExamples/send.md)
 * [FAQ](FAQ.md)
 * [Release Process](releaseProcess.md)
 * [Glossary](Glossary.md)

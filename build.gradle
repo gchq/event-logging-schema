@@ -1,15 +1,20 @@
-def projectGroup = "event-logging-transformer"
-def projectVersion = "${version}"
+import java.util.regex.Pattern
 
 buildscript {
     repositories {
-        mavenLocal()
         jcenter()
     }
     dependencies {
         classpath group: 'ca.cutterslade.gradle', name: 'gradle-dependency-analyze', version: '1.2.0'
     }
 }
+
+plugins {
+    id "com.github.johnrengelman.shadow" version "2.0.2" apply false
+}
+
+def CHANGE_LOG_FILENAME = "CHANGELOG.md"
+def projectGroup = "event-logging-transformer"
 
 //must be applied to all projects including root
 apply plugin: 'ca.cutterslade.analyze'
@@ -18,30 +23,48 @@ apply plugin: 'ca.cutterslade.analyze'
 //use that, else use a default value
 ext.getPropertyOrDefault = { propName, defaultValue -> 
     def val;
-    if (project.hasProperty(propName) && project.getProperty(propName) != "unspecified") {
+    if (project.hasProperty(propName) && project.getProperty(propName) != "unspecified" && project.getProperty(propName) != "") {
         val = project.getProperty(propName)
-        println "Using propery $propName with value $val"
+        println "Using propery [${propName}] with value [${val}]"
     } else {
         val = defaultValue
-        println "Propery $propName has no value, using default value $val"
+        println "Propery [${propName}] has no value, using default value [${val}]"
     }
     return val;
 }
 
 ext.versions = [
     //------event-logging--------------
-    eventLoggingTransformer: getPropertyOrDefault('version', 'SNAPSHOT'),
+    eventLogging: getPropertyOrDefault('version', 'SNAPSHOT'),
 
     //------------3rd-party------------
+    assertj: '3.6.2',
+    javaDiffUtils: '4.0',
     jackson: '2.8.9',
+    junit: '4.12',
     logback: '1.2.3',
     saxon: '9.6.0-6',
     slf4j: '1.7.22',
     zzDUMMYzz: 'makes sorting easier'
 ]
 
+
+if (!(versions.eventLogging =~ /^SNAPSHOT\.*/)) {
+    def changeLogFile = new File(CHANGE_LOG_FILENAME)
+    def pattern = Pattern.compile(versions.eventLogging, Pattern.LITERAL)
+
+    //This is versioned build so ensure the version is in the CHANGELOG
+    if (!changeLogFile.getText("UTF-8").find(pattern)) {
+        throw new GradleException("Cannot find pattern [${pattern.toString()}] in file ${CHANGE_LOG_FILENAME}, add the new version to the change log")
+    }
+}
+
 task wrapper(type: Wrapper) {
-    gradleVersion = '4.1'
+    gradleVersion = '4.10.3'
+}
+
+allprojects {
+    version versions.eventLogging
 }
 
 subprojects {
@@ -50,7 +73,6 @@ subprojects {
     apply plugin: 'idea'
 
     group "$projectGroup"
-    version "$projectVersion"
 
     sourceCompatibility = 1.8
     targetCompatibility = 1.8
@@ -65,15 +87,15 @@ subprojects {
             exclude group: "org.slf4j", module: "slf4j-log4j12"
             exclude group: "log4j", module: "log4j"
 
-            resolutionStrategy.eachDependency { DependencyResolveDetails details ->
-                if (details.requested.name == 'log4j') {
-                    details.useTarget "org.slf4j:log4j-over-slf4j:$versions.slf4j"
-                }
-            }
             resolutionStrategy {
+                dependencySubstitution {
+                    substitute module('log4j:log4j') with module('org.slf4j:log4j-over-slf4j:$versions.slf4j')
+                }
+
                 forcedModules = [
                 ]
             }
         }
     }
 }
+

@@ -24,6 +24,7 @@
 
 import os
 import re
+import sys
 import xml.etree.ElementTree as ET
 
 SCHEMA_FILENAME = "event-logging.xsd"
@@ -34,12 +35,24 @@ def getMinorVersion(versionStr):
     minorVer = re.match("[0-9]*\.([0-9]*)\..*", versionStr).group(1)
     return minorVer
 
-def validateVersions():
-    print "Validating file %s" % SCHEMA_FILENAME
+def validateVersions(newVersion, schemaFile):
+
+    if (newVersion):
+        newVersionNum = re.sub(r'^v', "", newVersion)
+        print "Gradle build version: %s" % newVersionNum
+
+    if (not schemaFile):
+        schemaFile = SCHEMA_FILENAME
+
+    if (not os.path.isfile(schemaFile)):
+        print "ERROR - Schema file %s doesn't exist" % schemaFile
+        exit(1)
+
     print ""
+    print "Validating file %s" % schemaFile
 
     # pattern = re.compile("xmlns:evt\"event-logging:.*\"")
-    xsdFile = open(SCHEMA_FILENAME, 'r')
+    xsdFile = open(schemaFile, 'r')
     filetext = xsdFile.read()
     xsdFile.close()
     matches = re.findall("xmlns:evt=\"event-logging:(.*)\"", filetext)
@@ -48,7 +61,7 @@ def validateVersions():
     namespaceVersion = matches[0]
     print "namespace version: %s" % namespaceVersion
 
-    xml_root = ET.parse(SCHEMA_FILENAME).getroot()
+    xml_root = ET.parse(schemaFile).getroot()
 
     targetNamespaceAttr = xml_root.get("targetNamespace")
     targetNamespaceVersion = re.match(".*:(.*)$", targetNamespaceAttr).group(1)
@@ -67,6 +80,12 @@ def validateVersions():
     for enumElm in xml_root.findall("./xs:simpleType[@name='VersionSimpleType']/xs:restriction/xs:enumeration", ns):
         print "  %s" % enumElm.get("value")
         enumVersions.append(enumElm.get("value"))
+
+    print ""
+
+    if (newVersion and not re.match(".*SNAPSHOT", newVersionNum)):
+        if (versionAttrVersion != newVersionNum):
+            raise ValueError("version attribute and planned version do not match", versionAttrVersion, newVersionNum)
 
     # print enumVersions
 
@@ -97,8 +116,20 @@ def validateVersions():
             raise ValueError("Minor version of enumeration version is higher than the minor version of the schema version. Should be less than or equal to the schema version", enumVer, versionAttrVersion)
 
 
+# Script starts here
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+if len(sys.argv) == 2:
+    newVersion = sys.argv[1]
+    schemaFile = None
+if len(sys.argv) == 3:
+    newVersion = sys.argv[1]
+    schemaFile = sys.argv[2]
+else:
+    newVersion = None
+    schemaFile = None
     
-validateVersions()
+validateVersions(newVersion, schemaFile)
 
 print ""
 print "Done!"

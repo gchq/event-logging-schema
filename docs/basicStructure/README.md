@@ -19,7 +19,7 @@ The `<Events>` root element contains zero-to-many `<Event>` elements to describe
 ## Describing an Event
 As discussed in the [Introduction](../README.md#describing-an-event) every event must describe when it happened, who was responsible, where it happened and what happened.
 
-The schema is intentionally very permissive with the majority of elements being optional. The reason for this is that not all systems will be able to provide the same bredth of event data and a partially populated event is preferable to no event. Enforcement of mandatory data items can be done outside of the schema.
+The schema is intentionally very permissive with the majority of elements being optional. The reason for this is that not all systems will be able to provide the same breadth of event data and a partially populated event is preferable to no event. Enforcement of mandatory data items can be done outside of the schema.
 
 In the various examples that follow some elements that appear in the example may be optional and are only shown as guidance.
 
@@ -176,7 +176,56 @@ The form of the Type IDs is specific to the generator and could be strings or nu
 Having sensible Type IDs is of particular benefit when developing processes that depend upon events conforming to the schema as it allows the developer to group events by the Type ID or to have conditional processing based on the ID.
 
 #### Classification
-The `<Classification>` element can be used to describe the classification or sensitivity of the data in the event.  For example the data may be commercially sensnitive or contain sensitive personal data.  The element is free text to allow an organisation to use its own scheme for describing the data classification.
+The `<Classification>` element can be used to describe the classification, protective marking or sensitivity of the data in the event.  For example the data may be commercially sensitive or contain sensitive personal data.  The element includes a number of optional elements so can be as simple as just a free text `<Text>` element containing something like `COMMERICAL IN CONFIDENCE` to multiple elements that described the protective marking in complex classification scheme.
+
+The `<Classification>` element appears in a number of places in the schema as it can be used to describe the sensitivity or marking of different entities/objects. For example it can be used to describe the sensitivity of a set of audit events in aggregation, the content of a single audit event or an object that is the subject of an audit event, i.e. a document being viewed by a user.
+
+The following are some examples of populated Classification elements:
+
+``` xml
+<Classification>
+  <Text>COMMERICAL IN CONFIDENCE</Text>
+  <Classification>COMMERICAL IN CONFIDENCE</Classification>
+</Classification>
+```
+
+``` xml
+<Classification>
+  <Text>CONFIDENTIAL</Text>
+  <Originator>
+    <Country>GBR</Country>
+    <Organisation>UK Headquarters</Organisation>
+  </Originator>
+  <Custodian>
+    <Country>GBR</Country>
+    <Organisation>Group Headquarters</Organisation>
+  </Custodian>
+  <Classification>CONFIDENTIAL</Classification>
+  <Descriptors>
+    <Descriptor>PERSONAL</Descriptor>
+  </Descriptors>
+  <OrGroups>
+    <AccessControlGroup>Human Resources</AccessControlGroup>
+    <AccessControlGroup>Managers</AccessControlGroup>
+    <AccessControlGroup>Auditors</AccessControlGroup>
+  </OrGroups>
+  <PermittedNationalities>
+    <Nationality>GBR</Nationality>
+    <Nationality>USA</Nationality>
+  </PermittedNationalities>
+  <PermittedOrganisations>
+    <PermittedOrganisation>UK Headquarters</PermittedOrganisation>
+    <PermittedOrganisation>Group Headquarters</PermittedOrganisation>
+  </PermittedOrganisations>
+  <DisseminationControls>
+    <DisseminationControl>ORIGINATOR_CONTROLLED</DisseminationControl>
+  </DisseminationControls>
+  <Disposition>
+    <Date>2020-03-11T00:00:00.000Z</Date>
+    <Process>DELETE</Process>
+  </Disposition>
+</Classification>
+```
 
 #### Purpose
 Certain auditable events may require users to provide justification for the action they are taking, e.g. viewing a personnel record or processing a high value payment. This element provides the means to record the justification/purpose of the auditable event and possibly any authorisations that were obtained.
