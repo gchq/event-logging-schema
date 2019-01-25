@@ -17,6 +17,8 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 ## [Unreleased]
 
+* Issue **#35** : Add `Meta` element to `Event` and `BaseObjectGroup` to allow extension/decoration.
+
 * Issue **#31** : Add `Tags` element to `BaseObjectGroup`
 
 * Issue **#37** : Add `Tags` element to `SystemComplexType`
@@ -34,8 +36,6 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 ## [v3.3.0] - 2019-01-14
 
 ### Added
-
-* Issue **#35** : Add `Meta` element to `Event` and `BaseObjectGroup` to allow extension/decoration.
 
 * Issue **#33** : Add content to ClassificationComplexType to support richer protective marking schemes
 
