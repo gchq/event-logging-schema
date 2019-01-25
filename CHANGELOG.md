@@ -17,6 +17,8 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 ## [Unreleased]
 
+* Issue **40**: This commit will add State, City and Town elements to provide more Location detail.
+
 ### Added
 
 * Issue **#33** : Add content to ClassificationComplexType to support richer protective marking schemes
