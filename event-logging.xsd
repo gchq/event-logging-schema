@@ -36,6 +36,14 @@
                     </xs:annotation>
                     <xs:complexType>
                         <xs:sequence minOccurs="1" maxOccurs="1">
+                            <xs:element name="Meta"
+                                type="evt:AnyContentComplexType"
+                                minOccurs="0"
+                                maxOccurs="unbounded">
+                                <xs:annotation>
+                                    <xs:documentation>This element can be used to supply any meta data relating to the event as long as it conforms to an allowed format/specification (defined outside of this XML Schema).</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
                             <xs:element name="Id" type="xs:string" minOccurs="0" maxOccurs="1">
                                 <xs:annotation>
                                     <xs:documentation>An identifier that can be added to an event record during receipt or processing of the event. E.g. to provide a unique identifier of the event within the system receiving events or to identifiy an event within a set of events. Not to be used by system creating an event record.</xs:documentation>
@@ -1062,6 +1070,14 @@
     </xs:group>
     <xs:group name="BaseObjectGroup">
         <xs:sequence>
+            <xs:element name="Meta"
+                type="evt:AnyContentComplexType"
+                minOccurs="0"
+                maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>This element can be used to supply any meta data relating to an object as long as it conforms to an allowed format/specification (defined outside of this XML Schema).</xs:documentation>
+                </xs:annotation>
+            </xs:element>
             <xs:element name="Type" type="xs:string" minOccurs="0" maxOccurs="1"/>
             <xs:element name="Id" type="xs:string" minOccurs="0" maxOccurs="1"/>
             <xs:element name="Name" type="xs:string" minOccurs="0" maxOccurs="1"/>

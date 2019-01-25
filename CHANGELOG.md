@@ -17,6 +17,8 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 ## [Unreleased]
 
+* Issue **#35** : Add `Meta` element to `Event` and `BaseObjectGroup` to allow extension/decoration.
+
 * Issue **#31** : Add `Tags` element to `BaseObjectGroup`
 
 * Issue **#37** : Add `Tags` element to `SystemComplexType`
