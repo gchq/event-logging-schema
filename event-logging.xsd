@@ -1107,7 +1107,7 @@
             </xs:element>
             <xs:element name="Tags" minOccurs="0" maxOccurs="1">
                 <xs:annotation>
-                    <xs:documentation>Metadata tags that can be used for additional object tagging or categorisation. Object tagging allows for the labelling (or filtering) of objects using words that label, categorise or group similar items, using a taxonomy defined outside this schema. For example, an email could be tagged with tags like INTERNAL, SPAM, EXTERNAL, RICH_CONTENT, etc.</xs:documentation>
+                    <xs:documentation>Metadata tags that can be used for additional object tagging or categorisation. Object tagging allows for the labelling (or filtering) of objects using words that label, categorise or group similar items, using a taxonomy defined outside this schema. For example, an email could be tagged with tags like 'internal', 'spam', 'external', 'rich-content', etc.</xs:documentation>
                 </xs:annotation>
                 <xs:complexType>
                     <xs:sequence minOccurs="1" maxOccurs="1">
@@ -2892,7 +2892,7 @@
                             minOccurs="1" 
                             maxOccurs="unbounded">
                             <xs:annotation>
-                                <xs:documentation>A categorisation tag or label, e.g. 'CRITICAL_SYSTEM', 'OPERATIONAL_DATA', 'NON_OPERATIONAL_TEST_DATA', etc.</xs:documentation>
+                                <xs:documentation>A categorisation tag or label, e.g. 'critical-system', 'operational-data', 'non-operational-test-data', etc.</xs:documentation>
                             </xs:annotation>
                         </xs:element>
                     </xs:sequence>
@@ -3373,9 +3373,7 @@
         </xs:restriction>
     </xs:simpleType>
     <xs:simpleType name="TagSimpleType">
-        <xs:restriction base="xs:string">
-            <xs:pattern value="[A-Z0-9_]+"/>
-        </xs:restriction>
+        <xs:restriction base="xs:string"/>
     </xs:simpleType>
     <xs:simpleType name="TermConditionSimpleType">
         <xs:restriction base="xs:string">
