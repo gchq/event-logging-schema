@@ -35,17 +35,24 @@ def getMinorVersion(versionStr):
     minorVer = re.match("[0-9]*\.([0-9]*)\..*", versionStr).group(1)
     return minorVer
 
-def validateVersions(newVersion):
-    print "Validating file %s" % SCHEMA_FILENAME
-
-    print ""
+def validateVersions(newVersion, schemaFile):
 
     if (newVersion):
         newVersionNum = re.sub(r'^v', "", newVersion)
         print "Gradle build version: %s" % newVersionNum
 
+    if (not schemaFile):
+        schemaFile = SCHEMA_FILENAME
+
+    if (not os.path.isfile(schemaFile)):
+        print "ERROR - Schema file %s doesn't exist" % schemaFile
+        exit(1)
+
+    print ""
+    print "Validating file %s" % schemaFile
+
     # pattern = re.compile("xmlns:evt\"event-logging:.*\"")
-    xsdFile = open(SCHEMA_FILENAME, 'r')
+    xsdFile = open(schemaFile, 'r')
     filetext = xsdFile.read()
     xsdFile.close()
     matches = re.findall("xmlns:evt=\"event-logging:(.*)\"", filetext)
@@ -54,7 +61,7 @@ def validateVersions(newVersion):
     namespaceVersion = matches[0]
     print "namespace version: %s" % namespaceVersion
 
-    xml_root = ET.parse(SCHEMA_FILENAME).getroot()
+    xml_root = ET.parse(schemaFile).getroot()
 
     targetNamespaceAttr = xml_root.get("targetNamespace")
     targetNamespaceVersion = re.match(".*:(.*)$", targetNamespaceAttr).group(1)
@@ -114,10 +121,15 @@ def validateVersions(newVersion):
 
 if len(sys.argv) == 2:
     newVersion = sys.argv[1]
+    schemaFile = None
+if len(sys.argv) == 3:
+    newVersion = sys.argv[1]
+    schemaFile = sys.argv[2]
 else:
     newVersion = None
+    schemaFile = None
     
-validateVersions(newVersion)
+validateVersions(newVersion, schemaFile)
 
 print ""
 print "Done!"

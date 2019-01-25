@@ -23,22 +23,24 @@ public class TestPipeline {
 
         final Pipeline parent = new Pipeline(
                 parentName,
-                Optional.of(parentSuffix),
+                null,
+                parentSuffix,
                 true,
-                Optional.of(baseName),
+                baseName,
                 parentTransformations);
         final Pipeline base = new Pipeline(
                 baseName,
-                Optional.empty(),
+                null,
+                null,
                 true,
-                Optional.empty(),
+                null,
                 baseTransformations);
 
         final Pipeline merged = parent.merge(base);
 
-        Assertions.assertThat(merged.getName()).isEqualTo(parentName);
+        Assertions.assertThat(merged.getPipelineName()).isEqualTo(parentName);
         Assertions.assertThat(merged.hasOutput()).isTrue();
-        Assertions.assertThat(merged.getSuffix().get()).isEqualTo(parentSuffix);
+        Assertions.assertThat(merged.getOutputSuffix().get()).isEqualTo(parentSuffix);
         Assertions.assertThat(merged.getBasePipelineName()).isEmpty();
         Assertions.assertThat(merged.getTransformations()).containsExactly(
                 baseTransform1,

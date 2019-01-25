@@ -19,8 +19,8 @@
     targetNamespace="event-logging:3"
     elementFormDefault="qualified"
     attributeFormDefault="unqualified"
-    version="3.3.0-SNAPSHOT"
-    id="event-logging-v3.3.0-SNAPSHOT">
+    version="3.4.0-SNAPSHOT"
+    id="event-logging-v3.4.0-SNAPSHOT">
     <xs:annotation>
         <xs:documentation>This schema describes the allowed element structure for event logging. Please refer to the documentation and examples for a description of how to use this schema in addition to the descriptions given for each element within this schema.</xs:documentation>
     </xs:annotation>
@@ -1117,6 +1117,23 @@
                                         maxOccurs="unbounded"/>
                                 </xs:sequence>
                             </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Tags" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Metadata tags that can be used for additional object tagging or categorisation. Object tagging allows for the labelling (or filtering) of objects using words that label, categorise or group similar items, using a taxonomy defined outside this schema. For example, an email could be tagged with tags like 'internal', 'spam', 'external', 'rich-content', etc.</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence minOccurs="1" maxOccurs="1">
+                        <xs:element name="Tag" 
+                            type="evt:TagSimpleType" 
+                            minOccurs="1" 
+                            maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:documentation>A categorisation tag or label</xs:documentation>
+                            </xs:annotation>
                         </xs:element>
                     </xs:sequence>
                 </xs:complexType>
@@ -2880,6 +2897,23 @@
                     <xs:documentation>The version of the system's software, e.g. 1.3.2</xs:documentation>
                 </xs:annotation>
             </xs:element>
+            <xs:element name="Tags" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Optional tags that can be used for additional tagging or categorisation of the system. These tags allow for the grouping or filtering of similar systems.</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence minOccurs="1" maxOccurs="1">
+                        <xs:element name="Tag" 
+                            type="evt:TagSimpleType" 
+                            minOccurs="1" 
+                            maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:documentation>A categorisation tag or label, e.g. 'critical-system', 'operational-data', 'non-operational-test-data', etc.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="TermComplexType">
@@ -3354,6 +3388,9 @@
             <xs:enumeration value="Application"/>
         </xs:restriction>
     </xs:simpleType>
+    <xs:simpleType name="TagSimpleType">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
     <xs:simpleType name="TermConditionSimpleType">
         <xs:restriction base="xs:string">
             <xs:enumeration value="Exists"/>
@@ -3399,7 +3436,9 @@
             <xs:enumeration value="3.2.2"/>
             <xs:enumeration value="3.2.3"/>
             <xs:enumeration value="3.2.4"/>
-            <xs:enumeration value="3.3.0-SNAPSHOT"/>
+            <xs:enumeration value="3.3.0"/>
+            <xs:enumeration value="3.3.1"/>
+            <xs:enumeration value="3.4.0-SNAPSHOT"/>
         </xs:restriction>
     </xs:simpleType>
     <xs:simpleType name="VirtualSessionSessionStateSimpleType">

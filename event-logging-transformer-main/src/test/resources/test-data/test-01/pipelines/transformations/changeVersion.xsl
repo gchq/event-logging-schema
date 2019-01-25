@@ -3,20 +3,17 @@
         xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
         xmlns:xs="http://www.w3.org/2001/XMLSchema"
         version="2.0">
-    <xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes"/>
-
+    <xsl:output method="xml" version="1.0" encoding="UTF-8"
+                indent="yes"/>
     <xsl:template match="node() | @*">
         <xsl:copy>
             <xsl:apply-templates select="node() | @*"/>
         </xsl:copy>
     </xsl:template>
 
-    <xsl:template match="xs:appinfo"/>
-
-
-    <!-- Remove the Event/Id element from the schema as clients should not be using it-->
-    <xsl:template
-            match="//xs:element[@name='Event']/xs:complexType/xs:sequence/xs:element[@name='Id']"/>
-
+    <!-- Change the version number attribute -->
+    <xsl:template match="/xs:schema/@version">
+        <xsl:attribute name="version">7.8.9</xsl:attribute>
+    </xsl:template>
 
 </xsl:stylesheet>

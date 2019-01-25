@@ -17,6 +17,22 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 ## [Unreleased]
 
+* Issue **#31** : Add `Tags` element to `BaseObjectGroup`
+
+* Issue **#37** : Add `Tags` element to `SystemComplexType`
+
+
+## [v3.3.1] - 2019-01-23
+
+* No changes to the schema.
+
+### Changed
+
+* Change the schema generator to appy the version of the generated schema to the id attribute and the filename.
+
+
+## [v3.3.0] - 2019-01-14
+
 ### Added
 
 * Issue **#35** : Add `Meta` element to `Event` and `BaseObjectGroup` to allow extension/decoration.
@@ -25,11 +41,19 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 ### Changed
 
+* Change `name` to `pipelineName` in Schema Generator `configuration.yml`.
+
+* Change `suffix` to `outputSuffix` in Schema Generator `configuration.yml`.
+
+* Add `outputBaseName` to Schema Generator `configuration.yml` to allow the filename and if of the output schema to be changed.
+
+
 ## [v3.2.4] - 2018-02-13
 
 ### Changed
 
 * Add the pipeline suffix to the end of `id` attribute value on the `schema` element. This provides a means of differentiating the different forms of the schema.
+
 
 ## [v3.2.3] - 2018-01-30
 
@@ -41,6 +65,7 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 * Add diff-ing of released and generated schemas to build script
 
+
 ## [v3.2.2] - 2018-01-12
 
 ### Changed
@@ -49,6 +74,7 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 * No changes to the schema.
 
+
 ## [v3.2.1] - 2018-01-12
 
 ### Changed
@@ -56,6 +82,7 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 * Change transformer code to accept the sourceSchema path as an argument to the jar rather than in the configuration yml.
 
 * No changes to the schema.
+
 
 ## [v3.2.0] - 2017-12-21
 
@@ -71,6 +98,7 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 * Improve logging and error handling in the schema transformer
 
+
 ## [v3.1.2] - 2017-11-14
 
 ### Added
@@ -80,6 +108,7 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 * Add a transformation pipeline process for running multiple XSLTs against the schema
 
 ## [v3.1.1] - 2017-07-17
+
 
 ### Changed
 
@@ -104,13 +133,16 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 * Issue **#5** : Change certain instances of _xs:positiveInteger_ to _xs:nonNegativeInteger_ to allow zero values
 
+
 ## [v3.0.0] - 2016-10-31
 
 ### Added
 
 * Initial open source release
 
-[Unreleased]: https://github.com/gchq/event-logging-schema/compare/v3.2.4...HEAD
+[Unreleased]: https://github.com/gchq/event-logging-schema/compare/v3.3.1...HEAD
+[v3.3.1]: https://github.com/gchq/event-logging-schema/compare/v3.3.0...v3.3.1
+[v3.3.0]: https://github.com/gchq/event-logging-schema/compare/v3.2.4...v3.3.0
 [v3.2.4]: https://github.com/gchq/event-logging-schema/compare/v3.2.3...v3.2.4
 [v3.2.3]: https://github.com/gchq/event-logging-schema/compare/v3.2.2...v3.2.3
 [v3.2.2]: https://github.com/gchq/event-logging-schema/compare/v3.2.1...v3.2.2
