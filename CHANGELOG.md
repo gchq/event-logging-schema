@@ -17,6 +17,8 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 ## [Unreleased]
 
+* Issue **#47** : Add `CachedInteractive`, `CachedRemoteInteractive`, `Proxy` and `Other` logon types to `AuthenticateLogonTypeSimpleType`.
+
 * Improve documentation
 
 * Issue **#49** : Fix broken link to _Illustrative Examples_ in root README.

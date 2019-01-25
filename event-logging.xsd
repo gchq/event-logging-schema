@@ -3208,6 +3208,10 @@
             <xs:enumeration value="NewCredentials"/>
             <xs:enumeration value="RemoteInteractive"/>
             <xs:enumeration value="CachedInteractive"/>
+            <xs:enumeration value="CachedRemoteInteractive"/>
+            <xs:enumeration value="CachedUnlock"/>
+            <xs:enumeration value="Proxy"/>
+            <xs:enumeration value="Other"/>
         </xs:restriction>
     </xs:simpleType>
     <xs:simpleType name="AuthenticateOutcomeReasonSimpleType">
