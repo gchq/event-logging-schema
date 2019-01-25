@@ -17,6 +17,8 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 ## [Unreleased]
 
+* Improve documentation
+
 * Issue **#49** : Fix broken link to _Illustrative Examples_ in root README.
 
 * Issue **#3** : Add `Type` attribute to `Hash` element in `BaseFileComplexType`.
