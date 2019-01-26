@@ -37,7 +37,7 @@ There are multiple session types related to authentication events that describe 
 
 * **Unlock** - A user un-locking a password protected screen lock or screen saver.
 
-* **NetworkCleartext** - A network logon similar to **Network** excpet that the password is sent of the network in plain text.
+* **NetworkCleartext** - A network logon similar to **Network** except that the password is sent of the network in plain text.
 
 * **NewCredentials** - When a program is run with `RunAs` and using `/netonly` any connections to other computers on the network will be as the `RunAs` user so will result in a **NewCredentials** logon to that computer.
 
@@ -47,7 +47,7 @@ There are multiple session types related to authentication events that describe 
 
 * **CachedRemoteInteractive** - When cached hashed credentials are used to logon to a computer over the network using RDP or similar.
 
-* **CachedUnlock** - When cached hashed credentials are user to unlock a password protected screen lock or screen saver. 
+* **CachedUnlock** - When cached hashed credentials are used to unlock a password protected screen lock or screen saver. 
 
 * **Proxy** - TODO
 
