@@ -29,7 +29,7 @@ There are multiple session types related to authentication events that describe 
 
 * **Interactive** - A logon to a domain by a user.
 
-* **Network** - A logon to a computer via a networ, e.g. accessing a shared folder.
+* **Network** - A logon to a computer via a network, e.g. accessing a shared folder.
 
 * **Batch** - A background scheduled task running as the user.
 
