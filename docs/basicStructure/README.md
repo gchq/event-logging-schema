@@ -52,7 +52,7 @@ The `<EventSource>` element describes the event source, e.g. System, Environment
     <Location>
       <Country>UK</Country>
       <Site>Some Site</Site>
-      <TimeZone>UTC</TimeZone>
+      <TimeZone>Z</TimeZone>
     </Location>
   </Device>
   <Client>
@@ -63,7 +63,7 @@ The `<EventSource>` element describes the event source, e.g. System, Environment
       <Room>A1a</Room>
       <Aisle>A1</Aisle>
       <Desk>1</Desk>
-      <TimeZone>UTC</TimeZone>
+      <TimeZone>Z</TimeZone>
     </Location>
   </Client>
   <User>
