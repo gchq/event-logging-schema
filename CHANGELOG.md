@@ -21,11 +21,17 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 * Issue **#3** : Add `Type` attribute to `Hash` element in `BaseFileComplexType`
 
+* Improve documentation
+
+* Issue **#49** : Fix broken link to _Illustrative Examples_ in root README.
+
+* Issue **#3** : Add `Type` attribute to `Hash` element in `BaseFileComplexType`.
+
 * Issue **#35** : Add `Meta` element to `Event` and `BaseObjectGroup` to allow extension/decoration.
 
-* Issue **#31** : Add `Tags` element to `BaseObjectGroup`
+* Issue **#31** : Add `Tags` element to `BaseObjectGroup`.
 
-* Issue **#37** : Add `Tags` element to `SystemComplexType`
+* Issue **#37** : Add `Tags` element to `SystemComplexType`.
 
 
 ## [v3.3.1] - 2019-01-23

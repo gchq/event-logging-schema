@@ -1508,11 +1508,11 @@
                             <xs:simpleContent>
                                 <xs:extension base="xs:string">
                                     <xs:annotation>
-                                        <xs:documentation>The value obtained from applying a hash function (e.g. MD5, SHA-2, etc.) to the contents of the file.</xs:documentation>
+                                        <xs:documentation>The value obtained from applying a hash function (e.g. MD5, SHA-256, etc.) to the contents of the file.</xs:documentation>
                                     </xs:annotation>
                                     <xs:attribute name="Type" type="xs:string" use="optional">
                                         <xs:annotation>
-                                            <xs:documentation>The type of hashing algorithm used, e.g. MD5, SHA-2, etc.</xs:documentation>
+                                            <xs:documentation>The type of hashing algorithm used, e.g. MD5, SHA-256, etc.</xs:documentation>
                                         </xs:annotation>
                                     </xs:attribute>
                                 </xs:extension>

@@ -125,7 +125,7 @@
                         <Type>text/xml</Type>
                         <Path>/appdata/alldata/gooddata/bestdata.xml</Path>
                         <Size>12345321</Size>
-                        <Hash>efd1dffd90296a69a8aecd7ecb1832b7</Hash>
+                        <Hash Type="MD5">efd1dffd90296a69a8aecd7ecb1832b7</Hash>
                     </File>
                 </Payload>
             </Send>
@@ -230,7 +230,7 @@
                             <Type>USBMassStorage</Type>
                             <Removable>true</Removable>
                         </Media>
-                        <Hash>efd1dffd90296a69a8aecd7ecb1832b7</Hash>
+                        <Hash Type="MD5">efd1dffd90296a69a8aecd7ecb1832b7</Hash>
                     </File>
                 </Source>
                 <Outcome>
