@@ -49,7 +49,7 @@ There are multiple session types related to authentication events that describe 
 
 * **CachedUnlock** - When cached hashed credentials are used to unlock a password protected screen lock or screen saver. 
 
-* **Proxy** - TODO
+* **Proxy** - A proxy type logon.
 
 * **Other** - When some other logon type is used. Use the `<Data>` element to provide more detail.
 
