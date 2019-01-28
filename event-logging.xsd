@@ -19,8 +19,8 @@
     targetNamespace="event-logging:3"
     elementFormDefault="qualified"
     attributeFormDefault="unqualified"
-    version="3.3.0-SNAPSHOT"
-    id="event-logging-v3.3.0-SNAPSHOT">
+    version="3.4.0-SNAPSHOT"
+    id="event-logging-v3.4.0-SNAPSHOT">
     <xs:annotation>
         <xs:documentation>This schema describes the allowed element structure for event logging. Please refer to the documentation and examples for a description of how to use this schema in addition to the descriptions given for each element within this schema.</xs:documentation>
     </xs:annotation>
@@ -36,6 +36,14 @@
                     </xs:annotation>
                     <xs:complexType>
                         <xs:sequence minOccurs="1" maxOccurs="1">
+                            <xs:element name="Meta"
+                                type="evt:AnyContentComplexType"
+                                minOccurs="0"
+                                maxOccurs="unbounded">
+                                <xs:annotation>
+                                    <xs:documentation>This element can be used to supply any meta data relating to the event as long as it conforms to an allowed format/specification (defined outside of this XML Schema).</xs:documentation>
+                                </xs:annotation>
+                            </xs:element>
                             <xs:element name="Id" type="xs:string" minOccurs="0" maxOccurs="1">
                                 <xs:annotation>
                                     <xs:documentation>An identifier that can be added to an event record during receipt or processing of the event. E.g. to provide a unique identifier of the event within the system receiving events or to identifiy an event within a set of events. Not to be used by system creating an event record.</xs:documentation>
@@ -1062,6 +1070,14 @@
     </xs:group>
     <xs:group name="BaseObjectGroup">
         <xs:sequence>
+            <xs:element name="Meta"
+                type="evt:AnyContentComplexType"
+                minOccurs="0"
+                maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>This element can be used to supply any meta data relating to an object as long as it conforms to an allowed format/specification (defined outside of this XML Schema).</xs:documentation>
+                </xs:annotation>
+            </xs:element>
             <xs:element name="Type" type="xs:string" minOccurs="0" maxOccurs="1"/>
             <xs:element name="Id" type="xs:string" minOccurs="0" maxOccurs="1"/>
             <xs:element name="Name" type="xs:string" minOccurs="0" maxOccurs="1"/>
@@ -1101,6 +1117,23 @@
                                         maxOccurs="unbounded"/>
                                 </xs:sequence>
                             </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Tags" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Metadata tags that can be used for additional object tagging or categorisation. Object tagging allows for the labelling (or filtering) of objects using words that label, categorise or group similar items, using a taxonomy defined outside this schema. For example, an email could be tagged with tags like 'internal', 'spam', 'external', 'rich-content', etc.</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence minOccurs="1" maxOccurs="1">
+                        <xs:element name="Tag" 
+                            type="evt:TagSimpleType" 
+                            minOccurs="1" 
+                            maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:documentation>A categorisation tag or label</xs:documentation>
+                            </xs:annotation>
                         </xs:element>
                     </xs:sequence>
                 </xs:complexType>
@@ -1442,10 +1475,21 @@
                             <xs:documentation>Optional description of the media that the file exists on or that the file is being written to.</xs:documentation>
                         </xs:annotation>
                     </xs:element>
-                    <xs:element name="Hash" type="xs:string" minOccurs="0" maxOccurs="1">
-                        <xs:annotation>
-                            <xs:documentation>A hash of the file contents.</xs:documentation>
-                        </xs:annotation>
+                    <xs:element name="Hash" minOccurs="0" maxOccurs="1">
+                        <xs:complexType>
+                            <xs:simpleContent>
+                                <xs:extension base="xs:string">
+                                    <xs:annotation>
+                                        <xs:documentation>The value obtained from applying a hash function (e.g. MD5, SHA-256, etc.) to the contents of the file.</xs:documentation>
+                                    </xs:annotation>
+                                    <xs:attribute name="Type" type="xs:string" use="optional">
+                                        <xs:annotation>
+                                            <xs:documentation>The type of hashing algorithm used, e.g. MD5, SHA-256, etc.</xs:documentation>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                </xs:extension>
+                            </xs:simpleContent>
+                        </xs:complexType>
                     </xs:element>
                     <xs:element name="Data"
                         type="evt:DataComplexType"
@@ -2211,6 +2255,21 @@
     <xs:complexType name="LocationComplexType">
         <xs:sequence minOccurs="1" maxOccurs="1">
             <xs:element name="Country" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="State" type="xs:string" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>The location State or Province.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="City" type="xs:string" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>The location City.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Town" type="xs:string" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>The location Town.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
             <xs:element name="Site" type="xs:string" minOccurs="0" maxOccurs="1"/>
             <xs:sequence minOccurs="0" maxOccurs="1">
                 <xs:element name="Building" type="xs:string" minOccurs="0" maxOccurs="1"/>
@@ -2864,6 +2923,23 @@
                     <xs:documentation>The version of the system's software, e.g. 1.3.2</xs:documentation>
                 </xs:annotation>
             </xs:element>
+            <xs:element name="Tags" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Optional tags that can be used for additional tagging or categorisation of the system. These tags allow for the grouping or filtering of similar systems.</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence minOccurs="1" maxOccurs="1">
+                        <xs:element name="Tag" 
+                            type="evt:TagSimpleType" 
+                            minOccurs="1" 
+                            maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:documentation>A categorisation tag or label, e.g. 'critical-system', 'operational-data', 'non-operational-test-data', etc.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="TermComplexType">
@@ -3147,6 +3223,10 @@
             <xs:enumeration value="NewCredentials"/>
             <xs:enumeration value="RemoteInteractive"/>
             <xs:enumeration value="CachedInteractive"/>
+            <xs:enumeration value="CachedRemoteInteractive"/>
+            <xs:enumeration value="CachedUnlock"/>
+            <xs:enumeration value="Proxy"/>
+            <xs:enumeration value="Other"/>
         </xs:restriction>
     </xs:simpleType>
     <xs:simpleType name="AuthenticateOutcomeReasonSimpleType">
@@ -3338,6 +3418,9 @@
             <xs:enumeration value="Application"/>
         </xs:restriction>
     </xs:simpleType>
+    <xs:simpleType name="TagSimpleType">
+        <xs:restriction base="xs:string"/>
+    </xs:simpleType>
     <xs:simpleType name="TermConditionSimpleType">
         <xs:restriction base="xs:string">
             <xs:enumeration value="Exists"/>
@@ -3383,7 +3466,9 @@
             <xs:enumeration value="3.2.2"/>
             <xs:enumeration value="3.2.3"/>
             <xs:enumeration value="3.2.4"/>
-            <xs:enumeration value="3.3.0-SNAPSHOT"/>
+            <xs:enumeration value="3.3.0"/>
+            <xs:enumeration value="3.3.1"/>
+            <xs:enumeration value="3.4.0-SNAPSHOT"/>
         </xs:restriction>
     </xs:simpleType>
     <xs:simpleType name="VirtualSessionSessionStateSimpleType">
@@ -3393,3 +3478,4 @@
         </xs:restriction>
     </xs:simpleType>
 </xs:schema>
+<!-- vim: set tabstop=4 shiftwidth=4 expandtab : -->

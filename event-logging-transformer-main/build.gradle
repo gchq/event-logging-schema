@@ -49,6 +49,7 @@ dependencies {
     runtime "net.sf.saxon:Saxon-HE:${versions.saxon}"
     runtime "ch.qos.logback:logback-classic:${versions.logback}"
 
+    testCompile "io.github.java-diff-utils:java-diff-utils:${versions.javaDiffUtils}"
     testCompile "junit:junit:${versions.junit}"
     testCompile "org.assertj:assertj-core:${versions.assertj}"
 }

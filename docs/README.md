@@ -82,5 +82,5 @@ last resort as its content is unstructured and reduces the normalisation benefit
 
 ## Putting it all together
 It can be hard to imagine what complete events look like, so a number of 
-[illustrative examples](completeExamples/completeExamples.md)
+[illustrative examples](completeExamples/README.md)
 are available.

@@ -33,7 +33,7 @@ public class Configuration {
      */
     public List<Pipeline> getEffectiveOutputPipelines() {
         final Map<String, Pipeline> pipelineMap = pipelines.stream()
-                .collect(Collectors.toMap(Pipeline::getName, Function.identity()));
+                .collect(Collectors.toMap(Pipeline::getPipelineName, Function.identity()));
 
         final List<Pipeline> effectivePipelines = pipelines.stream()
                 .filter(Pipeline::hasOutput)
@@ -49,7 +49,7 @@ public class Configuration {
             Pipeline basePipeline = pipelineMap.get(parentPipeline.getBasePipelineName().get());
             if (basePipeline == null) {
                 throw new RuntimeException(String.format("Unable to find basePipeline [%s] when parsing parent pipeline [%s]",
-                        parentPipeline.getBasePipelineName(), parentPipeline.getName()));
+                        parentPipeline.getBasePipelineName(), parentPipeline.getPipelineName()));
             }
             Pipeline combinedPipeline = parentPipeline.merge(basePipeline);
 
