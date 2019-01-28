@@ -2226,7 +2226,7 @@
             </xs:sequence>
             <xs:element name="TimeZone" type="xs:string" minOccurs="0" maxOccurs="1">
                 <xs:annotation>
-                    <xs:documentation>Timezone for location in ISO8601 Time zone designator format for the location at the time of the event. The format may be 'Z' for no offset from UTC, '+hh:mm', '+hhmm' or '+hh' for a positive offset from UTC in hours and minutes or just hours or '-hh:mm' or '-hhmm' or '-hh' for a negative offset from UTC in hours and minutes or just hours. Note that 'Z' can be represented as a positive zero offset from UTC i.e. '+00:00'</xs:documentation>
+                    <xs:documentation>Timezone for location in ISO8601 Time zone designator format for the location at the time of the event. The format may be 'Z' for no offset from UTC, '+hh:mm', '+hhmm' or '+hh' for a positive offset from UTC in hours and minutes or just hours or '-hh:mm' or '-hhmm' or '-hh' for a negative offset from UTC in hours and minutes or just hours. Note that 'Z' can be represented as a positive zero offset from UTC i.e. '+00:00'. So for example, an event occuring in Sydney, Australia at 2019-01-28T11:58:33.123Z would have a Timezone of +11:00 which indicates the localtime of the event is 2019-01-28T22:58:33.123 +11:00.</xs:documentation>
                 </xs:annotation>
             </xs:element>
             <xs:element name="Coordinates"
