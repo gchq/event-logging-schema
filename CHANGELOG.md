@@ -17,7 +17,7 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 ## [Unreleased]
 
-* Issue **#44** : Add `Approve` and `Reject` elements and `ApproveRejectComplexType`.
+* Issue **#44** : Add `Approval` schema action.
 
 * Issue **#3** : Add `Type` attribute to `Hash` element in `BaseFileComplexType`
 
