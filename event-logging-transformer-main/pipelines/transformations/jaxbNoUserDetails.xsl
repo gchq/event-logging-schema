@@ -20,3 +20,4 @@
     <xsl:template match="xs:complexType[@name = 'UserDetailsComplexType']/xs:sequence/xs:element"/>
 
 </xsl:stylesheet>
+<!-- vim: set tabstop=4 shiftwidth=4 expandtab : -->

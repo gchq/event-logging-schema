@@ -35,6 +35,7 @@ pipelines:
       - "ensureOccurrence.xsl"
       - "extractSimpleTypes.xsl"
       - "orderElements.xsl"
+      - "removeVimModeline.xsl"
           
   - pipelineName: "client-variant"
     basePipelineName: "fullSchema"
@@ -44,3 +45,18 @@ pipelines:
       - "jaxbEventRoot.xsl"
       - "jaxbNoEventId.xsl"
       - "jaxbNoUserDetails.xsl"
+
+  #- pipelineName: "test"
+    #outputSuffix: "test"
+    #outputBaseName: "test"
+    #hasOutput: true
+    #transformations:
+      #- "orderElements.xsl"
+      #- "removeVimModeline.xsl"
+
+  #- pipelineName: "identiy"
+    #outputSuffix: "identiy"
+    #outputBaseName: "identiy"
+    #hasOutput: true
+    #transformations:
+      #- "orderElements.xsl"
