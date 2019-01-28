@@ -19,8 +19,6 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 * Issue **#44** : Add `Approval` schema action.
 
-* Issue **#3** : Add `Type` attribute to `Hash` element in `BaseFileComplexType`
-
 * Improve documentation
 
 * Issue **#49** : Fix broken link to _Illustrative Examples_ in root README.
