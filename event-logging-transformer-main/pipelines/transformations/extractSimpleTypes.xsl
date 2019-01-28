@@ -51,3 +51,4 @@
         <xsl:value-of select="@name"/>
     </xsl:template>
 </xsl:stylesheet>
+<!-- vim: set tabstop=4 shiftwidth=4 expandtab : -->
