@@ -33,5 +33,6 @@ The following elements are common to all of the above object types;
 * **State** - Any state information about the object, e.g. 'Archived' 
 * **Groups** - Any groups associated with the object, e.g. group membership of a user account
 * **Permissions** - Any permissions associated with the object, e.g. write access being granted to a list of named users or groups
-* **Data** - An extensible structure as described in [Data Types](../dataTypes.md)
+* **Data** - An extensible structure for additional unstructured data as described in [Unstructured Data](../unstructuredData.md)
+* **Meta** - An extensible structure for structured meta data as described in [Meta Element](../meta.md)
 

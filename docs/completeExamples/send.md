@@ -119,7 +119,7 @@ The Outcome of the event is not defined, so we assume that the transfer was succ
         <File>
           <Size>12345321</Size>
           <Type>text/xml</Type>
-          <Hash>efd1dffd90296a69a8aecd7ecb1832b7</Hash>
+          <Hash Type="MD5">efd1dffd90296a69a8aecd7ecb1832b7</Hash>
           <Path>/appdata/alldata/gooddata/bestdata.xml</Path>
         </File>
       </Payload>
