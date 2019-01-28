@@ -1325,7 +1325,7 @@
                 minOccurs="0"
                 maxOccurs="1">
                 <xs:annotation>
-                    <xs:documentation>The object that this approval step relates to, e.g. the document being approved.</xs:documentation>
+                    <xs:documentation>The object that this approval step (or request for approval) relates to, e.g. the document being approved.</xs:documentation>
                 </xs:annotation>
             </xs:element>
             <xs:element name="Requestors"
@@ -1346,6 +1346,33 @@
                         </xs:element>
                     </xs:sequence>
                 </xs:complexType>
+            </xs:element>
+            <xs:element name="Approvers"
+                minOccurs="0"
+                maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>The user(s) that are providing the approval, e.g. a user requesting approval from manager fsmith for his finance report.</xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence minOccurs="1" maxOccurs="1">
+                        <xs:element name="Approver"
+                            type="evt:UserComplexType"
+                            minOccurs="1"
+                            maxOccurs="unbounded">
+                            <xs:annotation>
+                                <xs:documentation>The user that is providing the approval, e.g. a user requesting approval from manager fsmith for his finance report.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Reason"
+                type="xs:string"
+                minOccurs="0"
+                maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>The reason for the approval/rejection/request, e.g. why the approval was rejected.</xs:documentation>
+                </xs:annotation>
             </xs:element>
             <xs:element name="Outcome"
                 type="evt:OutcomeComplexType"
@@ -3256,6 +3283,7 @@
             <xs:enumeration value="Approve"/>
             <xs:enumeration value="Accept"/>
             <xs:enumeration value="Reject"/>
+            <xs:enumeration value="RequestApproval"/>
             <xs:enumeration value="Other"/>
         </xs:restriction>
     </xs:simpleType>

@@ -28,6 +28,7 @@
 * [Schema Actions](./schemaActions/README.md)
     * [Alert](./schemaActions/alert.md)
     * [Anti Malware](./schemaActions/antiMalware.md)
+    * [Approval](./schemaActions/approval.md)
     * [Authenticate](./schemaActions/authenticate.md)
     * [Authorise](./schemaActions/authorise.md)
     * [Copy and Move](./schemaActions/copyMove.md)
