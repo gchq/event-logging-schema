@@ -18,7 +18,7 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 ## [Unreleased]
 
-* Issue **#39** : Modify Location's Timezone annotation to indicate it is the timezone designator for the location at the time of the event.
+* Issue **#39** : Add `EffectiveTimeZone` and `TimeZoneName` elements to `LocationComplexType` to enable the recording of the actual offset from UTC at event time.
 
 * Issue **#44** : Add `Approval` schema action.
 
