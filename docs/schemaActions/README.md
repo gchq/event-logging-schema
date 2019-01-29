@@ -38,6 +38,7 @@ A number of schema actions are defined that aim to be broadly representative of 
 |----------------------------------|-------------------------------------------------------------------------------------------------------------|
 | [Alert](alert.md)                | A potentially concerning situation has been identified *that requires user attention to resolve*.           |
 | [AntiMalware](antiMalware.md)    | Events relating to functioning of antimalware software *Will be removed in a future version of the schema*. |
+| [Approval](approval.md)          | Events relating to the approval/acceptance/rejection or the request for approval.                           |
 | [Authorise](authorise.md)        | Events relating to authorisation changes, e.g. to group membership within LDAP or AD.                       |
 | [Copy](copyMove.md)              | Making copies of entities or data.                                                                          |
 | [Create](createViewDelete.md)    | Creating new items of entities or data.                                                                     |
