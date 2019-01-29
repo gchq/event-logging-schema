@@ -15,9 +15,12 @@ Minor version changes may included new optional elements or attributes. They may
 
 Patch version changes will typically include cosmetic changes (e.g. _xs:documentation_ changes).
 
+
 ## [Unreleased]
 
 * Issue **#39** : Modify Location's Timezone annotation to indicate it is the timezone designator for the location at the time of the event.
+
+* Issue **#44** : Add `Approval` schema action.
 
 * Issue **#47** : Add `CachedInteractive`, `CachedRemoteInteractive`, `Proxy` and `Other` logon types to `AuthenticateLogonTypeSimpleType`.
 
