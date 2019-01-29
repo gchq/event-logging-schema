@@ -1603,6 +1603,10 @@
     </xs:complexType>
     <xs:complexType name="BaseMultiObjectComplexType">
         <xs:choice minOccurs="1" maxOccurs="unbounded">
+            <xs:element name="Association"
+                type="evt:AssociationComplexType"
+                minOccurs="1"
+                maxOccurs="1"/>
             <xs:element name="Banner"
                 type="evt:BannerComplexType"
                 minOccurs="1"
@@ -1651,6 +1655,10 @@
                 type="evt:SearchResultComplexType"
                 minOccurs="1"
                 maxOccurs="1"/>
+            <xs:element name="SearchResults"
+                type="evt:SearchResultsComplexType"
+                minOccurs="1"
+                maxOccurs="1"/>
             <xs:element name="Shortcut"
                 type="evt:ShortcutComplexType"
                 minOccurs="1"
@@ -1669,10 +1677,6 @@
                 maxOccurs="1"/>
             <xs:element name="Resource"
                 type="evt:ResourceComplexType"
-                minOccurs="1"
-                maxOccurs="1"/>
-            <xs:element name="Association"
-                type="evt:AssociationComplexType"
                 minOccurs="1"
                 maxOccurs="1"/>
         </xs:choice>
@@ -2680,6 +2684,21 @@
     </xs:complexType>
     <xs:complexType name="QueryComplexType">
         <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element name="Id" type="xs:string" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>An identifier to uniquely identify the query that was executed. This may be used to link the execution of a query with the results that are persisted and viewed at another time.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Name" type="xs:string" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>The name of the query that was executed. This may be used to link the execution of a query with the results that are persisted and viewed at another time.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Description" type="xs:string" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>A human readble description of what the query is searching for.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
             <xs:element name="Advanced" minOccurs="0" maxOccurs="1">
                 <xs:complexType>
                     <xs:group ref="evt:AdvancedQueryOperatorGroup"
@@ -2879,6 +2898,26 @@
                             <xs:documentation>The relevancy of the search result.</xs:documentation>
                         </xs:annotation>
                     </xs:element>
+                    <xs:element name="Data"
+                        type="evt:DataComplexType"
+                        minOccurs="0"
+                        maxOccurs="unbounded">
+                        <xs:annotation>
+                            <xs:documentation>Any other event data that does not fit into a schema element but may be useful for the purpose of audit.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="SearchResultsComplexType">
+        <xs:annotation>
+            <xs:documentation>Structure used to describe a set of search results from a query where the results are stored for later viewing/processing</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="evt:BaseObjectComplexType">
+                <xs:sequence minOccurs="1" maxOccurs="1">
+                    <xs:group ref="evt:CriteriaExtensionGroup" minOccurs="1" maxOccurs="1"/>
                     <xs:element name="Data"
                         type="evt:DataComplexType"
                         minOccurs="0"
