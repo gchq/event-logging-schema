@@ -1,0 +1,138 @@
+def EXAMPLE_XML_DIR="../docs/completeExamples"
+def MASTER_SCHEMA_FILE_PATH="../event-logging.xsd"
+def jarName = "event-logging-transformer-${versions.eventLogging}.jar"
+def fatJarName = "event-logging-transformer-${versions.eventLogging}-all.jar"
+
+// Extract the major version number from the master schema file
+def masterSchemaFile = project.file(MASTER_SCHEMA_FILE_PATH)
+def masterSchemaText = masterSchemaFile.text
+def eventLoggingMajorVer = (masterSchemaText =~ /xmlns:evt="event-logging:([0-9]+)"/)[0][1]
+def schemaFilePath = "pipelines/generated/event-logging-v${eventLoggingMajorVer}.xsd"
+
+apply plugin: 'java'
+apply plugin: 'application'
+apply plugin: 'ca.cutterslade.analyze'
+apply plugin: 'idea'
+apply plugin: 'com.github.johnrengelman.shadow'
+
+// required for application plugin
+mainClassName = "event.logging.transformer.SchemaGenerator"
+
+jar {
+    manifest {
+        attributes(
+                "Implementation-Title": "event-Logging-transformer",
+                "Implementation-Version": versions.eventLogging,
+                "Main-Class" : mainClassName
+        )
+    }
+    archiveName jarName
+}
+
+shadowJar {
+    // Allows us to build fat jars with lots of files
+    zip64 true
+
+    archiveName fatJarName
+}
+
+// In this section you declare the dependencies for your production and test code
+dependencies {
+    
+    // The production code uses the SLF4J logging API at compile time
+    compile "org.slf4j:slf4j-api:${versions.slf4j}"
+    compile "com.fasterxml.jackson.core:jackson-annotations:$versions.jackson"
+    compile "com.fasterxml.jackson.core:jackson-databind:$versions.jackson"
+    compile "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:$versions.jackson"
+    compile "com.fasterxml.jackson.datatype:jackson-datatype-jdk8:$versions.jackson"
+
+    runtime "net.sf.saxon:Saxon-HE:${versions.saxon}"
+    runtime "ch.qos.logback:logback-classic:${versions.logback}"
+
+    testCompile "io.github.java-diff-utils:java-diff-utils:${versions.javaDiffUtils}"
+    testCompile "junit:junit:${versions.junit}"
+    testCompile "org.assertj:assertj-core:${versions.assertj}"
+}
+
+run {
+    args = ['pipelines', '../event-logging.xsd']
+}
+
+runShadow {
+    args = ['pipelines', '../event-logging.xsd']
+}
+
+task transformersDist(type: Zip) {
+    archiveName "transformations-${versions.eventLogging}.zip"
+    from 'pipelines/transformations'
+}
+
+
+// Run the python script to validate all the version numbers in the schema file
+task validateSchemaVersions(type: Exec) {
+    workingDir '../'
+    commandLine "python", "validateSchemaVersions.py", versions.eventLogging
+}
+
+// Run a bash script to compare the currennt jaxb source with the latest released version so
+// we can see what impact schema changes have had on the library
+task diffAgainstLatest(type: Exec) {
+    dependsOn runShadow
+    executable "../diffAgainstLatestReleases.sh"
+    args "./pipelines"
+}
+
+// Validate any XML files found in EXAMPLE_XML_DIR (or sub directories of it) against the 
+// non-client generated schema. This is to ensure that the examples are kept up to date 
+// and to highlight breaking changes
+task validateExampleXmlAgainstSchema() {
+    dependsOn runShadow
+    doLast {
+        def schemaFile = project.file(schemaFilePath)
+        if (!schemaFile.exists()) {
+            throw new GradleException("Schema $schemaFile does not exist")
+        }
+        println "Validating all XML files in [$EXAMPLE_XML_DIR] against schema [$schemaFile]"
+        fileTree(dir: project.file(EXAMPLE_XML_DIR))
+            .include('**/*.xml')
+            .each { xmlFile -> 
+                def xmlFilePath = xmlFile.absolutePath
+                println "Validating [$xmlFilePath again]st the schema"
+                def execResult = exec() {
+                    //xmlint is available in libxml2-utils
+                    executable 'xmllint'
+                    args '--noout', '--nowarning', '--schema', schemaFile.absolutePath, xmlFilePath
+                    ignoreExitValue true
+                }
+
+                if (execResult.exitValue != 0) {
+                    throw new GradleException("XML file {$xmlFilePath} failed vaildation, or 'xmllint' (in 'libxml2-utils' pkg) is not installed ")
+                }
+        }
+    }
+}
+
+// run the transformer code to build the schemas from the configured pipelines
+tasks.build.dependsOn runShadow
+tasks.build.dependsOn transformersDist
+tasks.build.dependsOn diffAgainstLatest
+tasks.build.dependsOn validateExampleXmlAgainstSchema
+
+tasks.compileJava.dependsOn validateSchemaVersions
+
+// This means the reports from our integration tests won't over-write the reports from our unit tests.
+tasks.withType(Test) {
+    reports.html.destination = file("${reporting.baseDir}/${name}")
+
+    // Use full logging for test exceptions so we can see where the failure occurred 
+    testLogging {
+        events "failed"
+        exceptionFormat = 'full'
+        showStackTraces = true
+    }
+}
+
+clean {
+    delete 'pipelines/generated'
+    delete 'pipelines/downloaded'
+}
