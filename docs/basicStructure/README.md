@@ -56,7 +56,6 @@ The `<EventSource>` element describes the event source, e.g. System, Environment
       <Country>UK</Country>
       <Site>Big Campus</Site>
       <TimeZoneName>Europe/London</TimeZoneName>
-      <EffectiveTimeZone>Z</EffectiveTimeZone>
     </Location>
   </Device>
   <Client>
@@ -68,7 +67,6 @@ The `<EventSource>` element describes the event source, e.g. System, Environment
       <Aisle>A1</Aisle>
       <Desk>1</Desk>
       <TimeZoneName>Europe/Paris</TimeZoneName>
-      <EffectiveTimeZone>+01:00</EffectiveTimeZone>
     </Location>
   </Client>
   <User>
