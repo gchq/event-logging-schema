@@ -57,6 +57,7 @@
     * [Object](./objectTypes/object.md)
     * [Resource](./objectTypes/resource.md)
     * [SearchResult](./objectTypes/searchResult.md)
+    * [SearchResults](./objectTypes/searchResults.md)
     * [Shortcut](./objectTypes/shortcut.md)
     * [User](./objectTypes/user.md)
     * [Virtual Session](./objectTypes/virtualSession.md)
