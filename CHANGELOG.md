@@ -18,7 +18,7 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 ## [Unreleased]
 
-* Issue **#39** : Add `EffectiveTimeZone` and `TimeZoneName` elements to `LocationComplexType` to enable the recording of the actual offset from UTC at event time.
+* Issue **#39** : Add `TimeZoneName` element to `LocationComplexType` to improve the recording of time zone information.
 
 * Issue **#44** : Add `Approval` schema action.
 
