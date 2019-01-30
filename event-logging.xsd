@@ -2383,7 +2383,12 @@
             </xs:sequence>
             <xs:element name="TimeZone" type="xs:string" minOccurs="0" maxOccurs="1">
                 <xs:annotation>
-                    <xs:documentation>Timezone pair for location in RFC3339 time-numoffset format separated by a slash '/' character. The first offset is for the location's standard timezone and the second for the daylight savings timezone. For example, Bristol, UK would be +00:00/+01:00</xs:documentation>
+                    <xs:documentation>[DEPRECATED: This element will be removed in a future version. Use TimeZoneName instead.] Timezone pair for the location in RFC3339 time-numoffset format separated by a slash '/' character. The first offset is for the location's standard timezone and the second for the daylight savings timezone. For example, Bristol, UK would be +00:00/+01:00.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="TimeZoneName" type="xs:string" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>The timezone name for the location as defined by the IANA Timezone Database (https://www.iana.org/time-zones), e.g. 'Europe/London' or 'Australia/NSW'.</xs:documentation>
                 </xs:annotation>
             </xs:element>
             <xs:element name="Coordinates"

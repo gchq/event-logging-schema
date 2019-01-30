@@ -15,7 +15,10 @@ Minor version changes may included new optional elements or attributes. They may
 
 Patch version changes will typically include cosmetic changes (e.g. _xs:documentation_ changes).
 
+
 ## [Unreleased]
+
+* Issue **#39** : Add `TimeZoneName` element to `LocationComplexType` to improve the recording of time zone information.
 
 * Issue **#44** : Add `Approval` schema action.
 

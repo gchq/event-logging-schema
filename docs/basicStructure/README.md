@@ -54,19 +54,19 @@ The `<EventSource>` element describes the event source, e.g. System, Environment
     <IPAddress>123.123.123.123</IPAddress>
     <Location>
       <Country>UK</Country>
-      <Site>Some Site</Site>
-      <TimeZone>UTC</TimeZone>
+      <Site>Big Campus</Site>
+      <TimeZoneName>Europe/London</TimeZoneName>
     </Location>
   </Device>
   <Client>
-    <IPAddress>123.123.123.124</IPAddress>
+    <IPAddress>121.121.121.121</IPAddress>
     <Location>
-      <Country>UK</Country>
-      <Site>Some Site</Site>
+      <Country>FR</Country>
+      <Site>Small Campus</Site>
       <Room>A1a</Room>
       <Aisle>A1</Aisle>
       <Desk>1</Desk>
-      <TimeZone>UTC</TimeZone>
+      <TimeZoneName>Europe/Paris</TimeZoneName>
     </Location>
   </Client>
   <User>
