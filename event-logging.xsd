@@ -14,13 +14,14 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
 -->
-<xs:schema xmlns:evt="event-logging:3"
+<xs:schema 
+    xmlns:evt="event-logging:3"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
     targetNamespace="event-logging:3"
     elementFormDefault="qualified"
     attributeFormDefault="unqualified"
-    version="3.4.0-SNAPSHOT"
-    id="event-logging-v3.4.0-SNAPSHOT">
+    version="SNAPSHOT"
+    id="event-logging-SNAPSHOT">
     <xs:annotation>
         <xs:documentation>This schema describes the allowed element structure for event logging. Please refer to the documentation and examples for a description of how to use this schema in addition to the descriptions given for each element within this schema.</xs:documentation>
     </xs:annotation>
@@ -3580,7 +3581,7 @@
             <xs:enumeration value="3.2.4"/>
             <xs:enumeration value="3.3.0"/>
             <xs:enumeration value="3.3.1"/>
-            <xs:enumeration value="3.4.0-SNAPSHOT"/>
+            <xs:enumeration value="SNAPSHOT"/>
         </xs:restriction>
     </xs:simpleType>
     <xs:simpleType name="VirtualSessionSessionStateSimpleType">

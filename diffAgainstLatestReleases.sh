@@ -82,7 +82,7 @@ while read -r url; do
     echo -e "Suffix: [${GREEN}${suffix}${NC}]"
 
     #localFile=$(ls ../event-logging-v*${suffix}.xsd)
-    localFile="$(find ./generated/ -maxdepth 1 -regex ".*/event-logging-v[0-9]*${suffix}.xsd")"
+    localFile="$(find ./generated/ -maxdepth 1 -regextype posix-extended -regex ".*/event-logging-v([0-9]+|SNAPSHOT)${suffix}.xsd")"
     if [ "x${localFile}" = "x" ]; then 
         echo -e "${RED}Warning${NC}: no local file found to match downloaded file ${BLUE}${downloadedFile}${NC}"
     else

@@ -115,6 +115,7 @@ public class SchemaGenerator {
             LOGGER.info("Supplied arguments: {}", Arrays.toString(args));
             displayUsageAndExit();
         }
+        System.exit(0);
     }
 
     private static void displayUsageAndExit() {
@@ -401,7 +402,7 @@ public class SchemaGenerator {
 
     private String getVersion(final Path schemaPath) {
 
-        final Pattern linePattern = Pattern.compile("version\\s*=\\s*\"(?<version>[^.]*\\..*?)\"");
+        final Pattern linePattern = Pattern.compile("version\\s*=\\s*\"(?<version>.*?)\"");
 
         final String versionLine;
         try (Stream<String> lines = Files.lines(schemaPath)) {

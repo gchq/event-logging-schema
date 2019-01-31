@@ -7,7 +7,7 @@ def fatJarName = "event-logging-transformer-${versions.eventLogging}-all.jar"
 def masterSchemaFile = project.file(MASTER_SCHEMA_FILE_PATH)
 def masterSchemaText = masterSchemaFile.text
 def eventLoggingMajorVer = (masterSchemaText =~ /xmlns:evt="event-logging:([0-9]+)"/)[0][1]
-def schemaFilePath = "pipelines/generated/event-logging-v${eventLoggingMajorVer}.xsd"
+def generatedDir = "pipelines/generated"
 
 apply plugin: 'java'
 apply plugin: 'application'
@@ -40,15 +40,16 @@ shadowJar {
 dependencies {
     
     // The production code uses the SLF4J logging API at compile time
-    compile "org.slf4j:slf4j-api:${versions.slf4j}"
     compile "com.fasterxml.jackson.core:jackson-annotations:$versions.jackson"
     compile "com.fasterxml.jackson.core:jackson-databind:$versions.jackson"
     compile "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:$versions.jackson"
     compile "com.fasterxml.jackson.datatype:jackson-datatype-jdk8:$versions.jackson"
+    compile "org.slf4j:slf4j-api:${versions.slf4j}"
 
-    runtime "net.sf.saxon:Saxon-HE:${versions.saxon}"
     runtime "ch.qos.logback:logback-classic:${versions.logback}"
+    runtime "net.sf.saxon:Saxon-HE:${versions.saxon}"
 
+    testCompile "com.github.stefanbirkner:system-rules:${versions.systemRules}"
     testCompile "io.github.java-diff-utils:java-diff-utils:${versions.javaDiffUtils}"
     testCompile "junit:junit:${versions.junit}"
     testCompile "org.assertj:assertj-core:${versions.assertj}"
@@ -82,13 +83,29 @@ task diffAgainstLatest(type: Exec) {
     args "./pipelines"
 }
 
+// Find the non-client generated schema file for use in xml validation
+def getSchemaFileForValidation = {  
+    def pattern = ~/.*event-logging-v([0-9]+|SNAPSHOT)\.xsd/
+    def schemas = []
+    def dir = project.file(generatedDir)
+    dir.eachFileMatch(pattern) { file ->
+        schemas.add(file)
+    }
+    if (schemas.size == 0) {
+        throw new GradleException("Found no files matching pattern [${pattern}] in dir [${dir}]")
+    } else if (schemas.size > 1) {
+        throw new GradleException("Found multiple files [${schemas}] matching pattern [${pattern}] in dir [${dir}]")
+    }
+    return schemas[0]
+}
+
 // Validate any XML files found in EXAMPLE_XML_DIR (or sub directories of it) against the 
 // non-client generated schema. This is to ensure that the examples are kept up to date 
 // and to highlight breaking changes
 task validateExampleXmlAgainstSchema() {
     dependsOn runShadow
     doLast {
-        def schemaFile = project.file(schemaFilePath)
+        def schemaFile = getSchemaFileForValidation()
         if (!schemaFile.exists()) {
             throw new GradleException("Schema $schemaFile does not exist")
         }
@@ -120,15 +137,49 @@ tasks.build.dependsOn validateExampleXmlAgainstSchema
 
 tasks.compileJava.dependsOn validateSchemaVersions
 
-// This means the reports from our integration tests won't over-write the reports from our unit tests.
-tasks.withType(Test) {
-    reports.html.destination = file("${reporting.baseDir}/${name}")
+//list to hold details of any failed test classes
+def failedTestReportFiles = []
 
+test {
     // Use full logging for test exceptions so we can see where the failure occurred 
     testLogging {
         events "failed"
         exceptionFormat = 'full'
         showStackTraces = true
+    }
+
+    afterSuite { desc, result -> 
+        if (desc != null && desc.className != null && result.resultType.toString() == "FAILURE") {
+            //test class failed so add its project info and test report file to a global list for
+            //processing at the end of the build
+            def reportFileName = "${reports.junitXml.destination}/TEST-${desc.className}.xml"
+            def reportFile = file(reportFileName)
+            def pair = new Tuple2("${project.name} ${desc.name}", reportFile)
+            failedTestReportFiles.add(pair)
+        }
+    }
+}
+
+gradle.buildFinished {
+    //if any of the tests failed dump the junit xml to the console
+    //this is useful for running in travis where you have no access to the test output files
+    if (getPropertyOrDefault('dumpFailedTestXml', 'false') == 'true' && failedTestReportFiles.size > 0) {
+        println "Build has ${failedTestReportFiles.size} failed test classes, dumping JUnit xml output"
+        failedTestReportFiles.each { pair -> 
+            def info = pair.first
+            def reportFile = pair.second
+
+            if (reportFile.exists()) {
+                println "-----Failed test class ${info} ------------------"
+                def lines = reportFile.readLines()
+                lines.each { String line -> 
+                    println "${line}"
+                }
+                println "-----End of test class ${info} ------------------"
+            } else {
+                println "File ${reportFile.toString()}"
+            }
+        }
     }
 }
 

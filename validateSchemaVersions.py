@@ -71,7 +71,7 @@ def validateVersions(newVersion, schemaFile):
     print "version: %s" % versionAttrVersion
 
     idAttr = xml_root.get("id")
-    idAttrVersion = re.match("event-logging-v(.*)$", idAttr).group(1)
+    idAttrVersion = re.match("event-logging-v?(.*)$", idAttr).group(1)
     print "id: %s" % idAttrVersion
 
     ns = {'xs': 'http://www.w3.org/2001/XMLSchema'}
@@ -82,52 +82,57 @@ def validateVersions(newVersion, schemaFile):
         enumVersions.append(enumElm.get("value"))
 
     print ""
+    versionRegex = "[0-9]+\.[0-9]+\.[0-9]+"
 
     if (newVersion and not re.match(".*SNAPSHOT", newVersionNum)):
         if (versionAttrVersion != newVersionNum):
             raise ValueError("version attribute and planned version do not match", versionAttrVersion, newVersionNum)
+
+        if (not re.match(versionRegex, versionAttrVersion)):
+            raise ValueError("version attribute does not match the valid regex", versionAttrVersion, versionRegex)
+
+        if (not versionAttrVersion.startswith(targetNamespaceVersion)):
+            raise ValueError("Major version of the version attribute does not match the targetNamespace version", versionAttrVersion, targetNamespaceVersion)
+
+        minorVer = getMinorVersion(versionAttrVersion)
+
+        for enumVer in enumVersions:
+            if (not enumVer.startswith(targetNamespaceVersion)):
+                raise ValueError("Major version of the enumeration version does not match the targetNamespace version", enumVer, targetNamespaceVersion)
+            minorVerOfEnum = getMinorVersion(enumVer)
+
+            if (minorVerOfEnum > minorVer):
+                raise ValueError("Minor version of enumeration version is higher than the minor version of the schema version. Should be less than or equal to the schema version", enumVer, versionAttrVersion)
 
     # print enumVersions
 
     if (namespaceVersion != targetNamespaceVersion):
         raise ValueError("namespace version and targetNamespace version do not match", namespaceVersion, targetNamespaceVersion)
 
-    versionRegex = "[0-9]+\.[0-9]+\.[0-9]+"
-    if (not re.match(versionRegex, versionAttrVersion)):
-        raise ValueError("version attribute does not match the valid regex", versionAttrVersion, versionRegex)
-
     if (versionAttrVersion != idAttrVersion):
         raise ValueError("version attribute and id attribute do not match", versionAttrVersion, idAttrVersion)
-
-    if (not versionAttrVersion.startswith(targetNamespaceVersion)):
-        raise ValueError("Major version of the version attribute does not match the targetNamespace version", versionAttrVersion, targetNamespaceVersion)
 
     if (not versionAttrVersion in enumVersions):
         raise ValueError("Schema version is not in the list of version enumerations", versionAttrVersion, enumVersions)
 
-    minorVer = getMinorVersion(versionAttrVersion)
 
-    for enumVer in enumVersions:
-        if (not enumVer.startswith(targetNamespaceVersion)):
-            raise ValueError("Major version of the enumeration version does not match the targetNamespace version", enumVer, targetNamespaceVersion)
-        minorVerOfEnum = getMinorVersion(enumVer)
-
-        if (minorVerOfEnum > minorVer):
-            raise ValueError("Minor version of enumeration version is higher than the minor version of the schema version. Should be less than or equal to the schema version", enumVer, versionAttrVersion)
 
 
 # Script starts here
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+print sys.argv
 
 if len(sys.argv) == 2:
     newVersion = sys.argv[1]
     schemaFile = None
-if len(sys.argv) == 3:
+elif len(sys.argv) == 3:
     newVersion = sys.argv[1]
     schemaFile = sys.argv[2]
 else:
     newVersion = None
     schemaFile = None
+
+print "version [%s], schema file [%s]" % (newVersion, schemaFile)
     
 validateVersions(newVersion, schemaFile)
 

@@ -5,7 +5,9 @@ import com.github.difflib.algorithm.DiffException;
 import com.github.difflib.patch.AbstractDelta;
 import com.github.difflib.patch.Patch;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.contrib.java.lang.system.ExpectedSystemExit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -36,6 +38,9 @@ public class TestSchemaGenerator {
             TEST_02
     );
 
+    @Rule
+    public final ExpectedSystemExit exit = ExpectedSystemExit.none();
+
     @Before
     public void setup() {
 
@@ -58,6 +63,7 @@ public class TestSchemaGenerator {
     @Test
     public void test01_versionChange() throws IOException {
 
+        exit.expectSystemExitWithStatus(0);
         final List<Path> generatedFiles = runTest(TEST_01);
 
         assertThat(generatedFiles)
@@ -84,12 +90,13 @@ public class TestSchemaGenerator {
     @Test
     public void test02_noChanges() throws IOException {
 
+        exit.expectSystemExitWithStatus(0);
         List<Path> generatedFiles = runTest(TEST_02);
 
         assertThat(generatedFiles).hasSize(1);
 
         assertThat(generatedFiles.get(0).getFileName().toString())
-                .matches("event-logging-v[0-9].xsd");
+                .matches("event-logging-v([0-9]|SNAPSHOT).xsd");
     }
 
     private void assertGeneratedFilenames(final List<Path> generatedFiles, final String... expectedFileNames) {
@@ -113,7 +120,12 @@ public class TestSchemaGenerator {
         assertThat(Files.list(generatedDir).count())
                 .isGreaterThanOrEqualTo(2);
 
-        final Path unchangedFile = testCaseDir.resolve(UNCHANGED_FILE);
+        final Path unchangedFile = Files.list(testCaseDir.resolve(GENERATED_RELATIVE_PATH))
+                .peek(System.out::println)
+                .filter(path ->
+                        path.toString().endsWith("unchanged.xsd"))
+                .findFirst()
+                .get();
 
         // collect the paths of all generated files bar the special unchanged one
         List<Path> generatedFiles = Files.list(generatedDir)
