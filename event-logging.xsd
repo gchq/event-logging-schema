@@ -2718,7 +2718,7 @@
         <xs:sequence minOccurs="1" maxOccurs="1">
             <xs:element name="Id" type="xs:string" minOccurs="0" maxOccurs="1">
                 <xs:annotation>
-                    <xs:documentation>An identifier to uniquely identify the query that was executed. This may be used to link the execution of a query with the results that are persisted and viewed at another time.</xs:documentation>
+                    <xs:documentation>An identifier to uniquely identify the query that was executed. This may be used to link the execution of a query (i.e. Search/Query/Id) with the results that are persisted and viewed at another time (i.e. View/SearchResults/Query/Id).</xs:documentation>
                 </xs:annotation>
             </xs:element>
             <xs:element name="Name" type="xs:string" minOccurs="0" maxOccurs="1">
@@ -2944,7 +2944,7 @@
     </xs:complexType>
     <xs:complexType name="SearchResultsComplexType">
         <xs:annotation>
-            <xs:documentation>Structure used to describe a set of search results from a query where the results are viewed or interacted with in a separate event to the execution of the query. E.g. for long running queries where the results are stored for later viewing/processing. The Search schema action should be used to describe the event for the execution of the search.</xs:documentation>
+            <xs:documentation>Structure used to describe a set of search results from a query where the results are viewed or interacted with in a separate event to the execution of the query. E.g. for long running queries where the results are stored for later viewing/processing. The Search schema action should be used to describe the event for the execution of the search. Query/Id or Query/Name can be used to associated the results event with the query event.</xs:documentation>
         </xs:annotation>
         <xs:complexContent>
             <xs:extension base="evt:BaseObjectComplexType">
