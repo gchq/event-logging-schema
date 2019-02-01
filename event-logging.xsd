@@ -244,7 +244,7 @@
                                             minOccurs="0"
                                             maxOccurs="1">
                                             <xs:annotation>
-                                                <xs:documentation>Use of this element is deprecated and Event/Classification should be used instead</xs:documentation>
+                                                <xs:documentation>[DEPRECATED: This element will be removed in a future version. Event/Classification element should be used instead.]</xs:documentation>
                                             </xs:annotation>
                                         </xs:element>
                                         <xs:element name="Purpose"
@@ -768,7 +768,7 @@
                                             </xs:element>
                                             <xs:element name="AntiMalware" minOccurs="1" maxOccurs="1">
                                                 <xs:annotation>
-                                                    <xs:documentation>Used for all anti-malware related events.</xs:documentation>
+                                                    <xs:documentation>[DEPRECATED: This element will be removed in a future version. The Process element should be used instead.] Used for all anti-malware related events.</xs:documentation>
                                                 </xs:annotation>
                                                 <xs:complexType>
                                                     <xs:sequence minOccurs="1" maxOccurs="1">
@@ -1169,41 +1169,68 @@
                 </xs:annotation>
             </xs:element>
             <xs:element name="ResultPage" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>Details of the page (or sub-set) of results actually displayed/returned to the user, if known at query time.</xs:documentation>
+                </xs:annotation>
                 <xs:complexType>
                     <xs:sequence minOccurs="1" maxOccurs="1">
                         <xs:element name="TotalPages"
                             type="xs:nonNegativeInteger"
                             minOccurs="0"
-                            maxOccurs="1"/>
+                            maxOccurs="1">
+                            <xs:annotation>
+                                <xs:documentation>The number of pages/sets that make up the complete result set.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
                         <xs:element name="PerPage"
                             type="xs:nonNegativeInteger"
                             minOccurs="0"
-                            maxOccurs="1"/>
+                            maxOccurs="1">
+                            <xs:annotation>
+                                <xs:documentation>The maximum number of results that will be displayed per page. E.g. 10 results per page.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
                         <xs:element name="PageNumber"
                             type="xs:nonNegativeInteger"
                             minOccurs="0"
-                            maxOccurs="1"/>
+                            maxOccurs="1">
+                            <xs:annotation>
+                                <xs:documentation>The number of the page/set of results displayed/returned to the user, e.g. 3 out of 24 pages.</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
                         <xs:element name="From"
                             type="xs:nonNegativeInteger"
                             minOccurs="0"
-                            maxOccurs="1"/>
+                            maxOccurs="1">
+                            <xs:annotation>
+                                <xs:documentation>The index of the first result in the page out of the full result set (inclusive), e.g. 11 (in the case of showing results 11-20 of 453)</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
                         <xs:element name="To"
                             type="xs:nonNegativeInteger"
                             minOccurs="0"
-                            maxOccurs="1"/>
+                            maxOccurs="1">
+                            <xs:annotation>
+                                <xs:documentation>The index of the last result in the page out of the full result set (inclusive), e.g. 20 (in the case of showing results 11-20 of 453)</xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
             <xs:element name="TotalResults"
                 type="xs:nonNegativeInteger"
                 minOccurs="0"
-                maxOccurs="1"/>
+                maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>The total number or results returned by the query, if known at query time. In situations where only a sub-set of results are displayed/returned to the user then this element represents the count of ALL results and ResultPage should be used to provide details of which results are actually viewed/returned by the user.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
             <xs:element name="Results"
                 type="evt:MultiObjectComplexType"
                 minOccurs="0"
                 maxOccurs="1">
                 <xs:annotation>
-                    <xs:documentation>Structure used to describe the search results associated with a search event.</xs:documentation>
+                    <xs:documentation>Describes the results returned by the search if they are know at the time of the Search event (a synchronous search). If the results are not know at execution time (an asynchronous search) and will be viewed as part of a separate event then View/SearchResults can be used to model that event.</xs:documentation>
                 </xs:annotation>
             </xs:element>
         </xs:sequence>
@@ -1603,6 +1630,10 @@
     </xs:complexType>
     <xs:complexType name="BaseMultiObjectComplexType">
         <xs:choice minOccurs="1" maxOccurs="unbounded">
+            <xs:element name="Association"
+                type="evt:AssociationComplexType"
+                minOccurs="1"
+                maxOccurs="1"/>
             <xs:element name="Banner"
                 type="evt:BannerComplexType"
                 minOccurs="1"
@@ -1651,6 +1682,10 @@
                 type="evt:SearchResultComplexType"
                 minOccurs="1"
                 maxOccurs="1"/>
+            <xs:element name="SearchResults"
+                type="evt:SearchResultsComplexType"
+                minOccurs="1"
+                maxOccurs="1"/>
             <xs:element name="Shortcut"
                 type="evt:ShortcutComplexType"
                 minOccurs="1"
@@ -1669,10 +1704,6 @@
                 maxOccurs="1"/>
             <xs:element name="Resource"
                 type="evt:ResourceComplexType"
-                minOccurs="1"
-                maxOccurs="1"/>
-            <xs:element name="Association"
-                type="evt:AssociationComplexType"
                 minOccurs="1"
                 maxOccurs="1"/>
         </xs:choice>
@@ -2685,6 +2716,21 @@
     </xs:complexType>
     <xs:complexType name="QueryComplexType">
         <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element name="Id" type="xs:string" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>An identifier to uniquely identify the query that was executed. This may be used to link the execution of a query (i.e. Search/Query/Id) with the results that are persisted and viewed at another time (i.e. View/SearchResults/Query/Id).</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Name" type="xs:string" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>The name of the query that was executed. This may be used to link the execution of a query with the results that are persisted and viewed at another time.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Description" type="xs:string" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>A human readble description of what the query is searching for.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
             <xs:element name="Advanced" minOccurs="0" maxOccurs="1">
                 <xs:complexType>
                     <xs:group ref="evt:AdvancedQueryOperatorGroup"
@@ -2871,7 +2917,7 @@
     </xs:complexType>
     <xs:complexType name="SearchResultComplexType">
         <xs:annotation>
-            <xs:documentation>Structure used to describe a search result.</xs:documentation>
+            <xs:documentation>[DEPRECATED: This element will be removed in a future version of the schema. The SearchResults element should be used instead.] Structure used to describe a search result.</xs:documentation>
         </xs:annotation>
         <xs:complexContent>
             <xs:extension base="evt:BaseObjectComplexType">
@@ -2884,6 +2930,26 @@
                             <xs:documentation>The relevancy of the search result.</xs:documentation>
                         </xs:annotation>
                     </xs:element>
+                    <xs:element name="Data"
+                        type="evt:DataComplexType"
+                        minOccurs="0"
+                        maxOccurs="unbounded">
+                        <xs:annotation>
+                            <xs:documentation>Any other event data that does not fit into a schema element but may be useful for the purpose of audit.</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="SearchResultsComplexType">
+        <xs:annotation>
+            <xs:documentation>Structure used to describe a set of search results from a query where the results are viewed or interacted with in a separate event to the execution of the query. E.g. for long running queries where the results are stored for later viewing/processing. The Search schema action should be used to describe the event for the execution of the search. Query/Id or Query/Name can be used to associated the results event with the query event.</xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="evt:BaseObjectComplexType">
+                <xs:sequence minOccurs="1" maxOccurs="1">
+                    <xs:group ref="evt:CriteriaExtensionGroup" minOccurs="1" maxOccurs="1"/>
                     <xs:element name="Data"
                         type="evt:DataComplexType"
                         minOccurs="0"

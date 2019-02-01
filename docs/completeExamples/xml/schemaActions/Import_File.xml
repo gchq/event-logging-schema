@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Events xmlns="event-logging:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="event-logging:3 file://event-logging-v3.4.0-SNAPSHOT.xsd" Version="3.4.0-SNAPSHOT">
+
+  <!-- Import File event 
+
+    The following example illustrates user `jc101` importing some data into an 
+    application called `Geology Image Database`.  The application is based on 
+    `geoimg v4.1` and is running on the server `geodb.servers.mycloud.myorg`.
+
+    The Object is of Type `Image Archive` and has an id `14131A`.  It has a 
+    Classification of `Geology`.
+
+    There is no Success element in `<Outcome>`, so it is assumed that the 
+    action completed successfully.
+  -->
+  <Event>
+    <EventTime>
+      <TimeCreated>2017-01-02T03:04:05.678Z</TimeCreated>
+    </EventTime>
+    <EventSource>
+      <System>
+        <Name>Space Desk</Name>
+        <Environment>LunaDomain</Environment>
+        <Organisation>ACMECoolResearch</Organisation>
+      </System>
+      <Generator>RMMaster2000 RM Control</Generator>
+      <Device>
+        <HostName>rmmaster.luna.mydomain.org</HostName>
+      </Device>
+      <Client>
+        <Name>LUNA/LUNADESK35</Name>
+        <HostName>lunadesk35.lunadesk.luna.mydomain.org</HostName>
+      </Client>
+      <User>
+        <Id>jc101</Id>
+        <Domain>ACMECoolResearch/Users</Domain>
+      </User>
+      <Interactive>true</Interactive>
+    </EventSource>
+    <EventDetail>
+      <TypeId>ReadRM</TypeId>
+      <Description>User has read a file from removable media</Description>
+      <Import>
+        <Source>
+          <File>
+            <Name>141516.jpg</Name>
+            <Description>JPG Image</Description>
+            <Permissions>
+              <Permission>
+                <User>
+                  <Id>jc101</Id>
+                  <Domain>ACMECoolResearch/Users</Domain>
+                </User>
+                <Allow>Read</Allow>
+              </Permission>
+            </Permissions>
+            <Path>E:/DCIM/Spacecam101/141516.jpg</Path>
+            <Size>5445121</Size>
+            <Media>
+              <Type>USBMassStorage</Type>
+              <Removable>true</Removable>
+            </Media>
+            <Hash Type="MD5">efd1dffd90296a69a8aecd7ecb1832b7</Hash>
+          </File>
+        </Source>
+        <Outcome>
+          <Permitted>true</Permitted>
+        </Outcome>
+      </Import>
+    </EventDetail>
+  </Event>
+</Events>
