@@ -18,7 +18,9 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 ## [Unreleased]
 
-* Issue **#10** : Add `SearchResults` to `BaseMultiObjectComplexType` to allow for use cases like `View/SearchResults`. Add `Id`, `Name` and `Description` to `QueryComplexType` to allow the linking of query to results.
+* Issue **#10** : Add `SearchResults` to `BaseMultiObjectComplexType` to allow for use cases like `View/SearchResults`. 
+
+* Issue **#10** : Add `Id`, `Name` and `Description` to `QueryComplexType` to allow the linking of query to results.
 
 * Issue **#39** : Add `TimeZoneName` element to `LocationComplexType` to improve the recording of time zone information.
 
