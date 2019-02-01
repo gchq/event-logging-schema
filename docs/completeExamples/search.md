@@ -1,8 +1,11 @@
 # Search
 
-The following example illustrates a query against a database application. The action is that user `jc101` execute a query `type=r, size=large, colour=white` which returned 2 results. The Interactive field is set to `false`, so it may be inferred that this was an automated operation of some kind.
+The following example illustrates a query against a database application.
+The action is that user `jc101` execute a query `type=r, size=large, colour=white` which returned 2 results.
+The Interactive field is set to `false`, so it may be inferred that this was an automated operation of some kind.
 
-The results were two Objects. Both were of type `Rock`. The first with an id of `7811` and a name of `Surpisingly Heavy Chunk` and the second with an id of `11418` and a name of `Possible Gold Ore`.
+The results were two Objects. Both were of type `Rock`.
+The first with an id of `7811` and a name of `Surpisingly Heavy Chunk` and the second with an id of `11418` and a name of `Possible Gold Ore`.
 
 ```xml
 <Event>
