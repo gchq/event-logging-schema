@@ -29,21 +29,21 @@ The following are links to annotated example `<Events>` XML documents that are v
 
 * **Schema Actions** (within `<EventDetail>`)
   * **[`<AntiMalware>`](antimalware.md)** _[DEPRECATED]_
-    * [`<AntiMalware>` XML](./xml/schemaActions/AntiMalware.xml)
+    * [`<AntiMalware>` XML](./xml/schemaActions/AntiMalware.xml.md)
   * **[`<Import>`](import.md)**
-    * [`<Import>/<File>` XML](./xml/schemaActions/Import_File.xml)
-    * [`<Import>/<Object>` XML](./xml/schemaActions/Import_Object.xml)
+    * [`<Import>/<File>` XML](./xml/schemaActions/Import_File.xml.md)
+    * [`<Import>/<Object>` XML](./xml/schemaActions/Import_Object.xml.md)
   * **[`<Search>`](search.md)**
-    * [`<Search>` XML](./xml/schemaActions/Search.xml)
+    * [`<Search>` XML](./xml/schemaActions/Search.xml.md)
   * **[`<Send>`](send.md)**
-    * [`<Send>/<Document>` XML](./xml/schemaActions/Send_Document.xml)
-    * [`<Send>/<File>` XML](./xml/schemaActions/Send_File.xml)
+    * [`<Send>/<Document>` XML](./xml/schemaActions/Send_Document.xml.md)
+    * [`<Send>/<File>` XML](./xml/schemaActions/Send_File.xml.md)
   * **[`<Print>`](print.md)**
-    * [`<Print>` XML](./xml/schemaActions/Print.xml)
+    * [`<Print>` XML](./xml/schemaActions/Print.xml.md)
 * **Object Types**
-  * [`<SearchResults> XML`](./xml/objectTypes/SearchResults.xml)
-  * [`<Criteria> XML`](./xml/objectTypes/Criteria.xml)
+  * [`<SearchResults> XML`](./xml/objectTypes/SearchResults.xml.md)
+  * [`<Criteria> XML`](./xml/objectTypes/Criteria.xml.md)
 * **Other**
   * **`<Event>/<Meta>`**
-    * [`<Event>/<Meta>` (JSON) XML](./xml/Event_Meta_JSON.xml)
-    * [`<Event>/<Meta>` (XML) XML](./xml/Event_Meta_XML.xml)
+    * [`<Event>/<Meta>` (JSON) XML](./xml/Event_Meta_JSON.xml.md)
+    * [`<Event>/<Meta>` (XML) XML](./xml/Event_Meta_XML.xml.md)

@@ -1,14 +1,19 @@
+# `<Event>/<Meta>` (JSON)
+
+``` xml
 <?xml version="1.0" encoding="UTF-8"?>
 <Events xmlns="event-logging:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="event-logging:3 file://event-logging-v3.4.0-SNAPSHOT.xsd" Version="3.4.0-SNAPSHOT">
 
-  <!-- Print event 
-
-    The following example illustrates a document with the title Resume - J Coder 
-    being printed on prn01.luna1.lan.myorg.com by user jc101.
-
-    The document is 2 pages in length and 3410212 bytes in length.
-  -->
+  <!-- JSON Meta example -->
   <Event>
+    <Meta ContentType="JSON:streamMeta" Version="1.2.3">
+      {  
+        "streamMeta":{  
+          "streamId":"12345",
+          "eventId":"45678"
+        }
+      }
+    </Meta>
     <EventTime>
       <TimeCreated>2017-01-02T03:04:05.678Z</TimeCreated>
     </EventTime>
@@ -48,3 +53,4 @@
   </Event>
 
 </Events>
+```

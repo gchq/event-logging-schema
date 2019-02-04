@@ -112,13 +112,14 @@ task validateExampleXmlAgainstSchema() {
         println "Validating all XML files in [${EXAMPLE_XML_DIR}] against schema [${schemaFile}]"
         fileTree(dir: project.file(EXAMPLE_XML_DIR))
             .include('**/*.xml')
+            .include('**/*.xml.md')
             .each { xmlFile -> 
                 def xmlFilePath = xmlFile.absolutePath
-                println "  Validating ${xmlFilePath} against the schema"
+                //println "  Validating ${xmlFilePath} against the schema"
                 def execResult = exec() {
                     //xmlint is available in libxml2-utils
-                    executable 'xmllint'
-                    args '--noout', '--nowarning', '--schema', schemaFile.absolutePath, xmlFilePath
+                    executable '../validateExampleXml.sh'
+                    args schemaFile.absolutePath, xmlFilePath
                     ignoreExitValue true
                 }
 
