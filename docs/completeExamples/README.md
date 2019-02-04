@@ -28,17 +28,17 @@ For example, an event that describes the sending of an email from a company empl
 The following are links to annotated example `<Events>` XML documents that are valid against the Event Logging Schema.
 
 * **Schema Actions** (within `<EventDetail>`)
-  * **[`<AntiMalware>`](antimalware.md)** _[DEPRECATED]_
+  * **`<AntiMalware>`** _[DEPRECATED]_
     * [`<AntiMalware>` XML](./xml/schemaActions/AntiMalware.xml.md)
-  * **[`<Import>`](import.md)**
+  * **`<Import>`**
     * [`<Import>/<File>` XML](./xml/schemaActions/Import_File.xml.md)
     * [`<Import>/<Object>` XML](./xml/schemaActions/Import_Object.xml.md)
-  * **[`<Search>`](search.md)**
+  * **`<Search>`**
     * [`<Search>` XML](./xml/schemaActions/Search.xml.md)
-  * **[`<Send>`](send.md)**
+  * **`<Send>`**
     * [`<Send>/<Document>` XML](./xml/schemaActions/Send_Document.xml.md)
     * [`<Send>/<File>` XML](./xml/schemaActions/Send_File.xml.md)
-  * **[`<Print>`](print.md)**
+  * **`<Print>`**
     * [`<Print>` XML](./xml/schemaActions/Print.xml.md)
 * **Object Types**
   * [`<SearchResults> XML`](./xml/objectTypes/SearchResults.xml.md)

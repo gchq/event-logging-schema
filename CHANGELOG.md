@@ -18,6 +18,8 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 ## [Unreleased]
 
+* Move complete examples into individual files that are validated as part of the build.
+
 * Issue **#10** : Add `SearchResults` to `BaseMultiObjectComplexType` to allow for use cases like `View/SearchResults`. 
 
 * Issue **#10** : Add `Id`, `Name` and `Description` to `QueryComplexType` to allow the linking of query to results.

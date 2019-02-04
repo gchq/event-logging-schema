@@ -1,4 +1,11 @@
-# `<EventDetail>/<Import>/<Object>`
+# `<EventDetail>/<Import>//<Object>`
+
+The following example illustrates user `jc101` importing some data into an application 
+called `Geology Image Database`.  The application is based on `geoimg v4.1` and is running on the server `geodb.servers.mycloud.myorg`.
+
+The Object is of Type `Image Archive` and has an id `14131A`.  It has a Classification of `Geology`.
+
+There is no Success element in `<Outcome>`, so it is assumed that the action completed successfully.
 
 ``` xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -13,6 +20,7 @@
     <EventTime>
       <TimeCreated>2017-01-02T03:04:05.678Z</TimeCreated>
     </EventTime>
+
     <EventSource>
       <System>
         <Name>Geology Image Database</Name>
@@ -29,6 +37,7 @@
         <Id>jc101</Id>
       </User>
     </EventSource>
+
     <EventDetail>
       <TypeId>IMAGE-IMPORT-ARCHIVE</TypeId>
       <Description>User has imported an image archive</Description>
@@ -48,6 +57,8 @@
         </Outcome>
       </Import>
     </EventDetail>
+
   </Event>
+
 </Events>
 ```

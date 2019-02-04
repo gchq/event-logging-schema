@@ -67,17 +67,17 @@
 * [Meta Element](./meta.md)
 * [Illustrative Example Events](./completeExamples/README.md)
     * Schema Actions
-        * [Anti Malware](./completeExamples/antimalware.md)
+        * Anti Malware
             * [AntiMalware XML](./completeExamples/xml/schemaActions/AntiMalware.xml.md)
-        * [Import](./completeExamples/import.md)
+        * Import
             * [Import/File XML](./completeExamples/xml/schemaActions/Import_File.xml.md)
             * [Import/Object XML](./completeExamples/xml/schemaActions/Import_Object.xml.md)
-        * [Print](./completeExamples/print.md)
+        * Print
             * [Print XML](./completeExamples/xml/schemaActions/Print.xml.md)
         * [Process](./completeExamples/process.md)
-        * [Search](./completeExamples/search.md)
+        * Search
             * [Search XML](./completeExamples/xml/schemaActions/Search.xml.md)
-        * [Send](./completeExamples/send.md)
+        * Send
             * [Send/Document XML](./completeExamples/xml/schemaActions/Send_Document.xml.md)
             * [Send/File XML](./completeExamples/xml/schemaActions/Send_File.xml.md)
     * Object Types

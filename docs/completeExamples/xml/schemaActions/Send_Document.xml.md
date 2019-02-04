@@ -1,5 +1,12 @@
 # `<EventDetail>/<Send>//<Document>`
 
+The following example illustrates an application being used to transfer a file to from one user to another user.
+
+The action is that the file `samples1.zip` of size `14127312` bytes was sent by the user `jc101` to
+the user `C=GB, O=WeDoRocksCo, OU=Space, CN=Tom Thumb(UID=tthumb01)`. 
+
+The file was transferred successfully.
+
 ``` xml
 <?xml version="1.0" encoding="UTF-8"?>
 <Events
@@ -8,18 +15,11 @@
   xsi:schemaLocation="event-logging:3 file://event-logging-v3.3.0.xsd"
   Version="3.3.0">
 
-  <!-- Send Document event 
-    The following example illustrates an application being used to transfer a file to from one user to another user.
-
-    The action is that the file `samples1.zip` of size `14127312` bytes was sent by the user `jc101` to
-    the user `C=GB, O=WeDoRocksCo, OU=Space, CN=Tom Thumb(UID=tthumb01)`. 
-
-    The file was transferred successfully.
-  -->
   <Event>
     <EventTime>
       <TimeCreated>2017-01-02T03:04:05.678Z</TimeCreated>
     </EventTime>
+
     <EventSource>
       <System>
         <Name>FileSharer21</Name>
@@ -64,6 +64,7 @@
         </UserDetails>
       </User>
     </EventSource>
+
     <EventDetail>
       <TypeId>NormalSend</TypeId>
       <Description>A user sends a file to another user</Description>
@@ -103,6 +104,7 @@
         </Outcome>
       </Send>
     </EventDetail>
+
   </Event>
 </Events>
 ```
