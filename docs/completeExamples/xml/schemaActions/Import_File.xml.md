@@ -12,8 +12,8 @@ The nature of the event (type of View) can be indicated within `<EventDetail>/<T
 <Events 
   xmlns="event-logging:3" 
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-  xsi:schemaLocation="event-logging:3 file://event-logging-v3.4.0-SNAPSHOT.xsd" 
-  Version="3.4.0-SNAPSHOT">
+  xsi:schemaLocation="event-logging:3 file://event-logging-v3.3.0.xsd" 
+  Version="3.3.0">
 
   <Event>
     <EventTime>

@@ -13,7 +13,6 @@ plugins {
     id "com.github.johnrengelman.shadow" version "2.0.2" apply false
 }
 
-def CHANGE_LOG_FILENAME = "CHANGELOG.md"
 def projectGroup = "event-logging-transformer"
 
 //must be applied to all projects including root
@@ -45,19 +44,9 @@ ext.versions = [
     logback: '1.2.3',
     saxon: '9.6.0-6',
     slf4j: '1.7.22',
+    systemRules: '1.19.0',
     zzDUMMYzz: 'makes sorting easier'
 ]
-
-
-if (!(versions.eventLogging =~ /^SNAPSHOT\.*/)) {
-    def changeLogFile = new File(CHANGE_LOG_FILENAME)
-    def pattern = Pattern.compile(versions.eventLogging, Pattern.LITERAL)
-
-    //This is versioned build so ensure the version is in the CHANGELOG
-    if (!changeLogFile.getText("UTF-8").find(pattern)) {
-        throw new GradleException("Cannot find pattern [${pattern.toString()}] in file ${CHANGE_LOG_FILENAME}, add the new version to the change log")
-    }
-}
 
 task wrapper(type: Wrapper) {
     gradleVersion = '4.10.3'
