@@ -32,7 +32,7 @@ SCHEMA_FILENAME = "event-logging.xsd"
 root_path = os.path.dirname(os.path.realpath(__file__))
 
 def getMinorVersion(versionStr):
-    minorVer = re.match("[0-9]*\.([0-9]*)\..*", versionStr).group(1)
+    minorVer = re.match("[0-9]*\.([0-9]*)[.-].*", versionStr).group(1)
     return minorVer
 
 def validateVersions(newVersion, schemaFile):
@@ -82,7 +82,7 @@ def validateVersions(newVersion, schemaFile):
         enumVersions.append(enumElm.get("value"))
 
     print ""
-    versionRegex = "[0-9]+\.[0-9]+\.[0-9]+"
+    versionRegex = "[0-9]+\.[0-9]+(\.[0-9]+|-(alpha|beta)\.[0-9]+)"
 
     if (newVersion and not re.match(".*SNAPSHOT", newVersionNum)):
         if (versionAttrVersion != newVersionNum):
@@ -97,12 +97,13 @@ def validateVersions(newVersion, schemaFile):
         minorVer = getMinorVersion(versionAttrVersion)
 
         for enumVer in enumVersions:
-            if (not enumVer.startswith(targetNamespaceVersion)):
-                raise ValueError("Major version of the enumeration version does not match the targetNamespace version", enumVer, targetNamespaceVersion)
-            minorVerOfEnum = getMinorVersion(enumVer)
+            if (not enumVer == "SNAPSHOT"):
+                if (not enumVer.startswith(targetNamespaceVersion)):
+                    raise ValueError("Major version of the enumeration version does not match the targetNamespace version", enumVer, targetNamespaceVersion)
+                minorVerOfEnum = getMinorVersion(enumVer)
 
-            if (minorVerOfEnum > minorVer):
-                raise ValueError("Minor version of enumeration version is higher than the minor version of the schema version. Should be less than or equal to the schema version", enumVer, versionAttrVersion)
+                if (minorVerOfEnum > minorVer):
+                    raise ValueError("Minor version of enumeration version is higher than the minor version of the schema version. Should be less than or equal to the schema version", enumVer, versionAttrVersion)
 
     # print enumVersions
 
