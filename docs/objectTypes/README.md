@@ -1,4 +1,5 @@
 # Object Types
+
 When describing what happened in an event there is usually an entity or entities involved in the event, e.g. a user deleting a document, sending an email, creating a virtual session, etc.. The majority of the schema actions support acting on one or more instances of the MultiObjectComplexType, this structure describes a choice of the following entity types:
 
 * [Association](./association.md)
@@ -15,6 +16,7 @@ When describing what happened in an event there is usually an entity or entities
 * [Object](./object.md)
 * [Resource](./resource.md)
 * [SearchResult](./searchResult.md)
+* [SearchResults](./searchResults.md)
 * [Shortcut](./shortcut.md)
 * [User](./user.md)
 * [Virtual Session](./virtualSession.md)
@@ -23,6 +25,7 @@ When describing what happened in an event there is usually an entity or entities
 Where the entity involved in the event cannot be described by one of the predefined categories in this structure then the `<Object>` structure can be used as a last resort.
 
 ## Common Structural Elements
+
 The following elements are common to all of the above object types;
 
 * **Type** - The type of the object in question and specific to the object type from the list above, e.g. a `<Resource>` object may have a type such as 'image' or 'script'

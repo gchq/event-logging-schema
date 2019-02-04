@@ -18,13 +18,17 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 ## [Unreleased]
 
+* Issue **#10** : Add `SearchResults` to `BaseMultiObjectComplexType` to allow for use cases like `View/SearchResults`. 
+
+* Issue **#10** : Add `Id`, `Name` and `Description` to `QueryComplexType` to allow the linking of query to results.
+
 * Issue **#39** : Add `TimeZoneName` element to `LocationComplexType` to improve the recording of time zone information.
 
 * Issue **#44** : Add `Approval` schema action.
 
 * Issue **#47** : Add `CachedInteractive`, `CachedRemoteInteractive`, `Proxy` and `Other` logon types to `AuthenticateLogonTypeSimpleType`.
 
-* Issue **40**: Add State, City and Town elements to provide more Location detail.
+* Issue **40**: Add `State`, `City` and `Town` elements to provide more Location detail.
 
 * Improve documentation
 
