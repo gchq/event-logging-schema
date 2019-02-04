@@ -109,7 +109,7 @@ task validateExampleXmlAgainstSchema() {
         if (!schemaFile.exists()) {
             throw new GradleException("Schema ${schemaFile} does not exist")
         }
-        println "Validating all XML files in [${EXAMPLE_XML_DIR}] against schema [${schemaFile}]"
+        println "Validating all .xml and .xml.md files in [${EXAMPLE_XML_DIR}] against schema [${schemaFile}]"
         fileTree(dir: project.file(EXAMPLE_XML_DIR))
             .include('**/*.xml')
             .include('**/*.xml.md')
