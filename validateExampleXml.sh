@@ -47,6 +47,18 @@ main() {
 
     # xmlint is available in libxml2-utils
 
+    xml_fenced_block_count=
+
+    # shellcheck disable=SC2016
+    xml_fenced_block_count=$(grep -c '^```\s*xml$' "${example_file}")
+
+    if [ "${xml_fenced_block_count}" -ne 1 ]; then
+      echo -e "\n${RED}ERROR${NC} - Expecting only one ${BLUE}'\`\`\` xml' fenced" \
+        "block in file ${BLUE}${example_file}${NC}, found" \
+        "${BLUE}${xml_fenced_block_count}${NC}"
+      exit 1
+    fi
+
     # 1st sed script deletes from first line upto the match (inc.)
     # 2nd sed script delete from match (inc.) to last line
     sed '1,/^```\s*xml$/d; /^```$/,$d' "${example_file}" |
