@@ -1,5 +1,12 @@
 # `<EventDetail>/<Search>`
 
+The following example illustrates a query against a database application.
+The action is that user `jc101` execute a query `select r.* from ROCK r where r.TYPE = 'r' and r.SIZE = 'large' and r.COLOUR = 'white'` which returned 2 results.
+The Interactive field is set to `false`, so it may be inferred that this was an automated operation of some kind.
+
+The results were two Objects. Both were of type `Rock`.
+The first with an id of `7811` and a name of `Surpisingly Heavy Chunk` and the second with an id of `11418` and a name of `Possible Gold Ore`.
+
 ``` xml
 <?xml version="1.0" encoding="UTF-8"?>
 <Events 
@@ -13,6 +20,7 @@ Version="3.4.0-SNAPSHOT">
     <EventTime>
       <TimeCreated>2017-01-02T03:04:05.678Z</TimeCreated>
     </EventTime>
+
     <EventSource>
       <System>
         <Name>Rock Sample Database</Name>
@@ -34,6 +42,7 @@ Version="3.4.0-SNAPSHOT">
       </User>
       <Interactive>true</Interactive>
     </EventSource>
+
     <EventDetail>
       <TypeId>findByConstraint</TypeId>
       <Description>User has queried database using specified constraints</Description>
@@ -59,5 +68,6 @@ Version="3.4.0-SNAPSHOT">
       </Search>
     </EventDetail>
   </Event>
+
 </Events>
 ```
