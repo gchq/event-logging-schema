@@ -1,5 +1,12 @@
+# `<EventDetail>/<Import>/<File>`
+
+``` xml
 <?xml version="1.0" encoding="UTF-8"?>
-<Events xmlns="event-logging:3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="event-logging:3 file://event-logging-v3.4.0-SNAPSHOT.xsd" Version="3.4.0-SNAPSHOT">
+<Events 
+  xmlns="event-logging:3" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:schemaLocation="event-logging:3 file://event-logging-v3.4.0-SNAPSHOT.xsd" 
+  Version="3.4.0-SNAPSHOT">
 
   <!-- Import File event 
 
@@ -70,3 +77,4 @@
     </EventDetail>
   </Event>
 </Events>
+```
