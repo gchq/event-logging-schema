@@ -67,7 +67,7 @@ main() {
         error_exit "This repository has already been tagged with [${BLUE}${version}${GREEN}].${NC}"
     fi
 
-    if ! grep -q "\"(event-logging-v)?SNAPSHOT\"" "${schema_file}"; then
+    if grep -q "\"(event-logging-v)?SNAPSHOT\"" "${schema_file}"; then
         error_exit "The Schema ${BLUE}${schema_file}${GREEN} contains ${BLUE}SNAPSHOT${GREEN} versions"
     fi
 
