@@ -52,7 +52,10 @@ SearchResults can be used within other schema actions.
         <View>
           <SearchResults>
             <Query>
-              <!-- Provides a link back to the Search event generated when the query was executed -->
+              <!-- 
+              Provides a link back to the Search event generated when the 
+              query was executed
+              -->
               <Id>query-538393</Id>
             </Query>
             <TotalResults>2</TotalResults>

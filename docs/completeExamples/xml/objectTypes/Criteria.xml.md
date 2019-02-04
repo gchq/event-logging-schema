@@ -51,9 +51,12 @@ Criteria can be used within other schema actions.
             <DataSource>geology-db</DataSource>
           </DataSources>
           <Query>
-            <!-- Provides a link back to the Search event generated when the query was executed -->
+            <!-- 
+            Provides a link back to the Search event generated when 
+            the query was executed 
+            -->
             <Id>query-538393</Id>
-              <!-- Tree of terms and operators to describe the query -->
+            <!-- Tree of terms and operators to describe the query -->
             <Advanced>
               <And>
                 <Term>

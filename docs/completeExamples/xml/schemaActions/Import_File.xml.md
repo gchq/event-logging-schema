@@ -4,7 +4,8 @@ The following example illustrates how removable media use could be represented w
 
 The action is that user `jc101` has read the file `E:/DCIM/Spacecam101/141516.jpg` from a removable USB drive onto the workstation `LUNA/LUNADESK35`.
 
-**N.B.** Although the user might not have actually read the object represented in the EventDetail, all read operations (including file system read/open operations and web page accesses, etc) are represented in the schema as View.  The nature of the event (type of View) can be indicated within `<EventDetail>/<TypeId>` as we have done in this example, and where possible a more human-readable explanation within `<EventDetail>/<Description>`.
+**N.B.** Although the user might not have actually read the object represented in the EventDetail, all read operations (including file system read/open operations and web page accesses, etc) are represented in the schema as View.  
+The nature of the event (type of View) can be indicated within `<EventDetail>/<TypeId>` as we have done in this example, and where possible a more human-readable explanation within `<EventDetail>/<Description>`.
 
 ``` xml
 <?xml version="1.0" encoding="UTF-8"?>

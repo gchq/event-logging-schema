@@ -75,13 +75,15 @@ The file was transferred successfully.
         <Source>
           <User>
             <Id>jc101</Id>
-              <!-- User belongs to the organisation generating the event so only an Id is required -->
+            <!-- User belongs to the organisation generating the event
+            so only an Id is required -->
           </User>
         </Source>
         <Destination>
           <User>
             <Id>C=GB, O=WeDoRocksCo, OU=Space, CN=Tom Thumb (UID=tthumb01)</Id>
-              <!-- User is external to the organisation generating the event so a rich UserDetails element is required-->
+            <!-- User is external to the organisation generating the event so 
+            a rich UserDetails element is required-->
             <UserDetails>
               <Id>tthumb011</Id>
               <Surname>Thumb</Surname>
