@@ -28,8 +28,9 @@ error_exit() {
 
 main() {
     # Git tags should match this regex to be a release tag
-    local -r release_version_regex='^v[0-9]+\.[0-9]+.*$'
+    local -r release_version_regex='^v[0-9]+\.[0-9]+(\.[0-9]+|-(alpha|beta)\.[0-9]+)$'
     local -r changelog_file="CHANGELOG.md"
+    local -r schema_file="event-logging.xsd"
 
     setup_echo_colours
     echo
@@ -38,7 +39,7 @@ main() {
     if [ $# -ne 1 ]; then
         echo -e "${RED}ERROR${GREEN}: Missing version argument${NC}"
         echo -e "${GREEN}Usage: ${BLUE}./tag_release.sh version${NC}"
-        echo -e "${GREEN}e.g:   ${BLUE}./tag_release.sh v6.0-beta.17${NC}"
+        echo -e "${GREEN}e.g:   ${BLUE}./tag_release.sh v3.4.1${NC}"
         echo
         echo -e "${GREEN}This script will extract the changes from the ${BLUE}CHANGELOG.md${GREEN} file for the passed${NC}"
         echo -e "${GREEN}version tag and create an annotated git commit with it. The tag commit will be pushed${NC}"
@@ -64,6 +65,10 @@ main() {
 
     if git tag | grep -q "^${version}$"; then
         error_exit "This repository has already been tagged with [${BLUE}${version}${GREEN}].${NC}"
+    fi
+
+    if ! grep -q "\"(event-logging-v)?SNAPSHOT\"" "${schema_file}"; then
+        error_exit "The Schema ${BLUE}${schema_file}${GREEN} contains ${BLUE}SNAPSHOT${GREEN} versions"
     fi
 
     if ! grep -q "^\s*##\s*\[${version}\]" "${changelog_file}"; then
