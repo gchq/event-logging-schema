@@ -1,5 +1,13 @@
 # `<SearchResults>`
 
+User is viewing a set of search results independently of the search event that generated them.
+The Query/Id element can be used to link the two events together.
+
+This object type can be used when the results of the query are not know at the time the search is executed and the Search event is created.
+
+A View event is used here simply to illustrate the use of SearchResults.
+SearchResults can be used within other schema actions.
+
 ``` xml
 <?xml version="1.0" encoding="UTF-8"?>
 <Events
@@ -8,24 +16,14 @@
   xsi:schemaLocation="event-logging:3 file://event-logging-v3.4.0-SNAPSHOT.xsd"
   Version="3.4.0-SNAPSHOT">
 
-  <!-- View/SearchResults event 
-
-    User is viewing a set of search results independently of the search event 
-    that generated them. The Query/Id element can be used to link the two 
-    events together.
-
-    This object type can be used when the results of the query are not know 
-    at the time the search is executed and the Search event is created.
-
-    A View event is used here simply to illustrate the use of SearchResults.
-    SearchResults can be used within other schema actions.
-  
-  -->
+  <!-- View/SearchResults event -->
 
   <Event>
+
     <EventTime>
       <TimeCreated>2017-01-02T03:04:05.678Z</TimeCreated>
     </EventTime>
+
     <EventSource>
       <System>
         <Name>Rock Sample Database</Name>
@@ -47,6 +45,7 @@
       </User>
       <Interactive>true</Interactive>
     </EventSource>
+
     <EventDetail>
       <TypeId>viewSearchResults</TypeId>
       <Description>User is viewing a set of stored search results</Description>
@@ -72,7 +71,9 @@
           </SearchResults>
         </View>
     </EventDetail>
+
   </Event>
+
 </Events>
 
 ```
