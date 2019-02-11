@@ -114,7 +114,7 @@ public class TestSchemaGenerator {
 
         // make sure the regex is correct in the generated file
         assertThat(getFileText(generatedFiles.get(1)))
-                .contains("[0-9]{91,99}[A-Z]{3}");
+                .contains("[0-9]{91,99}[A-Z]{3}$");
     }
 
     private void assertGeneratedFilenames(final List<Path> generatedFiles, final String... expectedFileNames) {

@@ -19,7 +19,7 @@
 		<xs:simpleType name="MyNewRegexSimpleType">
 			<xs:restriction base="xs:string">
 				<!-- xslt will ignore curly braces in attributes so have to do '{{' to produce '{' -->
-				<xs:pattern value="[0-9]{{1,3}}[A-Z]{{3}}" />
+				<xs:pattern value="[0-9]{{1,3}}[A-Z]{{3}}$" />
 			</xs:restriction>
 		</xs:simpleType>
 
