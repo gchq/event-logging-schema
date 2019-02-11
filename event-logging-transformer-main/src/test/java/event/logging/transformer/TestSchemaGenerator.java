@@ -33,9 +33,11 @@ public class TestSchemaGenerator {
 
     private static final String TEST_01 = "test-01";
     private static final String TEST_02 = "test-02";
+    private static final String TEST_03 = "test-03";
     private static final List<String> TEST_CASE_NAMES = Arrays.asList(
             TEST_01,
-            TEST_02
+            TEST_02,
+            TEST_03
     );
 
     @Rule
@@ -97,6 +99,22 @@ public class TestSchemaGenerator {
 
         assertThat(generatedFiles.get(0).getFileName().toString())
                 .matches("event-logging-v([0-9]|SNAPSHOT).xsd");
+    }
+
+    @Test
+    public void test03_addRegexSimpleType() throws IOException {
+
+        exit.expectSystemExitWithStatus(0);
+        List<Path> generatedFiles = runTest(TEST_03);
+
+        assertThat(generatedFiles).hasSize(1);
+
+        assertThat(generatedFiles.get(0).getFileName().toString())
+                .matches("event-logging-v([0-9]|SNAPSHOT).xsd");
+
+        // make sure the regex is correct in the generated file
+        assertThat(getFileText(generatedFiles.get(1)))
+                .contains("[0-9]{91,99}[A-Z]{3}");
     }
 
     private void assertGeneratedFilenames(final List<Path> generatedFiles, final String... expectedFileNames) {
