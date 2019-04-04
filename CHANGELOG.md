@@ -19,6 +19,13 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 ## [Unreleased]
 
 
+## [v3.4.0] - 2019-04-04
+
+* No changes to the schema.
+
+* Add additional junit test for regex escaping.
+
+
 ## [v3.4-beta.1] - 2019-02-04
 
 * Move complete examples into individual files that are validated as part of the build.
@@ -164,7 +171,8 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 * Initial open source release
 
-[Unreleased]: https://github.com/gchq/event-logging-schema/compare/v3.4-beta.1...HEAD
+[Unreleased]: https://github.com/gchq/event-logging-schema/compare/v3.4.0...HEAD
+[v3.4.0]: https://github.com/gchq/event-logging-schema/compare/v3.4-beta.1...v3.4.0
 [v3.4-beta.1]: https://github.com/gchq/event-logging-schema/compare/v3.3.0...v3.4-beta.1
 [v3.3.1]: https://github.com/gchq/event-logging-schema/compare/v3.3.0...v3.3.1
 [v3.3.0]: https://github.com/gchq/event-logging-schema/compare/v3.2.4...v3.3.0
