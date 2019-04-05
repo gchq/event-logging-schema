@@ -113,10 +113,10 @@ When you are ready to release a new version of the schema ensure you have done t
     The change can be achieved with some global search replace, e.g.:
 
     ```bash
-    find docs/completeExamples/ \(-name "*.xml.md" -o -name "*.xml" \) \
+    find docs/completeExamples/ \( -name "*.xml.md" -o -name "*.xml" \) \
       | xargs sed -i'' 's#file://event-logging-v3.4.0.xsd#file://event-logging-v3.4.1.xsd#'
 
-    find docs/completeExamples/ \(-name "*.xml.md" -o -name "*.xml" \) \
+    find docs/completeExamples/ \( -name "*.xml.md" -o -name "*.xml" \) \
       | xargs sed -i'' 's#Version="3.4.0"#Version="3.4.1"#'
     ```
 1. Run the build to ensure the versions are all valid and the example XML is all valid against the schema.

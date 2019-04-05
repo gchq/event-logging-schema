@@ -19,6 +19,11 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 ## [Unreleased]
 
 
+## [v3.4.1] - 2019-04-05
+
+* Change all `Base....` complex types to be `abstract="true"`
+
+
 ## [v3.4.0] - 2019-04-05
 
 * No changes to the schema.
@@ -171,7 +176,8 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 * Initial open source release
 
-[Unreleased]: https://github.com/gchq/event-logging-schema/compare/v3.4.0...HEAD
+[Unreleased]: https://github.com/gchq/event-logging-schema/compare/v3.4.1...HEAD
+[v3.4.1]: https://github.com/gchq/event-logging-schema/compare/v3.4.0...v3.4.1
 [v3.4.0]: https://github.com/gchq/event-logging-schema/compare/v3.4-beta.1...v3.4.0
 [v3.4-beta.1]: https://github.com/gchq/event-logging-schema/compare/v3.3.0...v3.4-beta.1
 [v3.3.1]: https://github.com/gchq/event-logging-schema/compare/v3.3.0...v3.3.1

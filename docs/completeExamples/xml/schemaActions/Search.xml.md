@@ -12,8 +12,8 @@ The first with an id of `7811` and a name of `Surpisingly Heavy Chunk` and the s
 <Events 
   xmlns="event-logging:3"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="event-logging:3 file://event-logging-v3.4.0.xsd"
-  Version="3.4.0">
+  xsi:schemaLocation="event-logging:3 file://event-logging-v3.4.1.xsd"
+  Version="3.4.1">
 
   <!-- Search event -->
   <Event>

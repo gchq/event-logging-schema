@@ -20,8 +20,8 @@
     targetNamespace="event-logging:3"
     elementFormDefault="qualified"
     attributeFormDefault="unqualified"
-    version="3.4.0"
-    id="event-logging-v3.4.0">
+    version="3.4.1"
+    id="event-logging-v3.4.1">
     <xs:annotation>
         <xs:documentation>This schema describes the allowed element structure for event logging. Please refer to the documentation and examples for a description of how to use this schema in addition to the descriptions given for each element within this schema.</xs:documentation>
     </xs:annotation>
@@ -1485,8 +1485,8 @@
             </xs:extension>
         </xs:complexContent>
     </xs:complexType>
-    <xs:complexType name="BaseAdvancedQueryItemComplexType"/>
-    <xs:complexType name="BaseAdvancedQueryOperatorComplexType">
+    <xs:complexType name="BaseAdvancedQueryItemComplexType" abstract="true"/>
+    <xs:complexType name="BaseAdvancedQueryOperatorComplexType" abstract="true">
         <xs:complexContent>
             <xs:extension base="evt:BaseAdvancedQueryItemComplexType">
                 <xs:group ref="evt:AdvancedQueryOperatorGroup"
@@ -1495,7 +1495,7 @@
             </xs:extension>
         </xs:complexContent>
     </xs:complexType>
-    <xs:complexType name="BaseAntiMalwareComplexType">
+    <xs:complexType name="BaseAntiMalwareComplexType" abstract="true">
         <xs:sequence minOccurs="1" maxOccurs="1">
             <xs:element name="Product"
                 type="evt:SoftwareComplexType"
@@ -1529,7 +1529,7 @@
             </xs:element>
         </xs:sequence>
     </xs:complexType>
-    <xs:complexType name="BaseChatComplexType">
+    <xs:complexType name="BaseChatComplexType" abstract="true">
         <xs:complexContent>
             <xs:extension base="evt:BaseObjectComplexType">
                 <xs:sequence minOccurs="1" maxOccurs="1">
@@ -1556,7 +1556,7 @@
             </xs:extension>
         </xs:complexContent>
     </xs:complexType>
-    <xs:complexType name="BaseFileComplexType">
+    <xs:complexType name="BaseFileComplexType" abstract="true">
         <xs:complexContent>
             <xs:extension base="evt:BaseObjectComplexType">
                 <xs:sequence minOccurs="1" maxOccurs="1">
@@ -1629,7 +1629,7 @@
             </xs:extension>
         </xs:complexContent>
     </xs:complexType>
-    <xs:complexType name="BaseMultiObjectComplexType">
+    <xs:complexType name="BaseMultiObjectComplexType" abstract="true">
         <xs:choice minOccurs="1" maxOccurs="unbounded">
             <xs:element name="Association"
                 type="evt:AssociationComplexType"
@@ -1709,7 +1709,7 @@
                 maxOccurs="1"/>
         </xs:choice>
     </xs:complexType>
-    <xs:complexType name="BaseNetworkComplexType">
+    <xs:complexType name="BaseNetworkComplexType" abstract="true">
         <xs:sequence minOccurs="1" maxOccurs="1">
             <xs:element name="Source"
                 type="evt:NetworkSrcDstComplexType"
@@ -1747,10 +1747,10 @@
             </xs:element>
         </xs:sequence>
     </xs:complexType>
-    <xs:complexType name="BaseObjectComplexType">
+    <xs:complexType name="BaseObjectComplexType" abstract="true">
         <xs:group ref="evt:BaseObjectGroup" minOccurs="1" maxOccurs="1"/>
     </xs:complexType>
-    <xs:complexType name="BaseOutcomeComplexType">
+    <xs:complexType name="BaseOutcomeComplexType" abstract="true">
         <xs:annotation>
             <xs:documentation>Describes the outcome of an event whether it is successful and whether it was permitted.</xs:documentation>
         </xs:annotation>
@@ -3636,7 +3636,7 @@
             <xs:documentation>Type for specifying the version numbers of XML documents that are supported by this version of the XMLSchema.</xs:documentation>
         </xs:annotation>
         <xs:restriction base="xs:string">
-            <xs:enumeration value="3.4.0"/>
+            <xs:enumeration value="3.4.1"/>
         </xs:restriction>
     </xs:simpleType>
     <xs:simpleType name="VirtualSessionSessionStateSimpleType">

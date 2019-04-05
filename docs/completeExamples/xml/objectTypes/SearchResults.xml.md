@@ -13,8 +13,8 @@ SearchResults can be used within other schema actions.
 <Events
   xmlns="event-logging:3"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="event-logging:3 file://event-logging-v3.4.0.xsd"
-  Version="3.4.0">
+  xsi:schemaLocation="event-logging:3 file://event-logging-v3.4.1.xsd"
+  Version="3.4.1">
 
   <!-- View/SearchResults event -->
 
