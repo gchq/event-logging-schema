@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 # Script to validate an example xml file against a schema
 # If the file ends with .xml.md then we assume the XML is inside
 # a single fenced block in the markdown file, like so
@@ -19,7 +21,8 @@
 # including the code fences to leave pure XML to validate
 #
 # The script handles either .xml.md files as described above or plain
-# .xml files.
+# .xml files. In both cases, the xml must be fully formed and not a fragment
+# else it will not be valid against the schema.
 
 # shellcheck disable=SC2034
 {
