@@ -58,7 +58,7 @@ To test a build with a release version applied:
 When you are ready to release a new version of the schema ensure you have done the following: 
 
 1. Ensure the CHANGELOG.md file has details of all changes since the last released version under a heading for the version that is about to be released. 
-Also add the appropriate github compare url link to the bottom of the file. e.g. 
+    Also add the appropriate github compare url link to the bottom of the file. e.g. 
 
     ```
     ## [Unreleased]
@@ -96,12 +96,38 @@ Also add the appropriate github compare url link to the bottom of the file. e.g.
 
     * `schema/@id`, e.g. `event-logging-v3.2.3` -> `event-logging-v4.0.0`
 
-1. Then run the following command to trigger a build and release in Travis.
+1. Update the version information in all the example xml in `docs/completeExamples/**/*.{xml.md,xml}`.
 
-    `git tag -a vX.Y.Z`
+    Each example xml document will have contain information about the version of the schema that it has been written against.
+    E.g.:
 
-    When prompted to enter the commit message set the first line to `event-logging-vX.Y.Z` and lines 3+ to be the changes made, as extracted from the CHANGELOG.md file. 
-    Once the tag is picked up by Travis, the build will be run and the variants will be released to GitHub.
+    ```xml
+    <Events
+      xmlns="event-logging:3"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="event-logging:3 file://event-logging-v3.4.0.xsd"
+      Version="3.4.0">
+    ```
+
+    The `xmlns`, `xsi:schemaLocation`, and `Version` attributes need to be changed to reflect the new schema version.
+    The change can be achieved with some global search replace, e.g.:
+
+    ```bash
+    find docs/completeExamples/ \(-name "*.xml.md" -o -name "*.xml" \) \
+      | xargs sed -i'' 's#file://event-logging-v3.4.0.xsd#file://event-logging-v3.4.1.xsd#'
+
+    find docs/completeExamples/ \(-name "*.xml.md" -o -name "*.xml" \) \
+      | xargs sed -i'' 's#Version="3.4.0"#Version="3.4.1"#'
+    ```
+1. Run the build to ensure the versions are all valid and the example XML is all valid against the schema.
+
+    `./gradlew clean build`
+
+1. Commit any changes.
+
+1. Then run the following script to tag Git with an appropriate commit message and thus trigger a Travis release build which will, if successful, release the schema to [GitHub releases](https://github.com/gchq/event-logging-schema/releases).
+
+    `./tag_release.sh`
 
 1. Once the release has been tagged and built Update the versions in the schema to be something like `X.Y.0-SNAPSHOT` where X.Y.0 is the next minor version number. 
-This makes it clear that the version in source control is not a release version.
+    This makes it clear that the version in source control is not a release version.
