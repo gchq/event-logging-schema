@@ -19,7 +19,7 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 ## [Unreleased]
 
 
-## [v3.4.0] - 2019-04-04
+## [v3.4.0] - 2019-04-05
 
 * No changes to the schema.
 
