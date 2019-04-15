@@ -729,39 +729,39 @@
                                                 <xs:complexType>
                                                     <xs:choice minOccurs="1" maxOccurs="1">
                                                         <xs:element name="Bind"
-                                                            type="evt:NetworkComplexType"
+                                                            type="evt:NetworkOutcomeComplexType"
                                                             minOccurs="1"
                                                             maxOccurs="1"/>
                                                         <xs:element name="Connect"
-                                                            type="evt:NetworkComplexType"
+                                                            type="evt:NetworkOutcomeComplexType"
                                                             minOccurs="1"
                                                             maxOccurs="1"/>
                                                         <xs:element name="Open"
-                                                            type="evt:NetworkComplexType"
+                                                            type="evt:NetworkOutcomeComplexType"
                                                             minOccurs="1"
                                                             maxOccurs="1"/>
                                                         <xs:element name="Close"
-                                                            type="evt:NetworkComplexType"
+                                                            type="evt:NetworkOutcomeComplexType"
                                                             minOccurs="1"
                                                             maxOccurs="1"/>
                                                         <xs:element name="Send"
-                                                            type="evt:NetworkComplexType"
+                                                            type="evt:NetworkOutcomeComplexType"
                                                             minOccurs="1"
                                                             maxOccurs="1"/>
                                                         <xs:element name="Receive"
-                                                            type="evt:NetworkComplexType"
+                                                            type="evt:NetworkOutcomeComplexType"
                                                             minOccurs="1"
                                                             maxOccurs="1"/>
                                                         <xs:element name="Listen"
-                                                            type="evt:NetworkComplexType"
+                                                            type="evt:NetworkOutcomeComplexType"
                                                             minOccurs="1"
                                                             maxOccurs="1"/>
                                                         <xs:element name="Permit"
-                                                            type="evt:NetworkComplexType"
+                                                            type="evt:NetworkOutcomeComplexType"
                                                             minOccurs="1"
                                                             maxOccurs="1"/>
                                                         <xs:element name="Deny"
-                                                            type="evt:NetworkComplexType"
+                                                            type="evt:NetworkOutcomeComplexType"
                                                             minOccurs="1"
                                                             maxOccurs="1"/>
                                                     </xs:choice>
@@ -909,7 +909,7 @@
                                                             minOccurs="0"
                                                             maxOccurs="1"/>
                                                         <xs:element name="Network"
-                                                            type="evt:BaseNetworkComplexType"
+                                                            type="evt:NetworkComplexType"
                                                             minOccurs="0"
                                                             maxOccurs="1"/>
                                                         <xs:element name="Change" minOccurs="0" maxOccurs="1">
@@ -2479,6 +2479,11 @@
         </xs:complexContent>
     </xs:complexType>
     <xs:complexType name="NetworkComplexType">
+        <xs:complexContent>
+            <xs:extension base="evt:BaseNetworkComplexType"/>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="NetworkOutcomeComplexType">
         <xs:complexContent>
             <xs:extension base="evt:BaseNetworkComplexType">
                 <xs:sequence minOccurs="1" maxOccurs="1">
