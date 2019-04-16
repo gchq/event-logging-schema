@@ -85,7 +85,7 @@ task diffAgainstLatest(type: Exec) {
 
 // Find the non-client generated schema file for use in xml validation
 def getSchemaFileForValidation = {  
-    def pattern = ~/.*event-logging-v([0-9]+|SNAPSHOT)\.xsd/
+    def pattern = ~/.*event-logging-v999-documentation\.xsd/
     def schemas = []
     def dir = project.file(generatedDir)
     dir.eachFileMatch(pattern) { file ->
