@@ -18,6 +18,9 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 ## [Unreleased]
 
+
+## [v3.4.2] - 2019-04-16
+
 * Issue **#54** : Rename NetworkComplexType to NetworkOutcomeComplexType. Add new NetworkComplexType that just extends BaseNetworkComplexType.
 
 * Add example XML for Network/Close and Alert/Network.
@@ -180,7 +183,8 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 * Initial open source release
 
-[Unreleased]: https://github.com/gchq/event-logging-schema/compare/v3.4.1...HEAD
+[Unreleased]: https://github.com/gchq/event-logging-schema/compare/v3.4.2...HEAD
+[v3.4.2]: https://github.com/gchq/event-logging-schema/compare/v3.4.1...v3.4.2
 [v3.4.1]: https://github.com/gchq/event-logging-schema/compare/v3.4.0...v3.4.1
 [v3.4.0]: https://github.com/gchq/event-logging-schema/compare/v3.4-beta.1...v3.4.0
 [v3.4-beta.1]: https://github.com/gchq/event-logging-schema/compare/v3.3.0...v3.4-beta.1

@@ -32,6 +32,11 @@ The client version also adds `<Event>` as a root element to allow the sending of
 
 See [here](https://gchq.github.io/event-logging-schema/) for the full documentation on the schema.
 
+The documentation includes a number of complete example XML documents.
+These xml documents are validated as part of the build process to ensure the examples are valid against the latest schema and to highlight examples that are no longer valid when the schema is changed.
+This validation is done against a variant of the schema that is specific for validating the example XML.
+This schema should be identical to the generated full schema except that it has a static version number so the example XML documents don't have to change with each release.
+
 ## Building the schema
 
 The master version of the schema is located in the root of this repository (`event-logging.xsd`). 
@@ -96,29 +101,6 @@ When you are ready to release a new version of the schema ensure you have done t
 
     * `schema/@id`, e.g. `event-logging-v3.2.3` -> `event-logging-v4.0.0`
 
-1. Update the version information in all the example xml in `docs/completeExamples/**/*.{xml.md,xml}`.
-
-    Each example xml document will have contain information about the version of the schema that it has been written against.
-    E.g.:
-
-    ```xml
-    <Events
-      xmlns="event-logging:3"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="event-logging:3 file://event-logging-v3.4.0.xsd"
-      Version="3.4.0">
-    ```
-
-    The `xmlns`, `xsi:schemaLocation`, and `Version` attributes need to be changed to reflect the new schema version.
-    The change can be achieved with some global search replace, e.g.:
-
-    ```bash
-    find docs/completeExamples/ \( -name "*.xml.md" -o -name "*.xml" \) \
-      | xargs sed -i'' 's#file://event-logging-v3.4.0.xsd#file://event-logging-v3.4.1.xsd#'
-
-    find docs/completeExamples/ \( -name "*.xml.md" -o -name "*.xml" \) \
-      | xargs sed -i'' 's#Version="3.4.0"#Version="3.4.1"#'
-    ```
 1. Run the build to ensure the versions are all valid and the example XML is all valid against the schema.
 
     `./gradlew clean build`
