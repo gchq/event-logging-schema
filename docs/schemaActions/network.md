@@ -26,7 +26,7 @@ For each event, details about the source and destination device may be recorded.
           <Port>53</Port>
         </Device>
         <Application>Outlook</Application>
-        <TransportProtocol>TCP/IP</TransportProtocol>
+        <TransportProtocol>TCP</TransportProtocol>
         <ApplicationProtocol>IMAP</ApplicationProtocol>
         <Port>80</Port>
       </Destination>
