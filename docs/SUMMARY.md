@@ -67,11 +67,15 @@
 * [Meta Element](./meta.md)
 * [Illustrative Example Events](./completeExamples/README.md)
     * Schema Actions
+        * Alert
+            * [Alert/Network XML](./completeExamples/xml/schemaActions/Alert_Network.xml.md)
         * Anti Malware
             * [AntiMalware XML](./completeExamples/xml/schemaActions/AntiMalware.xml.md)
         * Import
             * [Import/File XML](./completeExamples/xml/schemaActions/Import_File.xml.md)
             * [Import/Object XML](./completeExamples/xml/schemaActions/Import_Object.xml.md)
+        * Network
+            * [Network/Close XML](./completeExamples/xml/schemaActions/Network_Close.xml.md)
         * Print
             * [Print XML](./completeExamples/xml/schemaActions/Print.xml.md)
         * [Process](./completeExamples/process.md)

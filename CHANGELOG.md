@@ -18,6 +18,10 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 ## [Unreleased]
 
+* Issue **#54** : Rename NetworkComplexType to NetworkOutcomeComplexType. Add new NetworkComplexType that just extends BaseNetworkComplexType.
+
+* Add example XML for Network/Close and Alert/Network.
+
 
 ## [v3.4.1] - 2019-04-05
 

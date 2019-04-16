@@ -24,10 +24,14 @@ The following is an example of an alert from a network device performing packet 
     <Type>Network</Type>
     <Network>
       <Source>
-        <IPAddress>192.168.0.4</IPAddress>
+        <Device>
+          <IPAddress>192.168.0.4</IPAddress>
+        </Device>
       </Source>
       <Destination>
-        <IPAddress>192.168.7.5</IPAddress>
+        <Device>
+          <IPAddress>192.168.7.5</IPAddress>
+        </Device>
       </Destination>
     </Network>
   </Alert>

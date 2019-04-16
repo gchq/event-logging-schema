@@ -64,6 +64,7 @@ main() {
 
     # 1st sed script deletes from first line upto the match (inc.)
     # 2nd sed script delete from match (inc.) to last line
+    # pipe the left over xml to xmllint to validate
     sed '1,/^```\s*xml$/d; /^```$/,$d' "${example_file}" |
       xmllint --noout --nowarning --schema "${schema_file}" -
 

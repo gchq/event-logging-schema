@@ -28,18 +28,22 @@ For example, an event that describes the sending of an email from a company empl
 The following are links to annotated example `<Events>` XML documents that are valid against the Event Logging Schema.
 
 * **Schema Actions** (within `<EventDetail>`)
+  * **`<Alert>`**
+    * [`<Alert>/<Network>` XML](./xml/schemaActions/Alert_Network.xml.md)
   * **`<AntiMalware>`** _[DEPRECATED]_
     * [`<AntiMalware>` XML](./xml/schemaActions/AntiMalware.xml.md)
   * **`<Import>`**
     * [`<Import>/<File>` XML](./xml/schemaActions/Import_File.xml.md)
     * [`<Import>/<Object>` XML](./xml/schemaActions/Import_Object.xml.md)
+  * **`<Network>`**
+    * [`<Network>/<Close>` XML](./xml/schemaActions/Network_Close.xml.md)
+  * **`<Print>`**
+    * [`<Print>` XML](./xml/schemaActions/Print.xml.md)
   * **`<Search>`**
     * [`<Search>` XML](./xml/schemaActions/Search.xml.md)
   * **`<Send>`**
     * [`<Send>/<Document>` XML](./xml/schemaActions/Send_Document.xml.md)
     * [`<Send>/<File>` XML](./xml/schemaActions/Send_File.xml.md)
-  * **`<Print>`**
-    * [`<Print>` XML](./xml/schemaActions/Print.xml.md)
 * **Object Types**
   * [`<SearchResults> XML`](./xml/objectTypes/SearchResults.xml.md)
   * [`<Criteria> XML`](./xml/objectTypes/Criteria.xml.md)
