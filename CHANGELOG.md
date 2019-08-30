@@ -18,6 +18,12 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 ## [Unreleased]
 
+* Issue **57** : Refactor the schema to improve the xjc generated java code. Remove deprecated elements.
+
+    * Extract new complex type `AuthenticateComplexType` from `Authenticate` element.
+
+    * Extract new complex type `AuthoriseComplexType` from `Authorise` element.
+
 
 ## [v3.4.2] - 2019-04-16
 
