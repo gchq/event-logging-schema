@@ -30,6 +30,35 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
     * Remove complex type `CopyMoveComplexType`.
 
+    * Extract new complex type `CreateComplexType` from `Create` element.
+
+    * Extract new complex type `ViewComplexType` from `View` element.
+
+    * Extract new complex type `DeleteComplexType` from `Delete` element.
+
+    * Extract new complex type `ProcessComplexType` from `Process` element.
+
+    * Extract new complex type `PrintComplexType` from `Print` element.
+
+    * Extract `InstallationGroup` from `InstallComplexType`.
+
+    * Refactor `InstallComplexType` to use `InstallationGroup`.
+
+    * Extract `UninstallComplexType` from `Uninstall` element.
+
+    * Extract new complex type `NetworkEventActionComplexType` from `Network` element.
+
+    * Remove `AntiMalware` element.
+
+    * Extract new complex type `AlertComplexType` from `Alert` element.
+
+    * Extract `SendReceiveGroup` from `SendReceiveComplexType`.
+
+    * Extract `SendComplexType` from `Send` element.
+
+    * Extract `ReceiveComplexType` from `Receive` element.
+
+
 
 ## [v3.4.2] - 2019-04-16
 
