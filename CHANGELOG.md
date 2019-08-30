@@ -24,6 +24,12 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
     * Extract new complex type `AuthoriseComplexType` from `Authorise` element.
 
+    * Extract new complex type `CopyComplexType` from `CopyMoveComplexType`.
+
+    * Extract new complex type `MoveComplexType` from `CopyMoveComplexType`.
+
+    * Remove complex type `CopyMoveComplexType`.
+
 
 ## [v3.4.2] - 2019-04-16
 

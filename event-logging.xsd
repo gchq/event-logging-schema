@@ -214,12 +214,12 @@
                           <xs:documentation>Any events related to searching for data should use this element.</xs:documentation>
                         </xs:annotation>
                       </xs:element>
-                      <xs:element name="Copy" type="evt:CopyMoveComplexType" minOccurs="1" maxOccurs="1">
+                      <xs:element name="Copy" type="evt:CopyComplexType" minOccurs="1" maxOccurs="1">
                         <xs:annotation>
                           <xs:documentation>All events related to copying data should use this element.</xs:documentation>
                         </xs:annotation>
                       </xs:element>
-                      <xs:element name="Move" type="evt:CopyMoveComplexType" minOccurs="1" maxOccurs="1">
+                      <xs:element name="Move" type="evt:MoveComplexType" minOccurs="1" maxOccurs="1">
                         <xs:annotation>
                           <xs:documentation>All events related to moving data should use this element.</xs:documentation>
                         </xs:annotation>
@@ -1327,9 +1327,36 @@
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-  <xs:complexType name="CopyMoveComplexType">
+  <xs:complexType name="CopyComplexType">
     <xs:annotation>
-      <xs:documentation>Captures data relevant to both copy and move data events.</xs:documentation>
+      <xs:documentation>Captures data relevant to copy events.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence minOccurs="1" maxOccurs="1">
+      <xs:element name="Source" type="evt:MultiObjectComplexType" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>The source of the data being copied, moved imported or exported.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Destination" type="evt:MultiObjectComplexType" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>The destination for the data being copied, moved imported or exported.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Outcome" type="evt:CopyMoveOutcomeComplexType" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Used to determine if the action was successful. If omitted it is assumed that the event was successful and was permitted.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Data" type="evt:DataComplexType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Any other event data that does not fit into a schema element but may be useful for the purpose of audit.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="MoveComplexType">
+    <xs:annotation>
+      <xs:documentation>Captures data relevant to move events.</xs:documentation>
     </xs:annotation>
     <xs:sequence minOccurs="1" maxOccurs="1">
       <xs:element name="Source" type="evt:MultiObjectComplexType" minOccurs="1" maxOccurs="1">
