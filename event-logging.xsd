@@ -204,7 +204,7 @@
                           <xs:documentation>Used to record authentication events such as logon and logoff. All authentication events that originate from a client device should record details of the client device in the event source.</xs:documentation>
                         </xs:annotation>
                       </xs:element>
-                      <xs:element name="Authorise" minOccurs="1" maxOccurs="1" type="evt:AuthoriseGlobalType">
+                      <xs:element name="Authorise" minOccurs="1" maxOccurs="1" type="evt:AuthoriseComplexType">
                         <xs:annotation>
                           <xs:documentation>All events related to account management such as adding and removing user and system accounts.</xs:documentation>
                         </xs:annotation>
@@ -411,19 +411,10 @@
           </xs:sequence>
         </xs:complexType>
       </xs:element>
-      <xs:element name="Tags" minOccurs="0" maxOccurs="1">
+      <xs:element name="Tags" minOccurs="0" maxOccurs="1" type="evt:MetaDataTagsComplexType">
         <xs:annotation>
           <xs:documentation>Metadata tags that can be used for additional object tagging or categorisation. Object tagging allows for the labelling (or filtering) of objects using words that label, categorise or group similar items, using a taxonomy defined outside this schema. For example, an email could be tagged with tags like 'internal', 'spam', 'external', 'rich-content', etc.</xs:documentation>
         </xs:annotation>
-        <xs:complexType>
-          <xs:sequence minOccurs="1" maxOccurs="1">
-            <xs:element name="Tag" type="evt:TagSimpleType" minOccurs="1" maxOccurs="unbounded">
-              <xs:annotation>
-                <xs:documentation>A categorisation tag or label</xs:documentation>
-              </xs:annotation>
-            </xs:element>
-          </xs:sequence>
-        </xs:complexType>
       </xs:element>
     </xs:sequence>
   </xs:group>
@@ -898,7 +889,7 @@
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-  <xs:complexType name="AuthoriseGlobalType">
+  <xs:complexType name="AuthoriseComplexType">
     <xs:sequence minOccurs="1" maxOccurs="1">
       <xs:group ref="evt:MultiObjectGroup" minOccurs="1" maxOccurs="unbounded"/>
       <xs:element name="Action" type="evt:AuthorisationSimpleType" minOccurs="0" maxOccurs="1"/>
