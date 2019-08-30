@@ -48,7 +48,7 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
     * Extract new complex type `NetworkEventActionComplexType` from `Network` element.
 
-    * Remove `AntiMalware` element.
+    * Remove deprecated `AntiMalware` element.
 
     * Extract new complex type `AlertComplexType` from `Alert` element.
 
@@ -71,6 +71,8 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
     * Rename `NetworkSrcDstComplexType` to `NetworkLocationComplexType`.
 
     * Rename `NetworkSrcDstTransportProtocolSimpleType` to `NetworkProtocolSimpleType`.
+
+    * Remove deprecated `SearchResult` and `SearchResultComplexType`.
 
 
 
