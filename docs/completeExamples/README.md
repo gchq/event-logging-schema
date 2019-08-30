@@ -30,8 +30,6 @@ The following are links to annotated example `<Events>` XML documents that are v
 * **Schema Actions** (within `<EventDetail>`)
   * **`<Alert>`**
     * [`<Alert>/<Network>` XML](./xml/schemaActions/Alert_Network.xml.md)
-  * **`<AntiMalware>`** _[DEPRECATED]_
-    * [`<AntiMalware>` XML](./xml/schemaActions/AntiMalware.xml.md)
   * **`<Import>`**
     * [`<Import>/<File>` XML](./xml/schemaActions/Import_File.xml.md)
     * [`<Import>/<Object>` XML](./xml/schemaActions/Import_Object.xml.md)
