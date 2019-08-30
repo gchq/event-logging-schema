@@ -510,7 +510,6 @@
       <xs:element name="Resource" type="evt:ResourceComplexType" minOccurs="1" maxOccurs="1"/>
     </xs:choice>
   </xs:group>
-  <!-- added -->
   <xs:group name="InstallationGroup">
     <xs:sequence>
       <xs:choice minOccurs="1" maxOccurs="1">
@@ -534,9 +533,6 @@
       <xs:element name="Data" type="evt:DataComplexType" minOccurs="0" maxOccurs="unbounded"/>
     </xs:sequence>
   </xs:group>
-
-
-  <!-- added -->
   <xs:group name="SendReceiveGroup">
     <xs:sequence>
       <xs:element name="Source" minOccurs="1" maxOccurs="1">
@@ -610,42 +606,57 @@
       </xs:element>
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="AntiMalwareComplexType">
-    <xs:complexContent>
-      <xs:extension base="evt:BaseAntiMalwareComplexType"/>
-    </xs:complexContent>
-  </xs:complexType>
   <xs:complexType name="AntiMalwareThreatComplexType">
-    <xs:complexContent>
-      <xs:extension base="evt:BaseAntiMalwareComplexType">
-        <xs:sequence minOccurs="1" maxOccurs="1">
-          <xs:element name="Threat" minOccurs="0" maxOccurs="1">
-            <xs:annotation>
-              <xs:documentation>Describes the threat if one has been found.</xs:documentation>
-            </xs:annotation>
-            <xs:complexType>
-              <xs:sequence minOccurs="1" maxOccurs="1">
-                <xs:element name="Category" type="evt:ThreatCategorySimpleType" minOccurs="1" maxOccurs="1">
-                  <xs:annotation>
-                    <xs:documentation>The category of the threat, e.g. Worm, Virus, etc.</xs:documentation>
-                  </xs:annotation>
-                </xs:element>
-                <xs:element name="Name" type="xs:string" minOccurs="1" maxOccurs="1">
-                  <xs:annotation>
-                    <xs:documentation>The name of the threat, e.g. a virus name.</xs:documentation>
-                  </xs:annotation>
-                </xs:element>
-              </xs:sequence>
-            </xs:complexType>
-          </xs:element>
-          <xs:element name="Infected" type="evt:MultiObjectComplexType" minOccurs="0" maxOccurs="1">
-            <xs:annotation>
-              <xs:documentation>Describes the infected item if one has been found.</xs:documentation>
-            </xs:annotation>
-          </xs:element>
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
+    <xs:sequence minOccurs="1" maxOccurs="1">
+      <xs:element name="Product" type="evt:SoftwareComplexType" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Describes the anti-malware product used.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Signature" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Describes the anti-malware signature used.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element name="Version" type="xs:string" minOccurs="0" maxOccurs="1">
+              <xs:annotation>
+                <xs:documentation>The version of the signature.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="Updated" type="evt:DateTimeSimpleType" minOccurs="0" maxOccurs="1">
+              <xs:annotation>
+                <xs:documentation>When the signature was last updated.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Threat" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Describes the threat if one has been found.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element name="Category" type="evt:ThreatCategorySimpleType" minOccurs="1" maxOccurs="1">
+              <xs:annotation>
+                <xs:documentation>The category of the threat, e.g. Worm, Virus, etc.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="Name" type="xs:string" minOccurs="1" maxOccurs="1">
+              <xs:annotation>
+                <xs:documentation>The name of the threat, e.g. a virus name.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Infected" type="evt:MultiObjectComplexType" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Describes the infected item if one has been found.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
   </xs:complexType>
   <xs:complexType name="AnyContentComplexType" mixed="true">
     <xs:annotation>
@@ -777,41 +788,8 @@
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-  <xs:complexType name="BaseAdvancedQueryItemComplexType" abstract="true"/>
   <xs:complexType name="BaseAdvancedQueryOperatorComplexType" abstract="true">
-    <xs:complexContent>
-      <xs:extension base="evt:BaseAdvancedQueryItemComplexType">
-        <xs:group ref="evt:AdvancedQueryOperatorGroup" minOccurs="0" maxOccurs="unbounded"/>
-      </xs:extension>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:complexType name="BaseAntiMalwareComplexType" abstract="true">
-    <xs:sequence minOccurs="1" maxOccurs="1">
-      <xs:element name="Product" type="evt:SoftwareComplexType" minOccurs="0" maxOccurs="1">
-        <xs:annotation>
-          <xs:documentation>Describes the anti-malware product used.</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element name="Signature" minOccurs="0" maxOccurs="1">
-        <xs:annotation>
-          <xs:documentation>Describes the anti-malware signature used.</xs:documentation>
-        </xs:annotation>
-        <xs:complexType>
-          <xs:sequence minOccurs="1" maxOccurs="1">
-            <xs:element name="Version" type="xs:string" minOccurs="0" maxOccurs="1">
-              <xs:annotation>
-                <xs:documentation>The version of the signature.</xs:documentation>
-              </xs:annotation>
-            </xs:element>
-            <xs:element name="Updated" type="evt:DateTimeSimpleType" minOccurs="0" maxOccurs="1">
-              <xs:annotation>
-                <xs:documentation>When the signature was last updated.</xs:documentation>
-              </xs:annotation>
-            </xs:element>
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-    </xs:sequence>
+    <xs:group ref="evt:AdvancedQueryOperatorGroup" minOccurs="0" maxOccurs="unbounded"/>
   </xs:complexType>
   <xs:complexType name="BaseChatComplexType" abstract="true">
     <xs:complexContent>
@@ -886,37 +864,15 @@
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-  <xs:complexType name="BaseMultiObjectComplexType" abstract="true">
-    <xs:choice minOccurs="1" maxOccurs="unbounded">
-      <xs:element name="Association" type="evt:AssociationComplexType" minOccurs="1" maxOccurs="1"/>
-      <xs:element name="Banner" type="evt:BannerComplexType" minOccurs="1" maxOccurs="1"/>
-      <xs:element name="Chat" type="evt:ChatComplexType" minOccurs="1" maxOccurs="1"/>
-      <xs:element name="Configuration" type="evt:ConfigurationComplexType" minOccurs="1" maxOccurs="1"/>
-      <xs:element name="Criteria" type="evt:CriteriaComplexType" minOccurs="1" maxOccurs="1"/>
-      <xs:element name="Document" type="evt:DocumentComplexType" minOccurs="1" maxOccurs="1"/>
-      <xs:element name="Email" type="evt:EmailComplexType" minOccurs="1" maxOccurs="1"/>
-      <xs:element name="File" type="evt:FileComplexType" minOccurs="1" maxOccurs="1"/>
-      <xs:element name="Folder" type="evt:FolderComplexType" minOccurs="1" maxOccurs="1"/>
-      <xs:element name="Group" type="evt:GroupComplexType" minOccurs="1" maxOccurs="1"/>
-      <xs:element name="GroupChat" type="evt:GroupChatComplexType" minOccurs="1" maxOccurs="1"/>
-      <xs:element name="Object" type="evt:ObjectComplexType" minOccurs="1" maxOccurs="1"/>
-      <xs:element name="SearchResult" type="evt:SearchResultComplexType" minOccurs="1" maxOccurs="1"/>
-      <xs:element name="SearchResults" type="evt:SearchResultsComplexType" minOccurs="1" maxOccurs="1"/>
-      <xs:element name="Shortcut" type="evt:ShortcutComplexType" minOccurs="1" maxOccurs="1"/>
-      <xs:element name="User" type="evt:UserComplexType" minOccurs="1" maxOccurs="1"/>
-      <xs:element name="VirtualSession" type="evt:VirtualSessionComplexType" minOccurs="1" maxOccurs="1"/>
-      <xs:element name="VOIP" type="evt:VOIPComplexType" minOccurs="1" maxOccurs="1"/>
-      <xs:element name="Resource" type="evt:ResourceComplexType" minOccurs="1" maxOccurs="1"/>
-    </xs:choice>
-  </xs:complexType>
+
   <xs:complexType name="BaseNetworkComplexType" abstract="true">
     <xs:sequence minOccurs="1" maxOccurs="1">
-      <xs:element name="Source" type="evt:NetworkSrcDstComplexType" minOccurs="1" maxOccurs="1">
+      <xs:element name="Source" type="evt:NetworkLocationComplexType" minOccurs="1" maxOccurs="1">
         <xs:annotation>
           <xs:documentation>The source device that is attempting the network action.</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element name="Destination" type="evt:NetworkSrcDstComplexType" minOccurs="0" maxOccurs="1">
+      <xs:element name="Destination" type="evt:NetworkLocationComplexType" minOccurs="0" maxOccurs="1">
         <xs:annotation>
           <xs:documentation>The destination device for the network action.</xs:documentation>
         </xs:annotation>
@@ -1151,12 +1107,12 @@
     <xs:sequence minOccurs="1" maxOccurs="1">
       <xs:element name="Source" type="evt:MultiObjectComplexType" minOccurs="1" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation>The source of the data being copied, moved imported or exported.</xs:documentation>
+          <xs:documentation>The source of the data being moved.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="Destination" type="evt:MultiObjectComplexType" minOccurs="1" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation>The destination for the data being copied, moved imported or exported.</xs:documentation>
+          <xs:documentation>The destination for the data being moved.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="Outcome" type="evt:CopyMoveOutcomeComplexType" minOccurs="0" maxOccurs="1">
@@ -1314,12 +1270,12 @@
     <xs:sequence minOccurs="1" maxOccurs="1">
       <xs:element name="Source" type="evt:MultiObjectComplexType" minOccurs="0" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation>The source of the data being copied, moved imported or exported.</xs:documentation>
+          <xs:documentation>The source of the data being exported.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="Destination" type="evt:MultiObjectComplexType" minOccurs="0" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation>The destination for the data being copied, moved imported or exported.</xs:documentation>
+          <xs:documentation>The destination for the data being exported.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="Outcome" type="evt:OutcomeComplexType" minOccurs="0" maxOccurs="1">
@@ -1503,10 +1459,17 @@
       </xs:element>
     </xs:sequence>
   </xs:complexType>
+  <xs:complexType name="MetaDataTagsComplexType">
+    <xs:sequence minOccurs="1" maxOccurs="1">
+      <xs:element name="Tag" type="evt:TagSimpleType" minOccurs="1" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>A categorisation tag or label</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
   <xs:complexType name="MultiObjectComplexType">
-    <xs:complexContent>
-      <xs:extension base="evt:BaseMultiObjectComplexType"/>
-    </xs:complexContent>
+    <xs:group ref="evt:MultiObjectGroup" minOccurs="1" maxOccurs="unbounded"/>
   </xs:complexType>
   <xs:complexType name="NetworkComplexType">
     <xs:complexContent>
@@ -1531,7 +1494,7 @@
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-  <xs:complexType name="NetworkSrcDstComplexType">
+  <xs:complexType name="NetworkLocationComplexType">
     <xs:annotation>
       <xs:documentation>Desc</xs:documentation>
     </xs:annotation>
@@ -1546,7 +1509,7 @@
           <xs:documentation>The application being used by the source or destination.</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element name="TransportProtocol" type="evt:NetworkSrcDstTransportProtocolSimpleType" minOccurs="0" maxOccurs="1">
+      <xs:element name="TransportProtocol" type="evt:NetworkProtocolSimpleType" minOccurs="0" maxOccurs="1">
         <xs:annotation>
           <xs:documentation>The transport protocol being used by the source or destination.</xs:documentation>
         </xs:annotation>
@@ -1897,7 +1860,7 @@
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-  
+
   <xs:complexType name="ShortcutComplexType">
     <xs:complexContent>
       <xs:extension base="evt:BaseFileComplexType"/>
@@ -1971,27 +1934,23 @@
     <xs:annotation>
       <xs:documentation>Describes a field to search and what to search for using name, condition and value, e.g. Title Contains 'Fox' or Title Equals 'The Quick Brown Fox'.</xs:documentation>
     </xs:annotation>
-    <xs:complexContent>
-      <xs:extension base="evt:BaseAdvancedQueryItemComplexType">
-        <xs:sequence minOccurs="1" maxOccurs="1">
-          <xs:element name="Name" type="xs:string" minOccurs="1" maxOccurs="1">
-            <xs:annotation>
-              <xs:documentation>The name of the search field.</xs:documentation>
-            </xs:annotation>
-          </xs:element>
-          <xs:element name="Condition" type="evt:TermConditionSimpleType" minOccurs="1" maxOccurs="1">
-            <xs:annotation>
-              <xs:documentation>The search condition, e.g. Contains, !Contains, Exists etc.</xs:documentation>
-            </xs:annotation>
-          </xs:element>
-          <xs:element name="Value" type="xs:string" minOccurs="1" maxOccurs="1">
-            <xs:annotation>
-              <xs:documentation>The value that the condition is operating on.</xs:documentation>
-            </xs:annotation>
-          </xs:element>
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
+    <xs:sequence minOccurs="1" maxOccurs="1">
+      <xs:element name="Name" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>The name of the search field.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Condition" type="evt:TermConditionSimpleType" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>The search condition, e.g. Contains, !Contains, Exists etc.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Value" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>The value that the condition is operating on.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
   </xs:complexType>
   <xs:complexType name="UserComplexType">
     <xs:complexContent>
@@ -2362,7 +2321,7 @@
       <xs:enumeration value="Other"/>
     </xs:restriction>
   </xs:simpleType>
-  <xs:simpleType name="NetworkSrcDstTransportProtocolSimpleType">
+  <xs:simpleType name="NetworkProtocolSimpleType">
     <xs:restriction base="xs:string">
       <xs:enumeration value="TCP"/>
       <xs:enumeration value="UDP"/>
@@ -2515,9 +2474,8 @@
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="AuthoriseGlobalType">
-    <xs:complexContent>
-      <xs:extension base="evt:BaseMultiObjectComplexType">
         <xs:sequence minOccurs="1" maxOccurs="1">
+          <xs:group ref="evt:MultiObjectGroup" minOccurs="1" maxOccurs="unbounded"/>
           <xs:element name="Action" type="evt:AuthorisationSimpleType" minOccurs="0" maxOccurs="1"/>
           <xs:element name="AddGroups" minOccurs="0" maxOccurs="1">
             <xs:annotation>
@@ -2558,41 +2516,33 @@
             </xs:annotation>
           </xs:element>
         </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
   </xs:complexType>
-
   <!-- Here to provide a unique type for JAXB -->
   <xs:complexType name="CreateComplexType">
     <xs:complexContent>
       <xs:extension base="evt:BaseObjectOutcomeComplexType"> </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-
   <!-- Here to provide a unique type for JAXB -->
   <xs:complexType name="ViewComplexType">
     <xs:complexContent>
       <xs:extension base="evt:BaseObjectOutcomeComplexType"> </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-
   <!-- Here to provide a unique type for JAXB -->
   <xs:complexType name="DeleteComplexType">
     <xs:complexContent>
       <xs:extension base="evt:BaseObjectOutcomeComplexType"> </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-
   <!-- Here to provide a unique type for JAXB -->
   <xs:complexType name="SendComplexType">
     <xs:group ref="evt:SendReceiveGroup"/>
   </xs:complexType>
-
   <!-- Here to provide a unique type for JAXB -->
   <xs:complexType name="ReceiveComplexType">
     <xs:group ref="evt:SendReceiveGroup"/>
   </xs:complexType>
-
   <xs:complexType name="UpdateComplexType">
     <xs:sequence minOccurs="1" maxOccurs="1">
       <xs:element name="Before" type="evt:MultiObjectComplexType" minOccurs="0" maxOccurs="1">
@@ -2817,12 +2767,12 @@
                 <xs:documentation>The type of IDS event or rule that fired.</xs:documentation>
               </xs:annotation>
             </xs:element>
-            <xs:element name="Source" type="evt:NetworkSrcDstComplexType" minOccurs="0" maxOccurs="1">
+            <xs:element name="Source" type="evt:NetworkLocationComplexType" minOccurs="0" maxOccurs="1">
               <xs:annotation>
                 <xs:documentation>The source network device involved in the IDS event.</xs:documentation>
               </xs:annotation>
             </xs:element>
-            <xs:element name="Destination" type="evt:NetworkSrcDstComplexType" minOccurs="0" maxOccurs="1">
+            <xs:element name="Destination" type="evt:NetworkLocationComplexType" minOccurs="0" maxOccurs="1">
               <xs:annotation>
                 <xs:documentation>The destination network device involved in the IDS event.</xs:documentation>
               </xs:annotation>

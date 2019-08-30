@@ -58,6 +58,21 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
     * Extract `ReceiveComplexType` from `Receive` element.
 
+    * Extract `MetaDataTagsComplexType` from `Tags` element.
+
+    * Remove `AntiMalwareComplexType`.
+
+    * Merge `BaseAntiMalwareComplexType` into `AntiMalwareThreatComplexType`.
+
+    * Remove `BaseAdvancedQueryItemComplexType`.
+
+    * Extract `BaseMultiObjectGroup` from `BaseMultiObjectComplexType`.
+
+    * Rename `NetworkSrcDstComplexType` to `NetworkLocationComplexType`.
+
+    * Rename `NetworkSrcDstTransportProtocolSimpleType` to `NetworkProtocolSimpleType`.
+
+
 
 
 ## [v3.4.2] - 2019-04-16
