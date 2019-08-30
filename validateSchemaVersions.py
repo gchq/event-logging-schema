@@ -55,7 +55,7 @@ def validateVersions(newVersion, schemaFile):
     xsdFile = open(schemaFile, 'r')
     filetext = xsdFile.read()
     xsdFile.close()
-    matches = re.findall("xmlns:evt=\"event-logging:(.*)\"", filetext)
+    matches = re.findall("xmlns:evt=\"event-logging:(.*?)\"", filetext)
     if (len(matches) != 1):
         raise ValueError("Unexpected matches for evt namespace", matches)
     namespaceVersion = matches[0]
