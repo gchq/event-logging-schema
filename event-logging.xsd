@@ -269,7 +269,7 @@
                           <xs:documentation>Details about installation of either hardware or software.</xs:documentation>
                         </xs:annotation>
                       </xs:element>
-                      <xs:element name="Uninstall" type="evt:InstallComplexType" minOccurs="1" maxOccurs="1">
+                      <xs:element name="Uninstall" type="evt:UninstallComplexType" minOccurs="1" maxOccurs="1">
                         <xs:annotation>
                           <xs:documentation>Details about removal of either hardware or software.</xs:documentation>
                         </xs:annotation>
