@@ -480,24 +480,96 @@
   </xs:group>
   <xs:group name="MultiObjectGroup">
     <xs:choice>
-      <xs:element name="Association" type="evt:AssociationComplexType" minOccurs="1" maxOccurs="1"/>
-      <xs:element name="Banner" type="evt:BannerComplexType" minOccurs="1" maxOccurs="1"/>
-      <xs:element name="Chat" type="evt:ChatComplexType" minOccurs="1" maxOccurs="1"/>
-      <xs:element name="Configuration" type="evt:ConfigurationComplexType" minOccurs="1" maxOccurs="1"/>
-      <xs:element name="Criteria" type="evt:CriteriaComplexType" minOccurs="1" maxOccurs="1"/>
-      <xs:element name="Document" type="evt:DocumentComplexType" minOccurs="1" maxOccurs="1"/>
-      <xs:element name="Email" type="evt:EmailComplexType" minOccurs="1" maxOccurs="1"/>
-      <xs:element name="File" type="evt:FileComplexType" minOccurs="1" maxOccurs="1"/>
-      <xs:element name="Folder" type="evt:FolderComplexType" minOccurs="1" maxOccurs="1"/>
-      <xs:element name="Group" type="evt:GroupComplexType" minOccurs="1" maxOccurs="1"/>
-      <xs:element name="GroupChat" type="evt:GroupChatComplexType" minOccurs="1" maxOccurs="1"/>
-      <xs:element name="Object" type="evt:ObjectComplexType" minOccurs="1" maxOccurs="1"/>
-      <xs:element name="SearchResults" type="evt:SearchResultsComplexType" minOccurs="1" maxOccurs="1"/>
-      <xs:element name="Shortcut" type="evt:ShortcutComplexType" minOccurs="1" maxOccurs="1"/>
-      <xs:element name="User" type="evt:UserComplexType" minOccurs="1" maxOccurs="1"/>
-      <xs:element name="VirtualSession" type="evt:VirtualSessionComplexType" minOccurs="1" maxOccurs="1"/>
-      <xs:element name="VOIP" type="evt:VOIPComplexType" minOccurs="1" maxOccurs="1"/>
-      <xs:element name="Resource" type="evt:ResourceComplexType" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="Association" type="evt:AssociationComplexType" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Describes the association or link between two or more entities, e.g. the link between two web resources.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Banner" type="evt:BannerComplexType" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Describes a banner or message presented to a user, e.g. an accepiable use policy message shown on system login.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Chat" type="evt:ChatComplexType" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Describes part of a chat session between a user and one or more other users, e.g. in an instant messaging application.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Configuration" type="evt:ConfigurationComplexType" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Describes the configuration of entity, e.g. it can be used to describe the update to the configuration of a network device.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Criteria" type="evt:CriteriaComplexType" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Structure used to describe a criteria used to filter or limit the scope of something, e.g. in a search, view, update or delete event.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Document" type="evt:DocumentComplexType" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Describes a document that may be stored electronically or in hard-copy form.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Email" type="evt:EmailComplexType" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Describes an email sent from one user to one or more recipients.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="File" type="evt:FileComplexType" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation></xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Folder" type="evt:FolderComplexType" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation></xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Group" type="evt:GroupComplexType" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation></xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="GroupChat" type="evt:GroupChatComplexType" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation></xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Object" type="evt:ObjectComplexType" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation></xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SearchResults" type="evt:SearchResultsComplexType" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation></xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Shortcut" type="evt:ShortcutComplexType" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation></xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="User" type="evt:UserComplexType" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation></xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="VirtualSession" type="evt:VirtualSessionComplexType" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation></xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="VOIP" type="evt:VOIPComplexType" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation></xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Resource" type="evt:ResourceComplexType" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation></xs:documentation>
+        </xs:annotation>
+      </xs:element>
     </xs:choice>
   </xs:group>
   <xs:group name="InstallationGroup">
@@ -595,6 +667,9 @@
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="AlertComplexType">
+    <xs:annotation>
+      <xs:documentation>Type that describes and alert of some kind, e.g. an alert generated by an intrusion detection system, malware scanner, virus scanner, etc.</xs:documentation>
+    </xs:annotation>
     <xs:sequence minOccurs="1" maxOccurs="1">
       <xs:element name="Type" type="evt:AlertTypeSimpleType" minOccurs="1" maxOccurs="1"/>
       <xs:element name="Severity" type="evt:AlertSeveritySimpleType" minOccurs="0" maxOccurs="1">
@@ -685,6 +760,9 @@
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="AntiMalwareThreatComplexType">
+    <xs:annotation>
+      <xs:documentation>Type that describes a threat identified by an anti-malware scanner.</xs:documentation>
+    </xs:annotation>
     <xs:sequence minOccurs="1" maxOccurs="1">
       <xs:element name="Product" type="evt:SoftwareComplexType" minOccurs="0" maxOccurs="1">
         <xs:annotation>
@@ -755,6 +833,9 @@
     </xs:attribute>
   </xs:complexType>
   <xs:complexType name="ApprovalComplexType">
+    <xs:annotation>
+      <xs:documentation>This type describes an approval (or rejection) event in a workflow, e.g a workflow wehere a more privilaged user is required to approve the work of another user.</xs:documentation>
+    </xs:annotation>
     <xs:sequence minOccurs="1" maxOccurs="1">
       <xs:element name="Action" type="evt:ApprovalActionSimpleType" minOccurs="1" maxOccurs="1">
         <xs:annotation>
@@ -817,6 +898,9 @@
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="AssociationComplexType">
+    <xs:annotation>
+      <xs:documentation>This type describes the assocation or linking of a number of objects. For example it may describe the link between two web resources.</xs:documentation>
+    </xs:annotation>
     <xs:complexContent>
       <xs:extension base="evt:BaseObjectComplexType">
         <xs:sequence minOccurs="1" maxOccurs="1">
@@ -831,6 +915,9 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:complexType name="AuthenticateComplexType">
+    <xs:annotation>
+      <xs:documentation>Used to record authentication events such as logon and logoff. All authentication events that originate from a client device should record details of the client device in the event source.</xs:documentation>
+    </xs:annotation>
     <xs:sequence minOccurs="1" maxOccurs="1">
       <xs:element name="Action" type="evt:AuthenticateActionSimpleType" minOccurs="1" maxOccurs="1">
         <xs:annotation>
@@ -872,6 +959,9 @@
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="AuthenticateOutcomeComplexType">
+    <xs:annotation>
+      <xs:documentation>Used to describe the outcome of an authengtication event, including the reason for any failure.</xs:documentation>
+    </xs:annotation>
     <xs:complexContent>
       <xs:extension base="evt:BaseOutcomeComplexType">
         <xs:sequence minOccurs="1" maxOccurs="1">
@@ -890,6 +980,9 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:complexType name="AuthoriseComplexType">
+    <xs:annotation>
+      <xs:documentation>Describes event actions related to account management such as adding and removing user and system accounts.</xs:documentation>
+    </xs:annotation>
     <xs:sequence minOccurs="1" maxOccurs="1">
       <xs:group ref="evt:MultiObjectGroup" minOccurs="1" maxOccurs="unbounded"/>
       <xs:element name="Action" type="evt:AuthorisationSimpleType" minOccurs="0" maxOccurs="1"/>
@@ -952,9 +1045,15 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:complexType name="BaseAdvancedQueryOperatorComplexType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>The abstract type of all advanced query operators, e.g. NOT, AND, OR, etc</xs:documentation>
+    </xs:annotation>
     <xs:group ref="evt:AdvancedQueryOperatorGroup" minOccurs="0" maxOccurs="unbounded"/>
   </xs:complexType>
   <xs:complexType name="BaseChatComplexType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>Describes the details of a chat event, e.g. an instance message chat message from one user to another.</xs:documentation>
+    </xs:annotation>
     <xs:complexContent>
       <xs:extension base="evt:BaseObjectComplexType">
         <xs:sequence minOccurs="1" maxOccurs="1">
@@ -1120,6 +1219,9 @@
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="ChatComplexType">
+    <xs:annotation>
+      <xs:documentation>Describes the details of a chat event, e.g. an instance message chat message from one user to another.</xs:documentation>
+    </xs:annotation>
     <xs:complexContent>
       <xs:extension base="evt:BaseChatComplexType"/>
     </xs:complexContent>
@@ -1427,6 +1529,9 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:complexType name="DocumentComplexType">
+    <xs:annotation>
+      <xs:documentation>Describes a document that may be stored electronically or in hard-copy form.</xs:documentation>
+    </xs:annotation>
     <xs:complexContent>
       <xs:extension base="evt:BaseObjectComplexType">
         <xs:sequence minOccurs="1" maxOccurs="1">
@@ -1449,6 +1554,9 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:complexType name="EmailComplexType">
+    <xs:annotation>
+      <xs:documentation>Describes an email sent from one user to one or more recipients.</xs:documentation>
+    </xs:annotation>
     <xs:complexContent>
       <xs:extension base="evt:BaseObjectComplexType">
         <xs:sequence minOccurs="1" maxOccurs="1">
@@ -1511,6 +1619,9 @@
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="GroupChatComplexType">
+    <xs:annotation>
+      <xs:documentation>Describes the details of a chat event, e.g. an instance message chat message from one user to another.</xs:documentation>
+    </xs:annotation>
     <xs:complexContent>
       <xs:extension base="evt:BaseChatComplexType"/>
     </xs:complexContent>
