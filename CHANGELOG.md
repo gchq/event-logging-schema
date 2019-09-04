@@ -74,6 +74,9 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
     * Remove deprecated `SearchResult` and `SearchResultComplexType`.
 
+    * Remove deprecated `EventDetail/Classification`.
+
+    * Add additional `annotation/documentation` elements.
 
 
 

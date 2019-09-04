@@ -188,11 +188,6 @@
                         <xs:documentation>Some human readable descriptive text for the event type.</xs:documentation>
                       </xs:annotation>
                     </xs:element>
-                    <xs:element name="Classification" type="evt:ClassificationComplexType" minOccurs="0" maxOccurs="1">
-                      <xs:annotation>
-                        <xs:documentation>[DEPRECATED: This element will be removed in a future version. Event/Classification element should be used instead.]</xs:documentation>
-                      </xs:annotation>
-                    </xs:element>
                     <xs:element name="Purpose" type="evt:PurposeComplexType" minOccurs="0" maxOccurs="1">
                       <xs:annotation>
                         <xs:documentation>The purpose/justification assigned to this event for user actions that are required to be justified for reasons of corporate policy, e.g. transferring data to removable media, viewing personnel records or making a high value payment.</xs:documentation>
