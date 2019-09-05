@@ -78,6 +78,8 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
     * Add additional `annotation/documentation` elements.
 
+    * Remove unused `FromComplexType`.
+
 
 
 ## [v3.4.2] - 2019-04-16

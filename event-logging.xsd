@@ -211,7 +211,7 @@
                       </xs:element>
                       <xs:element name="Copy" type="evt:CopyComplexType" minOccurs="1" maxOccurs="1">
                         <xs:annotation>
-                          <xs:documentation>All events related to copying data should use this element.</xs:documentation>
+                          <xs:documentation>All events related to copying data, files, documents, etc. should use this element.</xs:documentation>
                         </xs:annotation>
                       </xs:element>
                       <xs:element name="Move" type="evt:MoveComplexType" minOccurs="1" maxOccurs="1">
@@ -512,12 +512,12 @@
       </xs:element>
       <xs:element name="File" type="evt:FileComplexType" minOccurs="1" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation></xs:documentation>
+          <xs:documentation>A file object, e.g. a text file on file system</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="Folder" type="evt:FolderComplexType" minOccurs="1" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation></xs:documentation>
+          <xs:documentation>A folder object, e.g. a directory or folder on file system.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="Group" type="evt:GroupComplexType" minOccurs="1" maxOccurs="1">
@@ -1067,6 +1067,9 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:complexType name="BaseFileComplexType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>A base type to describe a file object, e.g. a text file on file system</xs:documentation>
+    </xs:annotation>
     <xs:complexContent>
       <xs:extension base="evt:BaseObjectComplexType">
         <xs:sequence minOccurs="1" maxOccurs="1">
@@ -1121,8 +1124,10 @@
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-
   <xs:complexType name="BaseNetworkComplexType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>A base type to describe part of a computer network or some activity on a network.</xs:documentation>
+    </xs:annotation>
     <xs:sequence minOccurs="1" maxOccurs="1">
       <xs:element name="Source" type="evt:NetworkLocationComplexType" minOccurs="1" maxOccurs="1">
         <xs:annotation>
@@ -1152,6 +1157,9 @@
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="BaseObjectComplexType" abstract="true">
+    <xs:annotation>
+      <xs:documentation>A base type for describing some kind of object or entity.</xs:documentation>
+    </xs:annotation>
     <xs:group ref="evt:BaseObjectGroup" minOccurs="1" maxOccurs="1"/>
   </xs:complexType>
   <xs:complexType name="BaseObjectOutcomeComplexType" abstract="true">
@@ -1339,6 +1347,9 @@
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="ConfigurationComplexType">
+    <xs:annotation>
+      <xs:documentation>Describes the configuration of entity, e.g. it can be used to describe the update to the configuration of a network device.</xs:documentation>
+    </xs:annotation>
     <xs:complexContent>
       <xs:extension base="evt:BaseObjectComplexType">
         <xs:sequence minOccurs="1" maxOccurs="1">
@@ -1352,6 +1363,9 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:complexType name="CoordinatesComplexType">
+    <xs:annotation>
+      <xs:documentation>The geographic coordinates of the location (i.e. the latitude/longitude).</xs:documentation>
+    </xs:annotation>
     <xs:sequence minOccurs="1" maxOccurs="1">
       <xs:element name="Latitude" type="evt:LatitudeSimpleType" minOccurs="1" maxOccurs="1">
         <xs:annotation>
@@ -1367,7 +1381,7 @@
   </xs:complexType>
   <xs:complexType name="CopyComplexType">
     <xs:annotation>
-      <xs:documentation>Captures data relevant to copy events.</xs:documentation>
+      <xs:documentation>Describes an event action relating to copying data, files, documents, etc.</xs:documentation>
     </xs:annotation>
     <xs:sequence minOccurs="1" maxOccurs="1">
       <xs:element name="Source" type="evt:MultiObjectComplexType" minOccurs="1" maxOccurs="1">
@@ -1380,7 +1394,7 @@
           <xs:documentation>The destination for the data being copied, moved imported or exported.</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element name="Outcome" type="evt:CopyMoveOutcomeComplexType" minOccurs="0" maxOccurs="1">
+      <xs:element name="Outcome" type="evt:ReasonOutcomeComplexType" minOccurs="0" maxOccurs="1">
         <xs:annotation>
           <xs:documentation>Used to determine if the action was successful. If omitted it is assumed that the event was successful and was permitted.</xs:documentation>
         </xs:annotation>
@@ -1391,53 +1405,11 @@
         </xs:annotation>
       </xs:element>
     </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="MoveComplexType">
-    <xs:annotation>
-      <xs:documentation>Captures data relevant to move events.</xs:documentation>
-    </xs:annotation>
-    <xs:sequence minOccurs="1" maxOccurs="1">
-      <xs:element name="Source" type="evt:MultiObjectComplexType" minOccurs="1" maxOccurs="1">
-        <xs:annotation>
-          <xs:documentation>The source of the data being moved.</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element name="Destination" type="evt:MultiObjectComplexType" minOccurs="1" maxOccurs="1">
-        <xs:annotation>
-          <xs:documentation>The destination for the data being moved.</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element name="Outcome" type="evt:CopyMoveOutcomeComplexType" minOccurs="0" maxOccurs="1">
-        <xs:annotation>
-          <xs:documentation>Used to determine if the action was successful. If omitted it is assumed that the event was successful and was permitted.</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element name="Data" type="evt:DataComplexType" minOccurs="0" maxOccurs="unbounded">
-        <xs:annotation>
-          <xs:documentation>Any other event data that does not fit into a schema element but may be useful for the purpose of audit.</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="CopyMoveOutcomeComplexType">
-    <xs:complexContent>
-      <xs:extension base="evt:BaseOutcomeComplexType">
-        <xs:sequence minOccurs="1" maxOccurs="1">
-          <xs:element name="Reason" type="evt:CopyMoveOutcomeReasonSimpleType" minOccurs="0" maxOccurs="1">
-            <xs:annotation>
-              <xs:documentation>Used to explain the reson for failure, e.g. Device full.</xs:documentation>
-            </xs:annotation>
-          </xs:element>
-          <xs:element name="Data" type="evt:DataComplexType" minOccurs="0" maxOccurs="unbounded">
-            <xs:annotation>
-              <xs:documentation>Any other event data that does not fit into a schema element but may be useful for the purpose of audit.</xs:documentation>
-            </xs:annotation>
-          </xs:element>
-        </xs:sequence>
-      </xs:extension>
-    </xs:complexContent>
   </xs:complexType>
   <xs:complexType name="CreateComplexType">
+    <xs:annotation>
+      <xs:documentation>Describes an event action relating to creating data, files, documents, etc.</xs:documentation>
+    </xs:annotation>
     <xs:complexContent>
       <xs:extension base="evt:BaseObjectOutcomeComplexType"> </xs:extension>
     </xs:complexContent>
@@ -1460,15 +1432,26 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:complexType name="DataComplexType">
+    <xs:annotation>
+      <xs:documentation>Describes any other event data that does not fit into a schema element but may be useful for the purpose of audit. The recursive nature of this type means it can be used to model a tree of data.</xs:documentation>
+    </xs:annotation>
     <xs:sequence minOccurs="1" maxOccurs="1">
       <xs:element name="Data" type="evt:DataComplexType" minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
-          <xs:documentation>Any other event data that does not fit into a schema element but may be useful for the purpose of audit.</xs:documentation>
+          <xs:documentation>A child data item that may itself have descendents.</xs:documentation>
         </xs:annotation>
       </xs:element>
     </xs:sequence>
-    <xs:attribute name="Name" type="xs:string" use="required"/>
-    <xs:attribute name="Value" type="xs:string" use="optional"/>
+    <xs:attribute name="Name" type="xs:string" use="required">
+      <xs:annotation>
+        <xs:documentation>The name of the data item. The taxonomy of the data items may be defined by the system sending the events or defined centrally for all systems to use.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="Value" type="xs:string" use="optional">
+      <xs:annotation>
+        <xs:documentation>The simple string value for the data item.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
   </xs:complexType>
   <xs:complexType name="DeviceComplexType">
     <xs:annotation>
@@ -1519,6 +1502,9 @@
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="DeleteComplexType">
+    <xs:annotation>
+      <xs:documentation>Describes an event action relating to deleting data, files, documents, etc.</xs:documentation>
+    </xs:annotation>
     <xs:complexContent>
       <xs:extension base="evt:BaseObjectOutcomeComplexType"> </xs:extension>
     </xs:complexContent>
@@ -1599,19 +1585,20 @@
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="FileComplexType">
+    <xs:annotation>
+      <xs:documentation>A type to describe a file object, e.g. a text file on file system</xs:documentation>
+    </xs:annotation>
     <xs:complexContent>
       <xs:extension base="evt:BaseFileComplexType"/>
     </xs:complexContent>
   </xs:complexType>
   <xs:complexType name="FolderComplexType">
+    <xs:annotation>
+      <xs:documentation>Describes a folder object, e.g. a directory or folder on file system.</xs:documentation>
+    </xs:annotation>
     <xs:complexContent>
       <xs:extension base="evt:BaseFileComplexType"/>
     </xs:complexContent>
-  </xs:complexType>
-  <xs:complexType name="FromComplexType">
-    <xs:sequence minOccurs="1" maxOccurs="1">
-      <xs:element name="EmailAddress" type="evt:EmailAddressSimpleType" minOccurs="1" maxOccurs="1"/>
-    </xs:sequence>
   </xs:complexType>
   <xs:complexType name="GroupChatComplexType">
     <xs:annotation>
@@ -1622,6 +1609,9 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:complexType name="GroupComplexType">
+    <xs:annotation>
+      <xs:documentation>Describes a group entity, e.g. a user group or an access control group.</xs:documentation>
+    </xs:annotation>
     <xs:complexContent>
       <xs:extension base="evt:BaseObjectComplexType">
         <xs:sequence minOccurs="1" maxOccurs="1">
@@ -1631,6 +1621,9 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:complexType name="GroupsComplexType">
+    <xs:annotation>
+      <xs:documentation>Describes a collection of group entities, e.g. user groups or access control groups.</xs:documentation>
+    </xs:annotation>
     <xs:sequence minOccurs="1" maxOccurs="1">
       <xs:element name="Group" type="evt:GroupComplexType" minOccurs="0" maxOccurs="unbounded"/>
     </xs:sequence>
@@ -1655,7 +1648,7 @@
   </xs:complexType>
   <xs:complexType name="ImportComplexType">
     <xs:annotation>
-      <xs:documentation>Captures data relevant to an import operation</xs:documentation>
+      <xs:documentation>Captures data relevant to an import operation, e.g importing a file from outside an application into the application.</xs:documentation>
     </xs:annotation>
     <xs:sequence minOccurs="1" maxOccurs="1">
       <xs:element name="Source" type="evt:MultiObjectComplexType" minOccurs="0" maxOccurs="1">
@@ -1681,9 +1674,15 @@
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="InstallComplexType">
+    <xs:annotation>
+      <xs:documentation>Describes the installation of either hardware or software.</xs:documentation>
+    </xs:annotation>
     <xs:group maxOccurs="1" minOccurs="1" ref="evt:InstallationGroup"/>
   </xs:complexType>
   <xs:complexType name="LocationComplexType">
+    <xs:annotation>
+      <xs:documentation>Describes the geographic location of the device.</xs:documentation>
+    </xs:annotation>
     <xs:sequence minOccurs="1" maxOccurs="1">
       <xs:element name="Country" type="xs:string" minOccurs="0" maxOccurs="1"/>
       <xs:element name="State" type="xs:string" minOccurs="0" maxOccurs="1">
@@ -1724,8 +1723,16 @@
           <xs:documentation>The timezone name for the location as defined by the IANA Timezone Database (https://www.iana.org/time-zones), e.g. 'Europe/London' or 'Australia/NSW'.</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element name="Coordinates" type="evt:CoordinatesComplexType" minOccurs="0" maxOccurs="1"/>
-      <xs:element name="AccessZone" type="xs:string" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="Coordinates" type="evt:CoordinatesComplexType" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>The geographic coordinates of the location (i.e. the latitude/longitude).</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AccessZone" type="xs:string" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>The name of a zone within a building or site with some form of access control/monitoring for entry/exit to the zone.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="MediaComplexType">
@@ -1760,6 +1767,9 @@
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="MetaDataTagsComplexType">
+    <xs:annotation>
+      <xs:documentation>Metadata tags that can be used for additional object tagging or categorisation. Object tagging allows for the labelling (or filtering) of objects using words that label, categorise or group similar items, using a taxonomy defined outside this schema. For example, an email could be tagged with tags like 'internal', 'spam', 'external', 'rich-content', etc.</xs:documentation>
+    </xs:annotation>
     <xs:sequence minOccurs="1" maxOccurs="1">
       <xs:element name="Tag" type="evt:TagSimpleType" minOccurs="1" maxOccurs="unbounded">
         <xs:annotation>
@@ -1768,15 +1778,51 @@
       </xs:element>
     </xs:sequence>
   </xs:complexType>
+  <xs:complexType name="MoveComplexType">
+    <xs:annotation>
+      <xs:documentation>Captures data relevant to move events, e.g. moving a file from one folder/device to another.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence minOccurs="1" maxOccurs="1">
+      <xs:element name="Source" type="evt:MultiObjectComplexType" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>The source of the data being moved.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Destination" type="evt:MultiObjectComplexType" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>The destination for the data being moved.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Outcome" type="evt:ReasonOutcomeComplexType" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Used to determine if the action was successful. If omitted it is assumed that the event was successful and was permitted.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Data" type="evt:DataComplexType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Any other event data that does not fit into a schema element but may be useful for the purpose of audit.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
   <xs:complexType name="MultiObjectComplexType">
+    <xs:annotation>
+      <xs:documentation>Describes a collection of objects/entities that may be of differerent types.</xs:documentation>
+    </xs:annotation>
     <xs:group ref="evt:MultiObjectGroup" minOccurs="1" maxOccurs="unbounded"/>
   </xs:complexType>
   <xs:complexType name="NetworkComplexType">
+    <xs:annotation>
+      <xs:documentation>A type to describe part of a computer network or some activity on a network.</xs:documentation>
+    </xs:annotation>
     <xs:complexContent>
       <xs:extension base="evt:BaseNetworkComplexType"/>
     </xs:complexContent>
   </xs:complexType>
   <xs:complexType name="NetworkEventActionComplexType">
+    <xs:annotation>
+      <xs:documentation>Describes an event involving some form of activity on a computer network.</xs:documentation>
+    </xs:annotation>
     <xs:choice minOccurs="1" maxOccurs="1">
       <xs:element name="Bind" type="evt:NetworkOutcomeComplexType" minOccurs="1" maxOccurs="1"/>
       <xs:element name="Connect" type="evt:NetworkOutcomeComplexType" minOccurs="1" maxOccurs="1"/>
@@ -1790,6 +1836,9 @@
     </xs:choice>
   </xs:complexType>
   <xs:complexType name="NetworkOutcomeComplexType">
+    <xs:annotation>
+      <xs:documentation>A type to describe some activity on a network along with the outcome of that activity.</xs:documentation>
+    </xs:annotation>
     <xs:complexContent>
       <xs:extension base="evt:BaseNetworkComplexType">
         <xs:sequence minOccurs="1" maxOccurs="1">
@@ -1809,7 +1858,7 @@
   </xs:complexType>
   <xs:complexType name="NetworkLocationComplexType">
     <xs:annotation>
-      <xs:documentation>Desc</xs:documentation>
+      <xs:documentation>Describes an end point within a network. This may be an application running on a device or a netwrok appliance such as a switch.</xs:documentation>
     </xs:annotation>
     <xs:sequence minOccurs="1" maxOccurs="1">
       <xs:element name="Device" type="evt:DeviceComplexType" minOccurs="0" maxOccurs="1">
@@ -1851,6 +1900,9 @@
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="ObjectComplexType">
+    <xs:annotation>
+      <xs:documentation>Describes a generic object or entity that cannot be described using any of the other more specific object types.</xs:documentation>
+    </xs:annotation>
     <xs:complexContent>
       <xs:extension base="evt:BaseObjectComplexType">
         <xs:sequence minOccurs="1" maxOccurs="1">
@@ -1893,6 +1945,9 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:complexType name="PrintComplexType">
+    <xs:annotation>
+      <xs:documentation>Describes an event relating to a printer, e.g. printing a document.</xs:documentation>
+    </xs:annotation>
     <xs:sequence minOccurs="1" maxOccurs="1">
       <xs:element name="Action" type="evt:PrintActionSimpleType" minOccurs="1" maxOccurs="1">
         <xs:annotation>
@@ -1980,6 +2035,9 @@
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="ProcessComplexType">
+    <xs:annotation>
+      <xs:documentation>Describes various actions such as the startup/shutdown/install of operating systems, services, applications. It also describes the execution of operating system commands, shell scripts and batch processes.</xs:documentation>
+    </xs:annotation>
     <xs:sequence minOccurs="1" maxOccurs="1">
       <xs:element name="Action" type="evt:ProcessActionSimpleType" minOccurs="1" maxOccurs="1">
         <xs:annotation>
@@ -2038,24 +2096,10 @@
       </xs:element>
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="ProductComplexType">
-    <xs:annotation>
-      <xs:documentation>Describes a product.</xs:documentation>
-    </xs:annotation>
-    <xs:sequence minOccurs="1" maxOccurs="1">
-      <xs:element name="Name" type="xs:string" minOccurs="1" maxOccurs="1">
-        <xs:annotation>
-          <xs:documentation>The product name.</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-      <xs:element name="Version" type="xs:string" minOccurs="1" maxOccurs="1">
-        <xs:annotation>
-          <xs:documentation>The product version.</xs:documentation>
-        </xs:annotation>
-      </xs:element>
-    </xs:sequence>
-  </xs:complexType>
   <xs:complexType name="PurposeComplexType">
+    <xs:annotation>
+      <xs:documentation>Describes the purpose and justification for the event along with details of any authorisations that were required for the event to happen.</xs:documentation>
+    </xs:annotation>
     <xs:sequence minOccurs="1" maxOccurs="1">
       <xs:element name="Classification" type="evt:ClassificationComplexType" minOccurs="0" maxOccurs="1">
         <xs:annotation>
@@ -2136,7 +2180,28 @@
       <xs:element name="Raw" type="xs:string" minOccurs="0" maxOccurs="1"/>
     </xs:sequence>
   </xs:complexType>
+  <xs:complexType name="ReasonOutcomeComplexType">
+    <xs:complexContent>
+      <xs:extension base="evt:BaseOutcomeComplexType">
+        <xs:sequence minOccurs="1" maxOccurs="1">
+          <xs:element name="Reason" type="evt:CopyMoveOutcomeReasonSimpleType" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>Used to explain the reson for failure, e.g. Device full.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Data" type="evt:DataComplexType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Any other event data that does not fit into a schema element but may be useful for the purpose of audit.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
   <xs:complexType name="ReceiveComplexType">
+    <xs:annotation>
+      <xs:documentation>Describes the action of receiving an object or entity, e.g. receiving a push notification.</xs:documentation>
+    </xs:annotation>
     <xs:group ref="evt:SendReceiveGroup"/>
   </xs:complexType>
   <xs:complexType name="ResourceComplexType">
@@ -2283,7 +2348,6 @@
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-
   <xs:complexType name="SendComplexType">
     <xs:group ref="evt:SendReceiveGroup"/>
   </xs:complexType>
