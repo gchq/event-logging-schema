@@ -562,7 +562,7 @@
       </xs:element>
       <xs:element name="Resource" type="evt:ResourceComplexType" minOccurs="1" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation></xs:documentation>
+          <xs:documentation>This is used to describe a resource within a web site or web application, such as an HTML file, image file or script, along with the details of that resource such as size or response codes.  It can represent both successful and failed access to the resource object.</xs:documentation>
         </xs:annotation>
       </xs:element>
     </xs:choice>
@@ -586,8 +586,16 @@
           </xs:annotation>
         </xs:element>
       </xs:choice>
-      <xs:element name="Outcome" type="evt:OutcomeComplexType" minOccurs="0" maxOccurs="1"/>
-      <xs:element name="Data" type="evt:DataComplexType" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="Outcome" type="evt:OutcomeComplexType" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>The outcome of the (un)installation.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Data" type="evt:DataComplexType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Any other event data that does not fit into a schema element but may be useful for the purpose of audit.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
     </xs:sequence>
   </xs:group>
   <xs:group name="SendReceiveGroup">
@@ -1615,7 +1623,11 @@
     <xs:complexContent>
       <xs:extension base="evt:BaseObjectComplexType">
         <xs:sequence minOccurs="1" maxOccurs="1">
-          <xs:element name="Data" type="evt:DataComplexType" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="Data" type="evt:DataComplexType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Any other event data that does not fit into a schema element but may be useful for the purpose of audit.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
@@ -1876,7 +1888,11 @@
           <xs:documentation>The transport protocol being used by the source or destination.</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element name="ICMPType" type="xs:integer" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="ICMPType" type="xs:integer" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>The Internet Control Message Protocol type number. See https://www.iana.org/assignments/icmp-parameters/icmp-parameters.xhtml</xs:documentation>
+        </xs:annotation>
+      </xs:element>
       <xs:element name="HTTPMethod" type="xs:string" minOccurs="0" maxOccurs="1">
         <xs:annotation>
           <xs:documentation>The HTTP method, e.g. GET, POST, DELETE, PUT etc</xs:documentation>
@@ -1906,7 +1922,11 @@
     <xs:complexContent>
       <xs:extension base="evt:BaseObjectComplexType">
         <xs:sequence minOccurs="1" maxOccurs="1">
-          <xs:element name="Data" type="evt:DataComplexType" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="Data" type="evt:DataComplexType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Any other event data that does not fit into a schema element but may be useful for the purpose of audit.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
@@ -2127,13 +2147,33 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Authorisations" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>The authorisations that were granted to allow this event action to take place.</xs:documentation>
+        </xs:annotation>
         <xs:complexType>
+          <xs:annotation>
+            <xs:documentation>Details of authorisations that were granted to allow this event action to take place.</xs:documentation>
+          </xs:annotation>
           <xs:sequence minOccurs="1" maxOccurs="1">
             <xs:element name="Auth" minOccurs="1" maxOccurs="unbounded">
+              <xs:annotation>
+                <xs:documentation>An authorisation that was granted to allow this event action to take place.</xs:documentation>
+              </xs:annotation>
               <xs:complexType>
+                <xs:annotation>
+                  <xs:documentation>Details of an authorisation that was granted to allow this event action to take place.</xs:documentation>
+                </xs:annotation>
                 <xs:sequence minOccurs="1" maxOccurs="1">
-                  <xs:element name="RefNo" type="xs:string" minOccurs="0" maxOccurs="1"/>
-                  <xs:element name="Detail" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                  <xs:element name="RefNo" type="xs:string" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                      <xs:documentation>The reference number, code or ID for the authorisation.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="Detail" type="xs:string" minOccurs="0" maxOccurs="1">
+                    <xs:annotation>
+                      <xs:documentation>A textual description of the authorisation or any additional detail.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
                 </xs:sequence>
               </xs:complexType>
             </xs:element>
@@ -2165,19 +2205,43 @@
         </xs:annotation>
       </xs:element>
       <xs:element name="Advanced" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>A complex boolean tree or operators and terms that describes the query.</xs:documentation>
+        </xs:annotation>
         <xs:complexType>
+          <xs:annotation>
+            <xs:documentation>A complex boolean tree or operators and terms that describes the query.</xs:documentation>
+          </xs:annotation>
           <xs:group ref="evt:AdvancedQueryOperatorGroup" minOccurs="0" maxOccurs="unbounded"/>
         </xs:complexType>
       </xs:element>
       <xs:element name="Simple" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>A simple representation of a query using includes and excludes terms. This is suitable for simple filtered lists, e.g for a list of names excluding "John,Bob".</xs:documentation>
+        </xs:annotation>
         <xs:complexType>
+          <xs:annotation>
+            <xs:documentation>A simple representation of a query using includes and excludes terms. This is suitable for simple filtered lists, e.g for a list of names excluding "John,Bob".</xs:documentation>
+          </xs:annotation>
           <xs:sequence minOccurs="1" maxOccurs="1">
-            <xs:element name="Include" type="xs:string" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="Exclude" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="Include" type="xs:string" minOccurs="0" maxOccurs="1">
+              <xs:annotation>
+                <xs:documentation>Values to include in the query results, typically delimited by a comma.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="Exclude" type="xs:string" minOccurs="0" maxOccurs="1">
+              <xs:annotation>
+                <xs:documentation>Values to exclude in the query results, typically delimited by a comma.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
           </xs:sequence>
         </xs:complexType>
       </xs:element>
-      <xs:element name="Raw" type="xs:string" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="Raw" type="xs:string" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>The raw query in the query language used by the application executing the query, e.g. SQL, xpath, etc.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="ReasonOutcomeComplexType">
@@ -2205,6 +2269,9 @@
     <xs:group ref="evt:SendReceiveGroup"/>
   </xs:complexType>
   <xs:complexType name="ResourceComplexType">
+    <xs:annotation>
+      <xs:documentation>Describes a resource within a web site or web application, such as an HTML file, image file or script, along with the details of that resource such as size or response codes.  It can represent both successful and failed access to the resource object.</xs:documentation>
+    </xs:annotation>
     <xs:complexContent>
       <xs:extension base="evt:BaseObjectComplexType">
         <xs:sequence minOccurs="1" maxOccurs="1">
@@ -2349,9 +2416,15 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:complexType name="SendComplexType">
+    <xs:annotation>
+      <xs:documentation>Describes the action of sending something (e.g. a file, data, object, etc.) from a source location/application/system/user to a destination.</xs:documentation>
+    </xs:annotation>
     <xs:group ref="evt:SendReceiveGroup"/>
   </xs:complexType>
   <xs:complexType name="ShortcutComplexType">
+    <xs:annotation>
+      <xs:documentation>Describes a shortcut to another file/object, such as a Windows Shortcut or linux symbolic link.</xs:documentation>
+    </xs:annotation>
     <xs:complexContent>
       <xs:extension base="evt:BaseFileComplexType"/>
     </xs:complexContent>
@@ -2361,10 +2434,26 @@
       <xs:documentation>Used to describe a software asset.</xs:documentation>
     </xs:annotation>
     <xs:sequence minOccurs="1" maxOccurs="1">
-      <xs:element name="Id" type="xs:string" minOccurs="0" maxOccurs="1"/>
-      <xs:element name="Name" type="xs:string" minOccurs="1" maxOccurs="1"/>
-      <xs:element name="Version" type="xs:string" minOccurs="0" maxOccurs="1"/>
-      <xs:element name="Manufacturer" type="xs:string" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="Id" type="xs:string" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>An identifier for the software asset.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Name" type="xs:string" minOccurs="1" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>The name of the software product.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Version" type="xs:string" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>The version of the software product, e.g. v3.1.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Manufacturer" type="xs:string" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>The manufacturer of the software product, e.g. Borland</xs:documentation>
+        </xs:annotation>
+      </xs:element>
       <xs:element name="Data" type="evt:DataComplexType" minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
           <xs:documentation>Any other event data that does not fit into a schema element but may be useful for the purpose of audit.</xs:documentation>
@@ -2373,6 +2462,9 @@
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="SystemComplexType">
+    <xs:annotation>
+      <xs:documentation>Describes the system that generated the event. This is not the same as the generator as the generator is merely the application or component that created the event, e.g. auditd. The system describes the higher level project/service or capability that uses the generator as a component, e.g. 'Payroll System'.</xs:documentation>
+    </xs:annotation>
     <xs:sequence minOccurs="1" maxOccurs="1">
       <xs:element name="Name" type="xs:string" minOccurs="1" maxOccurs="1">
         <xs:annotation>
@@ -2386,7 +2478,7 @@
       </xs:element>
       <xs:element name="Classification" type="evt:ClassificationComplexType" minOccurs="0" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation>An optional classification of the overall system.</xs:documentation>
+          <xs:documentation>An optional classification or protective marking of the overall system.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="Environment" type="xs:string" minOccurs="1" maxOccurs="1">
@@ -2443,9 +2535,15 @@
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="UninstallComplexType">
+    <xs:annotation>
+      <xs:documentation>Describes the removal of either hardware or software.</xs:documentation>
+    </xs:annotation>
     <xs:group maxOccurs="1" minOccurs="1" ref="evt:InstallationGroup"/>
   </xs:complexType>
   <xs:complexType name="UpdateComplexType">
+    <xs:annotation>
+      <xs:documentation>Describes the update/modification/change to a file, object, entity, piece of data, etc.</xs:documentation>
+    </xs:annotation>
     <xs:sequence minOccurs="1" maxOccurs="1">
       <xs:element name="Before" type="evt:MultiObjectComplexType" minOccurs="0" maxOccurs="1">
         <xs:annotation>
@@ -2470,18 +2568,40 @@
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="UserComplexType">
+    <xs:annotation>
+      <xs:documentation>Describes a user entity that may represent a human or be a processing user account.</xs:documentation>
+    </xs:annotation>
     <xs:complexContent>
       <xs:extension base="evt:BaseObjectComplexType">
         <xs:sequence minOccurs="1" maxOccurs="1">
-          <xs:element name="Domain" type="xs:string" minOccurs="0" maxOccurs="1"/>
-          <xs:element name="EmailAddress" type="evt:EmailAddressSimpleType" minOccurs="0" maxOccurs="1"/>
-          <xs:element name="UserDetails" type="evt:UserDetailsComplexType" minOccurs="0" maxOccurs="1"/>
-          <xs:element name="Data" type="evt:DataComplexType" minOccurs="0" maxOccurs="unbounded"/>
+          <xs:element name="Domain" type="xs:string" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>The security domain that the user exists within, e.g. an Active Directory or OpenLDAP doamin.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="EmailAddress" type="evt:EmailAddressSimpleType" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>The email address of the user.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="UserDetails" type="evt:UserDetailsComplexType" minOccurs="0" maxOccurs="1">
+            <xs:annotation>
+              <xs:documentation>The details of the person represented by the user account or identity.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Data" type="evt:DataComplexType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Any other event data that does not fit into a schema element but may be useful for the purpose of audit.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
   <xs:complexType name="UserDetailsComplexType">
+    <xs:annotation>
+      <xs:documentation>Describes the person represented by a user account or identity.</xs:documentation>
+    </xs:annotation>
     <xs:sequence minOccurs="1" maxOccurs="1">
       <xs:element name="Id" type="xs:string" minOccurs="0" maxOccurs="1">
         <xs:annotation>
@@ -2611,6 +2731,9 @@
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="ViewComplexType">
+    <xs:annotation>
+      <xs:documentation>Describes events related to viewing data. Note that viewing data is subtly different from reading data. This event action is to be used when data is displayed to an end user and not for data read by an application.</xs:documentation>
+    </xs:annotation>
     <xs:complexContent>
       <xs:extension base="evt:BaseObjectOutcomeComplexType"> </xs:extension>
     </xs:complexContent>
