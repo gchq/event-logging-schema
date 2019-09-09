@@ -467,10 +467,13 @@
     <xs:sequence>
       <xs:element name="DataSources" minOccurs="0" maxOccurs="1">
         <xs:complexType>
+          <xs:annotation>
+            <xs:documentation>A collection of Datasource definitions that are referenced by the criteria/query</xs:documentation>
+          </xs:annotation>
           <xs:sequence minOccurs="1" maxOccurs="1">
             <xs:element name="DataSource" type="xs:string" minOccurs="1" maxOccurs="unbounded">
               <xs:annotation>
-                <xs:documentation></xs:documentation>
+                <xs:documentation>The name or path of one or more datasources or datasets that are used by a criteria/query, e.g. 'EuroVoc XML distribution' or 'hdfs://mynamenode:8020/datasets/hr/grades.xml'</xs:documentation>
               </xs:annotation>
             </xs:element>
           </xs:sequence>
@@ -601,7 +604,7 @@
       </xs:element>
       <xs:element name="User" type="evt:UserComplexType" minOccurs="1" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation></xs:documentation>
+          <xs:documentation>A user entity which may represent a person or some form of non-human processing user.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="VirtualSession" type="evt:VirtualSessionComplexType" minOccurs="1" maxOccurs="1">
@@ -804,12 +807,12 @@
       </xs:element>
       <xs:element name="Malware" type="evt:AntiMalwareThreatComplexType" minOccurs="0" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation></xs:documentation>
+          <xs:documentation>Type that describes a threat identified by an anti-malware scanner.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="Network" type="evt:NetworkComplexType" minOccurs="0" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation></xs:documentation>
+          <xs:documentation>A type to describe part of a computer network or some activity on a network.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="Change" minOccurs="0" maxOccurs="1">
@@ -995,7 +998,7 @@
         <xs:sequence minOccurs="1" maxOccurs="1">
           <xs:element name="Objects" type="evt:MultiObjectComplexType" minOccurs="1" maxOccurs="1">
             <xs:annotation>
-              <xs:documentation></xs:documentation>
+              <xs:documentation>The objects that have some form of link or association</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element name="Data" type="evt:DataComplexType" minOccurs="0" maxOccurs="unbounded">
@@ -1132,12 +1135,12 @@
         <xs:sequence minOccurs="1" maxOccurs="1">
           <xs:element name="Version" type="xs:string" minOccurs="0" maxOccurs="1">
             <xs:annotation>
-              <xs:documentation></xs:documentation>
+              <xs:documentation>If the text of the banner is versioned then this records the version of the banner that is displayed to the user.</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element name="Message" type="xs:string" minOccurs="0" maxOccurs="1">
             <xs:annotation>
-              <xs:documentation></xs:documentation>
+              <xs:documentation>The message text displayed on the banner.</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element name="Data" type="evt:DataComplexType" minOccurs="0" maxOccurs="unbounded">
@@ -1164,27 +1167,27 @@
         <xs:sequence minOccurs="1" maxOccurs="1">
           <xs:element name="SessionId" type="xs:string" minOccurs="0" maxOccurs="1">
             <xs:annotation>
-              <xs:documentation></xs:documentation>
+              <xs:documentation>The ID for the chat session.</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element name="Room" type="xs:string" minOccurs="0" maxOccurs="1">
             <xs:annotation>
-              <xs:documentation></xs:documentation>
+              <xs:documentation>The name of the chat room or group.</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element name="From" type="evt:UserComplexType" minOccurs="0" maxOccurs="1">
             <xs:annotation>
-              <xs:documentation></xs:documentation>
+              <xs:documentation>The user that initiated the chat event.</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element name="To" type="evt:UserComplexType" minOccurs="0" maxOccurs="unbounded">
             <xs:annotation>
-              <xs:documentation></xs:documentation>
+              <xs:documentation>The user(s) that the chat event (or message) is directed at.</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element name="Content" type="xs:string" minOccurs="0" maxOccurs="1">
             <xs:annotation>
-              <xs:documentation></xs:documentation>
+              <xs:documentation>The chat message or content sent by the user.</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element name="Data" type="evt:DataComplexType" minOccurs="0" maxOccurs="unbounded">
@@ -1225,7 +1228,7 @@
           </xs:element>
           <xs:element name="Size" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1">
             <xs:annotation>
-              <xs:documentation></xs:documentation>
+              <xs:documentation>The size of the file in bytes.</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element name="Media" type="evt:MediaComplexType" minOccurs="0" maxOccurs="1">
@@ -1235,6 +1238,9 @@
           </xs:element>
           <xs:element name="Hash" minOccurs="0" maxOccurs="1">
             <xs:complexType>
+              <xs:annotation>
+                <xs:documentation>Describes the output of a hash function and the type of has function used.</xs:documentation>
+              </xs:annotation>
               <xs:simpleContent>
                 <xs:extension base="xs:string">
                   <xs:annotation>
@@ -1624,7 +1630,7 @@
       </xs:element>
       <xs:element name="Port" type="evt:PortSimpleType" minOccurs="0" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation></xs:documentation>
+          <xs:documentation>The network port that is being used on the device, e.g. 443.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="Location" type="evt:LocationComplexType" minOccurs="0" maxOccurs="1">
@@ -1656,47 +1662,47 @@
         <xs:sequence minOccurs="1" maxOccurs="1">
           <xs:element name="Title" type="xs:string" minOccurs="0" maxOccurs="1">
             <xs:annotation>
-              <xs:documentation></xs:documentation>
+              <xs:documentation>The title or name of the document.</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element name="Reference" type="xs:string" minOccurs="0" maxOccurs="1">
             <xs:annotation>
-              <xs:documentation></xs:documentation>
+              <xs:documentation>A unique code or ID that can be used to reference the document.</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element name="Version" type="xs:string" minOccurs="0" maxOccurs="1">
             <xs:annotation>
-              <xs:documentation></xs:documentation>
+              <xs:documentation>The version or iteration of the document, e.g. v13 or v1.3.</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element name="Path" type="xs:string" minOccurs="0" maxOccurs="1">
             <xs:annotation>
-              <xs:documentation></xs:documentation>
+              <xs:documentation>The path that defines the location of the document on a file system or document management system, e.g. '/some/path/to/the/document.pdf'</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element name="Created" type="evt:DateTimeSimpleType" minOccurs="0" maxOccurs="1">
             <xs:annotation>
-              <xs:documentation></xs:documentation>
+              <xs:documentation>The date that the document was created.</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element name="Modified" type="evt:DateTimeSimpleType" minOccurs="0" maxOccurs="1">
             <xs:annotation>
-              <xs:documentation></xs:documentation>
+              <xs:documentation>The date that the document was last modified.</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element name="Accessed" type="evt:DateTimeSimpleType" minOccurs="0" maxOccurs="1">
             <xs:annotation>
-              <xs:documentation></xs:documentation>
+              <xs:documentation>The date that the document was last accessed.</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element name="Pages" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1">
             <xs:annotation>
-              <xs:documentation></xs:documentation>
+              <xs:documentation>The number of pages in the document.</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element name="Size" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1">
             <xs:annotation>
-              <xs:documentation></xs:documentation>
+              <xs:documentation>The size of the document in bytes.</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element name="Data" type="evt:DataComplexType" minOccurs="0" maxOccurs="unbounded">
@@ -1717,37 +1723,37 @@
         <xs:sequence minOccurs="1" maxOccurs="1">
           <xs:element name="From" type="evt:UserComplexType" minOccurs="0" maxOccurs="1">
             <xs:annotation>
-              <xs:documentation></xs:documentation>
+              <xs:documentation>The user that sent the email.</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element name="To" type="evt:UserComplexType" minOccurs="0" maxOccurs="unbounded">
             <xs:annotation>
-              <xs:documentation></xs:documentation>
+              <xs:documentation>The user(s) and/or distribution group(s) that the email was sent to.</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element name="Cc" type="evt:UserComplexType" minOccurs="0" maxOccurs="unbounded">
             <xs:annotation>
-              <xs:documentation></xs:documentation>
+              <xs:documentation>The user(s) and/or distribution group(s) that the email was CC'd (carbon copied) to.</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element name="Bcc" type="evt:UserComplexType" minOccurs="0" maxOccurs="unbounded">
             <xs:annotation>
-              <xs:documentation></xs:documentation>
+              <xs:documentation>The user(s) and/or distribution group(s) that the email was BCC'd (blind carbon copied) to.</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element name="Subject" type="xs:string" minOccurs="0" maxOccurs="1">
             <xs:annotation>
-              <xs:documentation></xs:documentation>
+              <xs:documentation>The subject text of the email.</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element name="Content" type="xs:string" minOccurs="0" maxOccurs="1">
             <xs:annotation>
-              <xs:documentation></xs:documentation>
+              <xs:documentation>The content of the email, i.e. the message body. This may be plain text or some form of rich text like HTML.</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element name="MimeType" type="xs:string" minOccurs="0" maxOccurs="1">
             <xs:annotation>
-              <xs:documentation></xs:documentation>
+              <xs:documentation>The MIME (Multipurpose Internet Mail Extensions) type of the email body, i.e. the format of the message body, e.g. 'text/plain' or 'text/html'. </xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element name="Data" type="evt:DataComplexType" minOccurs="0" maxOccurs="unbounded">
@@ -1833,7 +1839,7 @@
     <xs:sequence minOccurs="1" maxOccurs="1">
       <xs:element name="Group" type="evt:GroupComplexType" minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
-          <xs:documentation></xs:documentation>
+          <xs:documentation>One or more group entities, e.g. user groups or access control groups.</xs:documentation>
         </xs:annotation>
       </xs:element>
     </xs:sequence>
@@ -1845,32 +1851,32 @@
     <xs:sequence minOccurs="1" maxOccurs="1">
       <xs:element name="Type" type="evt:HardwareTypeSimpleType" minOccurs="1" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation></xs:documentation>
+          <xs:documentation>The type of hardware, e.g. hard disk drive.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="Id" type="xs:string" minOccurs="0" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation></xs:documentation>
+          <xs:documentation>A unique identifer for the piece of hardware, e.g. an asset number.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="Name" type="xs:string" minOccurs="0" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation></xs:documentation>
+          <xs:documentation>A friendly name for the hardware, e.g. a name that has been deinfed in an asset management or device monitoring system.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="Model" type="xs:string" minOccurs="0" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation></xs:documentation>
+          <xs:documentation>The model name as defined by the manufacturer.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="Manufacturer" type="xs:string" minOccurs="0" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation></xs:documentation>
+          <xs:documentation>The manufacturer of the piece of hardware.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="Capacity" type="xs:positiveInteger" minOccurs="0" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation></xs:documentation>
+          <xs:documentation>The capacity of the device in bytes.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="Data" type="evt:DataComplexType" minOccurs="0" maxOccurs="unbounded">
@@ -1920,7 +1926,7 @@
     <xs:sequence minOccurs="1" maxOccurs="1">
       <xs:element name="Country" type="xs:string" minOccurs="0" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation></xs:documentation>
+          <xs:documentation>The ISO-3166 country short name, e.g. 'UNITED KINGDOM OF GREAT BRITAIN AND NORTHERN IRELAND' or 'ANDORRA'</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="State" type="xs:string" minOccurs="0" maxOccurs="1">
@@ -1940,50 +1946,45 @@
       </xs:element>
       <xs:element name="Site" type="xs:string" minOccurs="0" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation></xs:documentation>
+          <xs:documentation>The name of the site of the location, e.g. where an organistation has multiple distinct sites or campuses. Specifiying the site is particularly important when the sites are in the same town/city.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:sequence minOccurs="0" maxOccurs="1">
         <xs:element name="Building" type="xs:string" minOccurs="0" maxOccurs="1">
           <xs:annotation>
-            <xs:documentation></xs:documentation>
+            <xs:documentation>The name of the building.</xs:documentation>
           </xs:annotation>
         </xs:element>
         <xs:element name="Floor" type="xs:integer" minOccurs="0" maxOccurs="1">
           <xs:annotation>
-            <xs:documentation></xs:documentation>
+            <xs:documentation>The floor of the building that the location refers to.</xs:documentation>
           </xs:annotation>
         </xs:element>
         <xs:element name="Room" type="xs:string" minOccurs="0" maxOccurs="1">
           <xs:annotation>
-            <xs:documentation></xs:documentation>
+            <xs:documentation>The identifier (e.g. name) of the room that the location refers to.</xs:documentation>
           </xs:annotation>
         </xs:element>
         <xs:choice minOccurs="1" maxOccurs="1">
           <xs:element name="Desk" type="xs:string" minOccurs="0" maxOccurs="1">
             <xs:annotation>
-              <xs:documentation></xs:documentation>
+              <xs:documentation>The identifier (e.g. name) of the desk that the location refers to.</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:sequence minOccurs="1" maxOccurs="1">
             <xs:element name="Rack" type="xs:string" minOccurs="0" maxOccurs="1">
               <xs:annotation>
-                <xs:documentation></xs:documentation>
+                <xs:documentation>The identifier for the rack/cabinet where the location refers to a rack mounted device, e.g. a rack mounted 4U server in a cabinet.</xs:documentation>
               </xs:annotation>
             </xs:element>
             <xs:element name="Position" type="xs:string" minOccurs="0" maxOccurs="1">
               <xs:annotation>
-                <xs:documentation></xs:documentation>
+                <xs:documentation>The position of the device where the location refers to a rack mounted device in a rack/cabinet. E.g. where a 4U device occupies U positions 1-4 in a cabinet (numbered from the bottom of the cabinet, satrting from 1), the position would be '1'.</xs:documentation>
               </xs:annotation>
             </xs:element>
           </xs:sequence>
         </xs:choice>
       </xs:sequence>
-      <xs:element name="TimeZone" type="xs:string" minOccurs="0" maxOccurs="1">
-        <xs:annotation>
-          <xs:documentation>[DEPRECATED: This element will be removed in a future version. Use TimeZoneName instead.] Timezone pair for the location in RFC3339 time-numoffset format separated by a slash '/' character. The first offset is for the location's standard timezone and the second for the daylight savings timezone. For example, Bristol, UK would be +00:00/+01:00.</xs:documentation>
-        </xs:annotation>
-      </xs:element>
       <xs:element name="TimeZoneName" type="xs:string" minOccurs="0" maxOccurs="1">
         <xs:annotation>
           <xs:documentation>The timezone name for the location as defined by the IANA Timezone Database (https://www.iana.org/time-zones), e.g. 'Europe/London' or 'Australia/NSW'.</xs:documentation>
@@ -2008,17 +2009,17 @@
     <xs:sequence minOccurs="1" maxOccurs="1">
       <xs:element name="Type" type="evt:MediaTypeSimpleType" minOccurs="1" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation></xs:documentation>
+          <xs:documentation>The type of the removable media, e.g. MemoryCard</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="Id" type="xs:string" minOccurs="0" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation></xs:documentation>
+          <xs:documentation>The identifier for the removabel media. This may be an identifer provided by the media (e.g. the Card Identification or CID of an SD card) or assigned by device monitoring software.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="Name" type="xs:string" minOccurs="0" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation></xs:documentation>
+          <xs:documentation>A friendly name for the media, possibly assigned by device monitoring system..</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="Removable" type="xs:boolean" minOccurs="0" maxOccurs="1">
@@ -2028,12 +2029,12 @@
       </xs:element>
       <xs:element name="ReadWrite" type="xs:boolean" minOccurs="0" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation>Indicates if a device has read-write access. Most devices are read-write so this defaults to true and can therefore be omitted where this is the case.</xs:documentation>
+          <xs:documentation>Indicates if a device has read-write access. Most devices are read-write so this is assumed to be true and can therefore be omitted where this is the case.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="Capacity" type="xs:positiveInteger" minOccurs="0" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation></xs:documentation>
+          <xs:documentation>The capacity of the media in bytes.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="Classification" type="evt:ClassificationComplexType" minOccurs="0" maxOccurs="1">
@@ -3285,6 +3286,9 @@
       <xs:enumeration value="USBMassStorage"/>
       <xs:enumeration value="Printer"/>
       <xs:enumeration value="Modem"/>
+      <xs:enumeration value="Keyboard"/>
+      <xs:enumeration value="Mouse"/>
+      <xs:enumeration value="Webcam"/>
       <xs:enumeration value="Other"/>
     </xs:restriction>
   </xs:simpleType>
@@ -3344,6 +3348,7 @@
       <xs:enumeration value="CD"/>
       <xs:enumeration value="FloppyDisk"/>
       <xs:enumeration value="Tape"/>
+      <xs:enumeration value="MemoryCard"/>
       <xs:enumeration value="Other"/>
     </xs:restriction>
   </xs:simpleType>

@@ -80,6 +80,12 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
     * Remove unused `FromComplexType`.
 
+    * Add `Keyboard`,`Mouse` and `Webcam` to `HardwareTypeSimpleType`.
+
+    * Add `MemoryCard` to `MediaTypeSimpleType`.
+
+    * Remove deprecated `LocationComplexType/TimeZone`.
+
 
 
 ## [v3.4.2] - 2019-04-16
