@@ -68,6 +68,8 @@ Javadoc will be added to property getters/setters and Builder add/with methods u
     <xs:sequence minOccurs="1" maxOccurs="1">
 ```
 
+In the above example there is documentation at both the element and annonymous complex type leve that essentiall describes the same thing as the type has one one use. If only the complex type annotation is used then some schema editors, e.g. OxygenXML, will not display the annotation. Thus for clarity both positons should be used.
+
 ## Building the schema
 
 The master version of the schema is located in the root of this repository (`event-logging.xsd`). 
