@@ -25,6 +25,8 @@ SearchResults can be used within other schema actions.
     </EventTime>
 
     <EventSource>
+      <!-- The source system specific unique ID for this event -->
+      <EventId>1024</EventId>
       <System>
         <Name>Rock Sample Database</Name>
         <Environment>Space</Environment>
@@ -54,7 +56,7 @@ SearchResults can be used within other schema actions.
             <Query>
               <!-- 
               Provides a link back to the Search event generated when the 
-              query was executed
+              query was executed. The link can also be acheived using EventLinks below.
               -->
               <Id>query-538393</Id>
             </Query>
@@ -74,6 +76,14 @@ SearchResults can be used within other schema actions.
           </SearchResults>
         </View>
     </EventDetail>
+
+    <!-- This event is linked back to its parent (the initial search) -->
+    <EventLinks>
+      <EventParent>
+        <!-- Links this event to the one with EventSource/EventId[text()='1023'] -->
+        <EventId>1023</EventId>
+      </EventParent>
+    </EventLinks>
 
   </Event>
 

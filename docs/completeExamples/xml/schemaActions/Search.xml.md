@@ -22,6 +22,11 @@ The first with an id of `7811` and a name of `Surpisingly Heavy Chunk` and the s
     </EventTime>
 
     <EventSource>
+      <!-- 
+      An identifier for the user's session (e.g. a JSessionId) which can be used to group
+      events that are part of the same session 
+      -->
+      <SessionId>5EFDA7655A8D72E7D04AC2E88E754956</SessionId>
       <System>
         <Name>Rock Sample Database</Name>
         <Environment>Space</Environment>

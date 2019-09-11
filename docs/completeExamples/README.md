@@ -51,3 +51,5 @@ The following are links to annotated example `<Events>` XML documents that are v
   * **`<Event>/<Meta>`**
     * [`<Event>/<Meta>` (JSON) XML](./xml/Event_Meta_JSON.xml.md)
     * [`<Event>/<Meta>` (XML) XML](./xml/Event_Meta_XML.xml.md)
+  * **`<Event>/<EventLinks>`**
+    * [`<Event>/<EventLinks>` (Child-parent) XML](./xml/Event_EventLinks.xml.md)

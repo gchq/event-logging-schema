@@ -169,9 +169,11 @@ Each event will describe what happened within the `<EventDetail>` element. The c
 ``` 
 
 #### Description
+
 The `<Description>` element allows for the inclusion of a human readable description of the event type.
 
 #### Type ID
+
 The `<EventDetail>` element includes a mandatory TypeId element. This element identifies the unique event type as known to the generator. For example a generator may distinguish 2 types of logon event just by some id. Use of this element would be the only way to treat the two types differently.  In the case of application logging the Type ID should be unique to a use case within the system, e.g. CreateDocument, DeleteRecord, DocumentSearch, UserSearch, etc.
 
 The form of the Type IDs is specific to the generator and could be strings or numeric codes, as long as they provide a unique identifier for that type of event within that generator.  Where a generator already produces some form of ID for its events, e.g. Microsoft system event codes these can be used directly, however in the absence of predefined code a human readable TypeId is preferable as it is more easily understood by human.
@@ -179,6 +181,7 @@ The form of the Type IDs is specific to the generator and could be strings or nu
 Having sensible Type IDs is of particular benefit when developing processes that depend upon events conforming to the schema as it allows the developer to group events by the Type ID or to have conditional processing based on the ID.
 
 #### Classification
+
 The `<Classification>` element can be used to describe the classification, protective marking or sensitivity of the data in the event.  For example the data may be commercially sensitive or contain sensitive personal data.  The element includes a number of optional elements so can be as simple as just a free text `<Text>` element containing something like `COMMERICAL IN CONFIDENCE` to multiple elements that described the protective marking in complex classification scheme.
 
 The `<Classification>` element appears in a number of places in the schema as it can be used to describe the sensitivity or marking of different entities/objects. For example it can be used to describe the sensitivity of a set of audit events in aggregation, the content of a single audit event or an object that is the subject of an audit event, i.e. a document being viewed by a user.
@@ -231,17 +234,20 @@ The following are some examples of populated Classification elements:
 ```
 
 #### Purpose
+
 Certain auditable events may require users to provide justification for the action they are taking, e.g. viewing a personnel record or processing a high value payment. This element provides the means to record the justification/purpose of the auditable event and possibly any authorisations that were obtained.
 
 #### Schema Action
+
 The action specific detail of the auditble event is recorded in a 'schema action' element, where the structure of each element is tailored to the auditable action.
 
 The schema action element structures are defined in more detail in [Schema Actions](../schemaActions/README.md).
 
 ### Event Chain
+
 Where more than one event is related this can be specified using the `<EventChain>` element, see the following example.
 
-``` xml
+```xml
 <EventChain>
   <Activity Id="1234">
     <Parent Id="5678"/>
@@ -256,6 +262,7 @@ In some cases an activity may have a parent that could be used to associate even
 The structure allows for a hierarchy to be constructed if necessary in order to associate activities.
 
 ## Schema Versions
+
 It is anticipated that the schema will evole over time to accomodate new types of auditable event and to better describe existing events.  Each version of the schema is marked with a unique version number using the `version` attribute in the `<xs:schema>` element.  All events should be marked with the version of the schema that they are based upon using the `Version` attribute of the `<Events>` element.  This allows systems processing the events to correctly interpret the structure.
 
 ### Schema Versioning
