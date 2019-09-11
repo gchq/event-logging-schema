@@ -65,6 +65,16 @@
                                 </xs:annotation>
                                 <xs:complexType>
                                     <xs:sequence minOccurs="1" maxOccurs="1">
+                                        <xs:element minOccurs="0" name="EventId" type="xs:string">
+                                            <xs:annotation>
+                                                <xs:documentation>A unique identifier known to the source system that created the event. This identifier may not be unique outside of the source system. It can be used for linking related events within the source system, e.g. where an event is part of a chain of events or is child of another event. Linking of events can be recorded with the Event/EventChain element.</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
+                                        <xs:element minOccurs="0" name="SessionId" type="xs:string">
+                                            <xs:annotation>
+                                                <xs:documentation>Where an event is part of a session the identifier for that session can be recorded here to allow subsequent grouping of events for the same session. The SessionId should be a uniqiue identifier for the session within the source system. It is not expected that the SessionId have meaning or be unique outside of the source system.</xs:documentation>
+                                            </xs:annotation>
+                                        </xs:element>
                                         <xs:element name="System" type="evt:SystemComplexType" minOccurs="1" maxOccurs="1">
                                             <xs:annotation>
                                                 <xs:documentation>The system that generated the event. This is not the same as the generator as the generator is merely the application or component that created the event, e.g. auditd. The system describes the higher level project/service or capability that uses the generator as a component, e.g. 'Payroll System'.</xs:documentation>
