@@ -55,24 +55,24 @@ def validateVersions(newVersion, schemaFile):
     xsdFile = open(schemaFile, 'r')
     filetext = xsdFile.read()
     xsdFile.close()
-    matches = re.findall("xmlns:evt=\"event-logging:(.*)\"", filetext)
+    matches = re.findall("xmlns:evt=\"event-logging:([^\"]*)\"", filetext)
     if (len(matches) != 1):
         raise ValueError("Unexpected matches for evt namespace", matches)
     namespaceVersion = matches[0]
-    print "namespace version: %s" % namespaceVersion
+    print "namespace version: [%s]" % namespaceVersion
 
     xml_root = ET.parse(schemaFile).getroot()
 
     targetNamespaceAttr = xml_root.get("targetNamespace")
     targetNamespaceVersion = re.match(".*:(.*)$", targetNamespaceAttr).group(1)
-    print "targetNamespace: %s" % targetNamespaceVersion
+    print "targetNamespace:   [%s]" % targetNamespaceVersion
 
     versionAttrVersion = xml_root.get("version")
-    print "version: %s" % versionAttrVersion
+    print "version:           [%s]" % versionAttrVersion
 
     idAttr = xml_root.get("id")
     idAttrVersion = re.match("event-logging-v?(.*)$", idAttr).group(1)
-    print "id: %s" % idAttrVersion
+    print "id:                [%s]" % idAttrVersion
 
     ns = {'xs': 'http://www.w3.org/2001/XMLSchema'}
     enumVersions = []
