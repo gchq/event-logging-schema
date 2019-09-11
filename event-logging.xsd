@@ -35,11 +35,6 @@
                                     <xs:documentation>This element can be used to supply any meta data relating to the event as long as it conforms to an allowed format/specification (defined outside of this XML Schema).</xs:documentation>
                                 </xs:annotation>
                             </xs:element>
-                            <xs:element name="Id" type="xs:string" minOccurs="0" maxOccurs="1">
-                                <xs:annotation>
-                                    <xs:documentation>An identifier that can be added to an event record during receipt or processing of the event. E.g. to provide a unique identifier of the event within the system receiving events or to identifiy an event within a set of events. Not to be used by system creating an event record.</xs:documentation>
-                                </xs:annotation>
-                            </xs:element>
                             <xs:element name="Classification" type="evt:ClassificationComplexType" minOccurs="0" maxOccurs="1">
                                 <xs:annotation>
                                     <xs:documentation>The classification for the event.</xs:documentation>
