@@ -18,6 +18,9 @@
   <xs:annotation>
     <xs:documentation>This schema describes the allowed element structure for event logging. Please refer to the documentation and examples for a description of how to use this schema in addition to the descriptions given for each element within this schema.</xs:documentation>
   </xs:annotation>
+
+  <!-- Elements -->
+
   <xs:element name="Events">
     <xs:annotation>
       <xs:documentation>The root element that contains multiple Event elements.</xs:documentation>
@@ -363,6 +366,9 @@
       </xs:attribute>
     </xs:complexType>
   </xs:element>
+
+  <!-- Groups -->
+
   <xs:group name="AdvancedQueryOperatorGroup">
     <xs:choice>
       <xs:element name="Term" type="evt:TermComplexType" minOccurs="0" maxOccurs="1">
@@ -385,45 +391,6 @@
           <xs:documentation>The enclosed structure operators and terms are negated.</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <!--<xs:element name="And" minOccurs="0" maxOccurs="1">-->
-        <!--<xs:annotation>-->
-          <!--<xs:documentation>All of the enclosed items are to be treated as being AND together.</xs:documentation>-->
-        <!--</xs:annotation>-->
-        <!--<xs:complexType>-->
-          <!--<xs:annotation>-->
-            <!--<xs:documentation>All of the enclosed items are to be treated as being AND together.</xs:documentation>-->
-          <!--</xs:annotation>-->
-          <!--<xs:complexContent>-->
-            <!--<xs:extension base="evt:BaseAdvancedQueryOperatorComplexType"/>-->
-          <!--</xs:complexContent>-->
-        <!--</xs:complexType>-->
-      <!--</xs:element>-->
-      <!--<xs:element name="Or" minOccurs="0" maxOccurs="1">-->
-        <!--<xs:annotation>-->
-          <!--<xs:documentation>All of the enclosed items are to be treated as being OR together.</xs:documentation>-->
-        <!--</xs:annotation>-->
-        <!--<xs:complexType>-->
-          <!--<xs:annotation>-->
-            <!--<xs:documentation>All of the enclosed items are to be treated as being OR together.</xs:documentation>-->
-          <!--</xs:annotation>-->
-          <!--<xs:complexContent>-->
-            <!--<xs:extension base="evt:BaseAdvancedQueryOperatorComplexType"/>-->
-          <!--</xs:complexContent>-->
-        <!--</xs:complexType>-->
-      <!--</xs:element>-->
-      <!--<xs:element name="Not" minOccurs="0" maxOccurs="1">-->
-        <!--<xs:annotation>-->
-          <!--<xs:documentation>The enclosed structure operators and terms are negated.</xs:documentation>-->
-        <!--</xs:annotation>-->
-        <!--<xs:complexType>-->
-          <!--<xs:annotation>-->
-            <!--<xs:documentation>The enclosed structure operators and terms are negated.</xs:documentation>-->
-          <!--</xs:annotation>-->
-          <!--<xs:complexContent>-->
-            <!--<xs:extension base="evt:BaseAdvancedQueryOperatorComplexType"/>-->
-          <!--</xs:complexContent>-->
-        <!--</xs:complexType>-->
-      <!--</xs:element>-->
     </xs:choice>
   </xs:group>
   <xs:group name="BaseObjectGroup">
@@ -782,6 +749,9 @@
       </xs:element>
     </xs:sequence>
   </xs:group>
+
+  <!-- Complex Types -->
+
   <xs:complexType name="AccessControlGroupsComplexType">
     <xs:annotation>
       <xs:documentation>Describes a set of groups used to control access to protectively marked items.</xs:documentation>
@@ -926,6 +896,12 @@
         </xs:annotation>
       </xs:element>
     </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AndComplexType">
+    <xs:annotation>
+      <xs:documentation>All of the enclosed items are to be treated as being AND together.</xs:documentation>
+    </xs:annotation>
+    <xs:group ref="evt:AdvancedQueryOperatorGroup" minOccurs="0" maxOccurs="unbounded"/>
   </xs:complexType>
   <xs:complexType name="AntiMalwareThreatComplexType">
     <xs:annotation>
@@ -1246,37 +1222,6 @@
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-
-
-
-
-  <!--<xs:complexType name="BaseAdvancedQueryOperatorComplexType">-->
-    <!--<xs:annotation>-->
-      <!--<xs:documentation>The abstract type of all advanced query operators, e.g. NOT, AND, OR, etc</xs:documentation>-->
-    <!--</xs:annotation>-->
-    <!--<xs:group ref="evt:AdvancedQueryOperatorGroup" minOccurs="0" maxOccurs="unbounded"/>-->
-  <!--</xs:complexType>-->
-  <xs:complexType name="AndComplexType">
-    <xs:annotation>
-      <xs:documentation>All of the enclosed items are to be treated as being AND together.</xs:documentation>
-    </xs:annotation>
-    <xs:group ref="evt:AdvancedQueryOperatorGroup" minOccurs="0" maxOccurs="unbounded"/>
-  </xs:complexType>
-  <xs:complexType name="OrComplexType">
-    <xs:annotation>
-      <xs:documentation>All of the enclosed items are to be treated as being OR together.</xs:documentation>
-    </xs:annotation>
-    <xs:group ref="evt:AdvancedQueryOperatorGroup" minOccurs="0" maxOccurs="unbounded"/>
-  </xs:complexType>
-  <xs:complexType name="NotComplexType">
-    <xs:annotation>
-      <xs:documentation>The enclosed structure operators and terms are negated.</xs:documentation>
-    </xs:annotation>
-    <xs:group ref="evt:AdvancedQueryOperatorGroup" minOccurs="0" maxOccurs="unbounded"/>
-  </xs:complexType>
-
-
-
   <xs:complexType name="BaseChatComplexType" abstract="true">
     <xs:annotation>
       <xs:documentation>Describes the details of a chat event, e.g. an instance message chat message from one user to another.</xs:documentation>
@@ -2383,6 +2328,12 @@
       </xs:element>
     </xs:sequence>
   </xs:complexType>
+  <xs:complexType name="NotComplexType">
+    <xs:annotation>
+      <xs:documentation>The enclosed structure operators and terms are negated.</xs:documentation>
+    </xs:annotation>
+    <xs:group ref="evt:AdvancedQueryOperatorGroup" minOccurs="0" maxOccurs="unbounded"/>
+  </xs:complexType>
   <xs:complexType name="ObjectComplexType">
     <xs:annotation>
       <xs:documentation>Describes a generic object or entity that cannot be described using any of the other more specific object types.</xs:documentation>
@@ -2398,6 +2349,12 @@
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="OrComplexType">
+    <xs:annotation>
+      <xs:documentation>All of the enclosed items are to be treated as being OR together.</xs:documentation>
+    </xs:annotation>
+    <xs:group ref="evt:AdvancedQueryOperatorGroup" minOccurs="0" maxOccurs="unbounded"/>
   </xs:complexType>
   <xs:complexType name="OrganisationComplexType">
     <xs:annotation>
@@ -3249,6 +3206,9 @@
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
+
+  <!-- Simple Types -->
+
   <xs:simpleType name="AlertPrioritySimpleType">
     <xs:annotation>
       <xs:documentation>The priorities that can be assigned to an alert, e.g. an error in a system or the alert from the detection of malware. They indicate how important it is to resolve or mitigate the alert.</xs:documentation>
