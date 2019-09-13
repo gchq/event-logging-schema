@@ -80,19 +80,6 @@ Send, etc.  Where an event has to be recorded that doesn't fit into one of these
 predefined categories then the Unknown 'schema action' can be used, but this should be a 
 last resort as its content is unstructured and reduces the normalisation benefits.
 
-## Sessions
-Sometimes events occur as part of a session, for example a user's session in a web application.
-To make it possible for the system receiving the events to group multiple events that are part of the same session, the `Event/EventSource/SessionId` element can be used.
-Each event would set this element with the current session ID.
-The session ID may only be unique within the source system but it can be used in conjunction with the system name to group events.
-
-An example of this can be seen in the search event [here](completeExamples/xml/schemaActions/Search.xml.md).
-
-## Linking related events
-Sometimes events occur that are directly related to another event, for example when an asynchronous search is initiated by a user and at some later point they view the search results. The second event is a child of the first. Recording the 
-
-An example of this can be seen in the search event [here](completeExamples/xml/objectTypes/SearchResults.xml.md).
-
 ## Putting it all together
 It can be hard to imagine what complete events look like, so a number of 
 [illustrative examples](completeExamples/README.md)

@@ -710,20 +710,15 @@
                                     </xs:sequence>
                                 </xs:complexType>
                             </xs:element>
-                            <xs:element minOccurs="0" name="EventLinks">
+                            <xs:element name="EventChain" minOccurs="0" maxOccurs="1">
                                 <xs:annotation>
-                                    <xs:documentation>Provides details of other events that are related to this event in this way. Where events are related by means of some form of a session that is not an event in its own right Event/EventSource/SessionId should be used instead.</xs:documentation>
+                                    <xs:documentation>This element can be used to create relationships between different events, i.e where one event is the child of another.</xs:documentation>
                                 </xs:annotation>
                                 <xs:complexType>
-                                    <xs:sequence>
-                                        <xs:element name="EventParent" type="evt:EventReferenceComplexType" minOccurs="0">
+                                    <xs:sequence minOccurs="1" maxOccurs="1">
+                                        <xs:element name="Activity" type="evt:ActivityComplexType" minOccurs="1" maxOccurs="1">
                                             <xs:annotation>
-                                                <xs:documentation>The details of the event that is the parent of this event.</xs:documentation>
-                                            </xs:annotation>
-                                        </xs:element>
-                                        <xs:element maxOccurs="unbounded" minOccurs="0" name="EventSibling" type="evt:EventReferenceComplexType">
-                                            <xs:annotation>
-                                                <xs:documentation>The details of the event(s) that is/are the sibling of this event.</xs:documentation>
+                                                <xs:documentation>The event that this event has a relationship to or is referenced by.</xs:documentation>
                                             </xs:annotation>
                                         </xs:element>
                                     </xs:sequence>
@@ -896,6 +891,28 @@
             <xs:element name="AccessControlGroup" type="xs:string" maxOccurs="unbounded">
                 <xs:annotation>
                     <xs:documentation>The name of an access control group that is used to control access to protectively marked items. E.g. 'HR', 'Auditors', 'Management', etc.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ActivityComplexType">
+        <xs:annotation>
+            <xs:documentation>Type that describes relationships between different events. For example in an asynchronous search the viewing of the results of the search may be a separate event from the execution of the query. In this instance the view event would be a child of the execuion event.</xs:documentation>
+        </xs:annotation>
+        <xs:sequence minOccurs="1" maxOccurs="1">
+            <xs:element name="Id" type="xs:string" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>The unique identifer of the event that is being referenced. This will be the value of Event/EventSource/EventId on the referenced event. E.g where an event with Event/EventSource/EventId=101 is a child of an event with Event/EventSource/EventId=99, the value in this element would be 99.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Name" type="xs:string" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>A descriptive name for the referenced event</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Parent" type="evt:ActivityComplexType" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                    <xs:documentation>The details of the event that is the parent of this referenced event. E.g. if event C is a child of event B which is a child of event A, this element would record an Id of A.</xs:documentation>
                 </xs:annotation>
             </xs:element>
         </xs:sequence>
@@ -1569,30 +1586,6 @@
                 </xs:sequence>
             </xs:extension>
         </xs:complexContent>
-    </xs:complexType>
-    <xs:complexType name="EventReferenceComplexType">
-        <xs:sequence>
-            <xs:element name="EventId" type="xs:string">
-                <xs:annotation>
-                    <xs:documentation>The unique identifer of the event that is being referenced. This will be the value of Event/EventSource/EventId on the referenced event. E.g where an event with Event/EventSource/EventId=101 is a child of an event with Event/EventSource/EventId=99, the value in this element would be 99.</xs:documentation>
-                </xs:annotation>
-            </xs:element>
-            <xs:element name="EventParent" type="evt:EventReferenceComplexType" minOccurs="0">
-                <xs:annotation>
-                    <xs:documentation>The details of the event that is the parent of this referenced event. E.g. if event C is a child of event B which is a child of event A, this element would record an EventId of A.</xs:documentation>
-                </xs:annotation>
-            </xs:element>
-            <xs:element maxOccurs="unbounded" minOccurs="0" name="EventSibling" type="evt:EventReferenceComplexType">
-                <xs:annotation>
-                    <xs:documentation>The details of the event(s) that is/are the sibling of this referenced event.</xs:documentation>
-                </xs:annotation>
-            </xs:element>
-            <xs:element minOccurs="0" name="Description">
-                <xs:annotation>
-                    <xs:documentation>A human readable description of the relationship between the event described by EventId and the event that referenced it.</xs:documentation>
-                </xs:annotation>
-            </xs:element>
-        </xs:sequence>
     </xs:complexType>
     <xs:complexType name="ExportComplexType">
         <xs:annotation>

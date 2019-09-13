@@ -51,39 +51,40 @@ SearchResults can be used within other schema actions.
     <EventDetail>
       <TypeId>viewSearchResults</TypeId>
       <Description>User is viewing a set of stored search results</Description>
-        <View>
-          <SearchResults>
-            <Query>
-              <!-- 
-              Provides a link back to the Search event generated when the 
-              query was executed. The link can also be acheived using EventLinks below.
-              -->
-              <Id>query-538393</Id>
-            </Query>
-            <TotalResults>2</TotalResults>
-            <Results>
-              <Object>
-                <Type>Rock</Type>
-                <Id>78121</Id>
-                <Name>Surpisingly Heavy Chunk</Name>
-              </Object>
-              <Object>
-                <Type>Rock</Type>
-                <Id>11418</Id>
-                <Name>Possible Gold Ore</Name>
-              </Object>
-            </Results>
-          </SearchResults>
-        </View>
+      <View>
+        <SearchResults>
+          <Query>
+            <!-- 
+            Provides a link back to the Search event generated when the 
+            query was executed. The link can also be acheived using EventLinks below.
+            -->
+            <Id>query-538393</Id>
+          </Query>
+          <TotalResults>2</TotalResults>
+          <Results>
+            <Object>
+              <Type>Rock</Type>
+              <Id>78121</Id>
+              <Name>Surpisingly Heavy Chunk</Name>
+            </Object>
+            <Object>
+              <Type>Rock</Type>
+              <Id>11418</Id>
+              <Name>Possible Gold Ore</Name>
+            </Object>
+          </Results>
+        </SearchResults>
+      </View>
     </EventDetail>
 
     <!-- This event is linked back to its parent (the initial search) -->
-    <EventLinks>
-      <EventParent>
+    <EventChain>
+      <Activity>
         <!-- Links this event to the one with EventSource/EventId[text()='1023'] -->
-        <EventId>1023</EventId>
-      </EventParent>
-    </EventLinks>
+        <Id>92832938</Id>
+        <Name>Search execution</Name>
+      </Activity>
+    </EventChain>
 
   </Event>
 
