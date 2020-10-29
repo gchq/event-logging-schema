@@ -120,12 +120,12 @@
                                                                     <xs:documentation>Describes the geographic location of the device.</xs:documentation>
                                                                 </xs:annotation>
                                                             </xs:element>
-                                                            <xs:element name="SingleEntry" type="xs:boolean" minOccurs="1" maxOccurs="1">
+                                                            <xs:element name="SingleEntry" type="xs:boolean" minOccurs="0" maxOccurs="1">
                                                                 <xs:annotation>
                                                                     <xs:documentation>It is assumed that doors only allow for a single authenticated person to enter at a time, e.g. in the case of turnstiles. Where single entry is true this element can be omitted as this is expected by default.</xs:documentation>
                                                                 </xs:annotation>
                                                             </xs:element>
-                                                            <xs:element name="RemoveAll" type="xs:boolean" minOccurs="1" maxOccurs="1">
+                                                            <xs:element name="RemoveAll" type="xs:boolean" minOccurs="0" maxOccurs="1">
                                                                 <xs:annotation>
                                                                     <xs:documentation>This element is used to tell us to remove all access zones from the list of currently accesible zones for a user before adding a new one. This is the case whenever a user moves from one zone to another and loses all possible access to the zones they were previously in, i.e. they would need to re-authenticate to regain access rather than just pass back through the door. If not specified this element is considered to be true as most movement through a door removes access to previously accessible zones.</xs:documentation>
                                                                 </xs:annotation>
