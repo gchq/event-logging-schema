@@ -2556,6 +2556,7 @@
             <xs:enumeration value="Disconnect"/>
             <xs:enumeration value="Connect"/>
             <xs:enumeration value="ElevatePrivilege"/>
+            <xs:enumeration value="ReadToken"/>
             <xs:enumeration value="Other"/>
         </xs:restriction>
     </xs:simpleType>
@@ -2573,6 +2574,7 @@
             <xs:enumeration value="CachedRemoteInteractive"/>
             <xs:enumeration value="CachedUnlock"/>
             <xs:enumeration value="Proxy"/>
+            <xs:enumeration value="PhysicalAccess"/>
             <xs:enumeration value="Other"/>
         </xs:restriction>
     </xs:simpleType>
