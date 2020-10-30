@@ -195,7 +195,7 @@
                                         <xs:choice minOccurs="1" maxOccurs="1">
                                             <xs:element name="Authenticate" minOccurs="1" maxOccurs="1">
                                                 <xs:annotation>
-                                                    <xs:documentation>Used to record authentication events such as logon and logoff. All authentication events that originate from a client device should record details of the client device in the event source.</xs:documentation>
+                                                    <xs:documentation>Used to record authentication events such as logon and logoff. Also used for recording authentication by physical access controls, e.g. doors/turnstiles. All authentication events that originate from a client device should record details of the client device in the event source.</xs:documentation>
                                                 </xs:annotation>
                                                 <xs:complexType>
                                                     <xs:sequence minOccurs="1" maxOccurs="1">
