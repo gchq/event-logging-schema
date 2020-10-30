@@ -18,6 +18,12 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 ## [Unreleased]
 
+* Issue **#63**: Allow `EventSource/Door` to be combined with `Device`, `Client` and `Server`.
+
+* Issue **#64**: Change `Door` sub-element constraints to be consistent with documentation.
+
+* Issue **#65**: Add enum values to `AuthenticateActionSimpleType` and `AuthenticateLogonTypeSimpleType` to better describe physical access events
+
 
 ## [v3.4.2] - 2019-04-16
 

@@ -34,3 +34,7 @@ _book
 # gradle/wrapper/gradle-wrapper.properties
 
 #END OF Gradle stuff
+
+# Visual Studio
+/.vs/
+# END of Visual Studio
