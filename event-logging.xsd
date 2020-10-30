@@ -37,7 +37,7 @@
                             </xs:element>
                             <xs:element name="Id" type="xs:string" minOccurs="0" maxOccurs="1">
                                 <xs:annotation>
-                                    <xs:documentation>An identifier that can be added to an event record during receipt or processing of the event. E.g. to provide a unique identifier of the event within the system receiving events or to identifiy an event within a set of events. Not to be used by system creating an event record.</xs:documentation>
+                                    <xs:documentation>An identifier that can be added to an event record during receipt or processing of the event. E.g. to provide a unique identifier of the event within the system receiving events or to identify an event within a set of events. Not to be used by system creating an event record.</xs:documentation>
                                 </xs:annotation>
                             </xs:element>
                             <xs:element name="Classification" type="evt:ClassificationComplexType" minOccurs="0" maxOccurs="1">
@@ -123,7 +123,7 @@
                                                     </xs:element>
                                                     <xs:element name="RemoveAll" type="xs:boolean" minOccurs="0" maxOccurs="1">
                                                         <xs:annotation>
-                                                            <xs:documentation>This element is used to tell us to remove all access zones from the list of currently accesible zones for a user before adding a new one. This is the case whenever a user moves from one zone to another and loses all possible access to the zones they were previously in, i.e. they would need to re-authenticate to regain access rather than just pass back through the door. If not specified this element is considered to be true as most movement through a door removes access to previously accessible zones.</xs:documentation>
+                                                            <xs:documentation>This element is used to tell us to remove all access zones from the list of currently accessible zones for a user before adding a new one. This is the case whenever a user moves from one zone to another and loses all possible access to the zones they were previously in, i.e. they would need to re-authenticate to regain access rather than just pass back through the door. If not specified this element is considered to be true as most movement through a door removes access to previously accessible zones.</xs:documentation>
                                                         </xs:annotation>
                                                     </xs:element>
                                                     <xs:element name="AddAccess" minOccurs="1" maxOccurs="1">
@@ -174,7 +174,7 @@
                                     <xs:sequence minOccurs="1" maxOccurs="1">
                                         <xs:element name="TypeId" type="xs:string" minOccurs="1" maxOccurs="1">
                                             <xs:annotation>
-                                                <xs:documentation>A name/code/ID to uniquely identify the logical event type within the service providing the events. E.g a Windows eventId (i.e representing 'Failed logon', 'Chane password attempt', etc.) or for application logging: SaveRecord, ViewUserRecord, ViewSearchResults, etc. The granularity will depend on the application. Typically the number of unique TypeIds will be in the 10s. Note, the values of the TypeId are not meant to be globally consistent, they will only be relevant within that service providing the events.</xs:documentation>
+                                                <xs:documentation>A name/code/ID to uniquely identify the logical event type within the service providing the events. E.g a Windows eventId (i.e representing 'Failed logon', 'Change password attempt', etc.) or for application logging: SaveRecord, ViewUserRecord, ViewSearchResults, etc. The granularity will depend on the application. Typically the number of unique TypeIds will be in the 10s. Note, the values of the TypeId are not meant to be globally consistent, they will only be relevant within that service providing the events.</xs:documentation>
                                             </xs:annotation>
                                         </xs:element>
                                         <xs:element name="Description" type="xs:string" minOccurs="0" maxOccurs="1">
@@ -1286,7 +1286,7 @@
         <xs:sequence minOccurs="1" maxOccurs="1">
             <xs:element name="Text" type="xs:string" minOccurs="0" maxOccurs="1">
                 <xs:annotation>
-                    <xs:documentation>Optional full human readable text of the protective marking that can combine the various elements in this Classification structure, e.g 'Commerical in Confidence'.</xs:documentation>
+                    <xs:documentation>Optional full human readable text of the protective marking that can combine the various elements in this Classification structure, e.g 'Commercial in Confidence'.</xs:documentation>
                 </xs:annotation>
             </xs:element>
             <xs:element name="Originator" type="evt:OrganisationComplexType" minOccurs="0">
@@ -1296,7 +1296,7 @@
             </xs:element>
             <xs:element name="Custodian" type="evt:OrganisationComplexType" minOccurs="0">
                 <xs:annotation>
-                    <xs:documentation>The custodian or owner of the protectively marked item. The custodian is responsible for the lifecycle of the marked item. The custodian is described by an Organisation and optionally qualified by the organisation's Country.</xs:documentation>
+                    <xs:documentation>The custodian or owner of the protectively marked item. The custodian is responsible for the life cycle of the marked item. The custodian is described by an Organisation and optionally qualified by the organisation's Country.</xs:documentation>
                 </xs:annotation>
             </xs:element>
             <xs:element name="Classification" type="xs:string" minOccurs="0">
@@ -2413,7 +2413,7 @@
             </xs:element>
             <xs:element name="EmploymentStatus" type="xs:string" minOccurs="0" maxOccurs="1">
                 <xs:annotation>
-                    <xs:documentation>The employment status of the person, e.g. Active, Retired, Maternity Leave, Sabatical Leave, etc.</xs:documentation>
+                    <xs:documentation>The employment status of the person, e.g. Active, Retired, Maternity Leave, Sabbatical Leave, etc.</xs:documentation>
                 </xs:annotation>
             </xs:element>
             <xs:element name="Nationality" type="xs:string" minOccurs="0" maxOccurs="1">
