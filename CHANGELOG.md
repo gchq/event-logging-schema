@@ -18,6 +18,13 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 ## [Unreleased]
 
+## [v3.5.2] - 2020-11-02
+
+* No changes to the schema.
+
+* Fix version enumeration in scheam.
+
+
 ## [v3.5.1] - 2020-10-30
 
 * No changes to the schema.
@@ -198,7 +205,8 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 * Initial open source release
 
-[Unreleased]: https://github.com/gchq/event-logging-schema/compare/v3.5.1...HEAD
+[Unreleased]: https://github.com/gchq/event-logging-schema/compare/v3.5.2...HEAD
+[v3.5.2]: https://github.com/gchq/event-logging-schema/compare/v3.5.1...v3.5.2
 [v3.5.1]: https://github.com/gchq/event-logging-schema/compare/v3.5.0...v3.5.1
 [v3.5.0]: https://github.com/gchq/event-logging-schema/compare/v3.4.2...v3.5.0
 [v3.4.2]: https://github.com/gchq/event-logging-schema/compare/v3.4.1...v3.4.2
