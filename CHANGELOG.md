@@ -7,16 +7,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 i.e. `<Major version>.<Minor version>.<Patch version>`
 
-The namespace of the schema includes the major version, e.g. _event-logging:3_. This is to reflect the fact that a change to the major version number is a breaking change and thus a different namespace should be used. Similarly the filename of the schema as a release artifact will include the major version number to reflect a breaking change.
+The namespace of the schema includes the major version, e.g. _event-logging:3_.
+This is to reflect the fact that a change to the major version number is a breaking change and thus a different namespace should be used.
+Similarly the filename of the schema as a release artifact will include the major version number to reflect a breaking change.
 
-Minor and patch versions will be backwards compatible with other versions at the same major version number. The minor and patch version numbers are included in the _version_ and _id_ attributes of the _xs:schema_ element.
+Minor and patch versions will be backwards compatible with other versions at the same major version number.
+The minor and patch version numbers are included in the _version_ and _id_ attributes of the _xs:schema_ element.
 
-Minor version changes may included new optional elements or attributes. They may also include changes to such things as enumerations or patterns that are additive in nature.
+Minor version changes may included new optional elements or attributes.
+They may also include changes to such things as enumerations or patterns that are additive in nature.
 
 Patch version changes will typically include cosmetic changes (e.g. _xs:documentation_ changes).
 
 
-## [Unreleased]
+## [v4.0-beta.1] - 2020-12-16
 
 * Issue **#58** : Remove `Event/Id`, add `EventSource/EventId` and `EventSource/SessionId`. Improve annotations for `EventChain` and `Activity`.
 
@@ -275,7 +279,8 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 * Initial open source release
 
-[Unreleased]: https://github.com/gchq/event-logging-schema/compare/v3.5.2...HEAD
+[Unreleased]: https://github.com/gchq/event-logging-schema/compare/v4.0-beta.1...HEAD
+[v4.0-beta.1]: https://github.com/gchq/event-logging-schema/compare/v3.5.1...v4.0-beta.1
 [v3.5.2]: https://github.com/gchq/event-logging-schema/compare/v3.5.1...v3.5.2
 [v3.5.1]: https://github.com/gchq/event-logging-schema/compare/v3.5.0...v3.5.1
 [v3.5.0]: https://github.com/gchq/event-logging-schema/compare/v3.4.2...v3.5.0
