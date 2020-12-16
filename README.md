@@ -91,6 +91,13 @@ To test a build with a release version applied:
 
 `./gradlew clean build -Pversion=vX.Y.Z`
 
+## Impact on event-logging
+
+[event-logging](https://github.com/gchq/event-logging) is the java library for creating events conforming to this schema.
+It is **STRONGLY** advised that when making changes to this schema that the build for _event-logging_ is run to establish what impact the schema changes on the generated Java code.
+Changes to the schema that would have no impact on XML documents, e.g. a complext type name change would result in a breaking change to the _event-logging_ library.
+See the _README.md_ for _event-logging_ for more details on how to build it.
+
 ## Process for releasing a new version of the schema
 
 When you are ready to release a new version of the schema ensure you have done the following: 
@@ -100,10 +107,6 @@ When you are ready to release a new version of the schema ensure you have done t
 
     ```
     ## [Unreleased]
-
-    ### Added
-
-    ### Changed
 
 
     ## [v4.0.0] - 2020-12-25
