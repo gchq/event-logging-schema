@@ -11,6 +11,7 @@ Providing a user with access to a group is described as adding groups to a user 
     <User>
       <Id>CN=Some Person (sperson), OU=people, O=Some Org, C=GB</Id>
     </User>
+    <Action>Modify</Action>
     <AddGroups>
       <Group>
         <Type>ACG</Type>

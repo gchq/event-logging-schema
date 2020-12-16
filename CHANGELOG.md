@@ -18,6 +18,98 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 ## [Unreleased]
 
+* Issue **#58** : Remove `Event/Id`, add `EventSource/EventId` and `EventSource/SessionId`. Improve annotations for `EventChain` and `Activity`.
+
+* Issue **57** : Refactor the schema to improve the xjc generated java code. Remove deprecated elements.
+
+    * Extract new complex type `AuthenticateComplexType` from `Authenticate` element.
+
+    * Extract new complex type `AuthoriseComplexType` from `Authorise` element.
+
+    * Extract new complex type `CopyComplexType` from `CopyMoveComplexType`.
+
+    * Extract new complex type `MoveComplexType` from `CopyMoveComplexType`.
+
+    * Remove complex type `CopyMoveComplexType`.
+
+    * Extract new complex type `CreateComplexType` from `Create` element.
+
+    * Extract new complex type `ViewComplexType` from `View` element.
+
+    * Extract new complex type `DeleteComplexType` from `Delete` element.
+
+    * Extract new complex type `ProcessComplexType` from `Process` element.
+
+    * Extract new complex type `PrintComplexType` from `Print` element.
+
+    * Extract `InstallationGroup` from `InstallComplexType`.
+
+    * Refactor `InstallComplexType` to use `InstallationGroup`.
+
+    * Extract `UninstallComplexType` from `Uninstall` element.
+
+    * Extract new complex type `NetworkEventActionComplexType` from `Network` element.
+
+    * Remove deprecated `AntiMalware` element.
+
+    * Extract new complex type `AlertComplexType` from `Alert` element.
+
+    * Extract `SendReceiveGroup` from `SendReceiveComplexType`.
+
+    * Extract `SendComplexType` from `Send` element.
+
+    * Extract `ReceiveComplexType` from `Receive` element.
+
+    * Extract `MetaDataTagsComplexType` from `Tags` element.
+
+    * Remove `AntiMalwareComplexType`.
+
+    * Merge `BaseAntiMalwareComplexType` into `AntiMalwareThreatComplexType`.
+
+    * Remove `BaseAdvancedQueryItemComplexType`.
+
+    * Extract `BaseMultiObjectGroup` from `BaseMultiObjectComplexType`.
+
+    * Rename `NetworkSrcDstComplexType` to `NetworkLocationComplexType`.
+
+    * Rename `NetworkSrcDstTransportProtocolSimpleType` to `NetworkProtocolSimpleType`.
+
+    * Remove deprecated `SearchResult` and `SearchResultComplexType`.
+
+    * Remove deprecated `EventDetail/Classification`.
+
+    * Add additional `annotation/documentation` elements.
+
+    * Remove unused `FromComplexType`.
+
+    * Add `Keyboard`,`Mouse` and `Webcam` to `HardwareTypeSimpleType`.
+
+    * Add `MemoryCard` to `MediaTypeSimpleType`.
+
+    * Remove deprecated `LocationComplexType/TimeZone`.
+
+## [v3.5.2] - 2020-11-02
+
+* No changes to the schema.
+
+* Fix version enumeration in scheam.
+
+
+## [v3.5.1] - 2020-10-30
+
+* No changes to the schema.
+
+* Change GitHUb auth token
+
+
+## [v3.5.0] - 2020-10-30
+
+* Issue **#63**: Allow `EventSource/Door` to be combined with `Device`, `Client` and `Server`.
+
+* Issue **#64**: Change `Door` sub-element constraints to be consistent with documentation.
+
+* Issue **#65**: Add enum values to `AuthenticateActionSimpleType` and `AuthenticateLogonTypeSimpleType` to better describe physical access events
+
 
 ## [v3.4.2] - 2019-04-16
 
@@ -183,7 +275,10 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 * Initial open source release
 
-[Unreleased]: https://github.com/gchq/event-logging-schema/compare/v3.4.2...HEAD
+[Unreleased]: https://github.com/gchq/event-logging-schema/compare/v3.5.2...HEAD
+[v3.5.2]: https://github.com/gchq/event-logging-schema/compare/v3.5.1...v3.5.2
+[v3.5.1]: https://github.com/gchq/event-logging-schema/compare/v3.5.0...v3.5.1
+[v3.5.0]: https://github.com/gchq/event-logging-schema/compare/v3.4.2...v3.5.0
 [v3.4.2]: https://github.com/gchq/event-logging-schema/compare/v3.4.1...v3.4.2
 [v3.4.1]: https://github.com/gchq/event-logging-schema/compare/v3.4.0...v3.4.1
 [v3.4.0]: https://github.com/gchq/event-logging-schema/compare/v3.4-beta.1...v3.4.0
