@@ -18,6 +18,74 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 ## [Unreleased]
 
+* Issue **57** : Refactor the schema to improve the xjc generated java code. Remove deprecated elements.
+
+    * Extract new complex type `AuthenticateComplexType` from `Authenticate` element.
+
+    * Extract new complex type `AuthoriseComplexType` from `Authorise` element.
+
+    * Extract new complex type `CopyComplexType` from `CopyMoveComplexType`.
+
+    * Extract new complex type `MoveComplexType` from `CopyMoveComplexType`.
+
+    * Remove complex type `CopyMoveComplexType`.
+
+    * Extract new complex type `CreateComplexType` from `Create` element.
+
+    * Extract new complex type `ViewComplexType` from `View` element.
+
+    * Extract new complex type `DeleteComplexType` from `Delete` element.
+
+    * Extract new complex type `ProcessComplexType` from `Process` element.
+
+    * Extract new complex type `PrintComplexType` from `Print` element.
+
+    * Extract `InstallationGroup` from `InstallComplexType`.
+
+    * Refactor `InstallComplexType` to use `InstallationGroup`.
+
+    * Extract `UninstallComplexType` from `Uninstall` element.
+
+    * Extract new complex type `NetworkEventActionComplexType` from `Network` element.
+
+    * Remove deprecated `AntiMalware` element.
+
+    * Extract new complex type `AlertComplexType` from `Alert` element.
+
+    * Extract `SendReceiveGroup` from `SendReceiveComplexType`.
+
+    * Extract `SendComplexType` from `Send` element.
+
+    * Extract `ReceiveComplexType` from `Receive` element.
+
+    * Extract `MetaDataTagsComplexType` from `Tags` element.
+
+    * Remove `AntiMalwareComplexType`.
+
+    * Merge `BaseAntiMalwareComplexType` into `AntiMalwareThreatComplexType`.
+
+    * Remove `BaseAdvancedQueryItemComplexType`.
+
+    * Extract `BaseMultiObjectGroup` from `BaseMultiObjectComplexType`.
+
+    * Rename `NetworkSrcDstComplexType` to `NetworkLocationComplexType`.
+
+    * Rename `NetworkSrcDstTransportProtocolSimpleType` to `NetworkProtocolSimpleType`.
+
+    * Remove deprecated `SearchResult` and `SearchResultComplexType`.
+
+    * Remove deprecated `EventDetail/Classification`.
+
+    * Add additional `annotation/documentation` elements.
+
+    * Remove unused `FromComplexType`.
+
+    * Add `Keyboard`,`Mouse` and `Webcam` to `HardwareTypeSimpleType`.
+
+    * Add `MemoryCard` to `MediaTypeSimpleType`.
+
+    * Remove deprecated `LocationComplexType/TimeZone`.
+
 ## [v3.5.2] - 2020-11-02
 
 * No changes to the schema.

@@ -37,6 +37,39 @@ These xml documents are validated as part of the build process to ensure the exa
 This validation is done against a variant of the schema that is specific for validating the example XML.
 This schema should be identical to the generated full schema except that it has a static version number so the example XML documents don't have to change with each release.
 
+### Documentation in the JAXB java API
+
+The _event-logging_ repository has a process to generate a java API from the event-logging-schema XMLSchema.
+During this process, any schema annotations, i.e. `<xs:annotation><xs:documentation></xs:annotation></xs:documentation>`, will be added to the Javadoc in the java API.
+This allows us to make the schema as self describing as possible without having to repeat the work in the generated java code.
+While the production of additional Javadoc has no direct bearing on the design of this schema, it is worth bearing in mind when adding annotations to ensure that they will appear in a sensible place in the java code.
+
+Annotations on complex types (named or annonymous) will be added to the class level Javadoc.
+
+```xml
+<xs:complexType name="MyComplexType">
+  <xs:annotation>
+    <xs:documentation>This will be added to the class level javadoc</xs:documentation>
+  </xs:annotation>
+  <xs:sequence>
+```
+
+Javadoc will be added to property getters/setters and Builder add/with methods using the annotation from the corresponding element or from its complex type if there is no annotation on the element.
+
+```xml
+<xs:element name="MyElement" minOccurs="0" maxOccurs="1">
+  <xs:annotation>
+    <xs:documentation>This will be added to the getters/setters and Builder methods</xs:documentation>
+  </xs:annotation>
+  <xs:complexType>
+    <xs:annotation>
+      <xs:documentation>This will be added to the class level javadoc. This will also be added to the getters/setters and Builder methods if the above annotation doesn't exist.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence minOccurs="1" maxOccurs="1">
+```
+
+In the above example there is documentation at both the element and annonymous complex type leve that essentiall describes the same thing as the type has one one use. If only the complex type annotation is used then some schema editors, e.g. OxygenXML, will not display the annotation. Thus for clarity both positons should be used.
+
 ## Building the schema
 
 The master version of the schema is located in the root of this repository (`event-logging.xsd`). 
