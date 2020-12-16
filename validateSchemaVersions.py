@@ -91,15 +91,21 @@ def validateVersions(newVersion, schemaFile):
         if (not re.match(versionRegex, versionAttrVersion)):
             raise ValueError("version attribute does not match the valid regex", versionAttrVersion, versionRegex)
 
+        # In an ideal world we would increment the namespace version when we make
+        # a breaking change to the schema but that has all sorts of implications
+        # on existing pipelines, xslts and content packs that would all need changing.
         if (not versionAttrVersion.startswith(targetNamespaceVersion)):
-            raise ValueError("Major version of the version attribute does not match the targetNamespace version", versionAttrVersion, targetNamespaceVersion)
+            print "Major version of the version attribute %s does not match the targetNamespace version %s" % (versionAttrVersion, targetNamespaceVersion)
+            # raise ValueError("Major version of the version attribute does not match the targetNamespace version", versionAttrVersion, targetNamespaceVersion)
 
         minorVer = getMinorVersion(versionAttrVersion)
 
         for enumVer in enumVersions:
             if (not enumVer == "SNAPSHOT"):
                 if (not enumVer.startswith(targetNamespaceVersion)):
-                    raise ValueError("Major version of the enumeration version does not match the targetNamespace version", enumVer, targetNamespaceVersion)
+                    # See comment above about namespace versioning
+                    print "Major version of the enumeration version %s does not match the targetNamespace version %s" % (enumVer, targetNamespaceVersion)
+                    # raise ValueError("Major version of the enumeration version does not match the targetNamespace version", enumVer, targetNamespaceVersion)
                 minorVerOfEnum = getMinorVersion(enumVer)
 
                 if (minorVerOfEnum > minorVer):

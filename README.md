@@ -139,7 +139,7 @@ When you are ready to release a new version of the schema ensure you have done t
 
 1. Run the build to ensure the versions are all valid and the example XML is all valid against the schema.
 
-    `./gradlew clean build`
+    `./gradlew clean build -Pversion=vX.Y.Z`
 
 1. Commit any changes.
 
