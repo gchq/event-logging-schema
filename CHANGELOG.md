@@ -18,6 +18,8 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 ## [Unreleased]
 
+* Issue **#58** : Remove `Event/Id`, add `EventSource/EventId` and `EventSource/SessionId`. Improve annotations for `EventChain` and `Activity`.
+
 * Issue **57** : Refactor the schema to improve the xjc generated java code. Remove deprecated elements.
 
     * Extract new complex type `AuthenticateComplexType` from `Authenticate` element.

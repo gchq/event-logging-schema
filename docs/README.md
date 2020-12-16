@@ -76,7 +76,7 @@ details of the user who logged on.
 
 The schema includes a number of ['schema actions'](schemaActions/README.md) 
 that encompass most auditable events, e.g. Create, Update, Export, 
-Send, etc.  Where an event has to be recorded that doesn’t fit into one of these 
+Send, etc.  Where an event has to be recorded that doesn't fit into one of these 
 predefined categories then the Unknown 'schema action' can be used, but this should be a 
 last resort as its content is unstructured and reduces the normalisation benefits.
 
@@ -84,3 +84,4 @@ last resort as its content is unstructured and reduces the normalisation benefit
 It can be hard to imagine what complete events look like, so a number of 
 [illustrative examples](completeExamples/README.md)
 are available.
+

@@ -44,11 +44,6 @@
                   <xs:documentation>This element can be used to supply any meta data relating to the event as long as it conforms to an allowed format/specification (defined outside of this XML Schema).</xs:documentation>
                 </xs:annotation>
               </xs:element>
-              <xs:element name="Id" type="xs:string" minOccurs="0" maxOccurs="1">
-                <xs:annotation>
-                  <xs:documentation>An identifier that can be added to an event record during receipt or processing of the event. E.g. to provide a unique identifier of the event within the system receiving events or to identify an event within a set of events. Not to be used by system creating an event record.</xs:documentation>
-                </xs:annotation>
-              </xs:element>
               <xs:element name="Classification" type="evt:ClassificationComplexType" minOccurs="0" maxOccurs="1">
                 <xs:annotation>
                   <xs:documentation>The classification for the event.</xs:documentation>
@@ -71,7 +66,7 @@
               </xs:element>
               <xs:element name="EventChain" minOccurs="0" maxOccurs="1" type="evt:EventChainComplexType">
                 <xs:annotation>
-                  <xs:documentation>This element can be used to create relationships between different events. One or more events can belong to an activity and the activity can be related to a parent activity and other siblings.</xs:documentation>
+                  <xs:documentation>This element can be used to create relationships between different events, i.e where one event is the child of another.</xs:documentation>
                 </xs:annotation>
               </xs:element>
               <xs:element name="Data" type="evt:DataComplexType" minOccurs="0" maxOccurs="unbounded">
@@ -490,22 +485,22 @@
   </xs:complexType>
   <xs:complexType name="ActivityComplexType">
     <xs:annotation>
-      <xs:documentation>Type that describes an activity used to create relationships between events.</xs:documentation>
+      <xs:documentation>Type that describes relationships between different events. For example in an asynchronous search the viewing of the results of the search may be a separate event from the execution of the query. In this instance the view event would be a child of the execuion event.</xs:documentation>
     </xs:annotation>
     <xs:sequence minOccurs="1" maxOccurs="1">
       <xs:element name="Id" type="xs:string" minOccurs="1" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation/>
+          <xs:documentation>The unique identifer of the event that is being referenced. This will be the value of Event/EventSource/EventId on the referenced event. E.g where an event with Event/EventSource/EventId=101 is a child of an event with Event/EventSource/EventId=99, the value in this element would be 99.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="Name" type="xs:string" minOccurs="0" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation>A descriptive name for the activity.</xs:documentation>
+          <xs:documentation>A descriptive name for the referenced event.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="Parent" type="evt:ActivityComplexType" minOccurs="0" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation>The parent activity if there is one.</xs:documentation>
+          <xs:documentation>The details of the event that is the parent of this referenced event. E.g. if event C is a child of event B which is a child of event A, this element would record an Id of A.</xs:documentation>
         </xs:annotation>
       </xs:element>
     </xs:sequence>
@@ -1596,10 +1591,13 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:complexType name="EventChainComplexType">
+    <xs:annotation>
+      <xs:documentation>This type can be used to create relationships between different events, i.e where one event is the child of another.</xs:documentation>
+    </xs:annotation>
     <xs:sequence minOccurs="1" maxOccurs="1">
       <xs:element name="Activity" type="evt:ActivityComplexType" minOccurs="1" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation>The activity that this event is related to.</xs:documentation>
+          <xs:documentation>The event that this event has a relationship to or is referenced by.</xs:documentation>
         </xs:annotation>
       </xs:element>
     </xs:sequence>
@@ -1750,6 +1748,16 @@
       <xs:documentation>Details where the event came from, i.e. what generator created the event and on what device.</xs:documentation>
     </xs:annotation>
     <xs:sequence minOccurs="1" maxOccurs="1">
+      <xs:element name="EventId" type="xs:string" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>A unique identifier known to the source system that created the event. This identifier may not be unique outside of the source system. It can be used for linking related events within the source system, e.g. where an event is part of a chain of events or is child of another event. Linking of events can be recorded with the Event/EventChain element.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SessionId" type="xs:string" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Where an event is part of a session the identifier for that session can be recorded here to allow subsequent grouping of events for the same session. The SessionId should be a uniqiue identifier for the session within the source system. It is not expected that the SessionId have meaning or be unique outside of the source system.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
       <xs:element name="System" type="evt:SystemComplexType" minOccurs="1" maxOccurs="1">
         <xs:annotation>
           <xs:documentation>The system that generated the event. This is not the same as the generator as the generator is merely the application or component that created the event, e.g. auditd. The system describes the higher level project/service or capability that uses the generator as a component, e.g. 'Payroll System'.</xs:documentation>
