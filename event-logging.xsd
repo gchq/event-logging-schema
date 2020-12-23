@@ -1330,17 +1330,17 @@
     <xs:sequence minOccurs="1" maxOccurs="1">
       <xs:element name="Source" type="evt:MultiObjectComplexType" minOccurs="1" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation>The source of the data being copied, moved imported or exported.</xs:documentation>
+          <xs:documentation>The source of the data being copied.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="Destination" type="evt:MultiObjectComplexType" minOccurs="1" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation>The destination for the data being copied, moved imported or exported.</xs:documentation>
+          <xs:documentation>The destination for the data being copied.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="Outcome" type="evt:CopyMoveOutcomeComplexType" minOccurs="0" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation>Used to determine if the action was successful. If omitted it is assumed that the event was successful and was permitted.</xs:documentation>
+          <xs:documentation>Used to determine if the copy was successful. If omitted it is assumed that the copy was successful and was permitted.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="Data" type="evt:DataComplexType" minOccurs="0" maxOccurs="unbounded">
@@ -1890,7 +1890,7 @@
       </xs:element>
       <xs:element name="Outcome" type="evt:OutcomeComplexType" minOccurs="0" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation>Used to determine if the action was successful. If omitted it is assumed that the event was successful and was permitted.</xs:documentation>
+          <xs:documentation>Used to determine if the export was successful. If omitted it is assumed that the export was successful and was permitted.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="Data" type="evt:DataComplexType" minOccurs="0" maxOccurs="unbounded">
@@ -2001,17 +2001,17 @@
     <xs:sequence minOccurs="1" maxOccurs="1">
       <xs:element name="Source" type="evt:MultiObjectComplexType" minOccurs="0" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation>The source of the data being copied, moved imported or exported.</xs:documentation>
+          <xs:documentation>The source of the data being imported.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="Destination" type="evt:MultiObjectComplexType" minOccurs="0" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation>The destination for the data being copied, moved imported or exported.</xs:documentation>
+          <xs:documentation>The destination for the data being imported.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="Outcome" type="evt:OutcomeComplexType" minOccurs="0" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation>Used to determine if the action was successful. If omitted it is assumed that the event was successful and was permitted.</xs:documentation>
+          <xs:documentation>Used to determine if the import was successful. If omitted it is assumed that the import was successful and was permitted.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="Data" type="evt:DataComplexType" minOccurs="0" maxOccurs="unbounded">
@@ -2186,7 +2186,7 @@
       </xs:element>
       <xs:element name="Outcome" type="evt:CopyMoveOutcomeComplexType" minOccurs="0" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation>Used to determine if the action was successful. If omitted it is assumed that the event was successful and was permitted.</xs:documentation>
+          <xs:documentation>Used to determine if the move was successful. If omitted it is assumed that the move was successful and was permitted.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="Data" type="evt:DataComplexType" minOccurs="0" maxOccurs="unbounded">

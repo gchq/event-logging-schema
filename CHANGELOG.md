@@ -19,6 +19,10 @@ They may also include changes to such things as enumerations or patterns that ar
 
 Patch version changes will typically include cosmetic changes (e.g. _xs:documentation_ changes).
 
+## [Unreleased]
+
+* Tidy up annotations for Copy, Move, Import & Export complex types.
+
 
 ## [v4.0-beta.1] - 2020-12-16
 
