@@ -21,6 +21,10 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 ## [Unreleased]
 
+
+
+## [v4.0-beta.2] - 2020-03-23
+
 * Tidy up annotations for Copy, Move, Import & Export complex types.
 
 * Issue **#71** : Create `HashComplexType` for `Hash` element.
@@ -287,7 +291,8 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 * Initial open source release
 
-[Unreleased]: https://github.com/gchq/event-logging-schema/compare/v4.0-beta.1...HEAD
+[Unreleased]: https://github.com/gchq/event-logging-schema/compare/v4.0-beta.2...HEAD
+[v4.0-beta.2]: https://github.com/gchq/event-logging-schema/compare/v4.0-beta.1...v4.0-beta.2
 [v4.0-beta.1]: https://github.com/gchq/event-logging-schema/compare/v3.5.1...v4.0-beta.1
 [v3.5.2]: https://github.com/gchq/event-logging-schema/compare/v3.5.1...v3.5.2
 [v3.5.1]: https://github.com/gchq/event-logging-schema/compare/v3.5.0...v3.5.1
