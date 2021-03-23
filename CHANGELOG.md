@@ -23,7 +23,7 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 
 
-## [v4.0-beta.2] - 2020-03-23
+## [v4.0-beta.2] - 2021-03-23
 
 * Tidy up annotations for Copy, Move, Import & Export complex types.
 
