@@ -104,3 +104,5 @@ while read -r url; do
 done <<< "$latestUrls"
 
 exit 0
+
+# vim: set tabstop=4 shiftwidth=4 expandtab:

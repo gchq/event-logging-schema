@@ -23,6 +23,10 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 * Tidy up annotations for Copy, Move, Import & Export complex types.
 
+* Issue **#71** : Create `HashComplexType` for `Hash` element.
+
+* Uplift gradle and shadow pluing versions.
+
 
 ## [v4.0-beta.1] - 2020-12-16
 
