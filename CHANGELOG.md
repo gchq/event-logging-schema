@@ -22,7 +22,7 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 ## [Unreleased]
 
 
-## [v4.0-beta.2] - 2021-03-23
+## [v4.0-beta.3] - 2021-03-23
 
 * Fix version numbers in schema.
 
