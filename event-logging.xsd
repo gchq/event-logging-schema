@@ -1019,27 +1019,10 @@
               <xs:documentation>Optional description of the media that the file exists on or that the file is being written to.</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element name="Hash" minOccurs="0" maxOccurs="1">
+          <xs:element name="Hash" minOccurs="0" maxOccurs="1" type="evt:HashComplexType">
             <xs:annotation>
               <xs:documentation>Describes the output of a hash function and the type of has function used.</xs:documentation>
             </xs:annotation>
-            <xs:complexType>
-              <xs:annotation>
-                <xs:documentation>Describes the output of a hash function and the type of has function used.</xs:documentation>
-              </xs:annotation>
-              <xs:simpleContent>
-                <xs:extension base="xs:string">
-                  <xs:annotation>
-                    <xs:documentation>The value obtained from applying a hash function (e.g. MD5, SHA-256, etc.) to the contents of the file.</xs:documentation>
-                  </xs:annotation>
-                  <xs:attribute name="Type" type="xs:string" use="optional">
-                    <xs:annotation>
-                      <xs:documentation>The type of hashing algorithm used, e.g. MD5, SHA-256, etc.</xs:documentation>
-                    </xs:annotation>
-                  </xs:attribute>
-                </xs:extension>
-              </xs:simpleContent>
-            </xs:complexType>
           </xs:element>
           <xs:element name="Data" type="evt:DataComplexType" minOccurs="0" maxOccurs="unbounded">
             <xs:annotation>
@@ -1836,12 +1819,12 @@
       </xs:element>
       <xs:element name="User" type="evt:UserComplexType" minOccurs="0" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation>Where events are created as a result of a user action or within the context of a user account, the user should be recorded. To achieve this it may be necessary to map the user identifier in an application to a common user identifier when populating this element. Where an identifier exists that is unique across the organisation, such as a distinguished name (User DN) from a certificate authority or directory service, then this should be used in the &lt;Id&gt; element in preference to any other user identifier.</xs:documentation>
+          <xs:documentation>Where events are created as a result of a user action or within the context of a user account, the user should be recorded. To achieve this it may be necessary to map the user identifier in an application to a common user identifier when populating this element. Where an identifier exists that is unique across the organisation, such as a distinguished name (User DN) from a certificate authority or directory service, then this should be used in the &lt;Id> element in preference to any other user identifier.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="RunAs" type="evt:UserComplexType" minOccurs="0" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation>In some cases an account may switch to another account in order to run a process or perform a privileged action, e.g. use of sudo. Where this happens the &lt;User&gt; element should still refer to the real user and this element should indicate what the temporary user was when the event was created, e.g. root. This is also often used when a system user (processing account) executes scheduled jobs on behalf of the real user that scheduled the job. Where an identifier exists that is unique across the organisation, such as a distinguished name (User DN) from a certificate authority or directory service, then this should be used in the &lt;Id&gt; element in preference to any other user identifier.</xs:documentation>
+          <xs:documentation>In some cases an account may switch to another account in order to run a process or perform a privileged action, e.g. use of sudo. Where this happens the &lt;User> element should still refer to the real user and this element should indicate what the temporary user was when the event was created, e.g. root. This is also often used when a system user (processing account) executes scheduled jobs on behalf of the real user that scheduled the job. Where an identifier exists that is unique across the organisation, such as a distinguished name (User DN) from a certificate authority or directory service, then this should be used in the &lt;Id> element in preference to any other user identifier.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="Interactive" type="xs:boolean" minOccurs="0" maxOccurs="1">
@@ -1993,6 +1976,23 @@
         </xs:annotation>
       </xs:element>
     </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="HashComplexType">
+    <xs:annotation>
+      <xs:documentation>Describes the output of a hash function and the type of has function used.</xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:annotation>
+          <xs:documentation>The value obtained from applying a hash function (e.g. MD5, SHA-256, etc.) to the contents of the file.</xs:documentation>
+        </xs:annotation>
+        <xs:attribute name="Type" type="xs:string" use="optional">
+          <xs:annotation>
+            <xs:documentation>The type of hashing algorithm used, e.g. MD5, SHA-256, etc.</xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+      </xs:extension>
+    </xs:simpleContent>
   </xs:complexType>
   <xs:complexType name="ImportComplexType">
     <xs:annotation>
@@ -3278,7 +3278,7 @@
       <xs:enumeration value="Disconnect"/>
       <xs:enumeration value="Connect"/>
       <xs:enumeration value="ElevatePrivilege"/>
-      <xs:enumeration value="ReadToken" />
+      <xs:enumeration value="ReadToken"/>
       <xs:enumeration value="Other"/>
     </xs:restriction>
   </xs:simpleType>
@@ -3299,7 +3299,7 @@
       <xs:enumeration value="CachedRemoteInteractive"/>
       <xs:enumeration value="CachedUnlock"/>
       <xs:enumeration value="Proxy"/>
-      <xs:enumeration value="PhysicalAccess" />
+      <xs:enumeration value="PhysicalAccess"/>
       <xs:enumeration value="Other"/>
     </xs:restriction>
   </xs:simpleType>
