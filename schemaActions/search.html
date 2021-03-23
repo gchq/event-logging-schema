@@ -1,0 +1,1869 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Search · Event Logging XML Schema</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-prism/prism.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="sendReceive.html" />
+    
+    
+    <link rel="prev" href="process.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                        <b>1.1.</b>
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../eventModelling.html">
+            
+                <a href="../eventModelling.html">
+            
+                    
+                        <b>1.2.</b>
+                    
+                    Event Modelling
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../basicStructure/">
+            
+                <a href="../basicStructure/">
+            
+                    
+                        <b>1.3.</b>
+                    
+                    Basic Structure
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../basicStructure/">
+            
+                <a href="../basicStructure/#describing-an-event">
+            
+                    
+                        <b>1.3.1.</b>
+                    
+                    Describing an Event
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1.1" data-path="../basicStructure/">
+            
+                <a href="../basicStructure/#describing-when">
+            
+                    
+                        <b>1.3.1.1.</b>
+                    
+                    Describing When?
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.2" data-path="../basicStructure/">
+            
+                <a href="../basicStructure/#describing-the-source-of-the-event">
+            
+                    
+                        <b>1.3.1.2.</b>
+                    
+                    Describing The Source of the Event?
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1.2.1" data-path="../basicStructure/">
+            
+                <a href="../basicStructure/#system">
+            
+                    
+                        <b>1.3.1.2.1.</b>
+                    
+                    System
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.2.2" data-path="../basicStructure/">
+            
+                <a href="../basicStructure/#generator">
+            
+                    
+                        <b>1.3.1.2.2.</b>
+                    
+                    Generator
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.2.3" data-path="../basicStructure/">
+            
+                <a href="../basicStructure/#devices">
+            
+                    
+                        <b>1.3.1.2.3.</b>
+                    
+                    Devices
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.2.4" data-path="../basicStructure/">
+            
+                <a href="../basicStructure/#physical-access-doors">
+            
+                    
+                        <b>1.3.1.2.4.</b>
+                    
+                    Physical Access (Doors)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.2.5" data-path="../basicStructure/">
+            
+                <a href="../basicStructure/#describing-where">
+            
+                    
+                        <b>1.3.1.2.5.</b>
+                    
+                    Describing Where?
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.2.6" data-path="../basicStructure/">
+            
+                <a href="../basicStructure/#user">
+            
+                    
+                        <b>1.3.1.2.6.</b>
+                    
+                    User
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.2.7" data-path="../basicStructure/">
+            
+                <a href="../basicStructure/#run-as">
+            
+                    
+                        <b>1.3.1.2.7.</b>
+                    
+                    Run As
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.2.8" data-path="../basicStructure/">
+            
+                <a href="../basicStructure/#interactive">
+            
+                    
+                        <b>1.3.1.2.8.</b>
+                    
+                    Interactive
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.2.9" data-path="../basicStructure/">
+            
+                <a href="../basicStructure/#data">
+            
+                    
+                        <b>1.3.1.2.9.</b>
+                    
+                    Data
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.3" data-path="../basicStructure/">
+            
+                <a href="../basicStructure/#describing-what-happened">
+            
+                    
+                        <b>1.3.1.3.</b>
+                    
+                    Describing What Happened?
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1.3.1" data-path="../basicStructure/">
+            
+                <a href="../basicStructure/#description">
+            
+                    
+                        <b>1.3.1.3.1.</b>
+                    
+                    Description
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.3.2" data-path="../basicStructure/">
+            
+                <a href="../basicStructure/#type-id">
+            
+                    
+                        <b>1.3.1.3.2.</b>
+                    
+                    Type ID
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.3.3" data-path="../basicStructure/">
+            
+                <a href="../basicStructure/#classification">
+            
+                    
+                        <b>1.3.1.3.3.</b>
+                    
+                    Classification
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.3.4" data-path="../basicStructure/">
+            
+                <a href="../basicStructure/#purpose">
+            
+                    
+                        <b>1.3.1.3.4.</b>
+                    
+                    Purpose
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.3.5" data-path="../basicStructure/">
+            
+                <a href="../basicStructure/#schema-action">
+            
+                    
+                        <b>1.3.1.3.5.</b>
+                    
+                    Schema Action
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.4" data-path="../basicStructure/">
+            
+                <a href="../basicStructure/#event-chain">
+            
+                    
+                        <b>1.3.1.4.</b>
+                    
+                    Event Chain
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../basicStructure/">
+            
+                <a href="../basicStructure/#schema-versions">
+            
+                    
+                        <b>1.3.2.</b>
+                    
+                    Schema Versions
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.2.1" data-path="../basicStructure/">
+            
+                <a href="../basicStructure/#semantic-versioning">
+            
+                    
+                        <b>1.3.2.1.</b>
+                    
+                    Semantic Versioning
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2.2" data-path="../basicStructure/">
+            
+                <a href="../basicStructure/#schema-uplift">
+            
+                    
+                        <b>1.3.2.2.</b>
+                    
+                    Schema Uplift
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="./">
+            
+                <a href="./">
+            
+                    
+                        <b>1.4.</b>
+                    
+                    Schema Actions
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="alert.html">
+            
+                <a href="alert.html">
+            
+                    
+                        <b>1.4.1.</b>
+                    
+                    Alert
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="antiMalware.md">
+            
+                <span>
+            
+                    
+                        <b>1.4.2.</b>
+                    
+                    Anti Malware
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="approval.html">
+            
+                <a href="approval.html">
+            
+                    
+                        <b>1.4.3.</b>
+                    
+                    Approval
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="authenticate.html">
+            
+                <a href="authenticate.html">
+            
+                    
+                        <b>1.4.4.</b>
+                    
+                    Authenticate
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="authorise.html">
+            
+                <a href="authorise.html">
+            
+                    
+                        <b>1.4.5.</b>
+                    
+                    Authorise
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.6" data-path="copyMove.html">
+            
+                <a href="copyMove.html">
+            
+                    
+                        <b>1.4.6.</b>
+                    
+                    Copy and Move
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.7" data-path="createViewDelete.html">
+            
+                <a href="createViewDelete.html">
+            
+                    
+                        <b>1.4.7.</b>
+                    
+                    Create, View and Delete
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.8" data-path="importExport.html">
+            
+                <a href="importExport.html">
+            
+                    
+                        <b>1.4.8.</b>
+                    
+                    Import and Export
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.9" data-path="installUninstall.html">
+            
+                <a href="installUninstall.html">
+            
+                    
+                        <b>1.4.9.</b>
+                    
+                    Install and Uninstall
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.10" data-path="network.html">
+            
+                <a href="network.html">
+            
+                    
+                        <b>1.4.10.</b>
+                    
+                    Network
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.11" data-path="printing.html">
+            
+                <a href="printing.html">
+            
+                    
+                        <b>1.4.11.</b>
+                    
+                    Printing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.12" data-path="process.html">
+            
+                <a href="process.html">
+            
+                    
+                        <b>1.4.12.</b>
+                    
+                    Process
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.4.13" data-path="search.html">
+            
+                <a href="search.html">
+            
+                    
+                        <b>1.4.13.</b>
+                    
+                    Search
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.14" data-path="sendReceive.html">
+            
+                <a href="sendReceive.html">
+            
+                    
+                        <b>1.4.14.</b>
+                    
+                    Send and Receive
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.15" data-path="unknown.html">
+            
+                <a href="unknown.html">
+            
+                    
+                        <b>1.4.15.</b>
+                    
+                    Unknown
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.16" data-path="update.html">
+            
+                <a href="update.html">
+            
+                    
+                        <b>1.4.16.</b>
+                    
+                    Update
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../objectTypes/">
+            
+                <a href="../objectTypes/">
+            
+                    
+                        <b>1.5.</b>
+                    
+                    Object Types
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../objectTypes/association.html">
+            
+                <a href="../objectTypes/association.html">
+            
+                    
+                        <b>1.5.1.</b>
+                    
+                    Association
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../objectTypes/banner.html">
+            
+                <a href="../objectTypes/banner.html">
+            
+                    
+                        <b>1.5.2.</b>
+                    
+                    Banner
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="../objectTypes/chat.html">
+            
+                <a href="../objectTypes/chat.html">
+            
+                    
+                        <b>1.5.3.</b>
+                    
+                    Chat
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="../objectTypes/configuration.html">
+            
+                <a href="../objectTypes/configuration.html">
+            
+                    
+                        <b>1.5.4.</b>
+                    
+                    Configuration
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.5" data-path="../objectTypes/criteria.html">
+            
+                <a href="../objectTypes/criteria.html">
+            
+                    
+                        <b>1.5.5.</b>
+                    
+                    Criteria
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.6" data-path="../objectTypes/document.html">
+            
+                <a href="../objectTypes/document.html">
+            
+                    
+                        <b>1.5.6.</b>
+                    
+                    Document
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.7" data-path="../objectTypes/email.html">
+            
+                <a href="../objectTypes/email.html">
+            
+                    
+                        <b>1.5.7.</b>
+                    
+                    Email
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.8" data-path="../objectTypes/file.html">
+            
+                <a href="../objectTypes/file.html">
+            
+                    
+                        <b>1.5.8.</b>
+                    
+                    File
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.9" data-path="../objectTypes/folder.html">
+            
+                <a href="../objectTypes/folder.html">
+            
+                    
+                        <b>1.5.9.</b>
+                    
+                    Folder
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.10" data-path="../objectTypes/groupChat.html">
+            
+                <a href="../objectTypes/groupChat.html">
+            
+                    
+                        <b>1.5.10.</b>
+                    
+                    Group Chat
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.11" data-path="../objectTypes/group.html">
+            
+                <a href="../objectTypes/group.html">
+            
+                    
+                        <b>1.5.11.</b>
+                    
+                    Group
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.12" data-path="../objectTypes/object.html">
+            
+                <a href="../objectTypes/object.html">
+            
+                    
+                        <b>1.5.12.</b>
+                    
+                    Object
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.13" data-path="../objectTypes/resource.html">
+            
+                <a href="../objectTypes/resource.html">
+            
+                    
+                        <b>1.5.13.</b>
+                    
+                    Resource
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.14" data-path="../objectTypes/searchResult.md">
+            
+                <span>
+            
+                    
+                        <b>1.5.14.</b>
+                    
+                    SearchResult
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.15" data-path="../objectTypes/searchResults.html">
+            
+                <a href="../objectTypes/searchResults.html">
+            
+                    
+                        <b>1.5.15.</b>
+                    
+                    SearchResults
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.16" data-path="../objectTypes/shortcut.html">
+            
+                <a href="../objectTypes/shortcut.html">
+            
+                    
+                        <b>1.5.16.</b>
+                    
+                    Shortcut
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.17" data-path="../objectTypes/user.html">
+            
+                <a href="../objectTypes/user.html">
+            
+                    
+                        <b>1.5.17.</b>
+                    
+                    User
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.18" data-path="../objectTypes/virtualSession.html">
+            
+                <a href="../objectTypes/virtualSession.html">
+            
+                    
+                        <b>1.5.18.</b>
+                    
+                    Virtual Session
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.19" data-path="../objectTypes/voip.html">
+            
+                <a href="../objectTypes/voip.html">
+            
+                    
+                        <b>1.5.19.</b>
+                    
+                    Voip
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../unstructuredData.html">
+            
+                <a href="../unstructuredData.html">
+            
+                    
+                        <b>1.6.</b>
+                    
+                    Unstructured Data
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../dataTypes.html">
+            
+                <a href="../dataTypes.html">
+            
+                    
+                        <b>1.7.</b>
+                    
+                    Data Types
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="../meta.html">
+            
+                <a href="../meta.html">
+            
+                    
+                        <b>1.8.</b>
+                    
+                    Meta Element
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="../completeExamples/">
+            
+                <a href="../completeExamples/">
+            
+                    
+                        <b>1.9.</b>
+                    
+                    Illustrative Example Events
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" >
+            
+                <span>
+            
+                    
+                        <b>1.9.1.</b>
+                    
+                    Schema Actions
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1.1" >
+            
+                <span>
+            
+                    
+                        <b>1.9.1.1.</b>
+                    
+                    Alert
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1.1.1" data-path="../completeExamples/xml/schemaActions/Alert_Network.xml.html">
+            
+                <a href="../completeExamples/xml/schemaActions/Alert_Network.xml.html">
+            
+                    
+                        <b>1.9.1.1.1.</b>
+                    
+                    Alert/Network XML
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.1.2" >
+            
+                <span>
+            
+                    
+                        <b>1.9.1.2.</b>
+                    
+                    Anti Malware
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1.2.1" data-path="../completeExamples/xml/schemaActions/AntiMalware.xml.md">
+            
+                <span>
+            
+                    
+                        <b>1.9.1.2.1.</b>
+                    
+                    AntiMalware XML
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.1.3" >
+            
+                <span>
+            
+                    
+                        <b>1.9.1.3.</b>
+                    
+                    Import
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1.3.1" data-path="../completeExamples/xml/schemaActions/Import_File.xml.html">
+            
+                <a href="../completeExamples/xml/schemaActions/Import_File.xml.html">
+            
+                    
+                        <b>1.9.1.3.1.</b>
+                    
+                    Import/File XML
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.1.3.2" data-path="../completeExamples/xml/schemaActions/Import_Object.xml.html">
+            
+                <a href="../completeExamples/xml/schemaActions/Import_Object.xml.html">
+            
+                    
+                        <b>1.9.1.3.2.</b>
+                    
+                    Import/Object XML
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.1.4" >
+            
+                <span>
+            
+                    
+                        <b>1.9.1.4.</b>
+                    
+                    Network
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1.4.1" data-path="../completeExamples/xml/schemaActions/Network_Close.xml.html">
+            
+                <a href="../completeExamples/xml/schemaActions/Network_Close.xml.html">
+            
+                    
+                        <b>1.9.1.4.1.</b>
+                    
+                    Network/Close XML
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.1.5" >
+            
+                <span>
+            
+                    
+                        <b>1.9.1.5.</b>
+                    
+                    Print
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1.5.1" data-path="../completeExamples/xml/schemaActions/Print.xml.html">
+            
+                <a href="../completeExamples/xml/schemaActions/Print.xml.html">
+            
+                    
+                        <b>1.9.1.5.1.</b>
+                    
+                    Print XML
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.1.6" data-path="../completeExamples/process.md">
+            
+                <span>
+            
+                    
+                        <b>1.9.1.6.</b>
+                    
+                    Process
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.1.7" >
+            
+                <span>
+            
+                    
+                        <b>1.9.1.7.</b>
+                    
+                    Search
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1.7.1" data-path="../completeExamples/xml/schemaActions/Search.xml.html">
+            
+                <a href="../completeExamples/xml/schemaActions/Search.xml.html">
+            
+                    
+                        <b>1.9.1.7.1.</b>
+                    
+                    Search XML
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.1.8" >
+            
+                <span>
+            
+                    
+                        <b>1.9.1.8.</b>
+                    
+                    Send
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1.8.1" data-path="../completeExamples/xml/schemaActions/Send_Document.xml.html">
+            
+                <a href="../completeExamples/xml/schemaActions/Send_Document.xml.html">
+            
+                    
+                        <b>1.9.1.8.1.</b>
+                    
+                    Send/Document XML
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.1.8.2" data-path="../completeExamples/xml/schemaActions/Send_File.xml.html">
+            
+                <a href="../completeExamples/xml/schemaActions/Send_File.xml.html">
+            
+                    
+                        <b>1.9.1.8.2.</b>
+                    
+                    Send/File XML
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2" >
+            
+                <span>
+            
+                    
+                        <b>1.9.2.</b>
+                    
+                    Object Types
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.2.1" data-path="../completeExamples/xml/objectTypes/SearchResults.xml.html">
+            
+                <a href="../completeExamples/xml/objectTypes/SearchResults.xml.html">
+            
+                    
+                        <b>1.9.2.1.</b>
+                    
+                    SearchResults XML
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2.2" data-path="../completeExamples/xml/objectTypes/Criteria.xml.html">
+            
+                <a href="../completeExamples/xml/objectTypes/Criteria.xml.html">
+            
+                    
+                        <b>1.9.2.2.</b>
+                    
+                    Criteria XML
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.3" >
+            
+                <span>
+            
+                    
+                        <b>1.9.3.</b>
+                    
+                    Other
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.3.1" data-path="../completeExamples/xml/Event_Meta_JSON.xml.html">
+            
+                <a href="../completeExamples/xml/Event_Meta_JSON.xml.html">
+            
+                    
+                        <b>1.9.3.1.</b>
+                    
+                    Event/Meta (JSON) XML
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.3.2" data-path="../completeExamples/xml/Event_Meta_XML.xml.html">
+            
+                <a href="../completeExamples/xml/Event_Meta_XML.xml.html">
+            
+                    
+                        <b>1.9.3.2.</b>
+                    
+                    Event/Meta (XML) XML
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="../FAQ.html">
+            
+                <a href="../FAQ.html">
+            
+                    
+                        <b>1.10.</b>
+                    
+                    FAQ
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="../releaseProcess.html">
+            
+                <a href="../releaseProcess.html">
+            
+                    
+                        <b>1.11.</b>
+                    
+                    Release Process
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="../Glossary.html">
+            
+                <a href="../Glossary.html">
+            
+                    
+                        <b>1.12.</b>
+                    
+                    Glossary
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="../CHANGELOG.html">
+            
+                <a href="../CHANGELOG.html">
+            
+                    
+                        <b>1.13.</b>
+                    
+                    Change Log
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Search</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="search">Search</h1>
+<h2 id="performing-a-search">Performing a Search</h2>
+<p>Whenever a user performs a search the details of the search may be recorded for audit purposes.
+The types of searches that could be performed by a user include searching the file system, remote file shares, emails, public folders and searches for data within applications.</p>
+<p>There are several formats of search query supported by the schema.
+They include:</p>
+<ul>
+<li><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Advanced</span><span class="token punctuation">&gt;</span></span></code> &#x2013; The structure enables complex queries to be built that include combinatorial term logic.</li>
+<li><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Simple</span><span class="token punctuation">&gt;</span></span></code> &#x2013; Records the terms that the search is looking for and the ones to explicitly exclude.</li>
+<li><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Raw</span><span class="token punctuation">&gt;</span></span></code> &#x2013; Used for record the executed query string entered by a user or SQL applied to a database.</li>
+</ul>
+<p>The ability to create a complex query may be limited by the application or device creating the event log.
+Where this is the case it may be necessary to use the simple or raw query format.
+Even if <code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Advanced</span><span class="token punctuation">&gt;</span></span></code> or <code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Simple</span><span class="token punctuation">&gt;</span></span></code> are used, the inclusion of the raw query string is desirable as it describes the search string that was actually executed.</p>
+<p>An example search event with a raw query is shown:</p>
+<pre class="language-"><code class="lang-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>EventDetail</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TypeId</span><span class="token punctuation">&gt;</span></span>BasicSearch<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>TypeId</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Search</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Query</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Id</span><span class="token punctuation">&gt;</span></span>query-236<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Id</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Raw</span><span class="token punctuation">&gt;</span></span>select * from table_x where user=&apos;jbloggs&apos;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Raw</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Query</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Search</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>EventDetail</span><span class="token punctuation">&gt;</span></span>
+</code></pre>
+<p>The following example shows a search event with an advanced query where the query is (location != site1 AND (user==jBloggs OR user==jDoe)):</p>
+<pre class="language-"><code class="lang-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>EventDetail</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TypeId</span><span class="token punctuation">&gt;</span></span>BasicSearch<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>TypeId</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Search</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Query</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Id</span><span class="token punctuation">&gt;</span></span>364587<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Id</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Advanced</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>And</span><span class="token punctuation">&gt;</span></span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Term</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Name</span><span class="token punctuation">&gt;</span></span>location<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Name</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Condition</span><span class="token punctuation">&gt;</span></span>NotEquals<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Condition</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Value</span><span class="token punctuation">&gt;</span></span>site1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Value</span><span class="token punctuation">&gt;</span></span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Term</span><span class="token punctuation">&gt;</span></span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Or</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Term</span><span class="token punctuation">&gt;</span></span>
+              <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Name</span><span class="token punctuation">&gt;</span></span>user<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Name</span><span class="token punctuation">&gt;</span></span>
+              <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Condition</span><span class="token punctuation">&gt;</span></span>Equals<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Condition</span><span class="token punctuation">&gt;</span></span>
+              <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Value</span><span class="token punctuation">&gt;</span></span>jBloggs<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Value</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Term</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Term</span><span class="token punctuation">&gt;</span></span>
+              <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Name</span><span class="token punctuation">&gt;</span></span>user<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Name</span><span class="token punctuation">&gt;</span></span>
+              <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Condition</span><span class="token punctuation">&gt;</span></span>Equals<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Condition</span><span class="token punctuation">&gt;</span></span>
+              <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Value</span><span class="token punctuation">&gt;</span></span>jDoe<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Value</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Term</span><span class="token punctuation">&gt;</span></span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Or</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>And</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Advanced</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Raw</span><span class="token punctuation">&gt;</span></span>select * from table_x where user in (&apos;jbloggs&apos;, &apos;jbloggs&apos;) and location &lt;&gt; &apos;site1&apos;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Raw</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Query</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Search</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>EventDetail</span><span class="token punctuation">&gt;</span></span>
+</code></pre>
+<h3 id="synchronous-vs-asynchronous-searches">Synchronous vs Asynchronous Searches</h3>
+<p>Some search events may be synchronous, where the results are know as part of the search action.
+For synchronous searches, details of the results can be included within the <code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Search</span><span class="token punctuation">&gt;</span></span></code> element.
+Some searches however are asynchronous, where the results are not know at the time the search is executed.
+For these asynchronous searches, the execution of the search should use the <code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Search</span><span class="token punctuation">&gt;</span></span></code> schema action and the retreival of the results would be modelled as separate <code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>View</span><span class="token punctuation">&gt;</span></span>/<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>SearchResults</span><span class="token punctuation">&gt;</span></span></code> event.
+To link the <code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Search</span><span class="token punctuation">&gt;</span></span></code> event with the <code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>some</span> <span class="token attr-name">schema</span> <span class="token attr-name">action</span><span class="token punctuation">&gt;</span></span>/<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>SearchResults</span><span class="token punctuation">&gt;</span></span></code> event the <code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Query</span><span class="token punctuation">&gt;</span></span>/<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Id</span><span class="token punctuation">&gt;</span></span></code> or <code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Query</span><span class="token punctuation">&gt;</span></span>/<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Name</span><span class="token punctuation">&gt;</span></span></code>element can be used, as shown in the following example.</p>
+<pre class="language-"><code class="lang-xml"><span class="token comment">&lt;!-- Search event --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>EventDetail</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TypeId</span><span class="token punctuation">&gt;</span></span>AsynchronousUserQuery<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>TypeId</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Search</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Query</span><span class="token punctuation">&gt;</span></span>
+      <span class="token comment">&lt;!-- ID to link the query execution with the subsequent vewing of the results --&gt;</span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Id</span><span class="token punctuation">&gt;</span></span>3648595<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Id</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Raw</span><span class="token punctuation">&gt;</span></span>select cv_blob from candidates where user=&apos;jbloggs&apos;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Raw</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Query</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Search</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>EventDetail</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token comment">&lt;!-- View results event --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>EventDetail</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TypeId</span><span class="token punctuation">&gt;</span></span>ViewUserQueryResults<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>TypeId</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>View</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>SearchResults</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Query</span><span class="token punctuation">&gt;</span></span>
+      <span class="token comment">&lt;!-- ID to link the query execution with the subsequent vewing of the results --&gt;</span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Id</span><span class="token punctuation">&gt;</span></span>3648595<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Id</span><span class="token punctuation">&gt;</span></span>
+      <span class="token comment">&lt;!-- If the query detail was recorded in the initial Search event then it could be omitted here --&gt;</span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Query</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TotalResults</span><span class="token punctuation">&gt;</span></span>1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>TotalResults</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Results</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Document</span><span class="token punctuation">&gt;</span></span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Title</span><span class="token punctuation">&gt;</span></span>J Bloggs CV<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Title</span><span class="token punctuation">&gt;</span></span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Path</span><span class="token punctuation">&gt;</span></span>/tmp/jbloggs_cv.pdf<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Path</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Document</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Results</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>SearchResults</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>View</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>EventDetail</span><span class="token punctuation">&gt;</span></span>
+</code></pre>
+<h2 id="search-results">Search Results</h2>
+<p>The schema allows for results that are returned from a search to be recorded.</p>
+<p>The total number of results can be recorded along with a list of the displayed results.
+Where results are paged (e.g. in a web search) details of the currently displayed page can also be described.</p>
+<p>The list of results can describe the type of result and provide appropriate details, see the following example.</p>
+<pre class="language-"><code class="lang-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Search</span><span class="token punctuation">&gt;</span></span>
+  ...
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ResultPage</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TotalPages</span><span class="token punctuation">&gt;</span></span>10<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>TotalPages</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>PerPage</span><span class="token punctuation">&gt;</span></span>10<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>PerPage</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>PageNumber</span><span class="token punctuation">&gt;</span></span>2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>PageNumber</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>From</span><span class="token punctuation">&gt;</span></span>11<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>From</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>To</span><span class="token punctuation">&gt;</span></span>20<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>To</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ResultPage</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TotalResults</span><span class="token punctuation">&gt;</span></span>100<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>TotalResults</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Results</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Document</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Title</span><span class="token punctuation">&gt;</span></span>Some Document 1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Title</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Path</span><span class="token punctuation">&gt;</span></span>file://Some_Path/Some%20Document.doc<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Path</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Document</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>WebPage</span><span class="token punctuation">&gt;</span></span>
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>URL</span><span class="token punctuation">&gt;</span></span>http://Some_Path/Some%20HTML%20Page.htm<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>URL</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>WebPage</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Results</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Search</span><span class="token punctuation">&gt;</span></span>
+</code></pre>
+<p>See <a href="../completeExamples/">Complete Examples</a> for example events.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="process.html" class="navigation navigation-prev " aria-label="Previous page: Process">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="sendReceive.html" class="navigation navigation-next " aria-label="Next page: Send and Receive">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Search","level":"1.4.13","depth":2,"next":{"title":"Send and Receive","level":"1.4.14","depth":2,"path":"schemaActions/sendReceive.md","ref":"./schemaActions/sendReceive.md","articles":[]},"previous":{"title":"Process","level":"1.4.12","depth":2,"path":"schemaActions/process.md","ref":"./schemaActions/process.md","articles":[]},"dir":"ltr"},"config":{"plugins":["prism","-highlight","github","anchorjs"],"root":"./docs","styles":{"website":"build/gitbook.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/gchq/event-logging-schema"},"theme-default":{"styles":{"website":"build/gitbook.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true},"prism":{},"anchorjs":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Event Logging XML Schema","gitbook":"3.x.x"},"file":{"path":"schemaActions/search.md","mtime":"2021-03-23T11:36:10.182Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-03-23T11:38:01.763Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-anchorjs/anchor.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-anchorjs/anchor-style.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
