@@ -1,7 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 set -eo pipefail
-IFS=$'\n\t'
 
 setup_echo_colours() {
   # Exit the script on any error
@@ -95,7 +94,7 @@ main() {
   rm -v "${GENERATED_DIR}"/identity-v*-identity.xsd
 
   # Copy the schemas to the release dir for upload to gh releases
-  cp "${GENERATED_DIR}/*.xsd" "${RELEASE_ARTEFACTS_DIR}/"
+  cp "${GENERATED_DIR}"/*.xsd "${RELEASE_ARTEFACTS_DIR}/"
 
   # build the gitbook
   echo -e "${GREEN}Installing and building gitbook${NC}"
