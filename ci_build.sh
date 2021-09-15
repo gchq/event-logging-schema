@@ -72,6 +72,7 @@ main() {
   #schemas from the configured pipelines
   #The build will also validate the versions in the source schema
   ./gradlew \
+    --no-daemon \
     -Pversion="${SCHEMA_VERSION}" \
     clean \
     build \
