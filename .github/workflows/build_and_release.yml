@@ -118,7 +118,7 @@ jobs:
           # ssh private key (corresponding to the public key in github deploy keys
           # for the stroom repo), manually added to secrets
           # Use 'ssh-keygen -t rsa -b 4096' to create a key pair
-          # then add the public key to:
+          # then add the public key (with write access) to:
           # https://github.com/gchq/event-logging-schema/settings/keys
           # and the private key to:
           # https://github.com/gchq/event-logging-schema/settings/secrets/actions
