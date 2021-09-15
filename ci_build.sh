@@ -79,8 +79,10 @@ main() {
     runShadow \
     -x diffAgainstLatest 
 
+  ls -l "${BUILD_DIR}/event-logging-transformer-main/build/libs/"
+
   cp \
-    "event-logging-transformer-main/build/libs/event-logging-transformer*-all.jar" \
+    "${BUILD_DIR}/event-logging-transformer-main/build/libs/event-logging-transformer*-all.jar" \
     "${RELEASE_ARTEFACTS_DIR}"
 
   GENERATED_DIR="event-logging-transformer-main/pipelines/generated"
