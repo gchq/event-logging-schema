@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #**********************************************************************
 # Copyright 2016 Crown Copyright
 # 
@@ -39,17 +39,17 @@ def validateVersions(newVersion, schemaFile):
 
     if (newVersion):
         newVersionNum = re.sub(r'^v', "", newVersion)
-        print "Gradle build version: %s" % newVersionNum
+        print("Gradle build version: %s" % newVersionNum)
 
     if (not schemaFile):
         schemaFile = SCHEMA_FILENAME
 
     if (not os.path.isfile(schemaFile)):
-        print "ERROR - Schema file %s doesn't exist" % schemaFile
+        print("ERROR - Schema file %s doesn't exist" % schemaFile)
         exit(1)
 
-    print ""
-    print "Validating file %s" % schemaFile
+    print("")
+    print("Validating file %s" % schemaFile)
 
     # pattern = re.compile("xmlns:evt\"event-logging:.*\"")
     xsdFile = open(schemaFile, 'r')
@@ -59,29 +59,29 @@ def validateVersions(newVersion, schemaFile):
     if (len(matches) != 1):
         raise ValueError("Unexpected matches for evt namespace", matches)
     namespaceVersion = matches[0]
-    print "namespace version: [%s]" % namespaceVersion
+    print("namespace version: [%s]" % namespaceVersion)
 
     xml_root = ET.parse(schemaFile).getroot()
 
     targetNamespaceAttr = xml_root.get("targetNamespace")
     targetNamespaceVersion = re.match(".*:(.*)$", targetNamespaceAttr).group(1)
-    print "targetNamespace:   [%s]" % targetNamespaceVersion
+    print("targetNamespace:   [%s]" % targetNamespaceVersion)
 
     versionAttrVersion = xml_root.get("version")
-    print "version:           [%s]" % versionAttrVersion
+    print("version:           [%s]" % versionAttrVersion)
 
     idAttr = xml_root.get("id")
     idAttrVersion = re.match("event-logging-v?(.*)$", idAttr).group(1)
-    print "id:                [%s]" % idAttrVersion
+    print("id:                [%s]" % idAttrVersion)
 
     ns = {'xs': 'http://www.w3.org/2001/XMLSchema'}
     enumVersions = []
-    print "Version enumerations:"
+    print("Version enumerations:")
     for enumElm in xml_root.findall("./xs:simpleType[@name='VersionSimpleType']/xs:restriction/xs:enumeration", ns):
-        print "  %s" % enumElm.get("value")
+        print("  %s" % enumElm.get("value"))
         enumVersions.append(enumElm.get("value"))
 
-    print ""
+    print("")
     versionRegex = "[0-9]+\.[0-9]+(\.[0-9]+|-(alpha|beta)\.[0-9]+)"
 
     if (newVersion and not re.match(".*SNAPSHOT", newVersionNum)):
@@ -95,7 +95,7 @@ def validateVersions(newVersion, schemaFile):
         # a breaking change to the schema but that has all sorts of implications
         # on existing pipelines, xslts and content packs that would all need changing.
         if (not versionAttrVersion.startswith(targetNamespaceVersion)):
-            print "Major version of the version attribute %s does not match the targetNamespace version %s" % (versionAttrVersion, targetNamespaceVersion)
+            print("Major version of the version attribute %s does not match the targetNamespace version %s" % (versionAttrVersion, targetNamespaceVersion))
             # raise ValueError("Major version of the version attribute does not match the targetNamespace version", versionAttrVersion, targetNamespaceVersion)
 
         minorVer = getMinorVersion(versionAttrVersion)
@@ -104,7 +104,7 @@ def validateVersions(newVersion, schemaFile):
             if (not enumVer == "SNAPSHOT"):
                 if (not enumVer.startswith(targetNamespaceVersion)):
                     # See comment above about namespace versioning
-                    print "Major version of the enumeration version %s does not match the targetNamespace version %s" % (enumVer, targetNamespaceVersion)
+                    print("Major version of the enumeration version %s does not match the targetNamespace version %s" % (enumVer, targetNamespaceVersion))
                     # raise ValueError("Major version of the enumeration version does not match the targetNamespace version", enumVer, targetNamespaceVersion)
                 minorVerOfEnum = getMinorVersion(enumVer)
 
@@ -127,7 +127,7 @@ def validateVersions(newVersion, schemaFile):
 
 # Script starts here
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-print sys.argv
+print(sys.argv)
 
 if len(sys.argv) == 2:
     newVersion = sys.argv[1]
@@ -139,10 +139,10 @@ else:
     newVersion = None
     schemaFile = None
 
-print "version [%s], schema file [%s]" % (newVersion, schemaFile)
+print("version [%s], schema file [%s]" % (newVersion, schemaFile))
     
 validateVersions(newVersion, schemaFile)
 
-print ""
-print "Done!"
+print("")
+print("Done!")
 exit(0)
