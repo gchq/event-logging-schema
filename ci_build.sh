@@ -81,6 +81,8 @@ main() {
 
   ls -l "${BUILD_DIR}/event-logging-transformer-main/build/libs/"
 
+  ls -l "${BUILD_DIR}/event-logging-transformer-main/build/libs/event-logging-transformer*-all.jar"
+
   cp \
     "${BUILD_DIR}/event-logging-transformer-main/build/libs/event-logging-transformer*-all.jar" \
     "${RELEASE_ARTEFACTS_DIR}"
