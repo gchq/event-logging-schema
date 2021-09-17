@@ -29,6 +29,8 @@
 
 pipelines:
 
+  # The complete schema, e.g for use in stroom. Includes all elements,
+  # e.g. the complete user details.
   - pipelineName: "fullSchema"
     hasOutput: true
     transformations:
@@ -37,6 +39,9 @@ pipelines:
       - "orderElements.xsl"
       - "removeVimModeline.xsl"
           
+  # A variant to be used by client systems and for use in producing the
+  # JAXB Java API. Ommits much of the user details structure, the EventId and
+  # adds Event as a root element for sending single events.
   - pipelineName: "client-variant"
     basePipelineName: "fullSchema"
     outputSuffix: "client"
@@ -45,6 +50,20 @@ pipelines:
       - "jaxbEventRoot.xsl"
       - "jaxbNoEventId.xsl"
       - "jaxbNoUserDetails.xsl"
+
+  # A varient that imposes limits on the values and occurances intended
+  # for untrusted sources.
+  - pipelineName: "safe-schema"
+    basePipelineName: "fullSchema"
+    outputSuffix: "safe"
+    hasOutput: true
+    transformations:
+      - "addSafeStringSimpleType.xsl"
+      - "replaceStringWithSafeString.xsl"
+      - "removeMetaElement.xsl"
+      - "removeAnyContentComplexType.xsl"
+      - "limitOccurrence.xsl"
+      - "limitDataElementRecursion.xsl"
 
   # This pipeline is used solely for creating a schema to validate the example
   # XML in the documentation. It should be identical to the fullSchema version
@@ -78,4 +97,4 @@ pipelines:
     outputBaseName: "test"
     hasOutput: true
     transformations:
-      - "documentationVersionNumber.xsl"
+      - "limitDataElementRecursion.xsl"
