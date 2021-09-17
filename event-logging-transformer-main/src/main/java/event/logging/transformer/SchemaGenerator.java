@@ -269,7 +269,8 @@ public class SchemaGenerator {
                 .newInstance();
 
         if (!pipeline.getTransformations().isEmpty()) {
-            LOGGER.info("Transforming schema with pipeline {}", pipeline.getPipelineName());
+            LOGGER.info("------------------------------------------------------------", pipeline.getPipelineName());
+            LOGGER.info("Transforming schema with pipeline [{}]", pipeline.getPipelineName());
 
             Path xsltsPath = getXsltsPath();
 
@@ -444,7 +445,7 @@ public class SchemaGenerator {
         }
         // It seems to ignore this property
         // System.setProperty("jdk.xml.maxOccurLimit", "10000");
-        LOGGER.info("Validating file " + safeSchemaPath.getFileName().toString());
+        LOGGER.info("Validating file " + safeSchemaPath.toAbsolutePath().normalize());
         final Instant startTime = Instant.now();
         try {
             // attempt to construct a schema object from the file. Will fail if our schema
