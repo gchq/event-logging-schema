@@ -22,6 +22,11 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 ## [Unreleased]
 
 
+## [v4.0-beta.4] - 2021-09-17
+
+* Add safe variant of the schema.
+
+
 ## [v4.0-beta.3] - 2021-03-23
 
 * Fix version numbers in schema.
@@ -295,7 +300,8 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 * Initial open source release
 
-[Unreleased]: https://github.com/gchq/event-logging-schema/compare/v4.0-beta.3...HEAD
+[Unreleased]: https://github.com/gchq/event-logging-schema/compare/v4.0-beta.4...HEAD
+[v4.0-beta.4]: https://github.com/gchq/event-logging-schema/compare/v4.0-beta.3...v4.0-beta.4
 [v4.0-beta.3]: https://github.com/gchq/event-logging-schema/compare/v4.0-beta.2...v4.0-beta.3
 [v4.0-beta.2]: https://github.com/gchq/event-logging-schema/compare/v4.0-beta.1...v4.0-beta.2
 [v4.0-beta.1]: https://github.com/gchq/event-logging-schema/compare/v3.5.1...v4.0-beta.1
