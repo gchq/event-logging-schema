@@ -27,6 +27,15 @@
 # Where X.Y.Z is the full version of the generated schema as copied from its 'version' attribute
 # If outputBaseName is not set then the name of the source schema will be used as the outputBaseName
 
+# As a general rule the XSLTs used in transformations should be kept small and do only one thing.
+# This makes it easier to use just the bits you want in pipelines and makes testing the effect
+# of a transformation easer.
+#
+# To test a transformation you can set it as the only transformation in the 'test' pipeline
+# then do:
+# ./gradlew runShadow; meld event-logging-transformer-main/pipelines/generated/{identity-v4-identity.xsd,test-v4-test.xsd}
+# Which uses meld to diff the two generated schemas.
+
 pipelines:
 
   # The complete schema, e.g for use in stroom. Includes all elements,
