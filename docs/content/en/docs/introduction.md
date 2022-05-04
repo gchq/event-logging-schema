@@ -1,7 +1,14 @@
-# Introduction
-This documentation describes the Event Logging XML Schema herein referred to as the 'schema'. This is a guide for 
-anybody interested in using the schema for recording auditable events and includes details of the structure, features 
-and common usage.
+---
+title: "Introduction"
+linkTitle: "Introduction"
+#weight:
+date: 2022-05-04
+tags: 
+description: >
+  This documentation describes the Event Logging XML Schema herein referred to as the 'schema'.
+  This is a guide for anybody interested in using the schema for recording auditable events and includes details of the structure, features and common usage.
+
+---
 
 The schema aims to provide a structure for describing all forms of auditable events in a structured and consistent way.
 The benefit of the schema is that events translated into it are all in a consistent normalised form enabling common processing of the translated events.

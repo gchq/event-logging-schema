@@ -1,6 +1,13 @@
-# Complete Examples
+---
+title: "Complete Examples"
+linkTitle: "Complete Examples"
+#weight:
+date: 2022-05-04
+tags: 
+description: >
+  A number of examples of complete events are provided below, in order to illustrate use of the schema.
 
-A number of examples of complete events are provided below, in order to illustrate use of the schema.
+---
 
 > **N.B.** All entities including organisations, persons, devices and applications are imaginary. All details (e.g. MAC Address, Name, IP Address) are similarly imaginary and any relationship to any real entities is entirely coincidental!
 

@@ -1,4 +1,14 @@
-# `<EventDetail>/<Alert>/<Network>`
+---
+title: "Alert (Network)"
+linkTitle: "Alert (Network)"
+#weight:
+date: 2022-05-04
+tags: 
+description: >
+  
+---
+
+## `<EventDetail>/<Alert>/<Network>`
 
 This example illustrates an alert being fired by from a network device performing packet filtering:
 

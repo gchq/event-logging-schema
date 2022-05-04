@@ -1,6 +1,13 @@
-# Event Modelling
-In order for the benefits of event normalisation to be realised, it is necessary for similar events to 
-be represented consistently within the schema.
+---
+title: "Event Modelling"
+linkTitle: "Event Modelling"
+#weight:
+date: 2022-05-04
+tags: 
+description: >
+  In order for the benefits of event normalisation to be realised, it is necessary for similar events to be represented consistently within the schema.
+
+---
 
 The following table provides a number of examples of how some common event types can be modelled.
 
@@ -44,5 +51,3 @@ The following table provides a number of examples of how some common event types
 |User likes another user's status message in social media application.|`<Create>` of type `<Resource>`  with `<Type>` element assigned to an appropriate string literal, e.g. "Like".  `<URL>` can be used to indicate the actual status message and `<User>` subelement of `<Permissions>` can reflect the user who created the status update message.| *A future version of the schema will allow all Object types to refer to other instances of Object type.  In this way the actual Status message can be included within this event, rather than only indirectly by URL.*|
 |User deletes a record via the web interface to a database application.|`<Delete>` of type `<Object>` with `<Type>` element assigned to a string literal that describes the type of record deleted.|Where a generic database tool has been used, then `<Type>` can be assigned to a generic value such as `Record` and `<Description>` assigned to a value that indicates the name of the table (i.e. a rough idea of the type of record).  N.B. `<Name>` should be used only to record information relating to the specific instance, if neeeded (e.g. record number).|
 |Email server receives an email from an external party.| `<Receive>` of type `<Email>` | | |
-
-

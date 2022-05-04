@@ -1,4 +1,14 @@
-# `<EventDetail>/<Import>//<File>`
+---
+title: "Import (File)"
+linkTitle: "Import (File)"
+#weight:
+date: 2022-05-04
+tags: 
+description: >
+  
+---
+
+## `<EventDetail>/<Import>//<File>`
 
 The following example illustrates how removable media use could be represented within the events-logging schema.
 

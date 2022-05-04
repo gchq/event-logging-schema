@@ -1,7 +1,15 @@
-# Unstructured Data
-When producing schema compliant data, each and every data field from an event should populate the most appropriate element in the schema.
+---
+title: "Unstructured Data"
+linkTitle: "Unstructured Data"
+#weight:
+date: 2022-05-04
+tags: 
+description: >
+  When producing schema compliant data, each and every data field from an event should populate the most appropriate element in the schema.
+---
 
-In some cases there may not be an adequate data structure for capturing the content of a field. In these cases data can be captured using the `<Data>` element content model, see the following example.
+In some cases there may not be an adequate data structure for capturing the content of a field.
+In these cases data can be captured using the `<Data>` element content model, see the following example.
 
 ``` xml
 <EventDetail>

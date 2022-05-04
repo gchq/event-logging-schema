@@ -50,7 +50,7 @@ debug_value() {
   local name="$1"; shift
   local value="$1"; shift
   
-  if [ "${IS_DEBUG}" = true ]; then
+  if [ "${IS_DEBUG:-false}" = true ]; then
     echo -e "${DGREY}DEBUG ${name}: ${value}${NC}"
   fi
 }
@@ -58,7 +58,7 @@ debug_value() {
 debug() {
   local str="$1"; shift
   
-  if [ "${IS_DEBUG}" = true ]; then
+  if [ "${IS_DEBUG:-false}" = true ]; then
     echo -e "${DGREY}DEBUG ${str}${NC}"
   fi
 }
@@ -95,6 +95,7 @@ build_weights_array() {
     #echo "Error: No matching files!" >&2
     #exit 1
   #fi
+  debug_value "dir" "${dir}"
 
   for path in "${dir}/"*; do
     debug_value "file" "${file}"
@@ -137,7 +138,6 @@ build_weights_array() {
 }
 
 main() {
-  IS_DEBUG=false
   #SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 
   setup_echo_colours

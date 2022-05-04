@@ -1,3 +1,15 @@
+---
+title: "Release Process"
+linkTitle: "Release Process"
+#weight:
+date: 2022-05-04
+tags: 
+description: >
+  How to release a new version of the schema.
+
+---
+
+
 # Release Process
 
 See [Change Log](CHANGELOG.md) for details of the version numbering approach.
