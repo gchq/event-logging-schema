@@ -2,7 +2,7 @@ import java.util.regex.Pattern
 
 buildscript {
     repositories {
-        jcenter()
+        mavenCentral()
     }
     dependencies {
         classpath group: 'ca.cutterslade.gradle', name: 'gradle-dependency-analyze', version: '1.2.0'
@@ -63,7 +63,7 @@ subprojects {
     targetCompatibility = 1.8
 
     repositories {
-        jcenter()
+        mavenCentral()
         mavenLocal()
     }
 
