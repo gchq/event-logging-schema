@@ -40,8 +40,8 @@ main() {
   ZIP_FILENAME=${BUILD_NAME}.zip
   RELEASE_ARTEFACTS_DIR_NAME="release_artefacts"
   RELEASE_ARTEFACTS_DIR="${BUILD_DIR}/${RELEASE_ARTEFACTS_DIR_NAME}"
-  RELEASE_ARTEFACTS_REL_DIR="./${RELEASE_ARTEFACTS_DIR_NAME}"
-  GITBOOK_DIR="${BUILD_DIR}/_book"
+  #RELEASE_ARTEFACTS_REL_DIR="./${RELEASE_ARTEFACTS_DIR_NAME}"
+  GENERATED_SITE_DIR="${BUILD_DIR}/docs/public"
   GITHUB_PAGES_DIR="${BUILD_DIR}/gh-pages"
 
   #Dump all the travis env vars to the console for debugging
@@ -98,16 +98,16 @@ main() {
 
   # build the gitbook
   echo -e "${GREEN}Installing and building gitbook${NC}"
-  ./container_build/runInNodeDocker.sh "gitbook install && gitbook build"
+  ./container_build/runInHugoDocker.sh "build"
 
-  echo "Highlighting un-converted markdown files as they could be missing from the SUMMARY.md" 
-  find ./_book/ -name "*.md"
-  mdFileCount=$(find ./_book/ -name "*.md" | wc -l)
-  if [ "${mdFileCount}" -gt 0 ]; then
-      echo -e "${RED}ERROR${NC} - $mdFileCount unconverted markdown files" \
-        "exist, add them to the SUMMARY.md so they are converted"
-      exit 1
-  fi
+  #echo "Highlighting un-converted markdown files as they could be missing from the SUMMARY.md" 
+  #find ./_book/ -name "*.md"
+  #mdFileCount=$(find ./_book/ -name "*.md" | wc -l)
+  #if [ "${mdFileCount}" -gt 0 ]; then
+      #echo -e "${RED}ERROR${NC} - $mdFileCount unconverted markdown files" \
+        #"exist, add them to the SUMMARY.md so they are converted"
+      #exit 1
+  #fi
 
   #build a pdf of the docs and genrate a zip of the static html, for release to github
 
@@ -116,11 +116,12 @@ main() {
       "zip file - ${ZIP_FILENAME}"
 
   # generate a pdf of the gitbook
-  ./container_build/runInNodeDocker.sh \
-    "gitbook pdf ./ \"${RELEASE_ARTEFACTS_REL_DIR}/${PDF_FILENAME}\""
+  # TODO change to generate the pdf of the hugo site
+  #./container_build/runInNodeDocker.sh \
+    #"gitbook pdf ./ \"${RELEASE_ARTEFACTS_REL_DIR}/${PDF_FILENAME}\""
 
   echo "Making a zip of the html content"
-  pushd "${GITBOOK_DIR}"
+  pushd "${GENERATED_SITE_DIR}"
   zip -r -9 "${RELEASE_ARTEFACTS_DIR}/${ZIP_FILENAME}" ./*
   popd
 
@@ -132,10 +133,9 @@ main() {
 
     mkdir -p "${GITHUB_PAGES_DIR}"
 
-    echo -e "${GREEN}Copying from ${GITBOOK_DIR}/ to ${GITHUB_PAGES_DIR}/${NC}"
-    cp -r "${GITBOOK_DIR}"/* "${GITHUB_PAGES_DIR}/"
+    echo -e "${GREEN}Copying from ${GENERATED_SITE_DIR}/ to ${GITHUB_PAGES_DIR}/${NC}"
+    cp -r "${GENERATED_SITE_DIR}"/* "${GITHUB_PAGES_DIR}/"
   fi
-
 }
 
 main "$@"
