@@ -1,4 +1,4 @@
-module github.com/google/docsy-example
+module github.com/gchq/event-logging-schema
 
 go 1.12
 
