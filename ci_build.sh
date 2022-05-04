@@ -61,12 +61,14 @@ main() {
   # validate the source schema - probably overkill as java will validate 
   # the generated schemas
 
-  echo -e "Validating source schema"
+  echo -e "::group::Validating source schema"
   xmllint \
     --noout \
     --schema http://www.w3.org/2001/XMLSchema.xsd \
     ./event-logging.xsd
+  echo "::endgroup::"
 
+  echo -e "::group::Running gradle build"
   #run the gradle build to compile the transformations code and generate the 
   #schemas from the configured pipelines
   #The build will also validate the versions in the source schema
@@ -95,10 +97,12 @@ main() {
 
   # Copy the schemas to the release dir for upload to gh releases
   cp "${GENERATED_DIR}"/*.xsd "${RELEASE_ARTEFACTS_DIR}/"
+  echo "::endgroup::"
 
   # build the gitbook
-  echo -e "${GREEN}Installing and building gitbook${NC}"
+  echo -e "::group::${GREEN}Installing and building gitbook${NC}"
   ./container_build/runInHugoDocker.sh "build"
+  echo "::endgroup::"
 
   #echo "Highlighting un-converted markdown files as they could be missing from the SUMMARY.md" 
   #find ./_book/ -name "*.md"
@@ -110,6 +114,8 @@ main() {
   #fi
 
   #build a pdf of the docs and genrate a zip of the static html, for release to github
+
+  echo -e "::group::${GREEN}Gathering artefacts${NC}"
 
   echo "Build name - ${BUILD_NAME}," \
     "pdf file - ${PDF_FILENAME}," \
@@ -136,6 +142,7 @@ main() {
     echo -e "${GREEN}Copying from ${GENERATED_SITE_DIR}/ to ${GITHUB_PAGES_DIR}/${NC}"
     cp -r "${GENERATED_SITE_DIR}"/* "${GITHUB_PAGES_DIR}/"
   fi
+  echo "::endgroup::"
 }
 
 main "$@"
