@@ -100,7 +100,7 @@ main() {
       run_cmd=( \
         "bash" \
         "-c"  \
-        "hugo server" \
+        "cd docs; hugo server" \
       )
         #"hugo server --baseURL 'localhost:1313/stroom-docs'" \
       if [[ $# -eq 2 ]] && [[ "${2}" = "detach" ]]; then
@@ -111,7 +111,7 @@ main() {
         # Build the site and output to ./public
         "bash" \
         "-c"  \
-        "hugo --buildDrafts" \
+        "cd docs; hugo --buildDrafts" \
       )
         #"hugo --buildDrafts --baseURL '/stroom-docs'" \
     elif [[ $# -ge 1 ]] && [[ "$1" = "build" ]]; then
@@ -121,13 +121,13 @@ main() {
         # Build the site and output to ./public
         "bash" \
         "-c"  \
-        "hugo --buildDrafts --baseUrl \"$2\"" \
+        "cd docs; hugo --buildDrafts --baseUrl \"$2\"" \
       )
     else
       run_cmd=( \
         "bash" \
         "-c" \
-        "$1" \
+        "cd docs; $1" \
       )
     fi
   fi

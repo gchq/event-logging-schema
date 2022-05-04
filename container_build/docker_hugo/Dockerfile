@@ -14,7 +14,7 @@
 # limitations under the License.
 #**********************************************************************
 
-FROM klakegg/hugo:ext-alpine
+FROM klakegg/hugo:0.93.2-ext-alpine
 
 # Run separately so docker can cache the layer to speed up image creation
 RUN apk add --no-cache \
