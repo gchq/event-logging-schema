@@ -38,3 +38,11 @@ _book
 # Visual Studio
 /.vs/
 # END of Visual Studio
+
+# Hugo/Docsy Docs Stuff
+
+docs/public
+docs/resources/
+node_modules/
+package-lock.json
+docs/.hugo_build.lock
