@@ -27,6 +27,7 @@ setup_echo_colours() {
 }
 
 main() {
+  echo "::group::Build info"
   if [ -n "$BUILD_TAG" ]; then
       #Tagged commit so use that as our stroom version, e.g. v3.0.0
       SCHEMA_VERSION="${BUILD_TAG}"
@@ -57,6 +58,7 @@ main() {
   echo -e "ZIP_FILENAME:          [${GREEN}${ZIP_FILENAME}${NC}]"
 
   mkdir -p "${RELEASE_ARTEFACTS_DIR}"
+  echo "::endgroup::"
 
   # validate the source schema - probably overkill as java will validate 
   # the generated schemas
@@ -100,7 +102,7 @@ main() {
   echo "::endgroup::"
 
   # build the gitbook
-  echo -e "::group::${GREEN}Installing and building gitbook${NC}"
+  echo -e "::group::${GREEN}Building the docs${NC}"
   ./container_build/runInHugoDocker.sh "build"
   echo "::endgroup::"
 
