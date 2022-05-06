@@ -36,25 +36,23 @@ The following are links to annotated example `<Events>` XML documents that are v
 
 * **Schema Actions** (within `<EventDetail>`)
   * **`<Alert>`**
-    * [`<Alert>/<Network>` XML](./xml/schemaActions/Alert_Network.xml.md)
+    * [`<Alert>/<Network>` XML]({{< relref "xml/schema-actions/alert-network.xml.md" >}})
   * **`<Import>`**
-    * [`<Import>/<File>` XML](./xml/schemaActions/Import_File.xml.md)
-    * [`<Import>/<Object>` XML](./xml/schemaActions/Import_Object.xml.md)
+    * [`<Import>/<File>` XML]({{< relref "xml/schema-actions/import-file.xml.md" >}})
+    * [`<Import>/<Object>` XML]({{< relref "xml/schema-actions/import-object.xml.md" >}})
   * **`<Network>`**
-    * [`<Network>/<Close>` XML](./xml/schemaActions/Network_Close.xml.md)
+    * [`<Network>/<Close>` XML]({{< relref "xml/schema-actions/network-close.xml.md" >}})
   * **`<Print>`**
-    * [`<Print>` XML](./xml/schemaActions/Print.xml.md)
+    * [`<Print>` XML]({{< relref "xml/schema-actions/print.xml.md" >}})
   * **`<Search>`**
-    * [`<Search>` XML](./xml/schemaActions/Search.xml.md)
+    * [`<Search>` XML]({{< relref "xml/schema-actions/search.xml.md" >}})
   * **`<Send>`**
-    * [`<Send>/<Document>` XML](./xml/schemaActions/Send_Document.xml.md)
-    * [`<Send>/<File>` XML](./xml/schemaActions/Send_File.xml.md)
+    * [`<Send>/<Document>` XML]({{< relref "xml/schema-actions/send-document.xml.md" >}})
+    * [`<Send>/<File>` XML]({{< relref "xml/schema-actions/send-file.xml.md" >}})
 * **Object Types**
-  * [`<SearchResults> XML`](./xml/objectTypes/SearchResults.xml.md)
-  * [`<Criteria> XML`](./xml/objectTypes/Criteria.xml.md)
+  * [`<SearchResults> XML`]({{< relref "xml/object-types/search-results.xml.md" >}})
+  * [`<Criteria> XML`]({{< relref "xml/object-types/criteria.xml.md" >}})
 * **Other**
   * **`<Event>/<Meta>`**
-    * [`<Event>/<Meta>` (JSON) XML](./xml/Event_Meta_JSON.xml.md)
-    * [`<Event>/<Meta>` (XML) XML](./xml/Event_Meta_XML.xml.md)
-  * **`<Event>/<EventLinks>`**
-    * [`<Event>/<EventLinks>` (Child-parent) XML](./xml/Event_EventLinks.xml.md)
+    * [`<Event>/<Meta>` (JSON) XML]({{< relref "xml/event-meta-json.xml.md" >}})
+    * [`<Event>/<Meta>` (XML) XML]({{< relref "xml/event-meta-xml.xml.md" >}})

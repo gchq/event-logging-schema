@@ -39,7 +39,9 @@ Enforcement of mandatory data items can be done outside of the schema.
 
 In the various examples that follow some elements that appear in the example may be optional and are only shown as guidance.
 
+
 ### Describing When?
+
 To describe when an event happened a timestamp must be present on every event, see the following example.
 
 ``` xml
@@ -122,7 +124,9 @@ An example of this can be seen in the search event [here](completeExamples/xml/s
 The `<System>` structure provides information about the name of the system that created the event, the deployment environment and the organisation that owns it.
 It is also possible to provide a description and classification of the system.
 
+
 #### Generator
+
 The generator is an application, service or specific component that created the event, such as  'Microsoft-Accounting-Service' or 'Apache-HTTPD'.
 Event type ids (see [Type ID](./README.md#type-id)) are unique to a particular event generator so a generator name must be included.
 
@@ -174,10 +178,16 @@ The following door events may be recorded:
 * **Reset** – Reset of door entry system to allow passes to be used in either direction. 
 * **None** – User has authenticated but not entered or exited.
 
+
 #### Describing Where?
-A device or door typically has some form of physical location.  The location can include details such as the country, site, building, room and desk/rack.  It can also include details of the timezone of that physical location.
+
+A device or door typically has some form of physical location.
+The location can include details such as the country, site, building, room and desk/rack.
+It can also include details of the timezone of that physical location.
+
 
 #### User
+
 When sharing data within large global organisations it is important that an individual (who may have access to multiple systems across multiple parts of that organisation) can be identified.
 Individuals may have multiple identities within each part of the organisation due to the scope, purpose and limitations of individual systems.
 Examples of these many forms of identity range from door access card numbers, email addresses, user names, certificates and user IDs.
@@ -191,7 +201,9 @@ In addition to this, user details can be provided to describe which part of the 
 Many events may be triggered by a device and not involve a specific user.
 In these cases it is only necessary to describe the device that the event occurred on.
 
+
 #### Run As
+
 Some events may be executed by a user assuming the identity of another user, e.g. use of sudo.
 Where this is the case it is mandatory to describe the user that the event is being executed as using the `<RunAs>` element.
 
@@ -200,16 +212,22 @@ This can often be the case when executing scheduled tasks, e.g. overnight databa
 
 As with the `<User>` element the `<RunAs>` element must contain a unique user identifier.
 
+
 #### Interactive
+
 For some events the user may not have been present at the time the event occurred.
 This can be the case for scheduled tasks or tasks that are executed from a queue, e.g. asynchronous processing.
 In these cases it is necessary to indicate that the event was not interactive, i.e. not triggered by a user directly.
 This is done using the `<Interactive>` element.
 
+
 #### Data
+
 For any event source data that cannot be described using the defined structure, `<Data>` elements can be used, though care should be taken to use these elements in a consistent way to allow for future processing and inspection of events.
  
+
 ### Describing What Happened?
+
 Each event will describe what happened within the `<EventDetail>` element.
 The content of the `<EventDetail>` element will be specific to the type of event that occurred, e.g. a logon event would contain information about the type of logon, see the following example.
 
@@ -227,24 +245,31 @@ The content of the `<EventDetail>` element will be specific to the type of event
 </EventDetail>
 ``` 
 
+
 #### Description
 
 The `<Description>` element allows for the inclusion of a human readable description of the event type.
+
 
 #### Type ID
 
 The `<EventDetail>` element includes a mandatory TypeId element.
 This element identifies the unique event type as known to the generator.
 For example a generator may distinguish 2 types of logon event just by some id.
-Use of this element would be the only way to treat the two types differently.  In the case of application logging the Type ID should be unique to a use case within the system, e.g. CreateDocument, DeleteRecord, DocumentSearch, UserSearch, etc.
+Use of this element would be the only way to treat the two types differently.
+In the case of application logging the Type ID should be unique to a use case within the system, e.g. CreateDocument, DeleteRecord, DocumentSearch, UserSearch, etc.
 
-The form of the Type IDs is specific to the generator and could be strings or numeric codes, as long as they provide a unique identifier for that type of event within that generator.  Where a generator already produces some form of ID for its events, e.g. Microsoft system event codes these can be used directly, however in the absence of predefined code a human readable TypeId is preferable as it is more easily understood by human.
+The form of the Type IDs is specific to the generator and could be strings or numeric codes, as long as they provide a unique identifier for that type of event within that generator.
+Where a generator already produces some form of ID for its events, e.g. Microsoft system event codes these can be used directly, however in the absence of predefined code a human readable TypeId is preferable as it is more easily understood by human.
 
 Having sensible Type IDs is of particular benefit when developing processes that depend upon events conforming to the schema as it allows the developer to group events by the Type ID or to have conditional processing based on the ID.
 
+
 #### Classification
 
-The `<Classification>` element can be used to describe the classification, protective marking or sensitivity of the data in the event.  For example the data may be commercially sensitive or contain sensitive personal data.  The element includes a number of optional elements so can be as simple as just a free text `<Text>` element containing something like `COMMERICAL IN CONFIDENCE` to multiple elements that described the protective marking in complex classification scheme.
+The `<Classification>` element can be used to describe the classification, protective marking or sensitivity of the data in the event.
+For example the data may be commercially sensitive or contain sensitive personal data.
+The element includes a number of optional elements so can be as simple as just a free text `<Text>` element containing something like `COMMERICAL IN CONFIDENCE` to multiple elements that described the protective marking in complex classification scheme.
 
 The `<Classification>` element appears in a number of places in the schema as it can be used to describe the sensitivity or marking of different entities/objects.
 For example it can be used to describe the sensitivity of a set of audit events in aggregation, the content of a single audit event or an object that is the subject of an audit event, i.e. a document being viewed by a user.
@@ -296,16 +321,19 @@ The following are some examples of populated Classification elements:
 </Classification>
 ```
 
+
 #### Purpose
 
 Certain auditable events may require users to provide justification for the action they are taking, e.g. viewing a personnel record or processing a high value payment.
 This element provides the means to record the justification/purpose of the auditable event and possibly any authorisations that were obtained.
+
 
 #### Schema Action
 
 The action specific detail of the auditble event is recorded in a 'schema action' element, where the structure of each element is tailored to the auditable action.
 
 The schema action element structures are defined in more detail in [Schema Actions](../schemaActions/README.md).
+
 
 ### Event Chain
 
@@ -363,12 +391,17 @@ Where multiple events are related by some form of session (e.g. a session in a w
 
 An example of this can be seen in the search event [here](completeExamples/xml/objectTypes/SearchResults.xml.md).
 
+
 ## Schema Versions
 
-It is anticipated that the schema will evole over time to accomodate new types of auditable event and to better describe existing events.  Each version of the schema is marked with a unique version number using the `version` attribute in the `<xs:schema>` element.  All events should be marked with the version of the schema that they are based upon using the `Version` attribute of the `<Events>` element.  This allows systems processing the events to correctly interpret the structure.
+It is anticipated that the schema will evole over time to accomodate new types of auditable event and to better describe existing events.
+Each version of the schema is marked with a unique version number using the `version` attribute in the `<xs:schema>` element.
+All events should be marked with the version of the schema that they are based upon using the `Version` attribute of the `<Events>` element.
+This allows systems processing the events to correctly interpret the structure.
 
 ### Schema Versioning
-The Event Logging Scheme uses the semantic versioning scheme.  The version attribute value takes the form x.y.z where
+The Event Logging Scheme uses the semantic versioning scheme.
+The version attribute value takes the form x.y.z where
 
 * **x** = Major version
 * **y** = Minor version
@@ -382,11 +415,14 @@ A change to the patch version means very minor non-breaking changes such as addi
 
 Ideally all new data should conform to the latest version of the schema to reduce the length of time legacy versions have to be supported for.
 
+
 ### Managing Multiple Schema Versions
+
 Systems receiving/processing data conforming to the Event Logging Schema should expect to receive data conforming to multiple historic versions of the schema as it takes time for client systems to update to the latest version.
 
 To resolve the issue of having to process and store multiple versions of the schema, a schema uplift process can be used.
-This involves having a number of XSLT transformation steps to translate from each iteration of the schema to the next.  For example if v1.2 of the schema has an element called `<Detail>` and this has been renamed ot `<EventDetail>` in v2.0 then the XSLT can rename the elements in the event data to bring the event record up to v2.0.
+This involves having a number of XSLT transformation steps to translate from each iteration of the schema to the next.
+For example if v1.2 of the schema has an element called `<Detail>` and this has been renamed ot `<EventDetail>` in v2.0 then the XSLT can rename the elements in the event data to bring the event record up to v2.0.
 The same uplift operation can be applied to historic events that have already been stored and have become out of date, or they can be uplifted on demand.
 
 Taking this approach will reduce the number of different versions that have to be stored/processed.

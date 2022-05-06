@@ -20,19 +20,20 @@ enableGitInfo = true
 
 # You can add your own taxonomies
 [taxonomies]
-#tag = "tags"
-#category = "categories"
+# See issue https://github.com/google/docsy/issues/1002 about using lowerCamelCase
+tag = "tags"
+object_type = "object_types"
+schema_action = "schema_actions"
 
 [params.taxonomy]
 # set taxonomyCloud = [] to hide taxonomy clouds
-#taxonomyCloud = ["tags", "categories"] 
+taxonomyCloud = ["tags", "schema_actions", "object_types"] 
 
 # If used, must have same length as taxonomyCloud
-#taxonomyCloudTitle = ["Tag Cloud", "Categories"] 
+taxonomyCloudTitle = ["Tag Cloud", "Schema Actions", "Object Types"] 
 
 # set taxonomyPageHeader = [] to hide taxonomies on the page headers
-#taxonomyPageHeader = ["tags", "categories"] 
-
+taxonomyPageHeader = ["tags", "schema_actions", "object_types"] 
 
 # Highlighting config
 # This one is mutually exclusive with prism_syntax_highlighting

@@ -1,5 +1,18 @@
-# User
-This is used to describe a user entity in a system.  This could be the user account in a web application, the identity of a person in an access control system, a user profile in a chat application or a user account on a piece of configurable hardware.
+---
+title: "User"
+linkTitle: "User"
+#weight:
+date: 2022-05-06
+tags:
+  - object-type
+object_types:
+  - user
+description: >
+  Describes a user or user account in a system.
+---
+
+This is used to describe a user entity in a system.
+This could be the user account in a web application, the identity of a person in an access control system, a user profile in a chat application or a user account on a piece of configurable hardware.
 
 The full details of the user can also be recorded, such as the position within the organisation, if known. 
 

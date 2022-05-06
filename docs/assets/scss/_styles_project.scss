@@ -361,6 +361,42 @@ img.stroom-icon-disabled {
   }
 }
 
+////////////////////////
+//  taxonomy results  //
+////////////////////////
+
+.taxonomy-result.card {
+    padding: 1.0em;
+    margin-bottom:1.5em;
+}
+
+.taxonomy-result ol {
+    margin-bottom:0em;
+}
+
+.taxonomy-result .article-meta {
+    margin-bottom:0em;
+}
+
+///////////////////////
+//  taxonomy labels  //
+///////////////////////
+
+.taxo-tags .taxonomy-term {
+  color: rgba(34, 34, 34, 0.8);
+  background-color: rgba($black, 0.1);
+}
+
+.taxo-schema_actions .taxonomy-term {
+  color: rgba(34, 34, 34, 0.8);
+  background-color: rgba($primary, 0.2);
+}
+
+.taxo-object_types .taxonomy-term {
+  color: rgba(34, 34, 34, 0.8);
+  background-color: rgba($secondary, 0.2);
+}
+
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Auto numbering start
