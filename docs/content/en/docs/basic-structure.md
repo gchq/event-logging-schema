@@ -1,7 +1,7 @@
 ---
 title: "Basic Structure"
 linkTitle: "Basic Structure"
-#weight:
+weight: 30
 date: 2022-05-04
 tags: 
 description: >
@@ -31,7 +31,7 @@ Events can either be sent individually or in batches.
 
 ## Describing an Event
 
-As discussed in the [Introduction](../README.md#describing-an-event) every event must describe when it happened, who was responsible, where it happened and what happened.
+As discussed in the [Introduction]({{< relref "introduction" >}}) every event must describe when it happened, who was responsible, where it happened and what happened.
 
 The schema is intentionally very permissive with the majority of elements being optional.
 The reason for this is that not all systems will be able to provide the same breadth of event data and a partially populated event is preferable to no event.
@@ -49,7 +49,8 @@ To describe when an event happened a timestamp must be present on every event, s
   <TimeCreated>2013-03-11T17:34:14.623Z</TimeCreated>
 </EventTime>
 ```
-The date and time must be in the format described in [Data Types](../dataTypes.md#date-and-time-fields).
+
+The date and time must be in the format described in [Data Types]({{< relref "data-types.md#date-and-time-fields" >}}).
 
  
 ### Describing The Source of the Event?
@@ -116,7 +117,7 @@ To make it possible for the system receiving the events to group multiple events
 Each event would set this element with the current session or thread ID.
 The session ID may only be unique within the source system but it can be used in conjunction with the system name to group events.
 
-An example of this can be seen in the search event [here](completeExamples/xml/schemaActions/Search.xml.md).
+An example of this can be seen in the search event [here]({{< relref "complete-examples/xml/schema-actions/search.xml.md" >}}).
 
 
 #### System
@@ -128,7 +129,7 @@ It is also possible to provide a description and classification of the system.
 #### Generator
 
 The generator is an application, service or specific component that created the event, such as  'Microsoft-Accounting-Service' or 'Apache-HTTPD'.
-Event type ids (see [Type ID](./README.md#type-id)) are unique to a particular event generator so a generator name must be included.
+Event type ids (see [Type ID]({{< relref "#type-id" >}})) are unique to a particular event generator so a generator name must be included.
 
 
 #### Devices
@@ -332,7 +333,7 @@ This element provides the means to record the justification/purpose of the audit
 
 The action specific detail of the auditble event is recorded in a 'schema action' element, where the structure of each element is tailored to the auditable action.
 
-The schema action element structures are defined in more detail in [Schema Actions](../schemaActions/README.md).
+The schema action element structures are defined in more detail in [Schema Actions]({{< relref "schema-actions" >}}).
 
 
 ### Event Chain
@@ -389,7 +390,7 @@ If you had an event with ID 3 that was a child of an event with ID 2 that in tur
 This structure can also be used to model multiple child events that have the same partent event.
 Where multiple events are related by some form of session (e.g. a session in a web application) and there is no concept of a parent event then the `<Event><EventSource><SessionId>` element should be used to group the events together.
 
-An example of this can be seen in the search event [here](completeExamples/xml/objectTypes/SearchResults.xml.md).
+An example of this can be seen in the search event [here]({{< relref "complete-examples/xml/object-types/search-results.xml.md" >}}).
 
 
 ## Schema Versions

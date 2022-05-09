@@ -1,7 +1,7 @@
 ---
 title: "Schema Actions"
 linkTitle: "Schema Actions"
-#weight:
+weight: 40
 date: 2022-05-06
 tags: 
   - schema-action

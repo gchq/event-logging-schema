@@ -1,7 +1,7 @@
 ---
 title: "Object Types"
 linkTitle: "Object Types"
-#weight:
+weight: 50
 date: 2022-05-05
 tags: 
 description: >

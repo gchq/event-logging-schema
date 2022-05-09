@@ -166,12 +166,16 @@ html {
   box-shadow: $box-shadow-stroom;
 }
 
+// Make code blocks use full width
+.highlight {
+  max-width: 100% !important;
+}
+
 // Restyle the fenced code blocks
 .code-toolbar {
-  margin-bottom: 1.5rem;
+  //margin-bottom: 1.5rem;
 
   @media screen {
-    box-shadow: $box-shadow-stroom;
     //max-width: 80%; // Bring the width in line with the paragraph text
   }
 
@@ -246,14 +250,16 @@ pre[class*=language-] {
 
 // Restyle the cards
 .card {
-  box-shadow: $box-shadow-stroom;
+  @media screen {
+    box-shadow: $box-shadow-stroom;
+  }
 }
 
 // Fixes operators having a different background colour in syntax highlighted code blocks
 // when using prism.js.
 // See https://github.com/PrismJS/prism/issues/3274
 .token.operator, .token.entity, .token.url, .language-css .token.string, .style .token.string {
-    background: unset !important;
+  background: unset !important;
 }
 
 .external-link {

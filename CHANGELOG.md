@@ -118,6 +118,7 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
     * Remove deprecated `LocationComplexType/TimeZone`.
 
+
 ## [v3.5.2] - 2020-11-02
 
 * No changes to the schema.

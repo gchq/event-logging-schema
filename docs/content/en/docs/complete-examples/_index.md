@@ -1,7 +1,7 @@
 ---
 title: "Complete Examples"
 linkTitle: "Complete Examples"
-#weight:
+weight: 90
 date: 2022-05-04
 tags: 
 description: >
@@ -9,7 +9,10 @@ description: >
 
 ---
 
-> **N.B.** All entities including organisations, persons, devices and applications are imaginary. All details (e.g. MAC Address, Name, IP Address) are similarly imaginary and any relationship to any real entities is entirely coincidental!
+{{% note %}}
+All entities including organisations, persons, devices and applications are imaginary.
+All details (e.g. MAC Address, Name, IP Address) are similarly imaginary and any relationship to any real entities is entirely coincidental!
+{{% /note %}}
 
 In some places the `<UserDetails>` element has been abbreviated for clarity using an elipsis (...).
 Typically the system generating the event will not know anything about a user beyond some identifier so a common practice is to decorate the event with a fully populated `<UserDetails>` element in the system processing the events.

@@ -1,12 +1,13 @@
 ---
 title: "Meta Element"
 linkTitle: "Meta Element"
-#weight:
+weight: 80
 date: 2022-05-04
 tags: 
   - meta
 description: >
   An element to allow extensibility of events.
+
 ---
 
 The `<Meta>` element appears in a number of places in the schema.

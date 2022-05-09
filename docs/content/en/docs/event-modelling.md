@@ -1,7 +1,7 @@
 ---
 title: "Event Modelling"
 linkTitle: "Event Modelling"
-#weight:
+weight: 20
 date: 2022-05-04
 tags: 
 description: >

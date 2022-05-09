@@ -5,11 +5,11 @@ name: event-logging-schema-docs
 root: ~/git_work/event-logging-schema/
 
 windows:
-  - vim: cd docs && vim SUMMARY.md ../book.json
+  - vim: cd docs && vim
   - shells:
       layout: even-vertical
       panes:
         - cd docs && ls -l
-        - gitbook serve
+        - ./container_build/runInHugoDocker.sh server
   #cheeky sleep to wait for the gitbook server to fire up
-  - chrome: sleep 5 && /usr/bin/google-chrome-stable http://localhost:4000
+  - chrome: sleep 5 && /usr/bin/google-chrome-stable http://localhost:1313
