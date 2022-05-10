@@ -220,8 +220,8 @@ main() {
     ls -1trd "${cache_dir_base}/from_"* \
       | head -n -1 \
       | xargs -d '\n' rm -rf --
-    #echo
-    #ls -1trd "${cache_dir_base}/from_"*
+    echo -e "${GREEN}Remaining cache directories${NC}"
+    ls -1trd "${cache_dir_base}/from_"*
   fi
 
   #echo 
