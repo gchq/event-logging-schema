@@ -213,10 +213,15 @@ main() {
 
   # Delete old caches, except latest
   # shellcheck disable=SC2012
-  if compgen -G  "${cache_dir_base}/from_"* > /dev/null; then
-    ls -1tr "${cache_dir_base}/from_"* \
+  if compgen -G  "${cache_dir_base}/from_*" > /dev/null; then
+    echo -e "${GREEN}Removing old cache directories${NC}"
+    #ls -1trd "${cache_dir_base}/from_"*
+
+    ls -1trd "${cache_dir_base}/from_"* \
       | head -n -1 \
-      | xargs -d '\n' rm -f --
+      | xargs -d '\n' rm -rf --
+    #echo
+    #ls -1trd "${cache_dir_base}/from_"*
   fi
 
   #echo 
