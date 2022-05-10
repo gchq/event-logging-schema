@@ -91,7 +91,7 @@ To test the PDF generation do:
 The {{< external-link "Docsy" "https://github.com/google/docsy" >}} theme is pulled in as a Go module.
 To update the version of Docsy used see {{< external-link "Update the Docsy Hugo Module" "https://www.docsy.dev/docs/updating/updating-hugo-module/" >}}.
 
-When these instrustions say to run the `hugo` command you need to run them using the builder container.
+When these instrustions say to run the `hugo` command you need to run them using the builder container, unless you have Hugo and Go installed locally.
 e.g.
 
 {{< command-line >}}
