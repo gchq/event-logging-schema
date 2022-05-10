@@ -87,13 +87,13 @@ main() {
     echo -e "Usage: $0 bash_command"
     echo -e "e.g:   $0 \"./some_path/a_script.sh arg1 arg2\""
     echo -e "or:    $0 bash  # for a bash prompt in the container"
-    echo -e "or:    $0 SVG  # To convert all .puml files to .puml.svg"
     echo -e "Commands are relative to the repo root."
     echo -e "Commands/scripts with args must be quoted as a whole."
     exit 1
   else
     if [[ $# -eq 1 ]] && [[ "$1" = "bash" ]]; then
 
+      # sh
       run_cmd=( "bash" )
     elif [[ $# -ge 1 ]] && [[ "$1" = "server" ]]; then
       # Run the site in memory and serve on localhost:1313
@@ -158,8 +158,11 @@ main() {
   echo -e "${GREEN}Host repo root dir ${BLUE}${host_abs_repo_dir}${NC}"
   echo -e "${GREEN}Docker group id ${BLUE}${docker_group_id}${NC}"
 
-  # Create a persistent vol for the home dir, idempotent
-  docker volume create builder-home-dir-vol
+  # Create a persistent vol for the hugo cache which contains the downloaded
+  # go modules, else they will end up in /tmp and have to be downloaded
+  # on each run.
+  hugo_cache_vol="builder-hugo-cache-vol"
+  docker volume create "${hugo_cache_vol}"
 
   # So we are not rate limited, login before doing the build as this
   # will pull images
@@ -202,18 +205,26 @@ main() {
   echo -e "${GREEN}Running image ${BLUE}${image_tag}${NC} with command" \
     "${BLUE}${run_cmd[@]}${NC}"
 
+  echo -e "${GREEN}Hugo cache is in docker volume" \
+    "${YELLOW}${hugo_cache_vol}${GREEN}, use" \
+    "${BLUE}docker volume rm ${hugo_cache_vol}${GREEN} to clear it.${NC}"
+
+  hudo_cache_dir="/hugo-cache"
+
   docker run \
     "${tty_args[@]+"${tty_args[@]}"}" \
     --rm \
     --publish 1313:1313 \
     --tmpfs /tmp:exec \
     --mount "type=bind,src=${host_abs_repo_dir},dst=${dest_dir}" \
+    --volume "${hugo_cache_vol}:${hudo_cache_dir}" \
     --read-only \
     --name "hugo-build-env" \
     --network "hugo-stroom" \
     --env "BUILD_VERSION=${BUILD_VERSION:-SNAPSHOT}" \
     --env "DOCKER_USERNAME=${DOCKER_USERNAME}" \
     --env "DOCKER_PASSWORD=${DOCKER_PASSWORD}" \
+    --env "HUGO_CACHEDIR=/${hudo_cache_dir}" \
     "${extra_docker_args[@]}" \
     "${image_tag}" \
     "${run_cmd[@]}"
