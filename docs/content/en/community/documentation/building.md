@@ -40,17 +40,6 @@ git clone https://github.com/gchq/event-logging-schema.git
 (out)Receiving objects: 100% (66006/66006), 286.61 MiB | 7.31 MiB/s, done.
 (out)Resolving deltas: 100% (34981/34981), done.
 cd event-logging-schema
-(out)
-# Download all sub modules
-git submodule update --init --recursive
-(out)Submodule 'themes/docsy' (https://github.com/google/docsy.git) registered for path 'themes/docsy'
-(out)Cloning into '/tmp/stroom-docs/themes/docsy'...
-(out)...
-(out)Submodule 'assets/vendor/Font-Awesome' (https://github.com/FortAwesome/Font-Awesome.git) registered for path 'themes/docsy/assets/vendor/Font-Awesome'
-(out)Submodule 'assets/vendor/bootstrap' (https://github.com/twbs/bootstrap.git) registered for path 'themes/docsy/assets/vendor/bootstrap'
-(out)Cloning into '/tmp/stroom-docs/themes/docsy/assets/vendor/Font-Awesome'...
-(out)Cloning into '/tmp/stroom-docs/themes/docsy/assets/vendor/bootstrap'...
-(out)...
 {{</ command-line >}}
 
 
@@ -66,7 +55,7 @@ To build and serve the site run
 This uses Hugo to build the site in memory and then serve it from a local web server.
 When any source files are changed or added Hugo will detect this and rebuild the site as required, including automatically refreshing the browser page to update the rendered view.
 
-Once the server is running the site is available at [localhost:1313/stroom-docs](http://localhost:1313/stroom-docs).
+Once the server is running the site is available at [localhost:1313/](http://localhost:1313/).
 
 {{% warning %}}
 Sometimes changes made to the site source will not be re-loaded correctly so it may be necessary to stop and re-start the server.
@@ -99,11 +88,13 @@ To test the PDF generation do:
 
 ## Updating the Docsy theme
 
-This repository uses a git submodule for the Docsy theme.
+The {{< external-link "Docsy" "https://github.com/google/docsy" >}} theme is pulled in as a Go module.
+To update the version of Docsy used see {{< external-link "Update the Docsy Hugo Module" "https://www.docsy.dev/docs/updating/updating-hugo-module/" >}}.
 
-{{% todo %}}
-Complete this section.
-Docsy is undergoing changes to make use of shallow sub modules for Bootstrap/Font-Awesome and to change to being a Hugo module so maybe wait until that is complete.
-Cover how to update the submodule to the latest (or a specific) Docsy commit.
-Warn of implications of breaking the site when updating with incompatible upstream changes.
-{{% /todo %}}
+When these instrustions say to run the `hugo` command you need to run them using the builder container.
+e.g.
+
+{{< command-line >}}
+./container_build/runInHugoDocker.sh "hugo mod get -u github.com/google/docsy@v0.2.0"
+{{</ command-line >}}
+
