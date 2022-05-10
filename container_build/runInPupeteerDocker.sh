@@ -58,6 +58,8 @@ clean_up() {
     --filter "name=hugo-build-env*" \
     | xargs -r docker container stop
 
+  sleep 1
+
   echo -e "${GREEN}Deleting hugo-build-env* containers${NC}"
   docker container \
     ls -a \
