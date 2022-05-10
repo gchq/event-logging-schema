@@ -192,9 +192,9 @@ main() {
   # Make a hash of these things and effectively use this as the cache key for buildx so any change makes it ignore a previous cache.
   cache_key=
   cache_key="$( \
-      sha256sum <<< "${cache_key_source}" \
-      | cut -d" " -f1
+    "${local_repo_root}/container_build/generate_buildx_cache_key.sh"
     )"
+
   cache_dir_base="/tmp/hugo_buildx_caches"
   cache_dir_from="${cache_dir_base}/from_${cache_key}"
   #cache_dir_to="${cache_dir_base}/to_${cache_key}"

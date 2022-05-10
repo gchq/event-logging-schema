@@ -89,11 +89,18 @@ jobs:
             "PWD" "$PWD" \
             "HOME" "$HOME"
 
+        # Gen a hash of the bits of the builder image that may require it to be rebuilt
+      - name: Generate buildx cache key
+        id: generate_buildx_cache_key
+        run: |
+          echo "::set-output name=cache_key::$(./container_build/generate_buildx_cache_key.sh)"
+        shell: bash
+
       - name: Cache Docker layers
         uses: actions/cache@v3
         with:
           path: /tmp/hugo_buildx_caches
-          key: ${{ runner.os }}-buildx
+          key: ${{ runner.os }}-buildx-${{ steps.generate_buildx_cache_key.outputs.cache_key }}
 
       - name: Run full build
         id: run_build
