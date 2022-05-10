@@ -168,6 +168,39 @@ main() {
   # will pull images
   docker_login
 
+  if ! docker buildx inspect hugo-builder >/dev/null 2>&1; then
+    docker buildx \
+      create \
+      --name hugo-builder
+  fi
+  docker buildx \
+    use \
+    hugo-builder
+
+  # Concat all the things that affect the docker image,
+  # e.g. our local username or the dockerfile
+  cache_key_source=
+  cache_key_source="$( \
+    cat \
+      "${local_repo_root}/container_build/runInHugoDocker.sh" \
+      "${local_repo_root}/container_build/docker_hugo/Dockerfile"
+    )"
+  cache_key_source="${host_abs_repo_dir}\n${user_id}\n${group_id}\n${cache_key_source}"
+
+  #echo -e "${cache_key_source}" > "/tmp/hugo_source_$(date -u +"%FT%H%M%S")"
+
+  # Make a hash of these things and effectively use this as the cache key for buildx so any change makes it ignore a previous cache.
+  cache_key=
+  cache_key="$( \
+      sha256sum <<< "${cache_key_source}" \
+      | cut -d" " -f1
+    )"
+  cache_dir_base="/tmp/hugo_buildx_caches"
+  cache_dir_from="${cache_dir_base}/from_${cache_key}"
+  #cache_dir_to="${cache_dir_base}/to_${cache_key}"
+
+  echo -e "${GREEN}Using cache_key: ${YELLOW}${cache_key}${NC}"
+
   # TODO consider pushing the built image to dockerhub so we can
   # reuse it for better performance.  See here
   # https://github.com/i3/i3/blob/42f5a6ce479968a8f95dd5a827524865094d6a5c/.travis.yml
@@ -175,15 +208,45 @@ main() {
   # for an example of how to hash the build context so we can pull or push
   # depending on whether there is already an image for the hash.
 
-  echo -e "${GREEN}Building image ${BLUE}${image_tag}${NC}"
-  docker build \
+  mkdir -p "${cache_dir_base}"
+  #ls -l "${cache_dir_base}/"
+
+  # Delete old caches, except latest
+  # shellcheck disable=SC2012
+  if compgen -G  "${cache_dir_base}/from_"* > /dev/null; then
+    ls -1tr "${cache_dir_base}/from_"* \
+      | head -n -1 \
+      | xargs -d '\n' rm -f --
+  fi
+
+  #echo 
+  #ls -l "${cache_dir_base}"
+  #echo
+
+  echo -e "${GREEN}Building image ${BLUE}${image_tag}${GREEN} (this may take a while on first run)${NC}"
+  docker buildx build \
     --tag "${image_tag}" \
     --build-arg "USER_ID=${user_id}" \
     --build-arg "GROUP_ID=${group_id}" \
     --build-arg "HOST_REPO_DIR=${host_abs_repo_dir}" \
+    "--cache-from=type=local,src=${cache_dir_from}" \
+    "--cache-to=type=local,dest=${cache_dir_from},mode=max" \
     "${local_repo_root}/container_build/docker_hugo"
 
     #--workdir "${dest_dir}" \
+
+  # The cache gets written into a different dir to where it is read from
+  # so we can clear out anything stale in the old ones and then move
+  # the new one over ready to be read on next run
+  #echo
+  #ls -l "${cache_dir_base}"
+  #rm -rf "${cache_dir_base:?}/from_"*
+  #echo
+  #ls -l "${cache_dir_base}"
+  #mv "${cache_dir_to}" "${cache_dir_from}"
+  #echo
+  #ls -l "${cache_dir_base}"
+  #echo
 
   if [ -t 1 ]; then 
     # In a terminal
@@ -230,6 +293,7 @@ main() {
     "${run_cmd[@]}"
 
   #remove_network
+
 }
 
 main "$@"
