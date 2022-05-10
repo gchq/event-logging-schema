@@ -31,15 +31,10 @@ tags:
 # Must have a 2 char indent as it is a multi-line yaml string.
 description: >
   A guide on the house style, structure and content for this site.
-  It should be viewed both in its rendered form and as source to understand how the page elements are formed.
-  You should read this section before contributing to the documentation.
 
 ---
 
 ## Overview
 
-
-{{% todo %}}
-See style guide on stroom-docs
-{{% /todo %}}
+This documentation shares the same style guidelines as the {{< external-link "Stroom documenation" "https://gchq.github.io/stroom-docs/7.1/community/documentation/style-guide/" >}} so refer to that for guidance on how to style this documentation.
 
