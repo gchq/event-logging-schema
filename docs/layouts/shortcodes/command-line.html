@@ -1,5 +1,3 @@
-
-  
 <!-- 
 {{/*
 Short code to add a bash command line input/output
@@ -24,15 +22,19 @@ id
 {{ $host := .Get 1 | default "localhost" }}
 {{ $language := .Get 2 | default "bash" }}
 
-<div class="code-toolbar">
-  <pre 
-    class="command-line language-{{ $language }}" 
-    data-user="{{ $user }}" 
-    data-host="{{ $host }}" 
-    data-continuation-str="\"
-    data-filter-output="(out)">
-  {{- with (.Inner | default "" ) -}}
-    <code class="language-{{ $language }}">{{- trim . " \n" -}}</code>
-  {{- end -}}
-  </pre>
+{{/* Simle fenced blocks seem to wrap the code-toolbar div with a highlight one so do
+     the same for consistent styling */}}
+<div class="highlight">
+  <div class="code-toolbar">
+    <pre 
+      class="command-line language-{{ $language }}" 
+      data-user="{{ $user }}" 
+      data-host="{{ $host }}" 
+      data-continuation-str="\"
+      data-filter-output="(out)">
+    {{- with (.Inner | default "" ) -}}
+      <code class="language-{{ $language }}">{{- trim . " \n" -}}</code>
+    {{- end -}}
+    </pre>
+  </div>
 </div>
