@@ -231,6 +231,7 @@ main() {
     --build-arg "HOST_REPO_DIR=${host_abs_repo_dir}" \
     "--cache-from=type=local,src=${cache_dir_from}" \
     "--cache-to=type=local,dest=${cache_dir_from},mode=max" \
+    --load \
     "${local_repo_root}/container_build/docker_hugo"
 
     #--workdir "${dest_dir}" \
