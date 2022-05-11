@@ -149,15 +149,13 @@ main() {
 
   setup_echo_colours
 
-  pushd "${SCRIPT_DIR}" > /dev/null
+  pushd "${SCRIPT_DIR}/docs" > /dev/null
 
   # Controls the versions of the site that will be created.
   # One copy of the site for each of these.
   local RELEASE_BRANCHES=(
     "master"
-    "7.1"
-    "7.0"
-    "legacy"
+    "4.0"
   )
 
   #local RELEASE_BRANCHES=(
