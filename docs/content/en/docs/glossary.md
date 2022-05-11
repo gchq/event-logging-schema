@@ -26,6 +26,12 @@ Often used to describe the typical actions a user can perform in a system, e.g. 
 [LDAP]({{< relref "#ldap" >}}) Distinguished Name.
 
 
+## Decoration
+
+The process of augmenting an event record with additional information obtained from other systems using key identifiers in the event.
+For example resolving an {{< glossary "FQDN" >}} in an asset management database to provide location details.
+
+
 ## FQDN
 
 Fully Qualified Domain Name or Absolute Domain Name.
@@ -33,7 +39,7 @@ Fully Qualified Domain Name or Absolute Domain Name.
 
 ## GMT
 
-Greenwich Mean Time was the former international time standard, now replaced by [UTC]({{< relref "#utc" >}}).
+Greenwich Mean Time was the former international time standard, now replaced by {{< glossary "UTC" >}}.
 
 
 ## HTML
@@ -56,11 +62,13 @@ The network protocol that backs the Internet.
 ## ISO-8601
 
 The international standard for representing dates and times.
-Examples of ISO-8601 format dates and times are 
+ISO-8601 has a number of valid formats however the Schema uses only the full date and time format in {{< glossary "UTC" >}} with fractional seconds, i.e.:
 
-* `2022-05-09T09:43:35+00:00`
-* `2022-05-09T09:43:35Z`
-* `20220509T094335Z`
+`yyyy-MM-ddThh:mm:ss.mmmZ`
+
+See [Date and Time Fields]({{< relref "data-types#date-and-time-fields" >}}) for more detail on the format used in the Schema.
+
+For more general information on ISO-8601 see {{< external-link "Wikipedia" "https://en.wikipedia.org/wiki/ISO_8601" >}}.
 
 
 ## LDAP
@@ -109,8 +117,11 @@ See [Schema Actions]({{< relref "/docs/schema-actions" >}})
 ## UTC
 
 Coordinated Universal Time.
-The international standard for regulating clocks.
-The successor to [GMT]({{< relref "#gmt" >}}).
+The international standard for regulating clocks with a time-zone offset of 0.
+The successor to {{< glossary "GMT" >}}
+Sometimes referred to as _Zulu_ time.
+
+For more detail on UTC see {{< external-link "UTC" "https://en.wikipedia.org/wiki/Coordinated_Universal_Time" >}}.
 
 
 ## VOIP

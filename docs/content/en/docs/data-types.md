@@ -19,18 +19,18 @@ Date time fields must be zero filled where data does not provide millisecond pre
 
 The ISO-8601 date time format is `yyyy-MM-ddThh:mm:ss.sssZ` where:
 
-| Char   | Description                                       |
-| ---    | ---                                               |
-| `yyyy` | 4 digit year                                      |
-| `MM`   | 2 digit month                                     |
-| `dd`   | 2 digit day                                       |
-| `T`    | indicates that the rest of the string is a time   |
-| `hh`   | 2 digit hour                                      |
-| `mm`   | 2 digit minute                                    |
-| `ss`   | 2 digit second                                    |
-| `sss`  | 3 digit millisecond                               |
-| `:`    | literal separator                                 |
-| `.`    | literal separator                                 |
+| Char   | Description                                        |
+| ---    | ---                                                |
+| `yyyy` | 4 digit year                                       |
+| `MM`   | 2 digit month                                      |
+| `dd`   | 2 digit day                                        |
+| `T`    | indicates that the rest of the string is a time    |
+| `hh`   | 2 digit hour                                       |
+| `mm`   | 2 digit minute                                     |
+| `ss`   | 2 digit second                                     |
+| `sss`  | 3 digit millisecond                                |
+| `:`    | literal separator                                  |
+| `.`    | literal separator                                  |
 | `Z`    | literal value denoting the time is Zulu time (UTC) |
 
 
