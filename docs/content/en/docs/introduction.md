@@ -5,7 +5,7 @@ weight: 10
 date: 2022-05-04
 tags: 
 description: >
-  This documentation describes the Event Logging XML Schema herein referred to as the 'schema'.
+  This documentation describes the _event-logging_ XML Schema herein referred to as the 'schema'.
   This is a guide for anybody interested in using the schema for recording auditable events and includes details of the structure, features and common usage.
 
 ---

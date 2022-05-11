@@ -1,5 +1,5 @@
 baseURL = "/"
-title = "Event Logging XML Schema"
+title = "event-logging XML Schema"
 # Convert all urls to be relative so we can deploy the site tto any path on a server.
 relativeURLs = true
 
@@ -71,7 +71,7 @@ id = "UA-00000000-0"
 
 [languages]
 [languages.en]
-title = "Event Logging XML Schema"
+title = "event-logging XML Schema"
 description = "Documentation for the event-logging XML Schema."
 languageName ="English"
 # Weight used for sorting.

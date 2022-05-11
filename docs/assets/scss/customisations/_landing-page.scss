@@ -2,16 +2,31 @@
 //  Landing Page  //
 ////////////////////
 
-// The stroom logo on the landing page
-.landing-page-logo {
-  padding-top: 0px;
-  padding-bottom: 60px;
+.landing-page-title {
+  font-size: xxx-large;
+  padding-top: 0.0em;
+  padding-bottom: 1em;
 }
+
+// The stroom logo on the landing page
+//.landing-page-logo {
+  //padding-top: 0px;
+  //padding-bottom: 60px;
+//}
 
 .landing-page-bullets li {
   padding-top: 1.2em;
 }
 
 .landing-page-head-text {
-  line-height: 1.7em;
+  padding-top: 1.2em;
+  font-size: x-large;
+  line-height: 1.5em;
+}
+
+// As we are using customised feature blocks arranged in two cols
+// reduce the width and center them
+section > div.col {
+  margin: auto;
+  max-width: 80% !important;
 }
