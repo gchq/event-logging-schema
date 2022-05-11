@@ -1,7 +1,7 @@
 ---
 title: "Release Process"
 linkTitle: "Release Process"
-weight: 20
+weight: 30
 date: 2022-05-04
 tags: 
 description: >

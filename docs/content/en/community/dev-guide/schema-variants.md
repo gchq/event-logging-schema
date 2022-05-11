@@ -1,7 +1,7 @@
 ---
 title: "Schema Variants"
 linkTitle: "Schema Variants"
-weight: 30
+weight: 40
 date: 2022-05-09
 tags: 
 description: >

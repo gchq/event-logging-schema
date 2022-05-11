@@ -15,6 +15,12 @@ Access Control List.
 A list or rules specifying which users, groups or systems are allowed (or deined) access to a particular object or resource.
 
 
+## API
+
+Application Programming Interface.
+A software interface used with two applications or systems communicate.
+
+
 ## CRUD
 
 Create, Read, Update, Delete.

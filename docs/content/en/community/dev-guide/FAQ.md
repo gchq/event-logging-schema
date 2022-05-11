@@ -1,7 +1,7 @@
 ---
 title: "Frequently Asked Questions"
 linkTitle: "FAQ"
-weight: 40
+weight: 50
 date: 2022-05-04
 tags: 
   - faq
