@@ -1,6 +1,6 @@
 ---
-title: "Documenting Stroom"
-linkTitle: "Documenting Stroom"
+title: "Documenting the Schema"
+linkTitle: "Documenting the Schema"
 weight: 40
 date: 2022-01-12
 tags: 
