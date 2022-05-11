@@ -1,0 +1,27 @@
+//////////////////
+//  Top Navbar  //
+//////////////////
+
+// We don't have a logo so don't display it
+.navbar-logo {
+  display: none;
+}
+
+// Make the top nav bar a bit thinner
+.navbar {
+  padding: 0rem 1rem;
+
+  // Make the search input more visible in the top nav bar
+  .form-control {
+    border:1px solid #ffffff8c; 
+  }
+}
+
+// Make the top nav bar a bit thinner
+.td-navbar {
+  min-height: 3em;
+}
+
+.stroom-icon {
+  vertical-align: -0.08em;
+}

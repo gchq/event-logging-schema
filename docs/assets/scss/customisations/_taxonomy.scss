@@ -1,0 +1,47 @@
+////////////////////////////////////
+//  Right Navbar taxonomy labels  //
+////////////////////////////////////
+
+
+// The standard 'tags' that appear in the 'Tag Cloud' section.
+.taxo-tags .taxonomy-term {
+  color: rgba(34, 34, 34, 0.8);
+  background-color: rgba($black, 0.1);
+}
+
+// Out custom schema_actions taxonomy terms
+.taxo-schema_actions .taxonomy-term {
+  color: rgba(34, 34, 34, 0.8);
+  background-color: rgba($primary, 0.2);
+}
+
+// Out custom object_types taxonomy terms
+.taxo-object_types .taxonomy-term {
+  color: rgba(34, 34, 34, 0.8);
+  background-color: rgba($secondary, 0.2);
+}
+
+
+////////////////////////
+//  taxonomy results  //
+////////////////////////
+
+// This is the result list you see when you click on one of the
+// tags (or other taxonomy terms)
+// See layouts/_default/taxonomy.html, which puts the results in cards and
+// adds the breadcrumbs.
+// Slight tweaks to the styling to make it look better in cards.
+
+.taxonomy-result.card {
+    padding: 1.0em;
+    margin-bottom:1.5em;
+}
+
+.taxonomy-result ol {
+    margin-bottom:0em;
+}
+
+.taxonomy-result .article-meta {
+    margin-bottom:0em;
+}
+

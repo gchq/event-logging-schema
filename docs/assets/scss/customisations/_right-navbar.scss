@@ -1,0 +1,12 @@
+////////////////////
+//  Right Navbar  //
+////////////////////
+
+.td-sidebar-toc {
+  // As we use a 3em navbar height, adjust right hand TOC sidebar to suit.
+  top: 3rem;
+  // Make the sidebar go all the way to the bottom
+  height: calc(100vh - 3rem);
+}
+
+// For the taxonomy labels see assets/scss/customisations/_taxonomy.scss
