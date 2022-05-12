@@ -24,85 +24,85 @@ a view event is used here simply to illustrate the use of searchresults.
 searchresults can be used within other schema actions.
 
 ``` xml
-<?xml version="1.0" encoding="utf-8"?>
-<events
+<?xml version="1.0" encoding="UTF-8"?>
+<Events
   xmlns="event-logging:3"
-  xmlns:xsi="http://www.w3.org/2001/xmlschema-instance"
-  xsi:schemalocation="event-logging:3 file://event-logging-v999.99.9-documentation.xsd"
-  version="999.99.9">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="event-logging:3 file://event-logging-v999.99.9-documentation.xsd"
+  Version="999.99.9">
 
-  <!-- view/searchresults event -->
+  <!-- View/SearchResults event -->
 
-  <event>
+  <Event>
 
-    <eventtime>
-      <timecreated>2017-01-02t03:04:05.678z</timecreated>
-    </eventtime>
+    <EventTime>
+      <TimeCreated>2017-01-02T03:04:05.678Z</TimeCreated>
+    </EventTime>
 
-    <eventsource>
-      <!-- the source system specific unique id for this event -->
-      <eventid>1024</eventid>
-      <system>
-        <name>rock sample database</name>
-        <environment>space</environment>
-        <organisation>acmecoolresearch</organisation>
-        <version>r8.1</version>
-      </system>
-      <generator>db-query</generator>
-      <device>
-        <hostname>db56.serverfarm.mydomain.org</hostname>
-        <ipaddress>191.181.171.161</ipaddress>
-      </device>
-      <client>
-        <hostname>desktop4.moonbase-a.mydomain.org</hostname>
-        <ipaddress>111.101.101.111</ipaddress>
-      </client>
-      <user>
-        <id>jc101</id>
-      </user>
-      <interactive>true</interactive>
-    </eventsource>
+    <EventSource>
+      <!-- The source system specific unique ID for this event -->
+      <EventId>1024</EventId>
+      <System>
+        <Name>Rock Sample Database</Name>
+        <Environment>Space</Environment>
+        <Organisation>ACMECoolResearch</Organisation>
+        <Version>R8.1</Version>
+      </System>
+      <Generator>db-query</Generator>
+      <Device>
+        <HostName>db56.serverfarm.mydomain.org</HostName>
+        <IPAddress>191.181.171.161</IPAddress>
+      </Device>
+      <Client>
+        <HostName>desktop4.moonbase-a.mydomain.org</HostName>
+        <IPAddress>111.101.101.111</IPAddress>
+      </Client>
+      <User>
+        <Id>jc101</Id>
+      </User>
+      <Interactive>true</Interactive>
+    </EventSource>
 
-    <eventdetail>
-      <typeid>viewsearchresults</typeid>
-      <description>user is viewing a set of stored search results</description>
-      <view>
-        <searchresults>
-          <query>
+    <EventDetail>
+      <TypeId>viewSearchResults</TypeId>
+      <Description>User is viewing a set of stored search results</Description>
+      <View>
+        <SearchResults>
+          <Query>
             <!-- 
-            provides a link back to the search event generated when the 
-            query was executed. the link can also be acheived using eventlinks below.
+            Provides a link back to the Search event generated when the 
+            query was executed. The link can also be acheived using EventLinks below.
             -->
-            <id>query-538393</id>
-          </query>
-          <totalresults>2</totalresults>
-          <results>
-            <object>
-              <type>rock</type>
-              <id>78121</id>
-              <name>surpisingly heavy chunk</name>
-            </object>
-            <object>
-              <type>rock</type>
-              <id>11418</id>
-              <name>possible gold ore</name>
-            </object>
-          </results>
-        </searchresults>
-      </view>
-    </eventdetail>
+            <Id>query-538393</Id>
+          </Query>
+          <TotalResults>2</TotalResults>
+          <Results>
+            <Object>
+              <Type>Rock</Type>
+              <Id>78121</Id>
+              <Name>Surpisingly Heavy Chunk</Name>
+            </Object>
+            <Object>
+              <Type>Rock</Type>
+              <Id>11418</Id>
+              <Name>Possible Gold Ore</Name>
+            </Object>
+          </Results>
+        </SearchResults>
+      </View>
+    </EventDetail>
 
-    <!-- this event is linked back to its parent (the initial search) -->
-    <eventchain>
-      <activity>
-        <!-- links this event to the one with eventsource/eventid[text()='1023'] -->
-        <id>92832938</id>
-        <name>search execution</name>
-      </activity>
-    </eventchain>
+    <!-- This event is linked back to its parent (the initial search) -->
+    <EventChain>
+      <Activity>
+        <!-- Links this event to the one with EventSource/EventId[text()='1023'] -->
+        <Id>92832938</Id>
+        <Name>Search execution</Name>
+      </Activity>
+    </EventChain>
 
-  </event>
+  </Event>
 
-</events>
+</Events>
 
 ```
