@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 set -e
 
@@ -24,19 +24,86 @@ set -e
 # .xml files. In both cases, the xml must be fully formed and not a fragment
 # else it will not be valid against the schema.
 
-# shellcheck disable=SC2034
-{
-  #Colour constants for use in echo -e statements
-  RED='\033[1;31m'
-  GREEN='\033[1;32m'
-  YELLOW='\033[1;33m'
-  BLUE='\033[1;34m'
-  NC='\033[0m' # No Colour
+setup_echo_colours() {
+  # shellcheck disable=SC2034
+  if [ "${MONOCHROME}" = true ]; then
+    RED=''
+    GREEN=''
+    YELLOW=''
+    BLUE=''
+    BLUE2=''
+    DGREY=''
+    NC='' # No Colour
+  else 
+    RED='\033[1;31m'
+    GREEN='\033[1;32m'
+    YELLOW='\033[1;33m'
+    BLUE='\033[1;34m'
+    BLUE2='\033[1;34m'
+    DGREY='\e[90m'
+    NC='\033[0m' # No Colour
+  fi
 }
 
-main() {
+debug_value() {
+  local name="$1"; shift
+  local value="$1"; shift
+  
+  if [ "${IS_DEBUG}" = true ]; then
+    echo -e "${DGREY}DEBUG ${name}: ${value}${NC}"
+  fi
+}
+
+debug() {
+  local str="$1"; shift
+  
+  if [ "${IS_DEBUG}" = true ]; then
+    echo -e "${DGREY}DEBUG ${str}${NC}"
+  fi
+}
+
+validate_dir() {
+  local schema_file="$1"; shift
+  local examples_dir="$1"; shift
+  local this_script="${SCRIPT_DIR}/${SCRIPT_NAME}"
+  debug_value "this_script" "${this_script}"
+
+  local regex_pattern=".*\.xml(\.md)?" 
+  local file_count
+  file_count="$(
+    find \
+        "${examples_dir}" \
+        -type f \
+        -regextype posix-egrep \
+        -regex "${regex_pattern}" \
+        -print \
+        -quit \
+      | wc -l
+    )"
+
+  if [[ "${file_count}" -gt 0 ]]; then
+    echo -e "${GREEN}Validating all *.xml & *.xml.md files in" \
+      "${BLUE}${examples_dir}${NC}"
+    # Find all .xml.md and .xml files and validate them by calling this script
+    # for a single file
+    find \
+      "${examples_dir}" \
+      -type f \
+      -regextype posix-egrep \
+      -regex "${regex_pattern}" \
+      -exec "${this_script}" "${schema_file}" {} \;
+  else
+    echo -e "\n${RED}ERROR${NC} - No files matching pattern" \
+      "${BLUE}${regex_pattern}${NC} found in ${BLUE}${examples_dir}${NC}."
+  fi
+}
+
+validate_file() {
+  local schema_file="$1"; shift
+  local example_file="$1"; shift
 
   echo -e "Validating file ${BLUE}${example_file}${NC}"
+  echo -e "  Using schema: ${BLUE}${schema_file}${NC}"
 
   if [[ "${example_file}" =~ .*\.xml\.md ]]; then
     # XML inside markdown so assume the file contains a single fenced block
@@ -76,13 +143,34 @@ main() {
   fi
 
   if [ "${validation_exit_status}" -eq 0 ]; then
-    echo -e "Validation ${GREEN}PASSED${NC}"
+    echo -e "  Validation ${GREEN}PASSED${NC}"
   else
-    echo -e "Validation ${RED}FAILED${NC}"
+    echo -e "  Validation ${RED}FAILED${NC}"
   fi
 
   exit "${validation_exit_status}"
 }
+
+main() {
+  local schema_file="$1"; shift
+  local example_file_or_dir="$1"; shift
+  
+  if [[ -f "${example_file_or_dir}" ]]; then
+    validate_file "${schema_file}" "${example_file_or_dir}"
+  elif [[ -d "${example_file_or_dir}" ]]; then
+    validate_dir "${schema_file}" "${example_file_or_dir}"
+  else
+    echo -e "\n${RED}ERROR${NC} - ${BLUE}${example_file_or_dir}${NC}" \
+      "is not a file or directory"
+  fi
+  echo -e "${GREEN}Done${NC}"
+}
+
+########################
+#  Script starts here  #
+########################
+
+setup_echo_colours
 
 if ! command -v xmllint 1>/dev/null; then
   echo -e "\n${RED}ERROR${NC} - ${BLUE}xmllint${NC} binary is not installed." \
@@ -92,12 +180,11 @@ fi
 
 if [ $# -ne 2 ]; then
   echo -e "${RED}ERROR${NC} - Invalid arguments."
-  echo -e "Usage: ${BLUE}$0 schema_file example_file${NC}"
+  echo -e "Usage: ${BLUE}$0 schema_file example_file_or_dir${NC}"
   exit 1
 fi
 
-schema_file="$1"
-example_file="$2"
+SCRIPT_NAME="$( basename "$0" )"
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 
 main "$@"
-

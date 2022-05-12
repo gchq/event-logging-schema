@@ -109,28 +109,17 @@ task validateExampleXmlAgainstSchema() {
         if (!schemaFile.exists()) {
             throw new GradleException("Schema ${schemaFile} does not exist")
         }
-        println "Validating all .xml and .xml.md files in [${EXAMPLE_XML_DIR}] against schema [${schemaFile}]"
-        def foundExampleXmlFile = false
-        fileTree(dir: project.file(EXAMPLE_XML_DIR))
-            .include('**/*.xml')
-            .include('**/*.xml.md')
-            .each { xmlFile -> 
-                foundExampleXmlFile = true
-                def xmlFilePath = xmlFile.absolutePath
-                //println "  Validating ${xmlFilePath} against the schema"
-                def execResult = exec() {
-                    //xmlint is available in libxml2-utils
-                    executable '../validateExampleXml.sh'
-                    args schemaFile.absolutePath, xmlFilePath
-                    ignoreExitValue true
-                }
+        def absExamplesDir = project.file(EXAMPLE_XML_DIR).absolutePath
 
-                if (execResult.exitValue != 0) {
-                    throw new GradleException("XML file ${xmlFilePath} failed vaildation, or 'xmllint' (in 'libxml2-utils' pkg) is not installed ")
-                }
+        def execResult = exec() {
+            //xmlint is available in libxml2-utils
+            executable '../validateExampleXml.sh'
+            args schemaFile.absolutePath, absExamplesDir
+            ignoreExitValue true
         }
-        if (!foundExampleXmlFile) {
-            throw new GradleException("No example files found in ${EXAMPLE_XML_DIR}, that implies a problem.")
+
+        if (execResult.exitValue != 0) {
+            throw new GradleException("XML file ${xmlFilePath} failed vaildation, or 'xmllint' (in 'libxml2-utils' pkg) is not installed ")
         }
     }
 }
