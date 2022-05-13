@@ -65,15 +65,15 @@ Strictly speaking the namespace version in the schema (e.g. `event-logging:3`) s
 
 Any changes to the schema should be fully documented.
 This includes documentation in the schema in the form of element annotations and changes/additions to the documentation site in `./docs`.
-The whole documentation site should be applicable to one minor version of the schema, so any additions/changes/removals to the schema should be reflected in the documentation.
-The annotations in the schema are used to generate Javadoc in the event-logging Java library.
+All of the documentation source files should be applicable to one minor version of the schema, so any additions/changes/removals to the schema should be reflected in the documentation.
+
+The annotations in the schema are used to generate Javadoc in the event-logging Java library so it is key that they are as thorough as possible.
 
 
 ## Release branches
 
 To allow us to support multiple versions of the schema there will be a git branch for each minor release, e.g. `4.0`, `4.1`, `5.0`, etc.
-The latest releases will always be made from `master`.
-The release branch can be created retrospectively, e.g. if you need to make a _PATCH_ change to `v4.1.3` but `v4.2.0` has been released on master then create a `4.1` branch off the `v4.1.3` tag and release from there.
+Due to the way that the documentation is tied to release branch names all releases of the schema **MUST** be released from the appropriate release branch, e.g. tag/version `v4.1.2` from branch `4.1`.
 
 
 ## Release Steps
@@ -92,7 +92,8 @@ The release branch can be created retrospectively, e.g. if you need to make a _P
    * Validate the version numbers in the master schema file against the gradle version argument.
    * Run the transformer pipelines to generate the various schema varients (including validating them).
    * Compare the generated schemas with the ones from the latest release so you can check what has changed.
-1. Ensure the change entries have been created using `./log_change.sh`.
+1. Ensure all changes to the schema have been logged with `./log_change.sh`.
+1. Add a page to `releases` section of the documentation for the version being released.
 1. Commit and push all the changes.
 1. Tag the release using `./tag_release.sh` which will initiate the CI release process.
 1. Add the new schema to stroom-content
