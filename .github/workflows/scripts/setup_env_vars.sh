@@ -59,7 +59,7 @@ if [[ "${is_schema_release}" = "false" ]]; then
     curl \
       --silent \
       --header "authorization: Bearer ${GITHUB_TOKEN}" \
-      "${GIT_API_URL}/releases/latest" \
+      "${GIT_API_URL}/releases" \
     | jq -r '.[].tag_name | select(. | test("^docs-v"))' \
     | sed 's/^docs-v//' \
     | sort \
