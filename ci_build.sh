@@ -60,6 +60,7 @@ element_in() {
 build_version_from_source() {
   local branch_name="${1:-SNAPSHOT}"; shift
   local repo_root="$1"; shift
+  local docs_root="${repo_root}/docs"
 
   pushd "${repo_root}"
 
@@ -68,7 +69,7 @@ build_version_from_source() {
   build_schema_variants
   
   #local hugo_base_url
-  local generated_site_dir="${repo_root}/docs/public"
+  local generated_site_dir="${docs_root}/public"
   # The tag will be something like docs-v1234
   local pdf_filename="event-logging-schema-${BUILD_TAG:-docs-SNAPSHOT}_schema-${branch_name}.pdf"
 
@@ -87,12 +88,13 @@ build_version_from_source() {
     "\n  branch_name:            ${BLUE}${branch_name}${GREEN}" \
     "\n  branch_head_commit_sha: ${BLUE}${branch_head_commit_sha}${GREEN}" \
     "\n  repo_root:              ${BLUE}${repo_root}${GREEN}" \
+    "\n  doc_root:               ${BLUE}${docs_root}${GREEN}" \
     "\n  latest_version:         ${BLUE}${latest_version}${GREEN}"
     #"\n  base_url:        ${BLUE}${hugo_base_url}${NC}"
   echo -e "${GREEN}-----------------------------------------------------${NC}"
 
   if [[ -n "${BUILD_TAG}" ]]; then
-    local config_file="${repo_root}/${CONFIG_FILENAME}"
+    local config_file="${docs_root}/${CONFIG_FILENAME}"
     echo -e "${GREEN}Updating config file ${BLUE}${config_file}${GREEN}" \
       "(build_version=${BUILD_TAG:-SNAPSHOT})${NC}"
 
@@ -106,7 +108,7 @@ build_version_from_source() {
   # Don't want sections like news|community in the old versions
   if element_in "${branch_name}" "${release_branches[@]}" \
     && [[ "${branch_name}" != "${latest_version}" ]]; then
-      remove_unwanted_sections "${repo_root}"
+      remove_unwanted_sections "${docs_root}"
   fi
 
   # Build the Hugo site html (into ./docs/public/)
@@ -256,14 +258,15 @@ assemble_version() {
 make_single_version_site() {
   local branch_name="${1:-SNAPSHOT}"; shift
   local repo_root="$1"; shift
+  local docs_root="${repo_root}/docs"
 
   echo -e "${GREEN}Creating single version site for ${BLUE}${branch_name}" \
     "${repo_root}${NC}"
 
-  local generated_site_dir="${repo_root}/docs/public"
+  local generated_site_dir="${docs_root}/public"
   local single_ver_zip_filename="${BUILD_TAG:-SNAPSHOT}_stroom-${branch_name}.zip"
 
-  local config_file="${repo_root}/${CONFIG_FILENAME}"
+  local config_file="${docs_root}/${CONFIG_FILENAME}"
   local temp_config_backup_file
   temp_config_backup_file="$(mktemp)"
   cp "${config_file}" "${temp_config_backup_file}"
@@ -305,7 +308,7 @@ make_single_version_site() {
   # Don't want sections like news|community in the old versions
   if element_in "${branch_name}" "${release_branches[@]}" \
     && [[ "${branch_name}" != "${latest_version}" ]]; then
-      remove_unwanted_sections "${repo_root}"
+      remove_unwanted_sections "${docs_root}"
   fi
 
   # Now re-build the site with the modified config
@@ -357,7 +360,7 @@ create_root_redirect_page() {
   sed \
     --regexp-extended \
     --expression "s/<<<LATEST_VERSION>>>/${latest_version:?}/g" \
-    "${BUILD_DIR}/index.html.template" \
+    "${BUILD_DIR}/docs/index.html.template" \
     > "${NEW_GH_PAGES_DIR}/index.html"
 
   # This is to stop gh-pages treating the content as Jekyll content
