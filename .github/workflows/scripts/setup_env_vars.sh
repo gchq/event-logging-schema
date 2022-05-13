@@ -65,9 +65,10 @@ if [[ "${is_schema_release}" = "false" ]]; then
     | sort \
     | tail -n1)"
 
-  latest_docs_release_tag_name="docs-v${latest_docs_release_num}"
+  latest_docs_release_tag_name=
   latest_docs_release_tag_sha=
   if [[ -n "${latest_docs_release_num}" ]]; then
+    latest_docs_release_tag_name="docs-v${latest_docs_release_num}"
     # Get the commit sha for the tag.
     # DO NOT echo the token
     latest_docs_release_tag_sha="$( \
@@ -88,6 +89,7 @@ if [[ "${is_schema_release}" = "false" ]]; then
   else
     is_same_commit_as_last_release=false
   fi
+
   echo -e "${GREEN}is_same_commit_as_last_release:" \
     "${BLUE}${is_same_commit_as_last_release}${NC}"
 

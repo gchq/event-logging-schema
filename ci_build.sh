@@ -578,6 +578,32 @@ build_schema_variants() {
   echo "::endgroup::"
 }
 
+# All the documentation site versioning is based of the branch name
+# so we need releases of the schema to be made on a release branch,
+# e.g. tag v4.1.2 on branch 4.1.
+check_branch_of_tag() {
+  if [[ "${BUILD_IS_SCHEMA_RELEASE}" = "true" ]]; then
+    # Make sure the git tag exists on a release branch, else
+    # no docs will be created for it
+    local release_branch_pattern="^[0-9]+\.[0-9]+$"
+    local release_branches_for_tag=
+    release_branches_for_tag="$( \
+      git \
+          --no-pager \
+          branch \
+          --contains \
+          tags/v6.0.28 \
+        | sed 's/..//' \
+        | grep -E "${release_branch_pattern}"
+      )"
+
+    if [[ -z "${release_branches_for_tag}" ]]; then
+      echo "${RED}Error${NC}Release tag ${BUILD_TAG} not found on a release branch."
+      exit 1
+    fi
+  fi
+}
+
 dump_build_info() {
   echo "::group::Build info"
 
@@ -634,6 +660,7 @@ main() {
   )
 
   dump_build_info
+  check_branch_of_tag
 
   mkdir -p "${RELEASE_ARTEFACTS_DIR}"
   mkdir -p "${GIT_WORK_DIR}"
