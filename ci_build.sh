@@ -68,7 +68,7 @@ build_version_from_source() {
   build_schema_variants
   
   #local hugo_base_url
-  local generated_site_dir="${repo_root}/public"
+  local generated_site_dir="${repo_root}/docs/public"
   # The tag will be something like docs-v1234
   local pdf_filename="event-logging-schema-${BUILD_TAG:-docs-SNAPSHOT}_schema-${branch_name}.pdf"
 
@@ -109,7 +109,7 @@ build_version_from_source() {
       remove_unwanted_sections "${repo_root}"
   fi
 
-  # Build the Hugo site html (into ./public/)
+  # Build the Hugo site html (into ./docs/public/)
   # TODO, remove --buildDrafts arg once we merge to master
   echo "::group::Hugo build"
   echo -e "${GREEN}Building combined site HTML with Hugo${NC}"
@@ -260,7 +260,7 @@ make_single_version_site() {
   echo -e "${GREEN}Creating single version site for ${BLUE}${branch_name}" \
     "${repo_root}${NC}"
 
-  local generated_site_dir="${repo_root}/public"
+  local generated_site_dir="${repo_root}/docs/public"
   local single_ver_zip_filename="${BUILD_TAG:-SNAPSHOT}_stroom-${branch_name}.zip"
 
   local config_file="${repo_root}/${CONFIG_FILENAME}"
