@@ -480,10 +480,12 @@ prepare_release_artefacts() {
 }
 
 prepare_for_schema_release() {
+  echo -e "${GREEN}Preparing for a schema release${NC}"
   prepare_release_artefacts
 }
 
 prepare_for_docs_release() {
+  echo -e "${GREEN}Preparing for a docs release${NC}"
 
   prepare_release_artefacts
 
