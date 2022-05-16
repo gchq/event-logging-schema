@@ -264,7 +264,7 @@ make_single_version_site() {
     "${repo_root}${NC}"
 
   local generated_site_dir="${docs_root}/public"
-  local single_ver_zip_filename="${BUILD_TAG:-SNAPSHOT}_stroom-${branch_name}.zip"
+  local single_ver_zip_filename="${BUILD_NAME}_schema-${branch_name}.zip"
 
   local config_file="${docs_root}/${CONFIG_FILENAME}"
   local temp_config_backup_file
@@ -661,10 +661,10 @@ main() {
       SCHEMA_VERSION="${BUILD_TAG}"
       DOCS_VERSION="${BUILD_TAG}"
   else
-      DOCS_VERSION="SNAPSHOT"
+      DOCS_VERSION="docs-SNAPSHOT"
   fi
 
-  local BUILD_NAME=event-logging-schema-docs-$DOCS_VERSION
+  local BUILD_NAME="event-logging-schema-${DOCS_VERSION}"
   local PDF_FILENAME=${BUILD_NAME}.pdf
   local ZIP_FILENAME=${BUILD_NAME}.zip
   local RELEASE_ARTEFACTS_DIR_NAME="release_artefacts"
