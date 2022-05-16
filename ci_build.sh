@@ -367,6 +367,16 @@ create_root_redirect_page() {
   # in which case dirs prefixed with '_' are ignored breaking the print 
   # functionality
   touch "${NEW_GH_PAGES_DIR}/.nojekyll"
+
+  # Create a symlink so we have something like
+  # /
+  #   /4.0/
+  #   /4.1/
+  #   /4.2/
+  #   /latest/ -> /4.2/
+  pushd "${NEW_GH_PAGES_DIR}"
+  ln -s "../${latest_version}/" "latest" 
+  popd
 }
 
 create_docs_release_tag() {
