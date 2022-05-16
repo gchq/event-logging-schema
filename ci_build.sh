@@ -584,19 +584,23 @@ build_schema_variants() {
 
   ls -l "${BUILD_DIR}"/event-logging-transformer-main/build/libs/event-logging-transformer*-all.jar
 
-  cp \
-    "${BUILD_DIR}"/event-logging-transformer-main/build/libs/event-logging-transformer*-all.jar \
-    "${RELEASE_ARTEFACTS_DIR}"
 
-  GENERATED_DIR="event-logging-transformer-main/pipelines/generated"
-  echo "Deleting generated schemas that are not release artifacts"
-  # This is to make sure they don't get picked up for release
-  rm -v "${GENERATED_DIR}"/event-logging-v999-documentation.xsd
-  rm -v "${GENERATED_DIR}"/test-v*-test.xsd
-  rm -v "${GENERATED_DIR}"/identity-v*-identity.xsd
+  if [[ "${BUILD_IS_SCHEMA_RELEASE}" = "true" ]]; then
+    echo -e "${GREEN}Copying build artefacts for release${NC}"
+    cp \
+      "${BUILD_DIR}"/event-logging-transformer-main/build/libs/event-logging-transformer*-all.jar \
+      "${RELEASE_ARTEFACTS_DIR}"
 
-  # Copy the schemas to the release dir for upload to gh releases
-  cp "${GENERATED_DIR}"/*.xsd "${RELEASE_ARTEFACTS_DIR}/"
+    GENERATED_DIR="event-logging-transformer-main/pipelines/generated"
+    echo "Deleting generated schemas that are not release artifacts"
+    # This is to make sure they don't get picked up for release
+    rm -v "${GENERATED_DIR}"/event-logging-v999-documentation.xsd
+    rm -v "${GENERATED_DIR}"/test-v*-test.xsd
+    rm -v "${GENERATED_DIR}"/identity-v*-identity.xsd
+
+    # Copy the schemas to the release dir for upload to gh releases
+    cp "${GENERATED_DIR}"/*.xsd "${RELEASE_ARTEFACTS_DIR}/"
+  fi
   echo "::endgroup::"
 }
 
