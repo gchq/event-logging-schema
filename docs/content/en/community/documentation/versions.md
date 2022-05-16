@@ -11,7 +11,7 @@ description: >
 
 The _Docsy_ theme supports site versioning so that multiple versions of the site/documentation can exist and link between each other.
 For this documentation site, each version of the site is tied to a minor release of the Schema, e.g. `4.0`, `4.1`, `4.2`, `5.0` etc.
-Each Schema version is represented by a git branch with the same name (withouth the `v` prefix).
+Each Schema version is represented by a git branch with the same name (without the `v` prefix).
 Documentation changes for an as yet unreleased Stroom version would be performed on the `master` branch.
 
 When the combined site is built, each version will exist within a directory as siblings of each other, i.e.
@@ -39,7 +39,7 @@ This example is from the _4.1_ branch and is based on there being versions _4.0_
   {{< card header="4.1" >}}
 ```toml
 [params]
-  # Menu title if your navbar has a versions selector
+  # Menu title if your navigation bar has a versions selector
   # to access old versions of your site.
   version_menu = "Schema 4.1"
 
@@ -57,8 +57,8 @@ This example is from the _4.1_ branch and is based on there being versions _4.0_
   # doc site.
   url_latest_version = "/../4.1"
 
-  # The name of the github branch that this version of the
-  # documentation lives on. Used for the github links in the
+  # The name of the Github branch that this version of the
+  # documentation lives on. Used for the Github links in the
   # top of the right hand sidebar. Should match the last part
   # of url_latest_version.
   github_branch = "4.1"
@@ -75,7 +75,7 @@ This example is from the _4.1_ branch and is based on there being versions _4.0_
   {{< card header="4.0" >}}
 ```toml
 [params]
-  # Menu title if your navbar has a versions selector
+  # Menu title if your navigation bar has a versions selector
   # to access old versions of your site.
   version_menu = "Schema 4.0"
 
@@ -93,8 +93,8 @@ This example is from the _4.1_ branch and is based on there being versions _4.0_
   # doc site.
   url_latest_version = "/../4.1"
 
-  # The name of the github branch that this version of the
-  # documentation lives on. Used for the github links in the
+  # The name of the GitHub branch that this version of the
+  # documentation lives on. Used for the GitHub links in the
   # top of the right hand sidebar. Should match the last part
   # of url_latest_version.
   github_branch = "4.0"
@@ -118,7 +118,7 @@ In the same example scenario as above, the `config.toml` file for the _4.0_ bran
 
 ## Automated build process
 
-The site is built by Gihub Actions on a nightly basis.
+The site is built by GitHub Actions on a nightly basis.
 This schedule is controlled by {{< external-link "build_and_release.yml" "https://github.com/gchq/stroom-docs/blob/master/.github/workflows/build_and_release.yml" >}} on the `master` branch.
 
 This automated build will look for any branches matching the pattern `(legacy|[0-9]+\.[0-9]+)` and for each one will do the following:
@@ -126,7 +126,7 @@ This automated build will look for any branches matching the pattern `(legacy|[0
 * Checkout that branch
 * Build the site for that version using Hugo
   * Add the site files to a combined site
-  * Generate the documenation PDF
+  * Generate the documentation PDF
 * Build the site with no other versions configured
   * Create a zip of the single version site
 
@@ -197,6 +197,6 @@ cd /tmp/stroom-docs_mock_combined_site
 python -m SimpleHTTPServer 8888
 ```
 
-Then open a browser at [localhost:8888](localhost:8888).
+Then open a browser at {{< external-link "localhost:8888" "localhost:8888" >}}.
 
 As each version of the site is a copy of the same thing the content will be all the same but it allows you to test the version drop down and archived banner.

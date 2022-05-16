@@ -3,5 +3,5 @@
 [ ] Do we need static/js/*?
 [ ] Do we need static/favicons*?
 [ ] Complete about.md
-[ ] Complete landing page _index.html
+[ ] Complete landing page `_index.html`
 [ ] Complete Community section

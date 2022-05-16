@@ -6,7 +6,7 @@ menu:
   main:
     weight: 20
 description: >
-  TODO - complete me
+  Documentation on how to use the _event-logging_ XML Schema.
 
 ---
 

@@ -1,6 +1,7 @@
 // This file is imported by the docsy theme so that we can override aspects of
 // the theme's styling or add in additional styles, e.g. for our own shortcodes.
 
+@import 'shortcodes/_external-link.scss';
 @import 'shortcodes/_glossary.scss';
 @import 'customisations/_landing-page.scss';
 @import 'customisations/_top_navbar.scss';
@@ -133,8 +134,4 @@ pre[class*=language-] {
   background: unset !important;
 }
 
-.external-link {
-  // Handle long link text in external links
-  overflow-wrap: anywhere;
-}
 

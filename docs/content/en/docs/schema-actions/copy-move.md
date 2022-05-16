@@ -17,7 +17,7 @@ description: >
 The `<Copy>` and `<Move>` elements are used to describe local copy and move operations.
 They both contain the same element structure and describe the source and destination for the copy/move event.
 
-When an entity is being sent to a remote recipient then the `<Send>` and `<Receive>` actions should be used instead (see [Send and Receive](./sendReceive.md)).
+When an entity is being sent to a remote recipient then the `<Send>` and `<Receive>` actions should be used instead (see [Send and Receive]({{< relref "./send-receive" >}})).
 
 The following example shows a copy event that has failed due to a lack of necessary permissions.
 
