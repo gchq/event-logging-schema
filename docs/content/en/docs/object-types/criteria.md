@@ -17,4 +17,4 @@ The `<Query>` element is used to record the actual query terms used, either in i
 
 For example, this may be used to describe the criteria for a query that has been stored for re-use, e.g. an `<Update>/<Criteria>` event where a user is making changes to a stored query but not actually executing the query.
 
-See [Complete Examples](../completeExamples/README.md) for example events.
+See [Complete Examples]({{< relref "../complete-examples" >}}) for example events.

@@ -93,7 +93,7 @@ To link the `<Search>` event with the `<some schema action>/<SearchResults>` eve
   <TypeId>AsynchronousUserQuery</TypeId>
   <Search>
     <Query>
-      <!-- ID to link the query execution with the subsequent vewing of the results -->
+      <!-- ID to link the query execution with the subsequent viewing of the results -->
       <Id>3648595</Id>
       <Raw>select cv_blob from candidates where user='jbloggs'</Raw>
     </Query>
@@ -106,7 +106,7 @@ To link the `<Search>` event with the `<some schema action>/<SearchResults>` eve
   <View>
     <SearchResults>
       <Query>
-      <!-- ID to link the query execution with the subsequent vewing of the results -->
+      <!-- ID to link the query execution with the subsequent viewing of the results -->
       <Id>3648595</Id>
       <!-- If the query detail was recorded in the initial Search event then it could be omitted here -->
       </Query>
@@ -154,4 +154,4 @@ The list of results can describe the type of result and provide appropriate deta
 </Search>
 ``` 
 
-See [Complete Examples](../completeExamples/README.md) for example events.
+See [Complete Examples]({{< relref "../complete-examples" >}}) for example events.

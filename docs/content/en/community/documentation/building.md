@@ -26,7 +26,7 @@ It is possible to build the docs without docker but you would need to install al
 
 The git repository for this site is {{< external-link "event-logging-schema" "https://github.com/gchq/event-logging-schema" >}}.
 _event-logging-schema_ uses the Docsy theme (`themes/docsy/`) which is pulled in via Go modules.
-To se
+To clone the repository:
 
 {{< command-line >}}
 # Clone the repo
@@ -54,7 +54,7 @@ To build and serve the site run
 This uses Hugo to build the site in memory and then serve it from a local web server.
 When any source files are changed or added Hugo will detect this and rebuild the site as required, including automatically refreshing the browser page to update the rendered view.
 
-Once the server is running the site is available at [localhost:1313/](http://localhost:1313/).
+Once the server is running the site is available at {{< external-link "localhost:1313" "http://localhost:1313/" >}}.
 
 {{% warning %}}
 Sometimes changes made to the site source will not be re-loaded correctly so it may be necessary to stop and re-start the server.
@@ -90,7 +90,7 @@ To test the PDF generation do:
 The {{< external-link "Docsy" "https://github.com/google/docsy" >}} theme is pulled in as a Go module.
 To update the version of Docsy used see {{< external-link "Update the Docsy Hugo Module" "https://www.docsy.dev/docs/updating/updating-hugo-module/" >}}.
 
-When these instrustions say to run the `hugo` command you need to run them using the builder container, unless you have Hugo and Go installed locally.
+When these instructions say to run the `hugo` command you need to run them using the builder container, unless you have Hugo and Go installed locally.
 e.g.
 
 {{< command-line >}}

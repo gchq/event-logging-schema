@@ -1,0 +1,12 @@
+.external-link {
+  // Handle long link text in external links
+  overflow-wrap: anywhere;
+
+  // In PDFs add "(external link) to the end of the link text
+  @media print{ 
+    span::after {
+      content: " (external link)";
+    }
+  }
+}
+
