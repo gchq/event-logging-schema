@@ -55,10 +55,29 @@ debug() {
   fi
 }
 
+setup_ssh_agent() {
+  # See if there is already a socket for ssh-agent
+  if [[ -S "${SSH_AUTH_SOCK}" ]]; then
+    echo -e "${GREEN}ssh-agent already bound to ${BLUE}SSH_AUTH_SOCK${NC}"
+  else
+    # Start ssh-agent and add our private ssh deploy key to it
+    echo -e "${GREEN}Starting ssh-agent${NC}"
+    ssh-agent -a "${SSH_AUTH_SOCK}" > /dev/null
+  fi
+
+  # SSH_DEPLOY_KEY is the private ssh key that corresponds to the public key
+  # that is held in the 'deploy keys' section of the stroom repo on github
+  # https://github.com/gchq/stroom/settings/keys
+  echo -e "${GREEN}Adding ssh key${NC}"
+  ssh-add - <<< "${SSH_DEPLOY_KEY}"
+}
+
 main() {
   IS_DEBUG=false
 
   setup_echo_colours
+
+  echo -e "${GREEN}Setting up variables${NC}"
 
   local repo_uri="git@github.com:${GITHUB_REPOSITORY}.git"
   local remote_name="origin"
@@ -67,19 +86,24 @@ main() {
   local gh_pages_clone_dir="${GITHUB_WORKSPACE}/gh-pages-clone"
   # Dir where our new gh-pages content is to be found
   local gh_pages_source_dir="${GITHUB_WORKSPACE}/gh-pages"
-  local minor_version
-  minor_version=$(echo "${BUILD_TAG}" | grep -oP "^v[0-9]+\.[0-9]+")
-  local gh_pages_versioned_dir="${gh_pages_clone_dir}/${minor_version}"
-  local version_file="${gh_pages_versioned_dir}/version.txt"
 
-  # Start ssh-agent and add our private ssh deploy key to it
-  echo -e "${GREEN}Starting ssh-agent${NC}"
-  ssh-agent -a "${SSH_AUTH_SOCK}" > /dev/null
+  #local minor_version
+  #minor_version=$(echo "${BUILD_TAG}" | grep -oP "^v[0-9]+\.[0-9]+")
+  #local gh_pages_versioned_dir="${gh_pages_clone_dir}/${minor_version}"
+  #local version_file="${gh_pages_versioned_dir}/version.txt"
 
-  # SSH_DEPLOY_KEY is the private ssh key that corresponds to the public key
-  # that is held in the 'deploy keys' section of the stroom repo on github
-  # https://github.com/gchq/stroom/settings/keys
-  ssh-add - <<< "${SSH_DEPLOY_KEY}"
+  # At some point we will use versioned dirs, but not yet
+  local gh_pages_versioned_dir
+  if [[ "${BUILD_BRANCH}" = "master" ]]; then
+    gh_pages_versioned_dir="${gh_pages_clone_dir}"
+  else
+    gh_pages_versioned_dir="${gh_pages_clone_dir}/${BUILD_BRANCH}"
+  fi
+
+  echo -e "${GREEN}Using destination gh-pages dir" \
+    "${BLUE}${gh_pages_versioned_dir}${NC}"
+
+  setup_ssh_agent
 
   # Clone the repo with just the gh-pages branch
   echo -e "${GREEN}Cloning branch ${BLUE}${gh_pages_branch}${GREEN} to" \
@@ -94,9 +118,13 @@ main() {
 
   mkdir -p "${gh_pages_versioned_dir}"
 
+  echo -e "${GREEN}Dumping contents (maxdepth 1) of ${BLUE}${gh_pages_source_dir}${NC}"
+  find "${gh_pages_source_dir}/" -maxdepth 1
+
+  # Update the whole of gh-pages
   echo -e "${GREEN}Rsyncing gh-pages content from" \
     "${BLUE}${gh_pages_source_dir}${GREEN} to" \
-    "${BLUE}${gh_pages_versioned_dir}${NC}"
+    "${BLUE}${gh_pages_clone_dir}${NC}"
   rsync \
     --verbose \
     --human-readable \
@@ -104,11 +132,11 @@ main() {
     --delete \
     --exclude='.git/' \
     "${gh_pages_source_dir}/" \
-    "${gh_pages_versioned_dir}/"
+    "${gh_pages_clone_dir}/"
 
-  echo -e "${GREEN}Writing version ${BLUE}${BUILD_TAG}${GREEN} to" \
-    "${BLUE}${version_file}${NC}"
-  echo -e "${BUILD_TAG}" > "${version_file}"
+  #echo -e "${GREEN}Writing version ${BLUE}${BUILD_TAG}${GREEN} to" \
+    #"${BLUE}${version_file}${NC}"
+  #echo -e "${BUILD_TAG}" > "${version_file}"
 
   git config user.name "$GITHUB_ACTOR"
   git config user.email "${GITHUB_ACTOR}@bots.github.com"
