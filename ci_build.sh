@@ -375,7 +375,7 @@ create_root_redirect_page() {
   #   /4.2/
   #   /latest/ -> /4.2/
   pushd "${NEW_GH_PAGES_DIR}"
-  ln -s "../${latest_version}/" "latest" 
+  ln -s "./${latest_version}/" "latest" 
   popd
 }
 
