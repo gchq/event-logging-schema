@@ -331,7 +331,7 @@ This element provides the means to record the justification/purpose of the audit
 
 #### Schema Action
 
-The action specific detail of the auditble event is recorded in a 'schema action' element, where the structure of each element is tailored to the auditable action.
+The action specific detail of the auditable event is recorded in a 'schema action' element, where the structure of each element is tailored to the auditable action.
 
 The schema action element structures are defined in more detail in [Schema Actions]({{< relref "schema-actions" >}}).
 
