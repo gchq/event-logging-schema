@@ -64,6 +64,7 @@ main() {
   cache_key_source="$( \
     cat \
       "${local_repo_root}/container_build/runInHugoDocker.sh" \
+      "${local_repo_root}/container_build/runInPupeteerDocker.sh" \
       "${local_repo_root}/container_build/docker_hugo/Dockerfile"
     )"
   cache_key_source="${host_abs_repo_dir}\n${user_id}\n${group_id}\n${cache_key_source}"

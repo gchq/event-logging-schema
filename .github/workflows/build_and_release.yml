@@ -64,7 +64,13 @@ jobs:
       - name: Cache Docker layers
         uses: actions/cache@v3
         with:
-          path: /tmp/hugo_buildx_caches
+          path: /tmp/schema_hugo_buildx_caches
+          key: ${{ runner.os }}-buildx-${{ steps.generate_buildx_cache_key.outputs.cache_key }}
+
+      - name: Cache Docker layers
+        uses: actions/cache@v3
+        with:
+          path: /tmp/schema_puppeteer_buildx_caches
           key: ${{ runner.os }}-buildx-${{ steps.generate_buildx_cache_key.outputs.cache_key }}
 
       - name: Run full build

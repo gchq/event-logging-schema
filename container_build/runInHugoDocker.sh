@@ -52,28 +52,28 @@ docker_login() {
 create_network() {
   local network_count
   network_count="$( \
-    docker network ls -q --filter "name=hugo-stroom*" | wc -l )"
+    docker network ls -q --filter "name=hugo-schema*" | wc -l )"
 
   if [[ "${network_count}" -lt 1 ]]; then
-    echo -e "${GREEN}Create docker network hugo-stroom${NC}"
+    echo -e "${GREEN}Create docker network hugo-schema${NC}"
     docker \
       network \
       create \
-      "hugo-stroom"
+      "hugo-schema"
   fi
 }
 
 remove_network() {
   local network_count
   network_count="$( \
-    docker network ls -q --filter "name=hugo-stroom*" | wc -l )"
+    docker network ls -q --filter "name=hugo-schema*" | wc -l )"
 
   if [[ "${network_count}" -gt 0 ]]; then
-    echo -e "${GREEN}Delete docker network hugo-stroom${NC}"
+    echo -e "${GREEN}Delete docker network hugo-schema${NC}"
     docker \
       network \
       rm \
-      "hugo-stroom"
+      "hugo-schema"
   fi
 }
 
@@ -138,7 +138,7 @@ main() {
   group_id=
   group_id="$(id -g)"
 
-  image_tag="hugo-build-env"
+  image_tag="schema-hugo-build-env"
 
   # This path may be on the host or in the container depending
   # on where this script is called from
@@ -168,34 +168,23 @@ main() {
   # will pull images
   docker_login
 
-  if ! docker buildx inspect hugo-builder >/dev/null 2>&1; then
+  if ! docker buildx inspect schema-hugo-builder >/dev/null 2>&1; then
     docker buildx \
       create \
-      --name hugo-builder
+      --name schema-hugo-builder
   fi
   docker buildx \
     use \
-    hugo-builder
+    schema-hugo-builder
 
-  # Concat all the things that affect the docker image,
-  # e.g. our local username or the dockerfile
-  cache_key_source=
-  cache_key_source="$( \
-    cat \
-      "${local_repo_root}/container_build/runInHugoDocker.sh" \
-      "${local_repo_root}/container_build/docker_hugo/Dockerfile"
-    )"
-  cache_key_source="${host_abs_repo_dir}\n${user_id}\n${group_id}\n${cache_key_source}"
-
-  #echo -e "${cache_key_source}" > "/tmp/hugo_source_$(date -u +"%FT%H%M%S")"
-
-  # Make a hash of these things and effectively use this as the cache key for buildx so any change makes it ignore a previous cache.
+  # Make a hash of these things and effectively use this as the cache key for
+  # buildx so any change makes it ignore a previous cache.
   cache_key=
   cache_key="$( \
     "${local_repo_root}/container_build/generate_buildx_cache_key.sh"
     )"
 
-  cache_dir_base="/tmp/hugo_buildx_caches"
+  cache_dir_base="/tmp/schema_hugo_buildx_caches"
   cache_dir_from="${cache_dir_base}/from_${cache_key}"
   #cache_dir_to="${cache_dir_base}/to_${cache_key}"
 
@@ -228,7 +217,8 @@ main() {
   #ls -l "${cache_dir_base}"
   #echo
 
-  echo -e "${GREEN}Building image ${BLUE}${image_tag}${GREEN} (this may take a while on first run)${NC}"
+  echo -e "${GREEN}Building image ${BLUE}${image_tag}${GREEN}" \
+    "(this may take a while on first run)${NC}"
   docker buildx build \
     --tag "${image_tag}" \
     --build-arg "USER_ID=${user_id}" \
@@ -288,8 +278,8 @@ main() {
     --mount "type=bind,src=${host_abs_repo_dir},dst=${dest_dir}" \
     --volume "${hugo_cache_vol}:${hudo_cache_dir}" \
     --read-only \
-    --name "hugo-build-env" \
-    --network "hugo-stroom" \
+    --name "schema-hugo-build-env" \
+    --network "hugo-schema" \
     --env "BUILD_VERSION=${BUILD_VERSION:-SNAPSHOT}" \
     --env "DOCKER_USERNAME=${DOCKER_USERNAME}" \
     --env "DOCKER_PASSWORD=${DOCKER_PASSWORD}" \
