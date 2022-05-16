@@ -1,0 +1,33 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>event-logging XML Schema – banner</title>
+    <link>/object_types/banner/</link>
+    <description>Recent content in banner on event-logging XML Schema</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 05 May 2022 00:00:00 +0000</lastBuildDate>
+    
+	  <atom:link href="/object_types/banner/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Docs: Banner</title>
+      <link>/docs/object-types/banner/</link>
+      <pubDate>Thu, 05 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/object-types/banner/</guid>
+      <description>
+        
+        
+        &lt;p&gt;This is typically used within a &lt;code&gt;&amp;lt;View&amp;gt;&lt;/code&gt; schema action and is intended to record the details of a banner, pop-up or warning message that is displayed to a user, along with the version and contents of that message.&lt;/p&gt;
+&lt;p&gt;Its objective is to record that the user has seen a message alerting them to the terms of use for a particular system.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>

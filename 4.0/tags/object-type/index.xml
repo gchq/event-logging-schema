@@ -1,0 +1,395 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>event-logging XML Schema – object-type</title>
+    <link>/tags/object-type/</link>
+    <description>Recent content in object-type on event-logging XML Schema</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 06 May 2022 00:00:00 +0000</lastBuildDate>
+    
+	  <atom:link href="/tags/object-type/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Docs: Resource</title>
+      <link>/docs/object-types/resource/</link>
+      <pubDate>Fri, 06 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/object-types/resource/</guid>
+      <description>
+        
+        
+        &lt;p&gt;This is used to describe a resource within a web site or web application, such as an HTML file, image file or script, along with the details of that resource such as size or response codes.
+It can represent both successful and failed access to the resource object.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Search Results</title>
+      <link>/docs/complete-examples/xml/object-types/search-results.xml/</link>
+      <pubDate>Fri, 06 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/complete-examples/xml/object-types/search-results.xml/</guid>
+      <description>
+        
+        
+        &lt;p&gt;user is viewing a set of search results independently of the search event that generated them.
+the query/id element can be used to link the two events together.&lt;/p&gt;
+&lt;p&gt;this object type can be used when the results of the query are not know at the time the search is executed and the search event is created.&lt;/p&gt;
+&lt;p&gt;a view event is used here simply to illustrate the use of searchresults.
+searchresults can be used within other schema actions.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#099&#34;&gt;&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Events&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#309&#34;&gt;xmlns=&lt;/span&gt;&lt;span style=&#34;color:#c30&#34;&gt;&amp;#34;event-logging:3&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#309&#34;&gt;xmlns:xsi=&lt;/span&gt;&lt;span style=&#34;color:#c30&#34;&gt;&amp;#34;http://www.w3.org/2001/XMLSchema-instance&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#309&#34;&gt;xsi:schemaLocation=&lt;/span&gt;&lt;span style=&#34;color:#c30&#34;&gt;&amp;#34;event-logging:3 file://event-logging-v999.99.9-documentation.xsd&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#309&#34;&gt;Version=&lt;/span&gt;&lt;span style=&#34;color:#c30&#34;&gt;&amp;#34;999.99.9&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#09f;font-style:italic&#34;&gt;&amp;lt;!-- View/SearchResults event --&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Event&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;EventTime&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;TimeCreated&amp;gt;&lt;/span&gt;2017-01-02T03:04:05.678Z&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/TimeCreated&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/EventTime&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;EventSource&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#09f;font-style:italic&#34;&gt;&amp;lt;!-- The source system specific unique ID for this event --&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;EventId&amp;gt;&lt;/span&gt;1024&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/EventId&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;System&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Name&amp;gt;&lt;/span&gt;Rock Sample Database&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Name&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Environment&amp;gt;&lt;/span&gt;Space&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Environment&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Organisation&amp;gt;&lt;/span&gt;ACMECoolResearch&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Organisation&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Version&amp;gt;&lt;/span&gt;R8.1&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Version&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/System&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Generator&amp;gt;&lt;/span&gt;db-query&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Generator&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Device&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;HostName&amp;gt;&lt;/span&gt;db56.serverfarm.mydomain.org&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/HostName&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;IPAddress&amp;gt;&lt;/span&gt;191.181.171.161&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/IPAddress&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Device&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Client&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;HostName&amp;gt;&lt;/span&gt;desktop4.moonbase-a.mydomain.org&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/HostName&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;IPAddress&amp;gt;&lt;/span&gt;111.101.101.111&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/IPAddress&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Client&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;User&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Id&amp;gt;&lt;/span&gt;jc101&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Id&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/User&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Interactive&amp;gt;&lt;/span&gt;true&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Interactive&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/EventSource&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;EventDetail&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;TypeId&amp;gt;&lt;/span&gt;viewSearchResults&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/TypeId&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Description&amp;gt;&lt;/span&gt;User is viewing a set of stored search results&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Description&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;View&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;SearchResults&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Query&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#09f;font-style:italic&#34;&gt;&amp;lt;!-- 
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#09f;font-style:italic&#34;&gt;            Provides a link back to the Search event generated when the 
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#09f;font-style:italic&#34;&gt;            query was executed. The link can also be acheived using EventLinks below.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#09f;font-style:italic&#34;&gt;            --&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Id&amp;gt;&lt;/span&gt;query-538393&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Id&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Query&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;TotalResults&amp;gt;&lt;/span&gt;2&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/TotalResults&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Results&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Object&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;              &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Type&amp;gt;&lt;/span&gt;Rock&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Type&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;              &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Id&amp;gt;&lt;/span&gt;78121&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Id&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;              &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Name&amp;gt;&lt;/span&gt;Surpisingly Heavy Chunk&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Name&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Object&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Object&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;              &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Type&amp;gt;&lt;/span&gt;Rock&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Type&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;              &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Id&amp;gt;&lt;/span&gt;11418&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Id&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;              &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Name&amp;gt;&lt;/span&gt;Possible Gold Ore&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Name&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Object&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Results&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/SearchResults&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/View&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/EventDetail&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#09f;font-style:italic&#34;&gt;&amp;lt;!-- This event is linked back to its parent (the initial search) --&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;EventChain&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Activity&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#09f;font-style:italic&#34;&gt;&amp;lt;!-- Links this event to the one with EventSource/EventId[text()=&amp;#39;1023&amp;#39;] --&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Id&amp;gt;&lt;/span&gt;92832938&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Id&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Name&amp;gt;&lt;/span&gt;Search execution&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Name&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Activity&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/EventChain&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Event&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Events&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Search Results</title>
+      <link>/docs/object-types/search-results/</link>
+      <pubDate>Fri, 06 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/object-types/search-results/</guid>
+      <description>
+        
+        
+        &lt;p&gt;This element is used to describe a set of search results that have a life beyond the execution of the query that generated them.
+For example where the execution of the query forms one event and the viewing of the results happens some time later and forms another event.&lt;/p&gt;
+&lt;p&gt;This element can be used to describe a single result within a result set, a page of results from a larger result set or a full result set.&lt;/p&gt;
+&lt;p&gt;The separate event for the execution of the search/query that produced the results should be modelled using the &lt;a href=&#34;../../docs/schema-actions/search/&#34;&gt;&lt;code&gt;&amp;lt;Search&amp;gt;&lt;/code&gt;&lt;/a&gt; schema action.&lt;/p&gt;
+&lt;p&gt;See &lt;a href=&#34;../../docs/complete-examples/xml/object-types/search-results.xml/&#34;&gt;Complete Examples&lt;/a&gt; for example events.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Shortcut</title>
+      <link>/docs/object-types/shortcut/</link>
+      <pubDate>Fri, 06 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/object-types/shortcut/</guid>
+      <description>
+        
+        
+        &lt;p&gt;This should be used to describe any form of shortcut or symbolic link to another object.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: User</title>
+      <link>/docs/object-types/user/</link>
+      <pubDate>Fri, 06 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/object-types/user/</guid>
+      <description>
+        
+        
+        &lt;p&gt;This is used to describe a user entity in a system.
+This could be the user account in a web application, the identity of a person in an access control system, a user profile in a chat application or a user account on a piece of configurable hardware.&lt;/p&gt;
+&lt;p&gt;The full details of the user can also be recorded, such as the position within the organisation, if known.&lt;/p&gt;
+&lt;p&gt;It is important to consider that the user account is not necessarily under the control of the person to whom the account has been assigned.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Virtual Session</title>
+      <link>/docs/object-types/virtual-session/</link>
+      <pubDate>Fri, 06 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/object-types/virtual-session/</guid>
+      <description>
+        
+        
+        &lt;p&gt;This object type is used to describe the session used when viewing another user&amp;rsquo;s session, e.g. screen sharing or remote assistance type activities.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: VOIP</title>
+      <link>/docs/object-types/voip/</link>
+      <pubDate>Fri, 06 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/object-types/voip/</guid>
+      <description>
+        
+        
+        &lt;p&gt;This is used to record a voice over IP call between parties.
+The &lt;code&gt;&amp;lt;PhoneNumber&amp;gt;&lt;/code&gt; element represents the phone number of the calling party.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Association</title>
+      <link>/docs/object-types/association/</link>
+      <pubDate>Thu, 05 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/object-types/association/</guid>
+      <description>
+        
+        
+        &lt;p&gt;This can be used to describe any form of association between other objects.
+For example in a social networking type application links are made between user accounts.
+This &lt;code&gt;&amp;lt;Association&amp;gt;&lt;/code&gt; object would allow the creation/modification/deletion of one of these links to be recorded.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Banner</title>
+      <link>/docs/object-types/banner/</link>
+      <pubDate>Thu, 05 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/object-types/banner/</guid>
+      <description>
+        
+        
+        &lt;p&gt;This is typically used within a &lt;code&gt;&amp;lt;View&amp;gt;&lt;/code&gt; schema action and is intended to record the details of a banner, pop-up or warning message that is displayed to a user, along with the version and contents of that message.&lt;/p&gt;
+&lt;p&gt;Its objective is to record that the user has seen a message alerting them to the terms of use for a particular system.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Chat</title>
+      <link>/docs/object-types/chat/</link>
+      <pubDate>Thu, 05 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/object-types/chat/</guid>
+      <description>
+        
+        
+        &lt;p&gt;This is used to describe a single message in an instant messaging application.
+The &lt;code&gt;&amp;lt;SessionId&amp;gt;&lt;/code&gt; element can be populated to allow multiple events for the same chat session to be associated at a later date.
+This is used for direct user to user chat as opposed to &lt;a href=&#34;../../docs/object-types/group-chat/&#34;&gt;&lt;code&gt;&amp;lt;GroupChat&amp;gt;&lt;/code&gt;&lt;/a&gt; which is used for chatting to a group of users via a chat room.&lt;/p&gt;
+&lt;p&gt;A chat message is typically modelled within a &lt;a href=&#34;../../docs/schema-actions/create-view-delete/&#34;&gt;&lt;code&gt;&amp;lt;Create&amp;gt;&lt;/code&gt;&lt;/a&gt; schema action.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Configuration</title>
+      <link>/docs/object-types/configuration/</link>
+      <pubDate>Thu, 05 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/object-types/configuration/</guid>
+      <description>
+        
+        
+        &lt;p&gt;This describes any form of configuration for a system or piece of hardware, e.g. describing some or all of the configuration of a firewall.
+Due to the very varied nature of software/hardware configuration there is no additional predefined structure beyond the base object structure.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Criteria</title>
+      <link>/docs/object-types/criteria/</link>
+      <pubDate>Thu, 05 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/object-types/criteria/</guid>
+      <description>
+        
+        
+        &lt;p&gt;This is used to describe the criteria applied in any kind of search or filter operation along with the returned results, if known.
+The &lt;code&gt;&amp;lt;Query&amp;gt;&lt;/code&gt; element is used to record the actual query terms used, either in its raw form (e.g. SQL or XPath), as a nested hierarchy of operators and expressions or as a set of simple &lt;code&gt;&amp;lt;Include&amp;gt;&lt;/code&gt; or &lt;code&gt;&amp;lt;exclude&amp;gt;&lt;/code&gt; elements.&lt;/p&gt;
+&lt;p&gt;For example, this may be used to describe the criteria for a query that has been stored for re-use, e.g. an &lt;code&gt;&amp;lt;Update&amp;gt;/&amp;lt;Criteria&amp;gt;&lt;/code&gt; event where a user is making changes to a stored query but not actually executing the query.&lt;/p&gt;
+&lt;p&gt;See &lt;a href=&#34;../completeExamples/README.md&#34;&gt;Complete Examples&lt;/a&gt; for example events.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Document</title>
+      <link>/docs/object-types/document/</link>
+      <pubDate>Thu, 05 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/object-types/document/</guid>
+      <description>
+        
+        
+        &lt;p&gt;This is used to describe any form of digital document, such as a Word document, PDF or a simple text file, along with its location and most recent created/modified/accessed times.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;&amp;lt;Permissions&amp;gt;&lt;/code&gt; element that is part of the base object structure can be used to define all the user/group permissions in place on the document in the case of a document management system or similar.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Email</title>
+      <link>/docs/object-types/email/</link>
+      <pubDate>Thu, 05 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/object-types/email/</guid>
+      <description>
+        
+        
+        &lt;p&gt;This object type is used to describe an email that has either been sent, received or saved in some way.
+It can record all parties involved in the email.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: File</title>
+      <link>/docs/object-types/file/</link>
+      <pubDate>Thu, 05 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/object-types/file/</guid>
+      <description>
+        
+        
+        &lt;p&gt;This is used to describe any kind of file on a file system or file repository, e.g. a data file, log file, backup file, etc.
+The &lt;code&gt;&amp;lt;Media&amp;gt;&lt;/code&gt; element can be used to describe the type of media it is stored on.
+The hash of the file can also be recorded using &lt;code&gt;&amp;lt;Hash&amp;gt;&lt;/code&gt; so the actual version of the file interacted with is known.
+If a hash is supplied then the name of the hashing algorithm should also be supplied in the &lt;code&gt;Type&lt;/code&gt; attribute.&lt;/p&gt;
+&lt;p&gt;The object type &lt;a href=&#34;../../docs/object-types/document/&#34;&gt;&lt;code&gt;&amp;lt;Document&amp;gt;&lt;/code&gt;&lt;/a&gt; may be more appropriate unless the file is being referred to in its generic capacity as a file.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Folder</title>
+      <link>/docs/object-types/folder/</link>
+      <pubDate>Thu, 05 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/object-types/folder/</guid>
+      <description>
+        
+        
+        &lt;p&gt;This is very similar to the &lt;a href=&#34;../../docs/object-types/file/&#34;&gt;&lt;code&gt;&amp;lt;File&amp;gt;&lt;/code&gt;&lt;/a&gt; object type except that it is used to record a folder on a file system or file repository.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Group</title>
+      <link>/docs/object-types/group/</link>
+      <pubDate>Thu, 05 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/object-types/group/</guid>
+      <description>
+        
+        
+        &lt;p&gt;This used to define a group entity, e.g. a group of users.
+The Group itself may have other groups within it.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Group Chat</title>
+      <link>/docs/object-types/group-chat/</link>
+      <pubDate>Thu, 05 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/object-types/group-chat/</guid>
+      <description>
+        
+        
+        &lt;p&gt;This is similar to the &lt;a href=&#34;../../docs/object-types/chat/&#34;&gt;&lt;code&gt;&amp;lt;Chat&amp;gt;&lt;/code&gt;&lt;/a&gt; object with the difference that it is for recording a group chat message either from a user to a chat room or from a room to a user.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Object</title>
+      <link>/docs/object-types/object/</link>
+      <pubDate>Thu, 05 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/object-types/object/</guid>
+      <description>
+        
+        
+        &lt;p&gt;This is the object type of last resort when the object involved in the event cannot be described using any of the other types.
+Due to the unknown nature of the object, the &lt;a href=&#34;../../docs/unstructured-data/&#34;&gt;&lt;code&gt;&amp;lt;Data&amp;gt;&lt;/code&gt;&lt;/a&gt; element structure is provided in addition to the base object structure.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>

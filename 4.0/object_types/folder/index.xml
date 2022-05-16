@@ -1,0 +1,32 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>event-logging XML Schema – folder</title>
+    <link>/object_types/folder/</link>
+    <description>Recent content in folder on event-logging XML Schema</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 05 May 2022 00:00:00 +0000</lastBuildDate>
+    
+	  <atom:link href="/object_types/folder/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Docs: Folder</title>
+      <link>/docs/object-types/folder/</link>
+      <pubDate>Thu, 05 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/object-types/folder/</guid>
+      <description>
+        
+        
+        &lt;p&gt;This is very similar to the &lt;a href=&#34;../../docs/object-types/file/&#34;&gt;&lt;code&gt;&amp;lt;File&amp;gt;&lt;/code&gt;&lt;/a&gt; object type except that it is used to record a folder on a file system or file repository.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>

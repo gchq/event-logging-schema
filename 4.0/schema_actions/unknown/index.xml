@@ -1,0 +1,33 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>event-logging XML Schema – unknown</title>
+    <link>/schema_actions/unknown/</link>
+    <description>Recent content in unknown on event-logging XML Schema</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 06 May 2022 00:00:00 +0000</lastBuildDate>
+    
+	  <atom:link href="/schema_actions/unknown/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Docs: Unknown</title>
+      <link>/docs/schema-actions/unknown/</link>
+      <pubDate>Fri, 06 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/schema-actions/unknown/</guid>
+      <description>
+        
+        
+        &lt;p&gt;This schema action structure is the action of last resort when the event cannot be accurately described with any of the other schema actions.&lt;/p&gt;
+&lt;p&gt;The structure is simply the extensible &lt;a href=&#34;../unstructuredData.md&#34;&gt;data structure&lt;/a&gt; allowing for most types of data to be recorded.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>

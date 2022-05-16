@@ -1,0 +1,187 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>event-logging XML Schema – meta</title>
+    <link>/tags/meta/</link>
+    <description>Recent content in meta on event-logging XML Schema</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 06 May 2022 00:00:00 +0000</lastBuildDate>
+    
+	  <atom:link href="/tags/meta/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Docs: Meta Element</title>
+      <link>/docs/meta/</link>
+      <pubDate>Wed, 04 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/meta/</guid>
+      <description>
+        
+        
+        &lt;p&gt;The &lt;code&gt;&amp;lt;Meta&amp;gt;&lt;/code&gt; element appears in a number of places in the schema.
+The purpose of the &lt;code&gt;&amp;lt;Meta&amp;gt;&lt;/code&gt; element is to allow for extensibility of events with meta data whose structure is defined outside of this schema.
+Such content could be site specific and thus not warrant inclusion in the &lt;em&gt;event-logging&lt;/em&gt; schema.
+It may also be used for decorating events post-receipt.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;&amp;lt;Meta&amp;gt;&lt;/code&gt; element is of type &lt;code&gt;evt:AnyContentComplexType&lt;/code&gt; which is basically a wrapper around an &lt;code&gt;xs:any&lt;/code&gt; element so it can support different data structures such as JSON, YAML, XML (conforming to another schema), CSV, etc.&lt;/p&gt;
+&lt;p&gt;A &lt;code&gt;&amp;lt;Meta&amp;gt;&lt;/code&gt; element can look like this:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Meta&lt;/span&gt; &lt;span style=&#34;color:#309&#34;&gt;ContentType=&lt;/span&gt;&lt;span style=&#34;color:#c30&#34;&gt;&amp;#34;XML:MyMeta&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#309&#34;&gt;Version=&lt;/span&gt;&lt;span style=&#34;color:#c30&#34;&gt;&amp;#34;1.2&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;MyMeta&lt;/span&gt; &lt;span style=&#34;color:#309&#34;&gt;xmlns=&lt;/span&gt;&lt;span style=&#34;color:#c30&#34;&gt;&amp;#34;http://myorg.mydomain.mymeta&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;ElementA&amp;gt;&amp;lt;/ElementA&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;ElementB&amp;gt;&amp;lt;/ElementB&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/MyMeta&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Meta&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The &lt;code&gt;ContentType&lt;/code&gt; attribute is used to provide a computer readable name or key for the type of data held within &lt;code&gt;&amp;lt;Meta&amp;gt;&lt;/code&gt;.
+This will allow to the system reading the event to be able to appropriately parse the content, if it is able to.
+The value of the attribute would be specific to the use of that type of meta data.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;Version&lt;/code&gt; attribute is used to optional specify the version of the structure used inside the &lt;code&gt;&amp;lt;Meta&amp;gt;&lt;/code&gt; element.
+Some data formats are self describing when it comes to their version so this attribute may not be required.&lt;/p&gt;
+&lt;p&gt;Multiple &lt;code&gt;&amp;lt;Meta&amp;gt;&lt;/code&gt; elements are supported allowing for various different types of meta data to be attached to the event.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Meta (JSON)</title>
+      <link>/docs/complete-examples/xml/event-meta-json.xml/</link>
+      <pubDate>Fri, 06 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/complete-examples/xml/event-meta-json.xml/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;eventmeta-json&#34;&gt;&lt;code&gt;&amp;lt;Event&amp;gt;/&amp;lt;Meta&amp;gt;&lt;/code&gt; (JSON)&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#099&#34;&gt;&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Events&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#309&#34;&gt;xmlns=&lt;/span&gt;&lt;span style=&#34;color:#c30&#34;&gt;&amp;#34;event-logging:3&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#309&#34;&gt;xmlns:xsi=&lt;/span&gt;&lt;span style=&#34;color:#c30&#34;&gt;&amp;#34;http://www.w3.org/2001/XMLSchema-instance&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#309&#34;&gt;xsi:schemaLocation=&lt;/span&gt;&lt;span style=&#34;color:#c30&#34;&gt;&amp;#34;event-logging:3 file://event-logging-v999.99.9-documentation.xsd&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#309&#34;&gt;Version=&lt;/span&gt;&lt;span style=&#34;color:#c30&#34;&gt;&amp;#34;999.99.9&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#09f;font-style:italic&#34;&gt;&amp;lt;!-- JSON Meta example --&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Event&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Meta&lt;/span&gt; &lt;span style=&#34;color:#309&#34;&gt;ContentType=&lt;/span&gt;&lt;span style=&#34;color:#c30&#34;&gt;&amp;#34;JSON:streamMeta&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#309&#34;&gt;Version=&lt;/span&gt;&lt;span style=&#34;color:#c30&#34;&gt;&amp;#34;1.2.3&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      {  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &amp;#34;streamMeta&amp;#34;:{  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &amp;#34;streamId&amp;#34;:&amp;#34;12345&amp;#34;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &amp;#34;eventId&amp;#34;:&amp;#34;45678&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Meta&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;EventTime&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;TimeCreated&amp;gt;&lt;/span&gt;2017-01-02T03:04:05.678Z&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/TimeCreated&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/EventTime&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;EventSource&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;System&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Name&amp;gt;&lt;/span&gt;SPACEPRINT&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Name&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Environment&amp;gt;&lt;/span&gt;Luna1&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Environment&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Organisation&amp;gt;&lt;/span&gt;ACMECoolResearch&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Organisation&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/System&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Generator&amp;gt;&lt;/span&gt;ZeroGPrinter&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Generator&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Device&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;HostName&amp;gt;&lt;/span&gt;prn01.luna1.lan.myorg.com&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/HostName&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Device&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;User&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Id&amp;gt;&lt;/span&gt;jc101&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Id&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/User&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Interactive&amp;gt;&lt;/span&gt;true&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Interactive&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/EventSource&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;EventDetail&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;TypeId&amp;gt;&lt;/span&gt;BWPrint&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/TypeId&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Description&amp;gt;&lt;/span&gt;System has finished printing&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Description&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Print&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Action&amp;gt;&lt;/span&gt;FinishPrint&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Action&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;PrintJob&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Document&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Title&amp;gt;&lt;/span&gt;Resume - J Coder&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Title&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Document&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Pages&amp;gt;&lt;/span&gt;2&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Pages&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Size&amp;gt;&lt;/span&gt;3410212&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Size&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Submitted&amp;gt;&lt;/span&gt;2017-01-02T03:03:51.234Z&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Submitted&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/PrintJob&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Outcome&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Success&amp;gt;&lt;/span&gt;true&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Success&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Outcome&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Print&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/EventDetail&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Event&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Events&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Meta (XML)</title>
+      <link>/docs/complete-examples/xml/event-meta-xml.xml/</link>
+      <pubDate>Fri, 06 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/complete-examples/xml/event-meta-xml.xml/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;eventmeta-xml&#34;&gt;&lt;code&gt;&amp;lt;Event&amp;gt;/&amp;lt;Meta&amp;gt;&lt;/code&gt; (XML)&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#099&#34;&gt;&amp;lt;?xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Events&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#309&#34;&gt;xmlns=&lt;/span&gt;&lt;span style=&#34;color:#c30&#34;&gt;&amp;#34;event-logging:3&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#309&#34;&gt;xmlns:xsi=&lt;/span&gt;&lt;span style=&#34;color:#c30&#34;&gt;&amp;#34;http://www.w3.org/2001/XMLSchema-instance&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#309&#34;&gt;xsi:schemaLocation=&lt;/span&gt;&lt;span style=&#34;color:#c30&#34;&gt;&amp;#34;event-logging:3 file://event-logging-v999.99.9-documentation.xsd&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#309&#34;&gt;Version=&lt;/span&gt;&lt;span style=&#34;color:#c30&#34;&gt;&amp;#34;999.99.9&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#09f;font-style:italic&#34;&gt;&amp;lt;!-- XML Meta example --&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Event&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Meta&lt;/span&gt; &lt;span style=&#34;color:#309&#34;&gt;ContentType=&lt;/span&gt;&lt;span style=&#34;color:#c30&#34;&gt;&amp;#34;XML:MyMeta&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#309&#34;&gt;Version=&lt;/span&gt;&lt;span style=&#34;color:#c30&#34;&gt;&amp;#34;1.2&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;MyMeta&lt;/span&gt; &lt;span style=&#34;color:#309&#34;&gt;xmlns=&lt;/span&gt;&lt;span style=&#34;color:#c30&#34;&gt;&amp;#34;http://myorg.mydomain.mymeta&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;ElementA&amp;gt;&lt;/span&gt;value A&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/ElementA&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;ElementB&amp;gt;&lt;/span&gt;value B&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/ElementB&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/MyMeta&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Meta&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;EventTime&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;TimeCreated&amp;gt;&lt;/span&gt;2017-01-02T03:04:05.678Z&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/TimeCreated&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/EventTime&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;EventSource&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;System&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Name&amp;gt;&lt;/span&gt;SPACEPRINT&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Name&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Environment&amp;gt;&lt;/span&gt;Luna1&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Environment&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Organisation&amp;gt;&lt;/span&gt;ACMECoolResearch&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Organisation&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/System&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Generator&amp;gt;&lt;/span&gt;ZeroGPrinter&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Generator&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Device&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;HostName&amp;gt;&lt;/span&gt;prn01.luna1.lan.myorg.com&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/HostName&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Device&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;User&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Id&amp;gt;&lt;/span&gt;jc101&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Id&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/User&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Interactive&amp;gt;&lt;/span&gt;true&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Interactive&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/EventSource&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;EventDetail&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;TypeId&amp;gt;&lt;/span&gt;BWPrint&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/TypeId&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Description&amp;gt;&lt;/span&gt;System has finished printing&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Description&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Print&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Action&amp;gt;&lt;/span&gt;FinishPrint&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Action&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;PrintJob&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Document&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Title&amp;gt;&lt;/span&gt;Resume - J Coder&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Title&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Document&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Pages&amp;gt;&lt;/span&gt;2&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Pages&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Size&amp;gt;&lt;/span&gt;3410212&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Size&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Submitted&amp;gt;&lt;/span&gt;2017-01-02T03:03:51.234Z&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Submitted&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/PrintJob&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Outcome&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Success&amp;gt;&lt;/span&gt;true&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Success&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Outcome&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Print&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/EventDetail&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Event&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Events&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+      </description>
+    </item>
+    
+  </channel>
+</rss>

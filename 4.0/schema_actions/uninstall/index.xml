@@ -1,0 +1,74 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>event-logging XML Schema – uninstall</title>
+    <link>/schema_actions/uninstall/</link>
+    <description>Recent content in uninstall on event-logging XML Schema</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 06 May 2022 00:00:00 +0000</lastBuildDate>
+    
+	  <atom:link href="/schema_actions/uninstall/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Docs: Install / Uninstall</title>
+      <link>/docs/schema-actions/install-uninstall/</link>
+      <pubDate>Fri, 06 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/schema-actions/install-uninstall/</guid>
+      <description>
+        
+        
+        &lt;p&gt;This action can be used for recording the installation or removal of software.
+Also, some systems are able to monitor for addition or removal of hardware/media.
+Where this is possible install/uninstall events can be used for this purpose.&lt;/p&gt;
+&lt;p&gt;The following example shows a typical event that could be recorded when hardware addition is detected.
+Note that the addition of hardware in this instance is not permitted due to restrictions applied to the device in question.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;EventDetail&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;TypeId&amp;gt;&lt;/span&gt;InstallHardware&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/TypeId&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Install&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Hardware&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Type&amp;gt;&lt;/span&gt;USBMassStorage&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Type&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Manufacturer&amp;gt;&lt;/span&gt;Some Manufacturer&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Manufacturer&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Capacity&amp;gt;&lt;/span&gt;8589934592&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Capacity&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Hardware&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Outcome&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Permitted&amp;gt;&lt;/span&gt;false&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Permitted&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Description&amp;gt;&lt;/span&gt;No hardware is allowed to be added.&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Description&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Outcome&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Install&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/EventDetail&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt; 
+Whenever read only or recordable media are inserted into a device this may be recorded for audit purposes.
+The media type may be described (e.g. DVD, CD) as well as whether or not the media is writeable.
+The capacity can also be specified in bytes, see the following example.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;EventDetail&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;TypeId&amp;gt;&lt;/span&gt;InsertRemovableMedia&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/TypeId&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Install&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Media&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Type&amp;gt;&lt;/span&gt;CD&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Type&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;ReadWrite&amp;gt;&lt;/span&gt;true&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/ReadWrite&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Capacity&amp;gt;&lt;/span&gt;671088640&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Capacity&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Media&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Install&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/EventDetail&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The following is an example of an event recording the installation of a piece of software:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;EventDetail&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;TypeId&amp;gt;&lt;/span&gt;yumInstall&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/TypeId&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Install&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Software&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Name&amp;gt;&lt;/span&gt;vim&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Name&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Version&amp;gt;&lt;/span&gt;7.4&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Version&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Software&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Install&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/EventDetail&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+      </description>
+    </item>
+    
+  </channel>
+</rss>

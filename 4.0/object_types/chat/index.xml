@@ -1,0 +1,35 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>event-logging XML Schema – chat</title>
+    <link>/object_types/chat/</link>
+    <description>Recent content in chat on event-logging XML Schema</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 05 May 2022 00:00:00 +0000</lastBuildDate>
+    
+	  <atom:link href="/object_types/chat/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Docs: Chat</title>
+      <link>/docs/object-types/chat/</link>
+      <pubDate>Thu, 05 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/object-types/chat/</guid>
+      <description>
+        
+        
+        &lt;p&gt;This is used to describe a single message in an instant messaging application.
+The &lt;code&gt;&amp;lt;SessionId&amp;gt;&lt;/code&gt; element can be populated to allow multiple events for the same chat session to be associated at a later date.
+This is used for direct user to user chat as opposed to &lt;a href=&#34;../../docs/object-types/group-chat/&#34;&gt;&lt;code&gt;&amp;lt;GroupChat&amp;gt;&lt;/code&gt;&lt;/a&gt; which is used for chatting to a group of users via a chat room.&lt;/p&gt;
+&lt;p&gt;A chat message is typically modelled within a &lt;a href=&#34;../../docs/schema-actions/create-view-delete/&#34;&gt;&lt;code&gt;&amp;lt;Create&amp;gt;&lt;/code&gt;&lt;/a&gt; schema action.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>

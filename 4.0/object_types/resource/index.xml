@@ -1,0 +1,33 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>event-logging XML Schema – resource</title>
+    <link>/object_types/resource/</link>
+    <description>Recent content in resource on event-logging XML Schema</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 06 May 2022 00:00:00 +0000</lastBuildDate>
+    
+	  <atom:link href="/object_types/resource/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Docs: Resource</title>
+      <link>/docs/object-types/resource/</link>
+      <pubDate>Fri, 06 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/object-types/resource/</guid>
+      <description>
+        
+        
+        &lt;p&gt;This is used to describe a resource within a web site or web application, such as an HTML file, image file or script, along with the details of that resource such as size or response codes.
+It can represent both successful and failed access to the resource object.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>

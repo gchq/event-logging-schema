@@ -1,0 +1,33 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>event-logging XML Schema – email</title>
+    <link>/object_types/email/</link>
+    <description>Recent content in email on event-logging XML Schema</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 05 May 2022 00:00:00 +0000</lastBuildDate>
+    
+	  <atom:link href="/object_types/email/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Docs: Email</title>
+      <link>/docs/object-types/email/</link>
+      <pubDate>Thu, 05 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/object-types/email/</guid>
+      <description>
+        
+        
+        &lt;p&gt;This object type is used to describe an email that has either been sent, received or saved in some way.
+It can record all parties involved in the email.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>

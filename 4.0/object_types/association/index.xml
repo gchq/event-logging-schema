@@ -1,0 +1,34 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>event-logging XML Schema – association</title>
+    <link>/object_types/association/</link>
+    <description>Recent content in association on event-logging XML Schema</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 05 May 2022 00:00:00 +0000</lastBuildDate>
+    
+	  <atom:link href="/object_types/association/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Docs: Association</title>
+      <link>/docs/object-types/association/</link>
+      <pubDate>Thu, 05 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/object-types/association/</guid>
+      <description>
+        
+        
+        &lt;p&gt;This can be used to describe any form of association between other objects.
+For example in a social networking type application links are made between user accounts.
+This &lt;code&gt;&amp;lt;Association&amp;gt;&lt;/code&gt; object would allow the creation/modification/deletion of one of these links to be recorded.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>

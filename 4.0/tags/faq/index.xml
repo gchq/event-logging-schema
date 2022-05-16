@@ -1,0 +1,51 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>event-logging XML Schema – faq</title>
+    <link>/tags/faq/</link>
+    <description>Recent content in faq on event-logging XML Schema</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 04 May 2022 00:00:00 +0000</lastBuildDate>
+    
+	  <atom:link href="/tags/faq/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Community: Frequently Asked Questions</title>
+      <link>/community/dev-guide/faq/</link>
+      <pubDate>Wed, 04 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/community/dev-guide/faq/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;how-can-i-check-the-schema-is-valid-before-submitting-a-pull-request&#34;&gt;&lt;strong&gt;How can I check the schema is valid before submitting a pull request?&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;Run the following (which relies on libxml2-utils):&lt;/p&gt;
+
+
+
+
+
+
+
+&lt;div class=&#34;highlight&#34;&gt;
+  &lt;div class=&#34;code-toolbar&#34;&gt;
+    &lt;pre 
+      class=&#34;command-line language-bash&#34; 
+      data-user=&#34;user&#34; 
+      data-host=&#34;localhost&#34; 
+      data-continuation-str=&#34;\&#34;
+      data-filter-output=&#34;(out)&#34;&gt;&lt;code class=&#34;language-bash&#34;&gt;xmllint --noout --schema http://www.w3.org/2001/XMLSchema.xsd event-logging-vX.X.X.xsd&lt;/code&gt;&lt;/pre&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>

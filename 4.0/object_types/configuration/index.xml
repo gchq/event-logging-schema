@@ -1,0 +1,33 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>event-logging XML Schema – configuration</title>
+    <link>/object_types/configuration/</link>
+    <description>Recent content in configuration on event-logging XML Schema</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 05 May 2022 00:00:00 +0000</lastBuildDate>
+    
+	  <atom:link href="/object_types/configuration/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Docs: Configuration</title>
+      <link>/docs/object-types/configuration/</link>
+      <pubDate>Thu, 05 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/object-types/configuration/</guid>
+      <description>
+        
+        
+        &lt;p&gt;This describes any form of configuration for a system or piece of hardware, e.g. describing some or all of the configuration of a firewall.
+Due to the very varied nature of software/hardware configuration there is no additional predefined structure beyond the base object structure.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>

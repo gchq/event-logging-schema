@@ -1,0 +1,33 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>event-logging XML Schema – voip</title>
+    <link>/object_types/voip/</link>
+    <description>Recent content in voip on event-logging XML Schema</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 06 May 2022 00:00:00 +0000</lastBuildDate>
+    
+	  <atom:link href="/object_types/voip/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Docs: VOIP</title>
+      <link>/docs/object-types/voip/</link>
+      <pubDate>Fri, 06 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/object-types/voip/</guid>
+      <description>
+        
+        
+        &lt;p&gt;This is used to record a voice over IP call between parties.
+The &lt;code&gt;&amp;lt;PhoneNumber&amp;gt;&lt;/code&gt; element represents the phone number of the calling party.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>

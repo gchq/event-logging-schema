@@ -1,0 +1,32 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>event-logging XML Schema – shortcut</title>
+    <link>/object_types/shortcut/</link>
+    <description>Recent content in shortcut on event-logging XML Schema</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 06 May 2022 00:00:00 +0000</lastBuildDate>
+    
+	  <atom:link href="/object_types/shortcut/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Docs: Shortcut</title>
+      <link>/docs/object-types/shortcut/</link>
+      <pubDate>Fri, 06 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/object-types/shortcut/</guid>
+      <description>
+        
+        
+        &lt;p&gt;This should be used to describe any form of shortcut or symbolic link to another object.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>

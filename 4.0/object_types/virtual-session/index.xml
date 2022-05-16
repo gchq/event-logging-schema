@@ -1,0 +1,32 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>event-logging XML Schema – virtual-session</title>
+    <link>/object_types/virtual-session/</link>
+    <description>Recent content in virtual-session on event-logging XML Schema</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 06 May 2022 00:00:00 +0000</lastBuildDate>
+    
+	  <atom:link href="/object_types/virtual-session/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Docs: Virtual Session</title>
+      <link>/docs/object-types/virtual-session/</link>
+      <pubDate>Fri, 06 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/object-types/virtual-session/</guid>
+      <description>
+        
+        
+        &lt;p&gt;This object type is used to describe the session used when viewing another user&amp;rsquo;s session, e.g. screen sharing or remote assistance type activities.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>

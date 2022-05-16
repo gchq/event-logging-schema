@@ -1,0 +1,32 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>event-logging XML Schema – group-chat</title>
+    <link>/object_types/group-chat/</link>
+    <description>Recent content in group-chat on event-logging XML Schema</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 05 May 2022 00:00:00 +0000</lastBuildDate>
+    
+	  <atom:link href="/object_types/group-chat/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Docs: Group Chat</title>
+      <link>/docs/object-types/group-chat/</link>
+      <pubDate>Thu, 05 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/object-types/group-chat/</guid>
+      <description>
+        
+        
+        &lt;p&gt;This is similar to the &lt;a href=&#34;../../docs/object-types/chat/&#34;&gt;&lt;code&gt;&amp;lt;Chat&amp;gt;&lt;/code&gt;&lt;/a&gt; object with the difference that it is for recording a group chat message either from a user to a chat room or from a room to a user.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>

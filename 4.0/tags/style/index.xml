@@ -1,0 +1,122 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>event-logging XML Schema – style</title>
+    <link>/tags/style/</link>
+    <description>Recent content in style on event-logging XML Schema</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Wed, 11 May 2022 00:00:00 +0000</lastBuildDate>
+    
+	  <atom:link href="/tags/style/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Community: Schema Style Guide</title>
+      <link>/community/dev-guide/schema-style-guide/</link>
+      <pubDate>Wed, 11 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/community/dev-guide/schema-style-guide/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;breaking-changes&#34;&gt;Breaking changes&lt;/h2&gt;
+&lt;p&gt;When making changes to the Schema be mindful of the impact of those changes on XML documents that were valid against the previous version of the Schema.
+See &lt;a href=&#34;../../community/dev-guide/release-process/#release-considerations&#34;&gt;Release considerations&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;naming-conventions&#34;&gt;Naming conventions&lt;/h2&gt;
+&lt;p&gt;All elements, attributes and types should be named in UpperCamelCase, e.g. &lt;code&gt;EventSource&lt;/code&gt;, &lt;code&gt;GroupComplextType&lt;/code&gt;, etc.&lt;/p&gt;
+&lt;p&gt;Any initialisms that form part of a name can be in all capitals, e.g. &lt;code&gt;MAC&lt;/code&gt; in &lt;code&gt;DeviceMACAddressSimpleType&lt;/code&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;groups&#34;&gt;Groups&lt;/h3&gt;
+&lt;p&gt;Groups should be suffixed with &lt;code&gt;Group&lt;/code&gt;, e.g. &lt;code&gt;InstallationGroup&lt;/code&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;simple-types&#34;&gt;Simple types&lt;/h3&gt;
+&lt;p&gt;Simple types should be suffixed with &lt;code&gt;SimpleType&lt;/code&gt;, e.g. &lt;code&gt;LatitudeSimpleType&lt;/code&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;complex-types&#34;&gt;Complex types&lt;/h3&gt;
+&lt;p&gt;Complex types should be suffixed with &lt;code&gt;ComplexType&lt;/code&gt;, e.g. &lt;code&gt;PrintComplexType&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id=&#34;elements-vs-attributes&#34;&gt;Elements vs attributes&lt;/h2&gt;
+&lt;p&gt;Elements are preferred.&lt;/p&gt;
+&lt;h2 id=&#34;cardinality&#34;&gt;Cardinality&lt;/h2&gt;
+&lt;p&gt;Mandatory elements and attributes should be used with caution.
+In addition to the fact that adding a new mandatory element/attribute means a breaking change it also imposes a requirement for an event to have the data to populate that element/attribute.
+The Schema has to support events coming from a wide variety of source systems which may only supply minimal information and whose log output is not capable of being changed.
+For this reason the vast majority of elements are optional to not impose requirements that cannot be met by source system&amp;rsquo;s data.&lt;/p&gt;
+&lt;p&gt;Similarly use of constraints should be avoided as these would impose unreasonable restrictions.&lt;/p&gt;
+&lt;h2 id=&#34;use-of-anonymous-complex-types&#34;&gt;Use of anonymous complex types&lt;/h2&gt;
+&lt;p&gt;When adding child content the use of &lt;code&gt;&amp;lt;xs:complexType&amp;gt;&lt;/code&gt; elements should be avoided as this causes problems for the auto generated Java code produced for the event-logging Java library.
+Instead create a new named complex type which will ensure the type is mapped to a Java class for a cleaner Java 
+
+
+
+&lt;span class=&#34;glossary-link&#34;&gt;
+  &lt;a href=&#34;../../docs/glossary/#api&#34; title=&#34;Glossary entry for API&#34;&gt;
+    &lt;span&gt;API&lt;/span&gt;
+    &lt;i class=&#34;glossary-link-icon fas fa-book fa-sm text-primary&#34;&gt;&lt;/i&gt;
+  &lt;/a&gt;
+&lt;/span&gt;
+.&lt;/p&gt;
+&lt;h2 id=&#34;order&#34;&gt;Order&lt;/h2&gt;
+&lt;h3 id=&#34;top-level-schema-items&#34;&gt;Top level schema items&lt;/h3&gt;
+&lt;p&gt;When adding new top level elements, e.g. a root element or a complex type, they should be added in alphabetical order and following the following grouping and order of groups:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Root elements&lt;/li&gt;
+&lt;li&gt;Groups&lt;/li&gt;
+&lt;li&gt;Complex types&lt;/li&gt;
+&lt;li&gt;Simple types&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;sequences&#34;&gt;Sequences&lt;/h3&gt;
+&lt;p&gt;Elements in a sequence are in no particular order.
+They should however be ordered in a logical manor with the most frequently used elements first.
+If the sequence includes a &lt;code&gt;Data&lt;/code&gt; element of type &lt;code&gt;evt:DataComplexType&lt;/code&gt; then this should be the last element and be optional as it is used for extensibility.&lt;/p&gt;
+&lt;h2 id=&#34;annotations&#34;&gt;Annotations&lt;/h2&gt;
+&lt;p&gt;The Schema should be self-documented as far as possible with &lt;code&gt;&amp;lt;xs:annotation&amp;gt;&lt;/code&gt; elements added to all elements, attributes and types to describe their purpose.
+These annotations are pulled through into the Javadoc of the &lt;em&gt;event-logging&lt;/em&gt; Java library so the more information that can be provided, the better the Java 
+
+
+
+&lt;span class=&#34;glossary-link&#34;&gt;
+  &lt;a href=&#34;../../docs/glossary/#api&#34; title=&#34;Glossary entry for API&#34;&gt;
+    &lt;span&gt;API&lt;/span&gt;
+    &lt;i class=&#34;glossary-link-icon fas fa-book fa-sm text-primary&#34;&gt;&lt;/i&gt;
+  &lt;/a&gt;
+&lt;/span&gt;
+ will be.&lt;/p&gt;
+&lt;h2 id=&#34;data-elements&#34;&gt;Data elements&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;Data&lt;/code&gt; elements of type &lt;code&gt;evt:DataComplexType&lt;/code&gt; should be included in most places in the Schema to allow for extensibility of all aspects of the Schema.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Community: Documentation Style Guide</title>
+      <link>/community/documentation/style-guide/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/community/documentation/style-guide/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;
+&lt;p&gt;This documentation shares the same style guidelines as the 
+
+
+
+
+
+
+  
+
+&lt;span class=&#34;external-link&#34;&gt;
+  &lt;a href=&#34;https://gchq.github.io/stroom-docs/7.1/community/documentation/style-guide/&#34; target=&#34;_blank&#34; class=&#34;&#34; style=&#34;&#34; title=&#34;Stroom documenation (external link)&#34;&gt;
+    &lt;span&gt;Stroom documenation&lt;/span&gt;
+    &lt;i class=&#34;external-link-icon fas fa-external-link-alt fa-sm text-secondary&#34;&gt;&lt;/i&gt;
+  &lt;/a&gt;
+&lt;/span&gt;
+ so refer to that for guidance on how to style this documentation.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>

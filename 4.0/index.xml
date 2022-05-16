@@ -1,0 +1,78 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>event-logging XML Schema – event-logging XML Schema</title>
+    <link>/</link>
+    <description>Recent content on event-logging XML Schema</description>
+    <generator>Hugo -- gohugo.io</generator>
+    
+	  <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+      
+    
+    
+    <item>
+      <title>News: Unreleased</title>
+      <link>/news/releases/unreleased/</link>
+      <pubDate>Tue, 13 Jul 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/news/releases/unreleased/</guid>
+      <description>
+        
+        
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>News: Version 4.0-beta.5</title>
+      <link>/news/releases/v04.00-beta.5/</link>
+      <pubDate>Tue, 21 Sep 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/news/releases/v04.00-beta.5/</guid>
+      <description>
+        
+        
+        
+
+&lt;div class=&#34;pageinfo pageinfo-primary&#34;&gt;
+&lt;p&gt;For a detailed list of the changes in v4.0-beta.5 see the&lt;/p&gt;
+&lt;span class=&#34;external-link&#34;&gt;
+  &lt;a href=&#34;https://github.com/gchq/event-logging-schema/blob/v4.0-beta.5/CHANGELOG.md&#34; target=&#34;_blank&#34; class=&#34;&#34; style=&#34;&#34; title=&#34;changelog (external link)&#34;&gt;
+    &lt;span&gt;changelog&lt;/span&gt;
+    &lt;i class=&#34;external-link-icon fas fa-external-link-alt fa-sm text-secondary&#34;&gt;&lt;/i&gt;
+  &lt;/a&gt;
+&lt;/span&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;v4.0 of the Schema is marked as &lt;em&gt;beta&lt;/em&gt; while the changes made since v3 are tested with real event data.
+We do not anticipate any change to the Schema unless problems are found in testing.&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>News: New Documentation Site</title>
+      <link>/news/news/20220511-new-docs-site/</link>
+      <pubDate>Wed, 11 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/news/news/20220511-new-docs-site/</guid>
+      <description>
+        
+        
+        &lt;p&gt;The Schema documentation has been re-vamped with a new look and feel.
+The documentation is now versioned so that you are only reading documentation applicable to one minor version of the schema.&lt;/p&gt;
+&lt;p&gt;Other improvements:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Addtion of News and Releases sections&lt;/li&gt;
+&lt;li&gt;Better site and page navigation with the left and right hand menus&lt;/li&gt;
+&lt;li&gt;Tagging of content to help find related material&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>
