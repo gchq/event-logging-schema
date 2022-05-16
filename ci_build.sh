@@ -393,7 +393,7 @@ create_docs_release_tag() {
   git tag \
     "${BUILD_TAG}" \
     -a \
-    -m "Automated build ${BUILD_NUMBER}"
+    -m "Schema documentation v${BUILD_NUMBER}"
 
   echo -e "Pushing tag ${GREEN}${BUILD_TAG}${NC}"
   git push \
