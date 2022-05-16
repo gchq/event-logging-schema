@@ -556,7 +556,7 @@ build_schema_variants() {
   # The build will also validate the versions in the source schema
   # and validate the complete XML examples in the docs
   local gradle_args=()
-  if [[ "${BUILD_IS_SCHEMA_RELEASE}" ]]; then
+  if [[ "${BUILD_IS_SCHEMA_RELEASE}" = "true" ]]; then
     gradle_args+=( "-Pversion=${SCHEMA_VERSION}" )
   fi
 
