@@ -181,6 +181,11 @@ prism_syntax_highlighting = true
     #version = "Unreleased"
     #url = "/stroom-docs/master"
 
+  # This is a symlink to the latest version we have
+  [[params.versions]]
+    version = "Latest"
+    url = "/../latest"
+
   [[params.versions]]
     version = "4.0"
     url = "/../4.0"

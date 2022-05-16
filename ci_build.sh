@@ -356,18 +356,6 @@ create_root_redirect_page() {
   echo -e "${GREEN}Creating root redirect page with latest version" \
     "[${BLUE}${latest_version}${GREEN}]${NC}"
 
-  # :? = error if unset
-  sed \
-    --regexp-extended \
-    --expression "s/<<<LATEST_VERSION>>>/${latest_version:?}/g" \
-    "${BUILD_DIR}/docs/index.html.template" \
-    > "${NEW_GH_PAGES_DIR}/index.html"
-
-  # This is to stop gh-pages treating the content as Jekyll content
-  # in which case dirs prefixed with '_' are ignored breaking the print 
-  # functionality
-  touch "${NEW_GH_PAGES_DIR}/.nojekyll"
-
   # Create a symlink so we have something like
   # /
   #   /4.0/
@@ -377,6 +365,19 @@ create_root_redirect_page() {
   pushd "${NEW_GH_PAGES_DIR}"
   ln -s "./${latest_version}/" "latest" 
   popd
+
+  # No make a redirect to the symlink so we open the latest
+  # version by default
+  sed \
+    --regexp-extended \
+    --expression "s/<<<LATEST_VERSION>>>/latest/g" \
+    "${BUILD_DIR}/docs/index.html.template" \
+    > "${NEW_GH_PAGES_DIR}/index.html"
+
+  # This is to stop gh-pages treating the content as Jekyll content
+  # in which case dirs prefixed with '_' are ignored breaking the print 
+  # functionality
+  touch "${NEW_GH_PAGES_DIR}/.nojekyll"
 }
 
 create_docs_release_tag() {
