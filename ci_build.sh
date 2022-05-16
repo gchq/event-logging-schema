@@ -555,9 +555,16 @@ build_schema_variants() {
   # schemas from the configured pipelines
   # The build will also validate the versions in the source schema
   # and validate the complete XML examples in the docs
+  local gradle_args=()
+  if [[ "${BUILD_IS_SCHEMA_RELEASE}" ]]; then
+    gradle_args+=( "-Pversion=${SCHEMA_VERSION}" )
+  fi
+
+  echo -e "${GREEN}Gradle args [${BLUE}${gradle_args[*]}${GREEN}]${NC}"
+    
   ./gradlew \
     --no-daemon \
-    -Pversion="${SCHEMA_VERSION}" \
+    "${gradle_args[@]}" \
     clean \
     build \
     runShadow \
