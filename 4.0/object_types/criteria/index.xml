@@ -120,7 +120,7 @@ Criteria can be used within other schema actions.&lt;/p&gt;
         &lt;p&gt;This is used to describe the criteria applied in any kind of search or filter operation along with the returned results, if known.
 The &lt;code&gt;&amp;lt;Query&amp;gt;&lt;/code&gt; element is used to record the actual query terms used, either in its raw form (e.g. SQL or XPath), as a nested hierarchy of operators and expressions or as a set of simple &lt;code&gt;&amp;lt;Include&amp;gt;&lt;/code&gt; or &lt;code&gt;&amp;lt;exclude&amp;gt;&lt;/code&gt; elements.&lt;/p&gt;
 &lt;p&gt;For example, this may be used to describe the criteria for a query that has been stored for re-use, e.g. an &lt;code&gt;&amp;lt;Update&amp;gt;/&amp;lt;Criteria&amp;gt;&lt;/code&gt; event where a user is making changes to a stored query but not actually executing the query.&lt;/p&gt;
-&lt;p&gt;See &lt;a href=&#34;../completeExamples/README.md&#34;&gt;Complete Examples&lt;/a&gt; for example events.&lt;/p&gt;
+&lt;p&gt;See &lt;a href=&#34;../../docs/complete-examples/&#34;&gt;Complete Examples&lt;/a&gt; for example events.&lt;/p&gt;
 
       </description>
     </item>

@@ -20517,6 +20517,11 @@ body:lang(he) {
 body:lang(ar) {
   font-family: 'Tajawal', "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; }
 
+.external-link {
+  overflow-wrap: anywhere; }
+  @media print {
+    .external-link span::after {
+      content: " (external link)"; } }
 .glossary-link-icon {
   opacity: 0.8; }
 
@@ -20732,8 +20737,5 @@ pre[class*=language-] {
 
 .token.operator, .token.entity, .token.url, .language-css .token.string, .style .token.string {
   background: unset !important; }
-
-.external-link {
-  overflow-wrap: anywhere; }
 
 /*# sourceMappingURL=main.css.map */

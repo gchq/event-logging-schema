@@ -539,13 +539,28 @@ All details (e.g. MAC Address, Name, IP Address) are similarly imaginary and any
 </div>
 
 
-<p>In some places the <code>&lt;UserDetails&gt;</code> element has been abbreviated for clarity using an elipsis (&hellip;).
+<p>In some places the <code>&lt;UserDetails&gt;</code> element has been abbreviated for clarity using an ellipsis (&hellip;).
 Typically the system generating the event will not know anything about a user beyond some identifier so a common practice is to decorate the event with a fully populated <code>&lt;UserDetails&gt;</code> element in the system processing the events.
 This approach means only one system needs to be able to resolve a user identifier into a rich set of data.</p>
 <p>In a real-world situation, a design decision would be needed - when to leave the event more concise using only an ID and when to join with additional information.
 Data such as user details change slowly, but they <em>do change</em>, e.g. as people get promoted, change role, etc.
 Therefore, such a joining process would utilise the values for these additional data fields that were correct at the time the event was generated.
-Certain tools such as <a href="https://github.com/gchq/stroom-docs/blob/master/README.md" title="Stroom on Github">Stroom</a> support this, and are sufficiently flexible to allow this enrichment process to take place during initial normalisation prior to storage, during analysis or at query time / inspection.</p>
+Certain tools such as 
+
+
+
+
+
+
+  
+
+<span class="external-link">
+  <a href="https://github.com/gchq/stroom-docs/blob/master/README.md%20" target="_blank" class="" style="" title="Stroom (external link)">
+    <span>Stroom</span>
+    <i class="external-link-icon fas fa-external-link-alt fa-sm text-secondary"></i>
+  </a>
+</span>
+ support this, and are sufficiently flexible to allow this enrichment process to take place during initial normalisation prior to storage, during analysis or at query time / inspection.</p>
 <p>The same principle applies to Device details, etc.</p>
 <p>Compression such as ZIP can very significantly reduce the overhead associated with highly repetitive data, and are able to allow fully enriched data to be persisted with only minimal overhead.</p>
 <p>Event Logging schema does not suggest any level of detail, and so to be more illustrative these examples vary in the level of detail provided, e.g. within <code>&lt;UserDetails&gt;</code>.</p>
@@ -634,7 +649,7 @@ For example, an event that describes the sending of an email from a company empl
 	
 	
 	<div class="text-muted mt-5 pt-3 border-top">
-  Last modified May 16, 2022: <a href="https://github.com/gchq/event-logging-schema/commit/672fbf3926f4ab409da004c211296f62d5d21734">Add a &#39;latest&#39; version (672fbf3)</a>
+  Last modified May 16, 2022: <a href="https://github.com/gchq/event-logging-schema/commit/8fe7e1be97fdea0a8942f82baabd1905b0213557">Remove style guide page (8fe7e1b)</a>
 </div>
 
 </div>

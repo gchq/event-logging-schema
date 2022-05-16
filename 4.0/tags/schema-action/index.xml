@@ -35,7 +35,7 @@ Which in XML would be as a &lt;code&gt;&amp;lt;View&amp;gt;&lt;/code&gt; with &l
 &lt;p&gt;While each schema action has a structure that is specific to the auditable event action, there are a number of structural elements that are common to multiple schema actions.&lt;/p&gt;
 &lt;h3 id=&#34;multi-object-complex-type&#34;&gt;Multi Object Complex Type&lt;/h3&gt;
 &lt;p&gt;The Multi Object Complex Type is a structure for describing an entity or entities involved in the auditable event, for example a document, file, resource or user.
-The structure is described in more detail in &lt;a href=&#34;../objectTypes/README.md&#34;&gt;Object Types&lt;/a&gt;.&lt;/p&gt;
+The structure is described in more detail in &lt;a href=&#34;../../docs/object-types/&#34;&gt;Object Types&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The &lt;code&gt;&amp;lt;Unknown&amp;gt;&lt;/code&gt; schema action structure should be the action of last resort, where the auditable action cannot be appropriately described by any of the other schema actions.
 Heavy use of this structure suggests that the scheme is deficient with respect to a type or types of event and suggestions for how the schema could be improved should be submitted to the developers.&lt;/p&gt;
 &lt;h3 id=&#34;outcome&#34;&gt;Outcome&lt;/h3&gt;
@@ -48,7 +48,7 @@ This element is used in cases of unexpected failure rather than where something 
 &lt;p&gt;The &lt;code&gt;&amp;lt;Description&amp;gt;&lt;/code&gt; element should be used to described the detail around the failure of the action as this will be useful to a human looking at the event.&lt;/p&gt;
 &lt;h3 id=&#34;data&#34;&gt;Data&lt;/h3&gt;
 &lt;p&gt;This provides a flexible structure for describing aspects of the schema action that cannot be described using the structure in the schema.
-This structure is described in more detail in &lt;a href=&#34;../unstructuredData.md&#34;&gt;Unstructured Data&lt;/a&gt;&lt;/p&gt;
+This structure is described in more detail in &lt;a href=&#34;../../docs/unstructured-data/&#34;&gt;Unstructured Data&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;The majority of the &amp;lsquo;schema action&amp;rsquo; elements include the MultiObjectComplexType structure (or some child of it) to allow for recording various forms of objects that were involved in the event.&lt;/p&gt;
 &lt;h2 id=&#34;defined-schema-actions&#34;&gt;Defined Schema Actions&lt;/h2&gt;
 &lt;p&gt;A number of schema actions are defined that aim to be broadly representative of the kinds of activity that are most likely to be of interest from an audit point of view.&lt;/p&gt;
@@ -61,83 +61,83 @@ This structure is described in more detail in &lt;a href=&#34;../unstructuredDat
 &lt;/thead&gt;
 &lt;tbody&gt;
 &lt;tr&gt;
-&lt;td&gt;&lt;a href=&#34;alert.md&#34;&gt;Alert&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;../../docs/schema-actions/alert/&#34;&gt;Alert&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;A potentially concerning situation has been identified &lt;em&gt;that requires user attention to resolve&lt;/em&gt;.&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td&gt;&lt;a href=&#34;approval.md&#34;&gt;Approval&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;../../docs/schema-actions/approval/&#34;&gt;Approval&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;Events relating to the approval/acceptance/rejection or the request for approval.&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td&gt;&lt;a href=&#34;authorise.md&#34;&gt;Authorise&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;../../docs/schema-actions/authorise/&#34;&gt;Authorise&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;Events relating to authorisation changes, e.g. to group membership within LDAP or AD.&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td&gt;&lt;a href=&#34;copyMove.md&#34;&gt;Copy&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;../../docs/schema-actions/copy-move/&#34;&gt;Copy&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;Making copies of entities or data.&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td&gt;&lt;a href=&#34;createViewDelete.md&#34;&gt;Create&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;../../docs/schema-actions/create-view-delete/&#34;&gt;Create&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;Creating new items of entities or data.&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td&gt;&lt;a href=&#34;createViewDelete.md&#34;&gt;Delete&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;../../docs/schema-actions/create-view-delete/&#34;&gt;Delete&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;Destroying entities or data.&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td&gt;&lt;a href=&#34;importExport.md&#34;&gt;Export&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;../../docs/schema-actions/import-export/&#34;&gt;Export&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;Moving entities or data out of a controlled area (e.g. database, application or network).&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td&gt;&lt;a href=&#34;importExport.md&#34;&gt;Import&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;../../docs/schema-actions/import-export/&#34;&gt;Import&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;Moving entities or data into a controlled area (e.g. database, application or network).&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td&gt;&lt;a href=&#34;installUninstall.md&#34;&gt;Install&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;../../docs/schema-actions/install-uninstall/&#34;&gt;Install&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;Installing hardware, software or removable media.&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td&gt;&lt;a href=&#34;copyMove.md&#34;&gt;Move&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;../../docs/schema-actions/copy-move/&#34;&gt;Move&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;Moving entities or data.&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td&gt;&lt;a href=&#34;network.md&#34;&gt;Network&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;../../docs/schema-actions/network/&#34;&gt;Network&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;Events that relate to networking between computers.&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td&gt;&lt;a href=&#34;printing.md&#34;&gt;Print&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;../../docs/schema-actions/printing/&#34;&gt;Print&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;Events relating to printing (i.e. making hard-copies).&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td&gt;&lt;a href=&#34;process.md&#34;&gt;Process&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;../../docs/schema-actions/process/&#34;&gt;Process&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;Generic processing events, including starting processes and services on computers.&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td&gt;&lt;a href=&#34;sendReceive.md&#34;&gt;Receive&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;../../docs/schema-actions/send-receive/&#34;&gt;Receive&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;Obtaining entities or data over the network.&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td&gt;&lt;a href=&#34;search.md&#34;&gt;Search&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;../../docs/schema-actions/search/&#34;&gt;Search&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;Search operations, e.g. querying a database.&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td&gt;&lt;a href=&#34;sendReceive.md&#34;&gt;Send&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;../../docs/schema-actions/send-receive/&#34;&gt;Send&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;Transmitting entities or data over the network.&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td&gt;&lt;a href=&#34;installUninstall.md&#34;&gt;Uninstall&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;../../docs/schema-actions/install-uninstall/&#34;&gt;Uninstall&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;Events relating to removal of hardware, software or removable media.&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td&gt;&lt;a href=&#34;unknown.md&#34;&gt;Unknown&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;../../docs/schema-actions/unknown/&#34;&gt;Unknown&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;A type of event that is dissimilar to any in the schema (should only be needed in niche cases).&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td&gt;&lt;a href=&#34;update.md&#34;&gt;Update&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;../../docs/schema-actions/update/&#34;&gt;Update&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;Modification to an entity or data.&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
-&lt;td&gt;&lt;a href=&#34;createViewDelete.md&#34;&gt;View&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;a href=&#34;../../docs/schema-actions/create-view-delete/&#34;&gt;View&lt;/a&gt;&lt;/td&gt;
 &lt;td&gt;All events relating to accessing an entity or data.&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
@@ -155,7 +155,7 @@ This structure is described in more detail in &lt;a href=&#34;../unstructuredDat
 &lt;p&gt;For example, a delete operation could actually just mark a record within the database in such a way as to prevent it from being displayed and so is effectively (at least internally) an update.
 But from the user&amp;rsquo;s point of view it is a destructive operation - so it should be modelled as a delete.&lt;/p&gt;
 &lt;p&gt;It is important that events with similar effects are modelled similarly, in order that analytics can operate effectively.
-Examples that illustrate how the schema should be used are described &lt;a href=&#34;../eventModelling.md&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+Examples that illustrate how the schema should be used are described &lt;a href=&#34;../../docs/event-modelling/&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 
       </description>
     </item>
@@ -464,7 +464,7 @@ These include the following:&lt;/p&gt;
         
         &lt;p&gt;The &lt;code&gt;&amp;lt;Copy&amp;gt;&lt;/code&gt; and &lt;code&gt;&amp;lt;Move&amp;gt;&lt;/code&gt; elements are used to describe local copy and move operations.
 They both contain the same element structure and describe the source and destination for the copy/move event.&lt;/p&gt;
-&lt;p&gt;When an entity is being sent to a remote recipient then the &lt;code&gt;&amp;lt;Send&amp;gt;&lt;/code&gt; and &lt;code&gt;&amp;lt;Receive&amp;gt;&lt;/code&gt; actions should be used instead (see &lt;a href=&#34;./sendReceive.md&#34;&gt;Send and Receive&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;When an entity is being sent to a remote recipient then the &lt;code&gt;&amp;lt;Send&amp;gt;&lt;/code&gt; and &lt;code&gt;&amp;lt;Receive&amp;gt;&lt;/code&gt; actions should be used instead (see &lt;a href=&#34;../../docs/schema-actions/send-receive/&#34;&gt;Send and Receive&lt;/a&gt;).&lt;/p&gt;
 &lt;p&gt;The following example shows a copy event that has failed due to a lack of necessary permissions.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;EventDetail&amp;gt;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;TypeId&amp;gt;&lt;/span&gt;CopyDocument&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/TypeId&amp;gt;&lt;/span&gt;
@@ -926,7 +926,7 @@ To link the &lt;code&gt;&amp;lt;Search&amp;gt;&lt;/code&gt; event with the &lt;c
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;TypeId&amp;gt;&lt;/span&gt;AsynchronousUserQuery&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/TypeId&amp;gt;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Search&amp;gt;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Query&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#09f;font-style:italic&#34;&gt;&amp;lt;!-- ID to link the query execution with the subsequent vewing of the results --&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#09f;font-style:italic&#34;&gt;&amp;lt;!-- ID to link the query execution with the subsequent viewing of the results --&amp;gt;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Id&amp;gt;&lt;/span&gt;3648595&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Id&amp;gt;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Raw&amp;gt;&lt;/span&gt;select cv_blob from candidates where user=&amp;#39;jbloggs&amp;#39;&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Raw&amp;gt;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Query&amp;gt;&lt;/span&gt;
@@ -939,7 +939,7 @@ To link the &lt;code&gt;&amp;lt;Search&amp;gt;&lt;/code&gt; event with the &lt;c
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;View&amp;gt;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;SearchResults&amp;gt;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Query&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#09f;font-style:italic&#34;&gt;&amp;lt;!-- ID to link the query execution with the subsequent vewing of the results --&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#09f;font-style:italic&#34;&gt;&amp;lt;!-- ID to link the query execution with the subsequent viewing of the results --&amp;gt;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;Id&amp;gt;&lt;/span&gt;3648595&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Id&amp;gt;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#09f;font-style:italic&#34;&gt;&amp;lt;!-- If the query detail was recorded in the initial Search event then it could be omitted here --&amp;gt;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;      &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Query&amp;gt;&lt;/span&gt;
@@ -978,7 +978,7 @@ Where results are paged (e.g. in a web search) details of the currently displaye
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/WebPage&amp;gt;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Results&amp;gt;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/Search&amp;gt;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;See &lt;a href=&#34;../completeExamples/README.md&#34;&gt;Complete Examples&lt;/a&gt; for example events.&lt;/p&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;See &lt;a href=&#34;../../docs/complete-examples/&#34;&gt;Complete Examples&lt;/a&gt; for example events.&lt;/p&gt;
 
       </description>
     </item>
@@ -1034,7 +1034,7 @@ These events are at a higher level of abstraction than the low level &lt;code&gt
         
         
         &lt;p&gt;This schema action structure is the action of last resort when the event cannot be accurately described with any of the other schema actions.&lt;/p&gt;
-&lt;p&gt;The structure is simply the extensible &lt;a href=&#34;../unstructuredData.md&#34;&gt;data structure&lt;/a&gt; allowing for most types of data to be recorded.&lt;/p&gt;
+&lt;p&gt;The structure is simply the extensible &lt;a href=&#34;../../docs/unstructured-data/&#34;&gt;data structure&lt;/a&gt; allowing for most types of data to be recorded.&lt;/p&gt;
 
       </description>
     </item>

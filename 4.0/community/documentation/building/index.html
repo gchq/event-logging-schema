@@ -28,13 +28,13 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/community/documentation/building/" /><meta property="article:section" content="community" />
 <meta property="article:published_time" content="2022-01-12T00:00:00+00:00" />
-<meta property="article:modified_time" content="2022-05-16T16:28:46+01:00" /><meta property="og:site_name" content="event-logging XML Schema" />
+<meta property="article:modified_time" content="2022-05-16T17:41:29+01:00" /><meta property="og:site_name" content="event-logging XML Schema" />
 
 <meta itemprop="name" content="Building the Documentation">
 <meta itemprop="description" content="How to develop and build the documentation.
 "><meta itemprop="datePublished" content="2022-01-12T00:00:00+00:00" />
-<meta itemprop="dateModified" content="2022-05-16T16:28:46+01:00" />
-<meta itemprop="wordCount" content="432">
+<meta itemprop="dateModified" content="2022-05-16T17:41:29+01:00" />
+<meta itemprop="wordCount" content="435">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Building the Documentation"/>
 <meta name="twitter:description" content="How to develop and build the documentation.
@@ -196,13 +196,8 @@
   <a href="../../../community/documentation/building/" class="align-left pl-0 active td-sidebar-link td-sidebar-link__page" id="m-communitydocumentationbuilding"><span class="td-sidebar-nav-active-item">Building the Documentation</span></a>
 </li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-communitydocumentationversions-li">
   <a href="../../../community/documentation/versions/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-communitydocumentationversions"><span class="">Schema Versions</span></a>
-</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-communitydocumentationstyle-guide-li">
-  <a href="../../../community/documentation/style-guide/" title="Documentation Style Guide" class="align-left pl-0 td-sidebar-link td-sidebar-link__section" id="m-communitydocumentationstyle-guide"><span class="">Style Guide</span></a>
-  <ul class="ul-3 foldable">
-    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child collapse" id="m-communitydocumentationstyle-guidefront-matter-li">
-  <a href="../../../community/documentation/style-guide/front-matter/" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-communitydocumentationstyle-guidefront-matter"><span class="">Front Matter</span></a>
-</li>
-  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-communitydocumentationstyle-guide-li">
+  <a href="../../../community/documentation/style-guide/" title="Documentation Style Guide" class="align-left pl-0 td-sidebar-link td-sidebar-link__page" id="m-communitydocumentationstyle-guide"><span class="">Style Guide</span></a>
 </li>
   </ul>
 </li>
@@ -485,7 +480,7 @@ It also ensures that the local build environment matches that used in GitHub act
 </span>
 .
 <em>event-logging-schema</em> uses the Docsy theme (<code>themes/docsy/</code>) which is pulled in via Go modules.
-To se</p>
+To clone the repository:</p>
 
 
 
@@ -536,7 +531,22 @@ To build and serve the site run</p>
 
 <p>This uses Hugo to build the site in memory and then serve it from a local web server.
 When any source files are changed or added Hugo will detect this and rebuild the site as required, including automatically refreshing the browser page to update the rendered view.</p>
-<p>Once the server is running the site is available at <a href="http://localhost:1313/">localhost:1313/</a>.</p>
+<p>Once the server is running the site is available at 
+
+
+
+
+
+
+  
+
+<span class="external-link">
+  <a href="http://localhost:1313/" target="_blank" class="" style="" title="localhost:1313 (external link)">
+    <span>localhost:1313</span>
+    <i class="external-link-icon fas fa-external-link-alt fa-sm text-secondary"></i>
+  </a>
+</span>
+.</p>
 
 <div class="alert alert-warning" role="alert">
 <h4 class="alert-heading">Warning</h4>
@@ -623,7 +633,7 @@ To update the version of Docsy used see
   </a>
 </span>
 .</p>
-<p>When these instrustions say to run the <code>hugo</code> command you need to run them using the builder container, unless you have Hugo and Go installed locally.
+<p>When these instructions say to run the <code>hugo</code> command you need to run them using the builder container, unless you have Hugo and Go installed locally.
 e.g.</p>
 
 
@@ -647,7 +657,7 @@ e.g.</p>
 	
 	
 	<div class="text-muted mt-5 pt-3 border-top">
-  Last modified May 16, 2022: <a href="https://github.com/gchq/event-logging-schema/commit/672fbf3926f4ab409da004c211296f62d5d21734">Add a &#39;latest&#39; version (672fbf3)</a>
+  Last modified May 16, 2022: <a href="https://github.com/gchq/event-logging-schema/commit/8fe7e1be97fdea0a8942f82baabd1905b0213557">Remove style guide page (8fe7e1b)</a>
 </div>
 
 </div>

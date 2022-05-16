@@ -563,7 +563,7 @@ Which in XML would be as a <code>&lt;View&gt;</code> with <code>&lt;Outcome&gt;<
 <p>While each schema action has a structure that is specific to the auditable event action, there are a number of structural elements that are common to multiple schema actions.</p>
 <h3 id="multi-object-complex-type">Multi Object Complex Type</h3>
 <p>The Multi Object Complex Type is a structure for describing an entity or entities involved in the auditable event, for example a document, file, resource or user.
-The structure is described in more detail in <a href="../objectTypes/README.md">Object Types</a>.</p>
+The structure is described in more detail in <a href="../../docs/object-types/">Object Types</a>.</p>
 <p>The <code>&lt;Unknown&gt;</code> schema action structure should be the action of last resort, where the auditable action cannot be appropriately described by any of the other schema actions.
 Heavy use of this structure suggests that the scheme is deficient with respect to a type or types of event and suggestions for how the schema could be improved should be submitted to the developers.</p>
 <h3 id="outcome">Outcome</h3>
@@ -576,7 +576,7 @@ This element is used in cases of unexpected failure rather than where something 
 <p>The <code>&lt;Description&gt;</code> element should be used to described the detail around the failure of the action as this will be useful to a human looking at the event.</p>
 <h3 id="data">Data</h3>
 <p>This provides a flexible structure for describing aspects of the schema action that cannot be described using the structure in the schema.
-This structure is described in more detail in <a href="../unstructuredData.md">Unstructured Data</a></p>
+This structure is described in more detail in <a href="../../docs/unstructured-data/">Unstructured Data</a></p>
 <p>The majority of the &lsquo;schema action&rsquo; elements include the MultiObjectComplexType structure (or some child of it) to allow for recording various forms of objects that were involved in the event.</p>
 <h2 id="defined-schema-actions">Defined Schema Actions</h2>
 <p>A number of schema actions are defined that aim to be broadly representative of the kinds of activity that are most likely to be of interest from an audit point of view.</p>
@@ -589,83 +589,83 @@ This structure is described in more detail in <a href="../unstructuredData.md">U
 </thead>
 <tbody>
 <tr>
-<td><a href="alert.md">Alert</a></td>
+<td><a href="../../docs/schema-actions/alert/">Alert</a></td>
 <td>A potentially concerning situation has been identified <em>that requires user attention to resolve</em>.</td>
 </tr>
 <tr>
-<td><a href="approval.md">Approval</a></td>
+<td><a href="../../docs/schema-actions/approval/">Approval</a></td>
 <td>Events relating to the approval/acceptance/rejection or the request for approval.</td>
 </tr>
 <tr>
-<td><a href="authorise.md">Authorise</a></td>
+<td><a href="../../docs/schema-actions/authorise/">Authorise</a></td>
 <td>Events relating to authorisation changes, e.g. to group membership within LDAP or AD.</td>
 </tr>
 <tr>
-<td><a href="copyMove.md">Copy</a></td>
+<td><a href="../../docs/schema-actions/copy-move/">Copy</a></td>
 <td>Making copies of entities or data.</td>
 </tr>
 <tr>
-<td><a href="createViewDelete.md">Create</a></td>
+<td><a href="../../docs/schema-actions/create-view-delete/">Create</a></td>
 <td>Creating new items of entities or data.</td>
 </tr>
 <tr>
-<td><a href="createViewDelete.md">Delete</a></td>
+<td><a href="../../docs/schema-actions/create-view-delete/">Delete</a></td>
 <td>Destroying entities or data.</td>
 </tr>
 <tr>
-<td><a href="importExport.md">Export</a></td>
+<td><a href="../../docs/schema-actions/import-export/">Export</a></td>
 <td>Moving entities or data out of a controlled area (e.g. database, application or network).</td>
 </tr>
 <tr>
-<td><a href="importExport.md">Import</a></td>
+<td><a href="../../docs/schema-actions/import-export/">Import</a></td>
 <td>Moving entities or data into a controlled area (e.g. database, application or network).</td>
 </tr>
 <tr>
-<td><a href="installUninstall.md">Install</a></td>
+<td><a href="../../docs/schema-actions/install-uninstall/">Install</a></td>
 <td>Installing hardware, software or removable media.</td>
 </tr>
 <tr>
-<td><a href="copyMove.md">Move</a></td>
+<td><a href="../../docs/schema-actions/copy-move/">Move</a></td>
 <td>Moving entities or data.</td>
 </tr>
 <tr>
-<td><a href="network.md">Network</a></td>
+<td><a href="../../docs/schema-actions/network/">Network</a></td>
 <td>Events that relate to networking between computers.</td>
 </tr>
 <tr>
-<td><a href="printing.md">Print</a></td>
+<td><a href="../../docs/schema-actions/printing/">Print</a></td>
 <td>Events relating to printing (i.e. making hard-copies).</td>
 </tr>
 <tr>
-<td><a href="process.md">Process</a></td>
+<td><a href="../../docs/schema-actions/process/">Process</a></td>
 <td>Generic processing events, including starting processes and services on computers.</td>
 </tr>
 <tr>
-<td><a href="sendReceive.md">Receive</a></td>
+<td><a href="../../docs/schema-actions/send-receive/">Receive</a></td>
 <td>Obtaining entities or data over the network.</td>
 </tr>
 <tr>
-<td><a href="search.md">Search</a></td>
+<td><a href="../../docs/schema-actions/search/">Search</a></td>
 <td>Search operations, e.g. querying a database.</td>
 </tr>
 <tr>
-<td><a href="sendReceive.md">Send</a></td>
+<td><a href="../../docs/schema-actions/send-receive/">Send</a></td>
 <td>Transmitting entities or data over the network.</td>
 </tr>
 <tr>
-<td><a href="installUninstall.md">Uninstall</a></td>
+<td><a href="../../docs/schema-actions/install-uninstall/">Uninstall</a></td>
 <td>Events relating to removal of hardware, software or removable media.</td>
 </tr>
 <tr>
-<td><a href="unknown.md">Unknown</a></td>
+<td><a href="../../docs/schema-actions/unknown/">Unknown</a></td>
 <td>A type of event that is dissimilar to any in the schema (should only be needed in niche cases).</td>
 </tr>
 <tr>
-<td><a href="update.md">Update</a></td>
+<td><a href="../../docs/schema-actions/update/">Update</a></td>
 <td>Modification to an entity or data.</td>
 </tr>
 <tr>
-<td><a href="createViewDelete.md">View</a></td>
+<td><a href="../../docs/schema-actions/create-view-delete/">View</a></td>
 <td>All events relating to accessing an entity or data.</td>
 </tr>
 </tbody>
@@ -683,7 +683,7 @@ This structure is described in more detail in <a href="../unstructuredData.md">U
 <p>For example, a delete operation could actually just mark a record within the database in such a way as to prevent it from being displayed and so is effectively (at least internally) an update.
 But from the user&rsquo;s point of view it is a destructive operation - so it should be modelled as a delete.</p>
 <p>It is important that events with similar effects are modelled similarly, in order that analytics can operate effectively.
-Examples that illustrate how the schema should be used are described <a href="../eventModelling.md">here</a>.</p>
+Examples that illustrate how the schema should be used are described <a href="../../docs/event-modelling/">here</a>.</p>
 
         <div class="section-index">
     
@@ -822,7 +822,7 @@ Examples that illustrate how the schema should be used are described <a href="..
 	
 	
 	<div class="text-muted mt-5 pt-3 border-top">
-  Last modified May 16, 2022: <a href="https://github.com/gchq/event-logging-schema/commit/672fbf3926f4ab409da004c211296f62d5d21734">Add a &#39;latest&#39; version (672fbf3)</a>
+  Last modified May 16, 2022: <a href="https://github.com/gchq/event-logging-schema/commit/8fe7e1be97fdea0a8942f82baabd1905b0213557">Remove style guide page (8fe7e1b)</a>
 </div>
 
 </div>

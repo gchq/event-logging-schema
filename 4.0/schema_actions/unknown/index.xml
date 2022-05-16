@@ -24,7 +24,7 @@
         
         
         &lt;p&gt;This schema action structure is the action of last resort when the event cannot be accurately described with any of the other schema actions.&lt;/p&gt;
-&lt;p&gt;The structure is simply the extensible &lt;a href=&#34;../unstructuredData.md&#34;&gt;data structure&lt;/a&gt; allowing for most types of data to be recorded.&lt;/p&gt;
+&lt;p&gt;The structure is simply the extensible &lt;a href=&#34;../../docs/unstructured-data/&#34;&gt;data structure&lt;/a&gt; allowing for most types of data to be recorded.&lt;/p&gt;
 
       </description>
     </item>

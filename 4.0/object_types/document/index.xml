@@ -25,7 +25,7 @@
         
         &lt;p&gt;The &lt;code&gt;&amp;lt;Copy&amp;gt;&lt;/code&gt; and &lt;code&gt;&amp;lt;Move&amp;gt;&lt;/code&gt; elements are used to describe local copy and move operations.
 They both contain the same element structure and describe the source and destination for the copy/move event.&lt;/p&gt;
-&lt;p&gt;When an entity is being sent to a remote recipient then the &lt;code&gt;&amp;lt;Send&amp;gt;&lt;/code&gt; and &lt;code&gt;&amp;lt;Receive&amp;gt;&lt;/code&gt; actions should be used instead (see &lt;a href=&#34;./sendReceive.md&#34;&gt;Send and Receive&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;When an entity is being sent to a remote recipient then the &lt;code&gt;&amp;lt;Send&amp;gt;&lt;/code&gt; and &lt;code&gt;&amp;lt;Receive&amp;gt;&lt;/code&gt; actions should be used instead (see &lt;a href=&#34;../../docs/schema-actions/send-receive/&#34;&gt;Send and Receive&lt;/a&gt;).&lt;/p&gt;
 &lt;p&gt;The following example shows a copy event that has failed due to a lack of necessary permissions.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f0f3f3;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;EventDetail&amp;gt;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;TypeId&amp;gt;&lt;/span&gt;CopyDocument&lt;span style=&#34;color:#309;font-weight:bold&#34;&gt;&amp;lt;/TypeId&amp;gt;&lt;/span&gt;
