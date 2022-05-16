@@ -388,12 +388,19 @@ create_docs_release_tag() {
 
   pushd "${BUILD_DIR}"
 
+  local tag_msg="Schema documentation v${BUILD_NUMBER}"
+  tag_msg="${tag_msg}\n\nSchema versions:\n"
+
+  for ver in "${release_branches[@]}"; do
+    tag_msg="${tag_msg}\n * ${ver}"
+  done
+
   # Tag the commit so we can create a release against it in github
   echo -e "Creating git tag ${GREEN}${BUILD_TAG}${NC}"
   git tag \
     "${BUILD_TAG}" \
     -a \
-    -m "Schema documentation v${BUILD_NUMBER}"
+    -m "${tag_msg}"
 
   echo -e "Pushing tag ${GREEN}${BUILD_TAG}${NC}"
   git push \
