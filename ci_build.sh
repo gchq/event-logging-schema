@@ -483,8 +483,11 @@ prepare_release_artefacts() {
   pushd "${NEW_GH_PAGES_DIR}"
   # Exclude the individual version zip/pdfs from the combined zip
   # Exclude arg needs to go after zip filename and target(s)
+  # We have the 'latest' symlink so add that to the zip as a link
+  # rather than dereferencing
   zip \
     --recurse-paths \
+    --symlinks \
     --quiet \
     -9 \
     "${RELEASE_ARTEFACTS_DIR}/${ZIP_FILENAME}" \
