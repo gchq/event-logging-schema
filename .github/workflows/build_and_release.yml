@@ -2,7 +2,16 @@ name: Full CI Build (and Release)
 
 on:
   push:
+    branches:
+      - '**'
+    # The workflow is tagging commits on master so we don't want the tag to
+    # spawn a new build
+    tags-ignore:
+      - 'docs-v*'
   pull_request:
+  schedule:
+    # Nightly release run using last commit on default branch, i.e. 'master'
+    - cron: '32 23 * * *'
 
 jobs:
   build-project:
@@ -14,7 +23,7 @@ jobs:
       # https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners#supported-runners-and-hardware-resources
       MAX_WORKERS: 3
       # Fixed ssh-agent socket so multiple steps can use the same agent
-      # if needs be
+      # if needs be. Used by update_gh_pages.sh
       SSH_AUTH_SOCK: "/tmp/ssh-agent-stroom.sock"
     steps:
 
