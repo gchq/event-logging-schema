@@ -65,7 +65,9 @@ main() {
     cat \
       "${local_repo_root}/container_build/runInHugoDocker.sh" \
       "${local_repo_root}/container_build/runInPupeteerDocker.sh" \
-      "${local_repo_root}/container_build/docker_hugo/Dockerfile"
+      "${local_repo_root}/container_build/docker_hugo/Dockerfile" \
+      "${local_repo_root}/container_build/docker_pdf/Dockerfile" \
+      "${local_repo_root}/container_build/docker_pdf/generate-pdf.js"
     )"
   cache_key_source="${host_abs_repo_dir}\n${user_id}\n${group_id}\n${cache_key_source}"
 

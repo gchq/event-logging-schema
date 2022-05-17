@@ -400,7 +400,7 @@ create_docs_release_tag() {
   git tag \
     "${BUILD_TAG}" \
     -a \
-    -m $"${tag_msg}"
+    -m "$( echo -e "${tag_msg}" )"
 
   echo -e "Pushing tag ${GREEN}${BUILD_TAG}${NC}"
   git push \
