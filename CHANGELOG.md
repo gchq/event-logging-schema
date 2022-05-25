@@ -19,7 +19,17 @@ They may also include changes to such things as enumerations or patterns that ar
 
 Patch version changes will typically include cosmetic changes (e.g. _xs:documentation_ changes).
 
+
 ## [Unreleased]
+
+~~~
+DO NOT ADD CHANGES HERE - ADD THEM USING log_change.sh
+~~~
+
+
+## [v4.0-beta.6] - 2022-05-25
+
+* Fix spelling mistakes in schema annotations.
 
 
 ## [v4.0-beta.5] - 2021-09-17
@@ -278,7 +288,8 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 * Initial open source release
 
-[Unreleased]: https://github.com/gchq/event-logging-schema/compare/v4.0-beta.5...HEAD
+[Unreleased]: https://github.com/gchq/event-logging-schema/compare/v4.0-beta.6...HEAD
+[v4.0-beta.6]: https://github.com/gchq/event-logging-schema/compare/v4.0-beta.5...v4.0-beta.6
 [v4.0-beta.5]: https://github.com/gchq/event-logging-schema/compare/v4.0-beta.4...v4.0-beta.5
 [v4.0-beta.4]: https://github.com/gchq/event-logging-schema/compare/v4.0-beta.3...v4.0-beta.4
 [v4.0-beta.3]: https://github.com/gchq/event-logging-schema/compare/v4.0-beta.2...v4.0-beta.3
