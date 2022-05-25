@@ -619,13 +619,6 @@ build_schema_variants() {
 # so we need releases of the schema to be made on a release branch,
 # e.g. tag v4.1.2 on branch 4.1.
 check_branch_of_tag() {
-
-  git \
-    --no-pager \
-    branch \
-    --contains \
-    "tags/v4.0-beta.5"
-
   if [[ "${BUILD_IS_SCHEMA_RELEASE}" = "true" ]]; then
     echo -e "${GREEN}Checking tag is on a release branch${NC}"
     # Make sure the git tag exists on a release branch, else
