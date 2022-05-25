@@ -27,6 +27,11 @@ DO NOT ADD CHANGES HERE - ADD THEM USING log_change.sh
 ~~~
 
 
+## [v4.0-beta.7] - 2022-05-25
+
+* Fix automated build scripts.
+
+
 ## [v4.0-beta.6] - 2022-05-25
 
 * Fix spelling mistakes in schema annotations.
@@ -288,7 +293,8 @@ DO NOT ADD CHANGES HERE - ADD THEM USING log_change.sh
 
 * Initial open source release
 
-[Unreleased]: https://github.com/gchq/event-logging-schema/compare/v4.0-beta.6...HEAD
+[Unreleased]: https://github.com/gchq/event-logging-schema/compare/v4.0-beta.7...HEAD
+[v4.0-beta.7]: https://github.com/gchq/event-logging-schema/compare/v4.0-beta.6...v4.0-beta.7
 [v4.0-beta.6]: https://github.com/gchq/event-logging-schema/compare/v4.0-beta.5...v4.0-beta.6
 [v4.0-beta.5]: https://github.com/gchq/event-logging-schema/compare/v4.0-beta.4...v4.0-beta.5
 [v4.0-beta.4]: https://github.com/gchq/event-logging-schema/compare/v4.0-beta.3...v4.0-beta.4
