@@ -41,7 +41,7 @@
             <xs:sequence minOccurs="1" maxOccurs="1">
               <xs:element name="Meta" type="evt:AnyContentComplexType" minOccurs="0" maxOccurs="unbounded">
                 <xs:annotation>
-                  <xs:documentation>This element can be used to supply any meta data relating to the event as long as it conforms to an allowed format/specification (defined outside of this XML Schema).</xs:documentation>
+                  <xs:documentation>This element can be used to supply any metadata relating to the event as long as it conforms to an allowed format/specification (defined outside this XML Schema).</xs:documentation>
                 </xs:annotation>
               </xs:element>
               <xs:element name="Classification" type="evt:ClassificationComplexType" minOccurs="0" maxOccurs="1">
@@ -61,12 +61,12 @@
               </xs:element>
               <xs:element name="EventDetail" minOccurs="1" maxOccurs="1" type="evt:EventDetailComplexType">
                 <xs:annotation>
-                  <xs:documentation>This element describes the details of what heppend in the event: the type of the event, why it happened and the event action.</xs:documentation>
+                  <xs:documentation>This element describes the details of what happened in the event: the type of the event, why it happened and the event action.</xs:documentation>
                 </xs:annotation>
               </xs:element>
               <xs:element name="EventChain" minOccurs="0" maxOccurs="1" type="evt:EventChainComplexType">
                 <xs:annotation>
-                  <xs:documentation>This element can be used to create relationships between different events, i.e where one event is the child of another.</xs:documentation>
+                  <xs:documentation>This element can be used to create relationships between different events, i.e. where one event is the child of another.</xs:documentation>
                 </xs:annotation>
               </xs:element>
               <xs:element name="Data" type="evt:DataComplexType" minOccurs="0" maxOccurs="unbounded">
@@ -116,7 +116,7 @@
     <xs:sequence>
       <xs:element name="Meta" type="evt:AnyContentComplexType" minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
-          <xs:documentation>This element can be used to supply any meta data relating to an object as long as it conforms to an allowed format/specification (defined outside of this XML Schema). This can be used for addeding metadata to the event after receipt.</xs:documentation>
+          <xs:documentation>This element can be used to supply any metadata relating to an object as long as it conforms to an allowed format/specification (defined outside this XML Schema). This can be used for adding metadata to the event after receipt.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="Type" type="xs:string" minOccurs="0" maxOccurs="1">
@@ -126,7 +126,7 @@
       </xs:element>
       <xs:element name="Id" type="xs:string" minOccurs="0" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation>An identifier for the object, e.g a document ID in a document management system. This ID is likely to be specifc to the system that generated the event.</xs:documentation>
+          <xs:documentation>An identifier for the object, e.g a document ID in a document management system. This ID is likely to be specific to the system that generated the event.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="Name" type="xs:string" minOccurs="0" maxOccurs="1">
@@ -270,12 +270,12 @@
       </xs:element>
       <xs:element name="TotalResults" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation>The total number or results returned by the query, if known at query time. In situations where only a sub-set of results are displayed/returned to the user then this element represents the count of ALL results and ResultPage should be used to provide details of which results are actually viewed/returned by the user.</xs:documentation>
+          <xs:documentation>The total number of results returned by the query, if known at query time. In situations where only a sub-set of results are displayed/returned to the user then this element represents the count of ALL results and ResultPage should be used to provide details of which results are actually viewed/returned by the user.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="Results" type="evt:MultiObjectComplexType" minOccurs="0" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation>Describes the results returned by the search if they are know at the time of the Search event (a synchronous search). If the results are not know at execution time (an asynchronous search) and will be viewed as part of a separate event then View/SearchResults can be used to model that event.</xs:documentation>
+          <xs:documentation>Describes the results returned by the search if they are known at the time of the Search event (a synchronous search). If the results are not know at execution time (an asynchronous search) and will be viewed as part of a separate event then View/SearchResults can be used to model that event.</xs:documentation>
         </xs:annotation>
       </xs:element>
     </xs:sequence>
@@ -289,7 +289,7 @@
       </xs:element>
       <xs:element name="Banner" type="evt:BannerComplexType" minOccurs="1" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation>Describes a banner or message presented to a user, e.g. an accepiable use policy message shown on system login.</xs:documentation>
+          <xs:documentation>Describes a banner or message presented to a user, e.g. an acceptable use policy message shown on system login.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="Chat" type="evt:ChatComplexType" minOccurs="1" maxOccurs="1">
@@ -329,7 +329,7 @@
       </xs:element>
       <xs:element name="Group" type="evt:GroupComplexType" minOccurs="1" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation>A group entity, e.g. a user group, an access control group or a named group of some kind that ties together a collection of entities/objexts of some kind.</xs:documentation>
+          <xs:documentation>A group entity, e.g. a user group, an access control group or a named group of some kind that ties together a collection of entities/objects of some kind.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="GroupChat" type="evt:GroupChatComplexType" minOccurs="1" maxOccurs="1">
@@ -344,7 +344,7 @@
       </xs:element>
       <xs:element name="SearchResults" type="evt:SearchResultsComplexType" minOccurs="1" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation>A set of search results from a query where the results are viewed or interacted with in a separate event to the execution of the query. E.g. for long running queries where the results are stored for later viewing/processing. The Search schema action should be used to describe the event for the execution of the search. Query/Id or Query/Name can be used to associated the results event with the query event.</xs:documentation>
+          <xs:documentation>A set of search results from a query where the results are viewed or interacted with in a separate event to the execution of the query. E.g. for long-running queries where the results are stored for later viewing/processing. The Search schema action should be used to describe the event for the execution of the search. Query/Id or Query/Name can be used to associate the results event with the query event.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="Shortcut" type="evt:ShortcutComplexType" minOccurs="1" maxOccurs="1">
@@ -369,7 +369,7 @@
       </xs:element>
       <xs:element name="Resource" type="evt:ResourceComplexType" minOccurs="1" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation>This is used to describe a resource within a web site or web application, such as an HTML file, image file or script, along with the details of that resource such as size or response codes.  It can represent both successful and failed access to the resource object.</xs:documentation>
+          <xs:documentation>This is used to describe a resource within a website or web application, such as an HTML file, image file or script, along with the details of that resource such as size or response codes.  It can represent both successful and failed access to the resource object.</xs:documentation>
         </xs:annotation>
       </xs:element>
     </xs:choice>
@@ -409,21 +409,21 @@
     <xs:sequence>
       <xs:element name="Source" minOccurs="1" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation>The initiator(s) of the object or resource sent or received. A initiator can be a user and/or device.</xs:documentation>
+          <xs:documentation>The initiator(s) of the object or resource sent or received. An initiator can be a user and/or device.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:annotation>
-            <xs:documentation>The initiator(s) of the object or resource sent or received. A initiator can be a user and/or device.</xs:documentation>
+            <xs:documentation>The initiator(s) of the object or resource sent or received. An initiator can be a user and/or device.</xs:documentation>
           </xs:annotation>
           <xs:choice minOccurs="1" maxOccurs="unbounded">
             <xs:element name="User" type="evt:UserComplexType" minOccurs="1" maxOccurs="1">
               <xs:annotation>
-                <xs:documentation>The user that the sent the payload.</xs:documentation>
+                <xs:documentation>The user that sent the payload.</xs:documentation>
               </xs:annotation>
             </xs:element>
             <xs:element name="Device" type="evt:DeviceComplexType" minOccurs="1" maxOccurs="1">
               <xs:annotation>
-                <xs:documentation>The device that the sent the payload.</xs:documentation>
+                <xs:documentation>The device that sent the payload.</xs:documentation>
               </xs:annotation>
             </xs:element>
           </xs:choice>
@@ -440,12 +440,12 @@
           <xs:choice minOccurs="1" maxOccurs="unbounded">
             <xs:element name="User" type="evt:UserComplexType" minOccurs="1" maxOccurs="1">
               <xs:annotation>
-                <xs:documentation>The user that the paylod is being sent to</xs:documentation>
+                <xs:documentation>The user that the payload is being sent to</xs:documentation>
               </xs:annotation>
             </xs:element>
             <xs:element name="Device" type="evt:DeviceComplexType" minOccurs="1" maxOccurs="1">
               <xs:annotation>
-                <xs:documentation>The device that the paylod is being sent to</xs:documentation>
+                <xs:documentation>The device that the payload is being sent to</xs:documentation>
               </xs:annotation>
             </xs:element>
           </xs:choice>
@@ -485,12 +485,12 @@
   </xs:complexType>
   <xs:complexType name="ActivityComplexType">
     <xs:annotation>
-      <xs:documentation>Type that describes relationships between different events. For example in an asynchronous search the viewing of the results of the search may be a separate event from the execution of the query. In this instance the view event would be a child of the execuion event.</xs:documentation>
+      <xs:documentation>Type that describes relationships between different events. For example in an asynchronous search the viewing of the results of the search may be a separate event from the execution of the query. In this instance the view event would be a child of the execution event.</xs:documentation>
     </xs:annotation>
     <xs:sequence minOccurs="1" maxOccurs="1">
       <xs:element name="Id" type="xs:string" minOccurs="1" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation>The unique identifer of the event that is being referenced. This will be the value of Event/EventSource/EventId on the referenced event. E.g where an event with Event/EventSource/EventId=101 is a child of an event with Event/EventSource/EventId=99, the value in this element would be 99.</xs:documentation>
+          <xs:documentation>The unique identifier of the event that is being referenced. This will be the value of Event/EventSource/EventId on the referenced event. E.g. where an event with Event/EventSource/EventId=101 is a child of an event with Event/EventSource/EventId=99, the value in this element would be 99.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="Name" type="xs:string" minOccurs="0" maxOccurs="1">
@@ -512,7 +512,7 @@
     <xs:sequence minOccurs="1" maxOccurs="1">
       <xs:element name="Type" type="evt:AlertTypeSimpleType" minOccurs="1" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation>The type of alert that has been fired, e.g Error, Malware, etc.</xs:documentation>
+          <xs:documentation>The type of alert that has been fired, e.g. Error, Malware, etc.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="Severity" type="evt:AlertSeveritySimpleType" minOccurs="0" maxOccurs="1">
@@ -685,14 +685,14 @@
   </xs:complexType>
   <xs:complexType name="AnyContentComplexType" mixed="true">
     <xs:annotation>
-      <xs:documentation>This type is used to contain any content conforming to an agreed format/specification that is defined outside of this XML Schema.</xs:documentation>
+      <xs:documentation>This type is used to contain any content conforming to an agreed format/specification that is defined outside this XML Schema.</xs:documentation>
     </xs:annotation>
     <xs:sequence minOccurs="1" maxOccurs="1">
       <xs:any minOccurs="0" processContents="lax"/>
     </xs:sequence>
     <xs:attribute name="ContentType" type="xs:string">
       <xs:annotation>
-        <xs:documentation>String to describe the format type and specification of the content, e.g. JSON or XML. The valid values are defined outside of this XML Schema.</xs:documentation>
+        <xs:documentation>String to describe the format type and specification of the content, e.g. JSON or XML. The valid values are defined outside this XML Schema.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="Version" type="xs:string">
@@ -703,7 +703,7 @@
   </xs:complexType>
   <xs:complexType name="ApprovalComplexType">
     <xs:annotation>
-      <xs:documentation>This type describes an approval (or rejection) event in a workflow, e.g a workflow wehere a more privilaged user is required to approve the work of another user.</xs:documentation>
+      <xs:documentation>This type describes an approval (or rejection) event in a workflow, e.g a workflow where a more privileged user is required to approve the work of another user.</xs:documentation>
     </xs:annotation>
     <xs:sequence minOccurs="1" maxOccurs="1">
       <xs:element name="Action" type="evt:ApprovalActionSimpleType" minOccurs="1" maxOccurs="1">
@@ -774,7 +774,7 @@
   </xs:complexType>
   <xs:complexType name="AssociationComplexType">
     <xs:annotation>
-      <xs:documentation>This type describes the assocation or linking of a number of objects. For example it may describe the link between two web resources.</xs:documentation>
+      <xs:documentation>This type describes the association or linking of a number of objects. For example, it may describe the link between two web resources.</xs:documentation>
     </xs:annotation>
     <xs:complexContent>
       <xs:extension base="evt:BaseObjectComplexType">
@@ -866,7 +866,7 @@
       <xs:group ref="evt:MultiObjectGroup" minOccurs="1" maxOccurs="unbounded"/>
       <xs:element name="Action" type="evt:AuthorisationSimpleType" minOccurs="0" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation>The type of the evnet action, e.g. a modification to authorisation rules/groups or the request to be authorised.</xs:documentation>
+          <xs:documentation>The type of the event action, e.g. a modification to authorisation rules/groups or the request to be authorised.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="AddGroups" minOccurs="0" maxOccurs="1">
@@ -917,7 +917,7 @@
   </xs:complexType>
   <xs:complexType name="BannerComplexType">
     <xs:annotation>
-      <xs:documentation>Structure used to describe a banner presented to a user. Typically it displays legal information relating to the system.</xs:documentation>
+      <xs:documentation>Structure used to describe a banner presented to a user. Typically, it displays legal information relating to the system.</xs:documentation>
     </xs:annotation>
     <xs:complexContent>
       <xs:extension base="evt:BaseObjectComplexType">
@@ -1115,7 +1115,7 @@
           <xs:sequence minOccurs="1" maxOccurs="1">
             <xs:element name="Id" type="xs:string" minOccurs="0" maxOccurs="1">
               <xs:annotation>
-                <xs:documentation>An identitfier for the authorisation service, usually a URI string.</xs:documentation>
+                <xs:documentation>An identifier for the authorisation service, usually a URI string.</xs:documentation>
               </xs:annotation>
             </xs:element>
             <xs:element name="CacheTimeout" type="xs:positiveInteger" minOccurs="0" maxOccurs="1">
@@ -1148,7 +1148,7 @@
     <xs:sequence minOccurs="1" maxOccurs="1">
       <xs:element name="Text" type="xs:string" minOccurs="0" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation>Optional full human readable text of the protective marking that can combine the various elements in this Classification structure, e.g 'Commercial in Confidence'.</xs:documentation>
+          <xs:documentation>Optional full human-readable text of the protective marking that can combine the various elements in this Classification structure, e.g 'Commercial in Confidence'.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="Originator" type="evt:OrganisationComplexType" minOccurs="0">
@@ -1335,14 +1335,14 @@
   </xs:complexType>
   <xs:complexType name="CopyMoveOutcomeComplexType">
     <xs:annotation>
-      <xs:documentation>Used to describe the outcome of an copy or move event, including the reason for any failure.</xs:documentation>
+      <xs:documentation>Used to describe the outcome of a copy or move event, including the reason for any failure.</xs:documentation>
     </xs:annotation>
     <xs:complexContent>
       <xs:extension base="evt:BaseOutcomeComplexType">
         <xs:sequence minOccurs="1" maxOccurs="1">
           <xs:element name="Reason" type="evt:CopyMoveOutcomeReasonSimpleType" minOccurs="0" maxOccurs="1">
             <xs:annotation>
-              <xs:documentation>Used to explain the reson for failure, e.g. Device full.</xs:documentation>
+              <xs:documentation>Used to explain the reason for failure, e.g. Device full.</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element name="Data" type="evt:DataComplexType" minOccurs="0" maxOccurs="unbounded">
@@ -1386,7 +1386,7 @@
     <xs:sequence minOccurs="1" maxOccurs="1">
       <xs:element name="Data" type="evt:DataComplexType" minOccurs="0" maxOccurs="unbounded">
         <xs:annotation>
-          <xs:documentation>A child data item that may itself have descendents.</xs:documentation>
+          <xs:documentation>A child data item that may itself have descendants.</xs:documentation>
         </xs:annotation>
       </xs:element>
     </xs:sequence>
@@ -1408,7 +1408,7 @@
     <xs:sequence minOccurs="1" maxOccurs="1">
       <xs:element name="Id" type="xs:string" minOccurs="0" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation>Identifier used to uniquely identify the device within the organisation's asset register/system. Also this can be used to identify a device that does not have HostName/IPAddress/MACAddress.</xs:documentation>
+          <xs:documentation>Identifier used to uniquely identify the device within the organisation's asset register/system. Also, this can be used to identify a device that does not have HostName/IPAddress/MACAddress.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="Name" type="xs:string" minOccurs="0" maxOccurs="1">
@@ -1575,7 +1575,7 @@
   </xs:complexType>
   <xs:complexType name="EventChainComplexType">
     <xs:annotation>
-      <xs:documentation>This type can be used to create relationships between different events, i.e where one event is the child of another.</xs:documentation>
+      <xs:documentation>This type can be used to create relationships between different events, i.e. where one event is the child of another.</xs:documentation>
     </xs:annotation>
     <xs:sequence minOccurs="1" maxOccurs="1">
       <xs:element name="Activity" type="evt:ActivityComplexType" minOccurs="1" maxOccurs="1">
@@ -1587,17 +1587,17 @@
   </xs:complexType>
   <xs:complexType name="EventDetailComplexType">
     <xs:annotation>
-      <xs:documentation>This type describes the details of what heppend in the event: the type of the event, why it happened and the event action.</xs:documentation>
+      <xs:documentation>This type describes the details of what happened in the event: the type of the event, why it happened and the event action.</xs:documentation>
     </xs:annotation>
     <xs:sequence minOccurs="1" maxOccurs="1">
       <xs:element name="TypeId" type="xs:string" minOccurs="1" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation>A name/code/ID to uniquely identify the logical event type within the service providing the events. E.g a Windows eventId (i.e representing 'Failed logon', 'Change password attempt', etc.) or for application logging: SaveRecord, ViewUserRecord, ViewSearchResults, etc. The granularity will depend on the application. Typically the number of unique TypeIds will be in the 10s. Note, the values of the TypeId are not meant to be globally consistent, they will only be relevant within that service providing the events.</xs:documentation>
+          <xs:documentation>A name/code/ID to uniquely identify the logical event type within the service providing the events. E.g. a Windows eventId (i.e. representing 'Failed logon', 'Change password attempt', etc.) or for application logging: SaveRecord, ViewUserRecord, ViewSearchResults, etc. The granularity will depend on the application. Typically, the number of unique TypeIds will be in the 10s. Note, the values of the TypeId are not meant to be globally consistent, they will only be relevant within that service providing the events.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="Description" type="xs:string" minOccurs="0" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation>Some human readable descriptive text for the event type.</xs:documentation>
+          <xs:documentation>Some human-readable descriptive text for the event type.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="Purpose" type="evt:PurposeComplexType" minOccurs="0" maxOccurs="1">
@@ -1663,7 +1663,7 @@
         </xs:element>
         <xs:element name="Process" minOccurs="1" maxOccurs="1" type="evt:ProcessComplexType">
           <xs:annotation>
-            <xs:documentation>Whenever processes such as applications or services are started, stopped etc, this should be recorded in this element. It also covers the running of batch processes or jobs.</xs:documentation>
+            <xs:documentation>Whenever processes such as applications or services are started, stopped etc., this should be recorded in this element. It also covers the running of batch processes or jobs.</xs:documentation>
           </xs:annotation>
         </xs:element>
         <xs:element name="Print" minOccurs="1" maxOccurs="1" type="evt:PrintComplexType">
@@ -1708,11 +1708,11 @@
         </xs:element>
         <xs:element name="Unknown" minOccurs="1" maxOccurs="1">
           <xs:annotation>
-            <xs:documentation>This element should be used were the type of the event cannot be deescribed by any of the other event actions, or the event type is unknown.</xs:documentation>
+            <xs:documentation>This element should be used were the type of the event cannot be described by any of the other event actions, or the event type is unknown.</xs:documentation>
           </xs:annotation>
           <xs:complexType>
             <xs:annotation>
-              <xs:documentation>This type should be used were the type of the event cannot be deescribed by any of the other event actions, or the event type is unknown.</xs:documentation>
+              <xs:documentation>This type should be used were the type of the event cannot be described by any of the other event actions, or the event type is unknown.</xs:documentation>
             </xs:annotation>
             <xs:sequence minOccurs="1" maxOccurs="1">
               <xs:element name="Data" type="evt:DataComplexType" minOccurs="0" maxOccurs="unbounded">
@@ -1733,12 +1733,12 @@
     <xs:sequence minOccurs="1" maxOccurs="1">
       <xs:element name="EventId" type="xs:string" minOccurs="0" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation>A unique identifier known to the source system that created the event. This identifier may not be unique outside of the source system. It can be used for linking related events within the source system, e.g. where an event is part of a chain of events or is child of another event. Linking of events can be recorded with the Event/EventChain element.</xs:documentation>
+          <xs:documentation>A unique identifier known to the source system that created the event. This identifier may not be unique outside the source system. It can be used for linking related events within the source system, e.g. where an event is part of a chain of events or is child of another event. Linking of events can be recorded with the Event/EventChain element.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="SessionId" type="xs:string" minOccurs="0" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation>Where an event is part of a session the identifier for that session can be recorded here to allow subsequent grouping of events for the same session. The SessionId should be a uniqiue identifier for the session within the source system. It is not expected that the SessionId have meaning or be unique outside of the source system.</xs:documentation>
+          <xs:documentation>Where an event is part of a session the identifier for that session can be recorded here to allow subsequent grouping of events for the same session. The SessionId should be a unique identifier for the session within the source system. It is not expected that the SessionId have meaning or be unique outside the source system.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="System" type="evt:SystemComplexType" minOccurs="1" maxOccurs="1">
@@ -1797,7 +1797,7 @@
             </xs:element>
             <xs:element name="RemoveAll" type="xs:boolean" minOccurs="0" maxOccurs="1">
               <xs:annotation>
-                <xs:documentation>This element is used to tell us to remove all access zones from the list of currently accesible zones for a user before adding a new one. This is the case whenever a user moves from one zone to another and loses all possible access to the zones they were previously in, i.e. they would need to re-authenticate to regain access rather than just pass back through the door. If not specified this element is considered to be true as most movement through a door removes access to previously accessible zones. Removal of all access zones provides anti pass-back protection.</xs:documentation>
+                <xs:documentation>This element is used to tell us to remove all access zones from the list of currently accessible zones for a user before adding a new one. This is the case whenever a user moves from one zone to another and loses all possible access to the zones they were previously in, i.e. they would need to re-authenticate to regain access rather than just pass back through the door. If not specified this element is considered to be true as most movement through a door removes access to previously accessible zones. Removal of all access zones provides anti pass-back protection.</xs:documentation>
               </xs:annotation>
             </xs:element>
             <xs:element name="AddAccess" minOccurs="1" maxOccurs="1">
@@ -1819,12 +1819,12 @@
       </xs:element>
       <xs:element name="User" type="evt:UserComplexType" minOccurs="0" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation>Where events are created as a result of a user action or within the context of a user account, the user should be recorded. To achieve this it may be necessary to map the user identifier in an application to a common user identifier when populating this element. Where an identifier exists that is unique across the organisation, such as a distinguished name (User DN) from a certificate authority or directory service, then this should be used in the &lt;Id> element in preference to any other user identifier.</xs:documentation>
+          <xs:documentation>Where events are created as a result of a user action or within the context of a user account, the user should be recorded. To achieve this it may be necessary to map the user identifier in an application to a common user identifier when populating this element. Where an identifier exists that is unique across the organisation, such as a distinguished name (User DN) from a certificate authority or directory service, then this should be used in the &lt;Id&gt; element in preference to any other user identifier.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="RunAs" type="evt:UserComplexType" minOccurs="0" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation>In some cases an account may switch to another account in order to run a process or perform a privileged action, e.g. use of sudo. Where this happens the &lt;User> element should still refer to the real user and this element should indicate what the temporary user was when the event was created, e.g. root. This is also often used when a system user (processing account) executes scheduled jobs on behalf of the real user that scheduled the job. Where an identifier exists that is unique across the organisation, such as a distinguished name (User DN) from a certificate authority or directory service, then this should be used in the &lt;Id> element in preference to any other user identifier.</xs:documentation>
+          <xs:documentation>In some cases an account may switch to another account in order to run a process or perform a privileged action, e.g. use of sudo. Where this happens the &lt;User> element should still refer to the real user and this element should indicate what the temporary user was when the event was created, e.g. root. This is also often used when a system user (processing account) executes scheduled jobs on behalf of the real user that scheduled the job. Where an identifier exists that is unique across the organisation, such as a distinguished name (User DN) from a certificate authority or directory service, then this should be used in the &lt;Id&gt; element in preference to any other user identifier.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="Interactive" type="xs:boolean" minOccurs="0" maxOccurs="1">
@@ -1909,7 +1909,7 @@
   </xs:complexType>
   <xs:complexType name="GroupComplexType">
     <xs:annotation>
-      <xs:documentation>A group entity, e.g. a user group, an access control group or a named group of some kind that ties together a collection of entities/objexts of some kind.</xs:documentation>
+      <xs:documentation>A group entity, e.g. a user group, an access control group or a named group of some kind that ties together a collection of entities/objects of some kind.</xs:documentation>
     </xs:annotation>
     <xs:complexContent>
       <xs:extension base="evt:BaseObjectComplexType">
@@ -1947,12 +1947,12 @@
       </xs:element>
       <xs:element name="Id" type="xs:string" minOccurs="0" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation>A unique identifer for the piece of hardware, e.g. an asset number.</xs:documentation>
+          <xs:documentation>A unique identifier for the piece of hardware, e.g. an asset number.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="Name" type="xs:string" minOccurs="0" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation>A friendly name for the hardware, e.g. a name that has been deinfed in an asset management or device monitoring system.</xs:documentation>
+          <xs:documentation>A friendly name for the hardware, e.g. a name that has been defined in an asset management or device monitoring system.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="Model" type="xs:string" minOccurs="0" maxOccurs="1">
@@ -1996,7 +1996,7 @@
   </xs:complexType>
   <xs:complexType name="ImportComplexType">
     <xs:annotation>
-      <xs:documentation>Captures data relevant to an import operation, e.g importing a file from outside an application into the application.</xs:documentation>
+      <xs:documentation>Captures data relevant to an import operation, e.g. importing a file from outside an application into the application.</xs:documentation>
     </xs:annotation>
     <xs:sequence minOccurs="1" maxOccurs="1">
       <xs:element name="Source" type="evt:MultiObjectComplexType" minOccurs="0" maxOccurs="1">
@@ -2054,7 +2054,7 @@
       </xs:element>
       <xs:element name="Site" type="xs:string" minOccurs="0" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation>The name of the site of the location, e.g. where an organistation has multiple distinct sites or campuses. Specifiying the site is particularly important when the sites are in the same town/city.</xs:documentation>
+          <xs:documentation>The name of the site of the location, e.g. where an organisation has multiple distinct sites or campuses. Specifying the site is particularly important when the sites are in the same town/city.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:sequence minOccurs="0" maxOccurs="1">
@@ -2087,7 +2087,7 @@
             </xs:element>
             <xs:element name="Position" type="xs:string" minOccurs="0" maxOccurs="1">
               <xs:annotation>
-                <xs:documentation>The position of the device where the location refers to a rack mounted device in a rack/cabinet. E.g. where a 4U device occupies U positions 1-4 in a cabinet (numbered from the bottom of the cabinet, satrting from 1), the position would be '1'.</xs:documentation>
+                <xs:documentation>The position of the device where the location refers to a rack mounted device in a rack/cabinet. E.g. where a 4U device occupies U positions 1-4 in a cabinet (numbered from the bottom of the cabinet, starting from 1), the position would be '1'.</xs:documentation>
               </xs:annotation>
             </xs:element>
           </xs:sequence>
@@ -2122,7 +2122,7 @@
       </xs:element>
       <xs:element name="Id" type="xs:string" minOccurs="0" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation>The identifier for the removabel media. This may be an identifer provided by the media (e.g. the Card Identification or CID of an SD card) or assigned by device monitoring software.</xs:documentation>
+          <xs:documentation>The identifier for the removable media. This may be an identifier provided by the media (e.g. the Card Identification or CID of an SD card) or assigned by device monitoring software.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="Name" type="xs:string" minOccurs="0" maxOccurs="1">
@@ -2198,7 +2198,7 @@
   </xs:complexType>
   <xs:complexType name="MultiObjectComplexType">
     <xs:annotation>
-      <xs:documentation>Describes a collection of objects/entities that may be of differerent types.</xs:documentation>
+      <xs:documentation>Describes a collection of objects/entities that may be of different types.</xs:documentation>
     </xs:annotation>
     <xs:group ref="evt:MultiObjectGroup" minOccurs="1" maxOccurs="unbounded"/>
   </xs:complexType>
@@ -2252,12 +2252,12 @@
       </xs:element>
       <xs:element name="Permit" type="evt:NetworkOutcomeComplexType" minOccurs="1" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation>The action of network traffic being permitted by an Access Contol List (ACL).</xs:documentation>
+          <xs:documentation>The action of network traffic being permitted by an Access Control List (ACL).</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="Deny" type="evt:NetworkOutcomeComplexType" minOccurs="1" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation>The action of network traffic being denied by an Access Contol List (ACL).</xs:documentation>
+          <xs:documentation>The action of network traffic being denied by an Access Control List (ACL).</xs:documentation>
         </xs:annotation>
       </xs:element>
     </xs:choice>
@@ -2285,7 +2285,7 @@
   </xs:complexType>
   <xs:complexType name="NetworkLocationComplexType">
     <xs:annotation>
-      <xs:documentation>Describes an end point within a network. This may be an application running on a device or a netwrok appliance such as a switch.</xs:documentation>
+      <xs:documentation>Describes an end point within a network. This may be an application running on a device or a network appliance such as a switch.</xs:documentation>
     </xs:annotation>
     <xs:sequence minOccurs="1" maxOccurs="1">
       <xs:element name="Device" type="evt:DeviceComplexType" minOccurs="0" maxOccurs="1">
@@ -2634,7 +2634,7 @@
       </xs:element>
       <xs:element name="Description" type="xs:string" minOccurs="0" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation>A human readble description of what the query is searching for.</xs:documentation>
+          <xs:documentation>A human-readable description of what the query is searching for.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="Advanced" minOccurs="0" maxOccurs="1">
@@ -2650,11 +2650,11 @@
       </xs:element>
       <xs:element name="Simple" minOccurs="0" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation>A simple representation of a query using includes and excludes terms. This is suitable for simple filtered lists, e.g for a list of names excluding "John,Bob".</xs:documentation>
+          <xs:documentation>A simple representation of a query using includes and excludes terms. This is suitable for simple filtered lists, e.g. for a list of names excluding "John,Bob".</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:annotation>
-            <xs:documentation>A simple representation of a query using includes and excludes terms. This is suitable for simple filtered lists, e.g for a list of names excluding "John,Bob".</xs:documentation>
+            <xs:documentation>A simple representation of a query using includes and excludes terms. This is suitable for simple filtered lists, e.g. for a list of names excluding "John,Bob".</xs:documentation>
           </xs:annotation>
           <xs:sequence minOccurs="1" maxOccurs="1">
             <xs:element name="Include" type="xs:string" minOccurs="0" maxOccurs="1">
@@ -2685,7 +2685,7 @@
   </xs:complexType>
   <xs:complexType name="ResourceComplexType">
     <xs:annotation>
-      <xs:documentation>Describes a resource within a web site or web application, such as an HTML file, image file or script, along with the details of that resource such as size or response codes.  It can represent both successful and failed access to the resource object.</xs:documentation>
+      <xs:documentation>Describes a resource within a website or web application, such as an HTML file, image file or script, along with the details of that resource such as size or response codes.  It can represent both successful and failed access to the resource object.</xs:documentation>
     </xs:annotation>
     <xs:complexContent>
       <xs:extension base="evt:BaseObjectComplexType">
@@ -2815,7 +2815,7 @@
   </xs:complexType>
   <xs:complexType name="SearchResultsComplexType">
     <xs:annotation>
-      <xs:documentation>Structure used to describe a set of search results from a query where the results are viewed or interacted with in a separate event to the execution of the query. E.g. for long running queries where the results are stored for later viewing/processing. The Search schema action should be used to describe the event for the execution of the search. Query/Id or Query/Name can be used to associated the results event with the query event.</xs:documentation>
+      <xs:documentation>Structure used to describe a set of search results from a query where the results are viewed or interacted with in a separate event to the execution of the query. E.g. for long-running queries where the results are stored for later viewing/processing. The Search schema action should be used to describe the event for the execution of the search. Query/Id or Query/Name can be used to associate the results event with the query event.</xs:documentation>
     </xs:annotation>
     <xs:complexContent>
       <xs:extension base="evt:BaseObjectComplexType">
@@ -2903,7 +2903,7 @@
       </xs:element>
       <xs:element name="Organisation" type="xs:string" minOccurs="0" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation>Describes the organisation that owns or has responsiblity for the system.</xs:documentation>
+          <xs:documentation>Describes the organisation that owns or has responsibility for the system.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="Version" type="xs:string" minOccurs="0" maxOccurs="1">
@@ -2994,7 +2994,7 @@
         <xs:sequence minOccurs="1" maxOccurs="1">
           <xs:element name="Domain" type="xs:string" minOccurs="0" maxOccurs="1">
             <xs:annotation>
-              <xs:documentation>The security domain that the user exists within, e.g. an Active Directory or OpenLDAP doamin.</xs:documentation>
+              <xs:documentation>The security domain that the user exists within, e.g. an Active Directory or OpenLDAP domain.</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element name="EmailAddress" type="evt:EmailAddressSimpleType" minOccurs="0" maxOccurs="1">
@@ -3023,7 +3023,7 @@
     <xs:sequence minOccurs="1" maxOccurs="1">
       <xs:element name="Id" type="xs:string" minOccurs="0" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation>A unique identitier used across the business to identify this person.</xs:documentation>
+          <xs:documentation>A unique identifier used across the business to identify this person.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="StaffNumber" type="xs:string" minOccurs="0" maxOccurs="1">
@@ -3196,7 +3196,7 @@
           </xs:element>
           <xs:element name="To" type="evt:UserComplexType" minOccurs="0" maxOccurs="unbounded">
             <xs:annotation>
-              <xs:documentation>The user that is the recipient of the call or a collection of users in the case of a conferrence type call.</xs:documentation>
+              <xs:documentation>The user that is the recipient of the call or a collection of users in the case of a conference type call.</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element name="Data" type="evt:DataComplexType" minOccurs="0" maxOccurs="unbounded">
@@ -3226,7 +3226,7 @@
   </xs:simpleType>
   <xs:simpleType name="AlertSeveritySimpleType">
     <xs:annotation>
-      <xs:documentation>The severities that can be assigned to an alert, e.g. an error in a system or the alert from the detection of malware. They indicate how far reaching the symptoms of the cause of the alert are.</xs:documentation>
+      <xs:documentation>The severities that can be assigned to an alert, e.g. an error in a system or the alert from the detection of malware. They indicate how far-reaching the symptoms of the cause of the alert are.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
       <xs:enumeration value="Info"/>
@@ -3237,7 +3237,7 @@
   </xs:simpleType>
   <xs:simpleType name="AlertTypeSimpleType">
     <xs:annotation>
-      <xs:documentation>The types of alert that can be fired, for example errors in an application log, malware or anti-virus detection alerts.</xs:documentation>
+      <xs:documentation>The types of alert that can be fired, for example errors in an application log, malware or antivirus detection alerts.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
       <xs:enumeration value="Vulnerability"/>
