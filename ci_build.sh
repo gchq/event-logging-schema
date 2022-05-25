@@ -620,6 +620,7 @@ build_schema_variants() {
 # e.g. tag v4.1.2 on branch 4.1.
 check_branch_of_tag() {
   if [[ "${BUILD_IS_SCHEMA_RELEASE}" = "true" ]]; then
+    echo -e "${GREEN}Checking tag is on a release branch${NC}"
     # Make sure the git tag exists on a release branch, else
     # no docs will be created for it
     local release_branch_pattern="^[0-9]+\.[0-9]+$"
@@ -629,7 +630,7 @@ check_branch_of_tag() {
           --no-pager \
           branch \
           --contains \
-          tags/v6.0.28 \
+          "tags/${BUILD_TAG}" \
         | sed 's/..//' \
         | grep -E "${release_branch_pattern}"
       )"
@@ -638,6 +639,8 @@ check_branch_of_tag() {
       echo "${RED}Error${NC}Release tag ${BUILD_TAG} not found on a release branch."
       exit 1
     fi
+  else
+    echo -e "${GREEN}Not a schema release so no branch check needed.${NC}"
   fi
 }
 
@@ -663,6 +666,12 @@ dump_build_info() {
   echo -e "UNWANTED_SECTIONS:            [${GREEN}${UNWANTED_SECTIONS[*]}${NC}]"
 
   echo "::endgroup::"
+}
+
+create_dir() {
+  local dir="${1:?dir not set}"; shift
+  echo -e "${GREEN}Creating directory ${BLUE}${dir}${NC}"
+  mkdir -p "${dir}"
 }
 
 main() {
@@ -699,10 +708,12 @@ main() {
   dump_build_info
   check_branch_of_tag
 
-  mkdir -p "${RELEASE_ARTEFACTS_DIR}"
-  mkdir -p "${GIT_WORK_DIR}"
-  mkdir -p "${NEW_GH_PAGES_DIR}"
-  mkdir -p "${SINGLE_SITE_DIR}"
+  echo "::group::Create dirs"
+  create_dir "${RELEASE_ARTEFACTS_DIR}"
+  create_dir "${GIT_WORK_DIR}"
+  create_dir "${NEW_GH_PAGES_DIR}"
+  create_dir "${SINGLE_SITE_DIR}"
+  echo "::endgroup::"
 
   # Both of these get set by the call to populate_release_brances_arr()
   local release_branches=()
