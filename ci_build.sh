@@ -625,12 +625,14 @@ check_branch_of_tag() {
     # no docs will be created for it
     local release_branch_pattern="^[0-9]+\.[0-9]+$"
     local release_branches_for_tag=
+    # OR with echo to stop pipefail killing the script
     release_branches_for_tag="$( \
-      git \
+      { git \
           --no-pager \
           branch \
           --contains \
           "tags/${BUILD_TAG}" \
+        || echo "" ; } \
         | sed 's/..//' \
         | grep -E "${release_branch_pattern}"
       )"
