@@ -521,6 +521,7 @@ prepare_for_docs_release() {
 }
 
 populate_release_brances_arr() {
+  echo -e "::group::Getting list of release branches"
   echo -e "${GREEN}Getting list of release branches${NC}"
 
   # Read all the matching release branches into the arr
@@ -556,6 +557,7 @@ populate_release_brances_arr() {
     | tail -n1)"
 
   echo -e "latest_version:        [${GREEN}${latest_version}${NC}]"
+  echo "::endgroup::"
 }
 
 validate_source_schema() {
@@ -619,40 +621,18 @@ build_schema_variants() {
 # so we need releases of the schema to be made on a release branch,
 # e.g. tag v4.1.2 on branch 4.1.
 check_branch_of_tag() {
-
-    #local fresh_clone_dir="${BUILD_DIR}/_fresh_git_clone"
-    #git clone \
-      #https://github.com/gchq/event-logging-schema.git \
-      #"${fresh_clone_dir}"
-    #pushd "${fresh_clone_dir}"
-
-        #git \
-          #--no-pager \
-          #branch \
-          #--all \
-          #--contains \
-          #"tags/v4.0-beta.5" \
-        #|| echo ""
-    #popd
-
+  echo -e "::group::Checking which branches the tag is on"
   if [[ "${BUILD_IS_SCHEMA_RELEASE}" = "true" ]]; then
     echo -e "${GREEN}Checking tag is on a release branch${NC}"
 
     # The repo already checked out is in a detached head state
-    # so we cannot use it to determine which branches our tag is on
+    # so we cannot use it to determine which branches our tag is on,
+    # thus clone a full one.
     local fresh_clone_dir="${BUILD_DIR}/_fresh_git_clone"
     git clone \
       https://github.com/gchq/event-logging-schema.git \
       "${fresh_clone_dir}"
     pushd "${fresh_clone_dir}"
-
-        git \
-          --no-pager \
-          branch \
-          --all \
-          --contains \
-          "tags/v4.0-beta.5" \
-        || echo ""
 
     # Make sure the git tag exists on a release branch, else
     # no docs will be created for it
@@ -675,8 +655,9 @@ check_branch_of_tag() {
       )"
 
     if [[ -z "${release_branches_for_tag}" ]]; then
-      echo "${RED}Error${NC}Release tag ${BUILD_TAG} not found on a release branch."
-      echo "Dumping branches containing ${BUILD_TAG}"
+      echo "${RED}Error${NC}Release tag ${BUILD_TAG} not found on a" \
+        "release branch (pattern ${release_branch_pattern})."
+      echo "Dumping branches containing ${BUILD_TAG}:"
       { git \
           --no-pager \
           branch \
@@ -691,6 +672,7 @@ check_branch_of_tag() {
   else
     echo -e "${GREEN}Not a schema release so no branch check needed.${NC}"
   fi
+  echo "::endgroup::"
 }
 
 dump_build_info() {
