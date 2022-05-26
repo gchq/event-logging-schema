@@ -521,6 +521,7 @@ prepare_for_docs_release() {
 }
 
 populate_release_brances_arr() {
+  echo -e "::group::Getting list of release branches"
   echo -e "${GREEN}Getting list of release branches${NC}"
 
   # Read all the matching release branches into the arr
@@ -556,6 +557,7 @@ populate_release_brances_arr() {
     | tail -n1)"
 
   echo -e "latest_version:        [${GREEN}${latest_version}${NC}]"
+  echo "::endgroup::"
 }
 
 validate_source_schema() {
@@ -619,26 +621,58 @@ build_schema_variants() {
 # so we need releases of the schema to be made on a release branch,
 # e.g. tag v4.1.2 on branch 4.1.
 check_branch_of_tag() {
+  echo -e "::group::Checking which branches the tag is on"
   if [[ "${BUILD_IS_SCHEMA_RELEASE}" = "true" ]]; then
+    echo -e "${GREEN}Checking tag is on a release branch${NC}"
+
+    # The repo already checked out is in a detached head state
+    # so we cannot use it to determine which branches our tag is on,
+    # thus clone a full one.
+    local fresh_clone_dir="${BUILD_DIR}/_fresh_git_clone"
+    git clone \
+      https://github.com/gchq/event-logging-schema.git \
+      "${fresh_clone_dir}"
+    pushd "${fresh_clone_dir}"
+
     # Make sure the git tag exists on a release branch, else
     # no docs will be created for it
-    local release_branch_pattern="^[0-9]+\.[0-9]+$"
+    # Branch may look like:
+    # 4.0
+    # remotes/origin/4.0
+    local release_branch_pattern="^(remotes/[^/]+/)?[0-9]+\.[0-9]+$"
     local release_branches_for_tag=
+    # OR with echo to stop pipefail killing the script
     release_branches_for_tag="$( \
-      git \
+      { git \
           --no-pager \
           branch \
+          --all \
           --contains \
-          tags/v6.0.28 \
+          "tags/${BUILD_TAG}" \
+        || echo "" ; } \
         | sed 's/..//' \
         | grep -E "${release_branch_pattern}"
       )"
 
     if [[ -z "${release_branches_for_tag}" ]]; then
-      echo "${RED}Error${NC}Release tag ${BUILD_TAG} not found on a release branch."
+      echo "${RED}Error${NC}Release tag ${BUILD_TAG} not found on a" \
+        "release branch (pattern ${release_branch_pattern})."
+      echo "Dumping branches containing ${BUILD_TAG}:"
+      { git \
+          --no-pager \
+          branch \
+          --all \
+          --contains \
+          "tags/${BUILD_TAG}" \
+        || echo "" ; } \
+        | sed 's/..//'
       exit 1
     fi
+    popd
+  else
+    echo -e "${GREEN}Not a schema release so no branch check needed.${NC}"
   fi
+  echo "::endgroup::"
 }
 
 dump_build_info() {
@@ -663,6 +697,12 @@ dump_build_info() {
   echo -e "UNWANTED_SECTIONS:            [${GREEN}${UNWANTED_SECTIONS[*]}${NC}]"
 
   echo "::endgroup::"
+}
+
+create_dir() {
+  local dir="${1:?dir not set}"; shift
+  echo -e "${GREEN}Creating directory ${BLUE}${dir}${NC}"
+  mkdir -p "${dir}"
 }
 
 main() {
@@ -699,10 +739,12 @@ main() {
   dump_build_info
   check_branch_of_tag
 
-  mkdir -p "${RELEASE_ARTEFACTS_DIR}"
-  mkdir -p "${GIT_WORK_DIR}"
-  mkdir -p "${NEW_GH_PAGES_DIR}"
-  mkdir -p "${SINGLE_SITE_DIR}"
+  echo "::group::Create dirs"
+  create_dir "${RELEASE_ARTEFACTS_DIR}"
+  create_dir "${GIT_WORK_DIR}"
+  create_dir "${NEW_GH_PAGES_DIR}"
+  create_dir "${SINGLE_SITE_DIR}"
+  echo "::endgroup::"
 
   # Both of these get set by the call to populate_release_brances_arr()
   local release_branches=()

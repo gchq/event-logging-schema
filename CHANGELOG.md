@@ -19,7 +19,37 @@ They may also include changes to such things as enumerations or patterns that ar
 
 Patch version changes will typically include cosmetic changes (e.g. _xs:documentation_ changes).
 
+
 ## [Unreleased]
+
+~~~
+DO NOT ADD CHANGES HERE - ADD THEM USING log_change.sh
+~~~
+
+
+## [v4.0-beta.10] - 2022-05-26
+
+* Fix automated build.
+
+
+## [v4.0-beta.9] - 2022-05-26
+
+* Fix automated build.
+
+
+## [v4.0-beta.8] - 2022-05-25
+
+* Fix automated build.
+
+
+## [v4.0-beta.7] - 2022-05-25
+
+* Fix automated build scripts.
+
+
+## [v4.0-beta.6] - 2022-05-25
+
+* Fix spelling mistakes in schema annotations.
 
 
 ## [v4.0-beta.5] - 2021-09-17
@@ -194,18 +224,12 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 * No changes to the schema.
 
-### Changed
-
 * Change the schema generator to appy the version of the generated schema to the id attribute and the filename.
 
 
 ## [v3.3.0] - 2019-01-14
 
-### Added
-
 * Issue **#33** : Add content to ClassificationComplexType to support richer protective marking schemes
-
-### Changed
 
 * Change `name` to `pipelineName` in Schema Generator `configuration.yml`.
 
@@ -216,16 +240,12 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 ## [v3.2.4] - 2018-02-13
 
-### Changed
-
 * Add the pipeline suffix to the end of `id` attribute value on the `schema` element. This provides a means of differentiating the different forms of the schema.
 
 
 ## [v3.2.3] - 2018-01-30
 
 * No changes to the schema.
-
-### Changed
 
 * Change transformer to support pipeline inheritance
 
@@ -234,16 +254,12 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 ## [v3.2.2] - 2018-01-12
 
-### Changed
-
 * Fix broken junit test in the transformer code
 
 * No changes to the schema.
 
 
 ## [v3.2.1] - 2018-01-12
-
-### Changed
 
 * Change transformer code to accept the sourceSchema path as an argument to the jar rather than in the configuration yml.
 
@@ -252,38 +268,28 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 ## [v3.2.0] - 2017-12-21
 
-### Added
-
 * Issue **#23** : Added optional `Coordinates` element to `LocationComplexType` to capture lat/long
 
 * Add a build step to zip up the XSLTs used by the transformer
 
 * Add the transformer fat jar and transformations zip to the github release artifacts
 
-### Changed
-
 * Improve logging and error handling in the schema transformer
 
 
 ## [v3.1.2] - 2017-11-14
 
-### Added
-
 * Add a client version of the schema for use in the [event-logging jaxb library](https://github.com/gchq/event-logging)
 
 * Add a transformation pipeline process for running multiple XSLTs against the schema
 
+
 ## [v3.1.1] - 2017-07-17
-
-
-### Changed
 
 * Issue **#18** : Remove `pattern` from `VersionSimpleType` as this is trumped by the enumerations. Add past versions as enumerations.
 
 
 ## [v3.1.0] - 2017-07-12
-
-### Added
 
 * Issue **#16** : Add _Data_ element to _PrintSettings_ element
 
@@ -295,18 +301,19 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 * Issue **#4** : Extend _ObjectOutcomeComplexType_ to have _Data_ sub elements
 
-### Changed
-
 * Issue **#5** : Change certain instances of _xs:positiveInteger_ to _xs:nonNegativeInteger_ to allow zero values
 
 
 ## [v3.0.0] - 2016-10-31
 
-### Added
-
 * Initial open source release
 
-[Unreleased]: https://github.com/gchq/event-logging-schema/compare/v4.0-beta.5...HEAD
+[Unreleased]: https://github.com/gchq/event-logging-schema/compare/v4.0-beta.10...HEAD
+[v4.0-beta.10]: https://github.com/gchq/event-logging-schema/compare/v4.0-beta.9...v4.0-beta.10
+[v4.0-beta.9]: https://github.com/gchq/event-logging-schema/compare/v4.0-beta.8...v4.0-beta.9
+[v4.0-beta.8]: https://github.com/gchq/event-logging-schema/compare/v4.0-beta.7...v4.0-beta.8
+[v4.0-beta.7]: https://github.com/gchq/event-logging-schema/compare/v4.0-beta.6...v4.0-beta.7
+[v4.0-beta.6]: https://github.com/gchq/event-logging-schema/compare/v4.0-beta.5...v4.0-beta.6
 [v4.0-beta.5]: https://github.com/gchq/event-logging-schema/compare/v4.0-beta.4...v4.0-beta.5
 [v4.0-beta.4]: https://github.com/gchq/event-logging-schema/compare/v4.0-beta.3...v4.0-beta.4
 [v4.0-beta.3]: https://github.com/gchq/event-logging-schema/compare/v4.0-beta.2...v4.0-beta.3

@@ -36,7 +36,7 @@ jobs:
 
       - name: Checkout code
         id: checkout_code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           # Set this so it gets the annotated commit, not the commit being tagged.
           # Which means we can get the release msg
