@@ -629,6 +629,7 @@ check_branch_of_tag() {
         git \
           --no-pager \
           branch \
+          --all \
           --contains \
           "tags/v4.0-beta.5" \
         || echo ""
@@ -648,19 +649,24 @@ check_branch_of_tag() {
         git \
           --no-pager \
           branch \
+          --all \
           --contains \
           "tags/v4.0-beta.5" \
         || echo ""
 
     # Make sure the git tag exists on a release branch, else
     # no docs will be created for it
-    local release_branch_pattern="^[0-9]+\.[0-9]+$"
+    # Branch may look like:
+    # 4.0
+    # remotes/origin/4.0
+    local release_branch_pattern="^(remotes/[^/]+/)?[0-9]+\.[0-9]+$"
     local release_branches_for_tag=
     # OR with echo to stop pipefail killing the script
     release_branches_for_tag="$( \
       { git \
           --no-pager \
           branch \
+          --all \
           --contains \
           "tags/${BUILD_TAG}" \
         || echo "" ; } \
