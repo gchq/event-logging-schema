@@ -620,11 +620,11 @@ build_schema_variants() {
 # e.g. tag v4.1.2 on branch 4.1.
 check_branch_of_tag() {
 
-    local fresh_clone_dir="${BUILD_DIR}/_fresh_git_clone"
-    git clone \
-      https://github.com/gchq/event-logging-schema.git \
-      "${fresh_clone_dir}"
-    pushd "${fresh_clone_dir}"
+    #local fresh_clone_dir="${BUILD_DIR}/_fresh_git_clone"
+    #git clone \
+      #https://github.com/gchq/event-logging-schema.git \
+      #"${fresh_clone_dir}"
+    #pushd "${fresh_clone_dir}"
 
         git \
           --no-pager \
@@ -633,7 +633,7 @@ check_branch_of_tag() {
           --contains \
           "tags/v4.0-beta.5" \
         || echo ""
-    popd
+    #popd
 
   if [[ "${BUILD_IS_SCHEMA_RELEASE}" = "true" ]]; then
     echo -e "${GREEN}Checking tag is on a release branch${NC}"
@@ -676,6 +676,15 @@ check_branch_of_tag() {
 
     if [[ -z "${release_branches_for_tag}" ]]; then
       echo "${RED}Error${NC}Release tag ${BUILD_TAG} not found on a release branch."
+      echo "Dumping branches containing ${BUILD_TAG}"
+      { git \
+          --no-pager \
+          branch \
+          --all \
+          --contains \
+          "tags/${BUILD_TAG}" \
+        || echo "" ; } \
+        | sed 's/..//'
       exit 1
     fi
     popd
