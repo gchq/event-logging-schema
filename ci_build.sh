@@ -626,13 +626,13 @@ check_branch_of_tag() {
       #"${fresh_clone_dir}"
     #pushd "${fresh_clone_dir}"
 
-        git \
-          --no-pager \
-          branch \
-          --all \
-          --contains \
-          "tags/v4.0-beta.5" \
-        || echo ""
+        #git \
+          #--no-pager \
+          #branch \
+          #--all \
+          #--contains \
+          #"tags/v4.0-beta.5" \
+        #|| echo ""
     #popd
 
   if [[ "${BUILD_IS_SCHEMA_RELEASE}" = "true" ]]; then
