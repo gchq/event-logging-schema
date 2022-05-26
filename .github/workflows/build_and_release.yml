@@ -33,8 +33,6 @@ jobs:
           # Which means we can get the release msg
           # See https://github.com/actions/runner/issues/712
           ref: ${{ github.ref }} 
-          # This gets all branches so we can check our tag exists on the right branch
-          fetch-depth: 0
 
         # Make sure the wrapper jar has not been tampered with
       - name: Validate gradle wrapper jar

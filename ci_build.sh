@@ -619,23 +619,39 @@ build_schema_variants() {
 # so we need releases of the schema to be made on a release branch,
 # e.g. tag v4.1.2 on branch 4.1.
 check_branch_of_tag() {
-  echo "getting branches"
-      git \
-          --no-pager \
-          branch \
-          --contains \
-          "tags/v4.0-beta.5" || echo ""
-    git fetch --force --tags
 
-  echo "getting branches 2"
-      git \
+    local fresh_clone_dir="${BUILD_DIR}/_fresh_git_clone"
+    git clone \
+      https://github.com/gchq/event-logging-schema.git \
+      "${fresh_clone_dir}"
+    pushd "${fresh_clone_dir}"
+
+        git \
           --no-pager \
           branch \
           --contains \
-          "tags/v4.0-beta.5" || echo ""
+          "tags/v4.0-beta.5" \
+        || echo ""
+    popd
 
   if [[ "${BUILD_IS_SCHEMA_RELEASE}" = "true" ]]; then
     echo -e "${GREEN}Checking tag is on a release branch${NC}"
+
+    # The repo already checked out is in a detached head state
+    # so we cannot use it to determine which branches our tag is on
+    local fresh_clone_dir="${BUILD_DIR}/_fresh_git_clone"
+    git clone \
+      https://github.com/gchq/event-logging-schema.git \
+      "${fresh_clone_dir}"
+    pushd "${fresh_clone_dir}"
+
+        git \
+          --no-pager \
+          branch \
+          --contains \
+          "tags/v4.0-beta.5" \
+        || echo ""
+
     # Make sure the git tag exists on a release branch, else
     # no docs will be created for it
     local release_branch_pattern="^[0-9]+\.[0-9]+$"
@@ -656,6 +672,7 @@ check_branch_of_tag() {
       echo "${RED}Error${NC}Release tag ${BUILD_TAG} not found on a release branch."
       exit 1
     fi
+    popd
   else
     echo -e "${GREEN}Not a schema release so no branch check needed.${NC}"
   fi
