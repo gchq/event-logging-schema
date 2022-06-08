@@ -593,10 +593,9 @@ build_schema_variants() {
     runShadow \
     -x diffAgainstLatest 
 
-  ls -l "${BUILD_DIR}/event-logging-transformer-main/build/libs/"
+  ls -l ./event-logging-transformer-main/build/libs/
 
-  ls -l "${BUILD_DIR}"/event-logging-transformer-main/build/libs/event-logging-transformer*-all.jar
-
+  ls -l ./event-logging-transformer-main/build/libs/event-logging-transformer*-all.jar
 
   if [[ "${BUILD_IS_SCHEMA_RELEASE}" = "true" ]]; then
     echo -e "${GREEN}Copying build artefacts for release${NC}"
