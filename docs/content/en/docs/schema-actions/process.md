@@ -38,7 +38,7 @@ The following is an example of recoding the input and output to a batch process.
 <EventDetail>
   <TypeId>SplitData</TypeId>
   <Process>
-    <Action>Split</Action>
+    <Action>Execute</Action>
     <Type>Application</Type>
     <Command>script.sh</Command>
     <Input>
