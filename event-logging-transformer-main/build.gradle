@@ -1,6 +1,6 @@
 def EXAMPLE_XML_DIR="../docs/content/en/docs/complete-examples"
 def MASTER_SCHEMA_FILE_PATH="../event-logging.xsd"
-//def jarName = "event-logging-transformer-${versions.eventLogging}.jar"
+def jarName = "event-logging-transformer-${versions.eventLogging}.jar"
 def fatJarName = "event-logging-transformer-${versions.eventLogging}-all.jar"
 
 // Extract the major version number from the master schema file
@@ -33,14 +33,14 @@ jar {
                 "Main-Class" : mainClassName
         )
     }
-    //archiveName jarName
+    archiveFileName = jarName
 }
 
 shadowJar {
     // Allows us to build fat jars with lots of files
     zip64 true
 
-    //archiveFileName fatJarName
+    archiveFileName = fatJarName
 }
 
 // In this section you declare the dependencies for your production and test code

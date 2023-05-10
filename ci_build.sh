@@ -602,6 +602,9 @@ build_schema_variants() {
     cp \
       "${BUILD_DIR}"/event-logging-transformer-main/build/libs/event-logging-transformer*-all.jar \
       "${RELEASE_ARTEFACTS_DIR}"
+    cp \
+      "${BUILD_DIR}"/event-logging-transformer-main/build/distributions/transformations-*.zip \
+      "${RELEASE_ARTEFACTS_DIR}"
 
     GENERATED_DIR="event-logging-transformer-main/pipelines/generated"
     echo "Deleting generated schemas that are not release artifacts"
