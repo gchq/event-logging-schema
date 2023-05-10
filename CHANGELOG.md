@@ -27,8 +27,6 @@ DO NOT ADD CHANGES HERE - ADD THEM USING log_change.sh
 ~~~
 
 
-## [v4.0.0-2] - 2023-05-10
-
 * Fix missing build artefacts. No change to schema.
 
 
