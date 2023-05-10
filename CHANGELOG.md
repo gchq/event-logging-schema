@@ -27,8 +27,6 @@ DO NOT ADD CHANGES HERE - ADD THEM USING log_change.sh
 ~~~
 
 
-* Fix missing build artefacts. No change to schema.
-
 
 ## [v4.0.0] - 2023-11-20
 
@@ -318,7 +316,8 @@ DO NOT ADD CHANGES HERE - ADD THEM USING log_change.sh
 
 * Initial open source release
 
-[Unreleased]: https://github.com/gchq/event-logging-schema/compare/v4.0.0-2...HEAD
+[Unreleased]: https://github.com/gchq/event-logging-schema/compare/v4.0.1...HEAD
+[v4.0.1]: https://github.com/gchq/event-logging-schema/compare/v4.0.0...v4.0.1
 [v4.0.0-2]: https://github.com/gchq/event-logging-schema/compare/v4.0.0...v4.0.0-2
 [v4.0.0]: https://github.com/gchq/event-logging-schema/compare/v4.0-beta.10...v4.0.0
 [v4.0-beta.10]: https://github.com/gchq/event-logging-schema/compare/v4.0-beta.9...v4.0-beta.10
