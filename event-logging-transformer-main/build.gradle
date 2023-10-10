@@ -1,6 +1,6 @@
 def EXAMPLE_XML_DIR="../docs/content/en/docs/complete-examples"
 def MASTER_SCHEMA_FILE_PATH="../event-logging.xsd"
-def jarName = "event-logging-transformer-${versions.eventLogging}.jar"
+//def jarName = "event-logging-transformer-${versions.eventLogging}.jar"
 def fatJarName = "event-logging-transformer-${versions.eventLogging}-all.jar"
 
 // Extract the major version number from the master schema file
@@ -15,6 +15,13 @@ apply plugin: 'ca.cutterslade.analyze'
 apply plugin: 'idea'
 apply plugin: 'com.github.johnrengelman.shadow'
 
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(8)
+        vendor = JvmVendorSpec.ADOPTIUM
+    }
+}
+
 // required for application plugin
 mainClassName = "event.logging.transformer.SchemaGenerator"
 
@@ -26,33 +33,33 @@ jar {
                 "Main-Class" : mainClassName
         )
     }
-    archiveName jarName
+    //archiveName jarName
 }
 
 shadowJar {
     // Allows us to build fat jars with lots of files
     zip64 true
 
-    archiveName fatJarName
+    //archiveFileName fatJarName
 }
 
 // In this section you declare the dependencies for your production and test code
 dependencies {
     
     // The production code uses the SLF4J logging API at compile time
-    compile "com.fasterxml.jackson.core:jackson-annotations:$versions.jackson"
-    compile "com.fasterxml.jackson.core:jackson-databind:$versions.jackson"
-    compile "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:$versions.jackson"
-    compile "com.fasterxml.jackson.datatype:jackson-datatype-jdk8:$versions.jackson"
-    compile "org.slf4j:slf4j-api:${versions.slf4j}"
+    implementation "com.fasterxml.jackson.core:jackson-annotations:$versions.jackson"
+    implementation "com.fasterxml.jackson.core:jackson-databind:$versions.jackson"
+    implementation "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:$versions.jackson"
+    implementation "com.fasterxml.jackson.datatype:jackson-datatype-jdk8:$versions.jackson"
+    implementation "org.slf4j:slf4j-api:${versions.slf4j}"
 
-    runtime "ch.qos.logback:logback-classic:${versions.logback}"
-    runtime "net.sf.saxon:Saxon-HE:${versions.saxon}"
+    runtimeOnly "ch.qos.logback:logback-classic:${versions.logback}"
+    runtimeOnly "net.sf.saxon:Saxon-HE:${versions.saxon}"
 
-    testCompile "com.github.stefanbirkner:system-rules:${versions.systemRules}"
-    testCompile "io.github.java-diff-utils:java-diff-utils:${versions.javaDiffUtils}"
-    testCompile "junit:junit:${versions.junit}"
-    testCompile "org.assertj:assertj-core:${versions.assertj}"
+    testImplementation "com.github.stefanbirkner:system-rules:${versions.systemRules}"
+    testImplementation "io.github.java-diff-utils:java-diff-utils:${versions.javaDiffUtils}"
+    testImplementation "junit:junit:${versions.junit}"
+    testImplementation "org.assertj:assertj-core:${versions.assertj}"
 }
 
 run {
@@ -64,7 +71,7 @@ runShadow {
 }
 
 task transformersDist(type: Zip) {
-    archiveName "transformations-${versions.eventLogging}.zip"
+    archiveFileName = "transformations-${versions.eventLogging}.zip"
     from 'pipelines/transformations'
 }
 

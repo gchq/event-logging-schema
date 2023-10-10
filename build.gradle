@@ -5,18 +5,17 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath group: 'ca.cutterslade.gradle', name: 'gradle-dependency-analyze', version: '1.2.0'
     }
 }
 
 plugins {
-    id "com.github.johnrengelman.shadow" version "6.1.0" apply false
+    id "com.github.johnrengelman.shadow" version "8.1.1" apply false
+    //must be applied to all projects including root
+    id "ca.cutterslade.analyze" version "1.9.1" apply true
 }
 
 def projectGroup = "event-logging-transformer"
 
-//must be applied to all projects including root
-apply plugin: 'ca.cutterslade.analyze'
 
 //if the project has a value for the passed property (i.e from the cmd line via -PpropName=xxx)
 //use that, else use a default value
@@ -59,9 +58,6 @@ subprojects {
 
     group "$projectGroup"
 
-    sourceCompatibility = 1.8
-    targetCompatibility = 1.8
-
     repositories {
         mavenCentral()
         mavenLocal()
@@ -71,10 +67,11 @@ subprojects {
         all {
             exclude group: "org.slf4j", module: "slf4j-log4j12"
             exclude group: "log4j", module: "log4j"
+            exclude group: "commons-logging", module: "commons-logging"
 
             resolutionStrategy {
                 dependencySubstitution {
-                    substitute module('log4j:log4j') with module('org.slf4j:log4j-over-slf4j:$versions.slf4j')
+                    substitute module('log4j:log4j') using module('org.slf4j:log4j-over-slf4j:$versions.slf4j')
                 }
 
                 forcedModules = [
