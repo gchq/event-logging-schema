@@ -70,6 +70,7 @@ pipelines:
       - "addSafeStringSimpleType.xsl"
       - "replaceStringWithSafeString.xsl"
       - "removeMetaElement.xsl"
+      - "removeSharingElement.xsl"
       - "removeAnyContentComplexType.xsl"
       - "limitOccurrence.xsl"
       - "limitDataElementRecursion.xsl"

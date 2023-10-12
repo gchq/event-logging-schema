@@ -36,14 +36,15 @@ ext.versions = [
     eventLogging: getPropertyOrDefault('version', 'SNAPSHOT'),
 
     //------------3rd-party------------
-    assertj: '3.6.2',
+    assertj: '3.24.2',
     javaDiffUtils: '4.0',
     jackson: '2.8.9',
-    junit: '4.12',
+    junit_jupiter: '5.10.0',
     logback: '1.2.3',
     saxon: '9.6.0-6',
-    slf4j: '1.7.22',
-    systemRules: '1.19.0',
+    slf4j: '1.7.36',
+    //systemRules: '1.19.0',
+    systemLambda: '1.2.1',
     zzDUMMYzz: 'makes sorting easier'
 ]
 
@@ -65,6 +66,7 @@ subprojects {
 
     configurations {
         all {
+            exclude group: "junit", module: "junit"
             exclude group: "org.slf4j", module: "slf4j-log4j12"
             exclude group: "log4j", module: "log4j"
             exclude group: "commons-logging", module: "commons-logging"

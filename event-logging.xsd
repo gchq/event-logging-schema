@@ -30,6 +30,11 @@
         <xs:documentation>The root element that contains multiple Event elements.</xs:documentation>
       </xs:annotation>
       <xs:sequence minOccurs="1" maxOccurs="1">
+        <xs:element name="SharingData" type="evt:AnyContentComplexType" minOccurs="0" maxOccurs="1">
+          <xs:annotation>
+            <xs:documentation>This element contains data relating to the sharing of a set of events between different systems or organisations. The data contained within this element will confirm to a specification defined outside of this schema.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
         <xs:element name="Event" minOccurs="0" maxOccurs="unbounded">
           <xs:annotation>
             <xs:documentation>A single event that has occurred and been recorded.</xs:documentation>
@@ -47,6 +52,11 @@
               <xs:element name="Classification" type="evt:ClassificationComplexType" minOccurs="0" maxOccurs="1">
                 <xs:annotation>
                   <xs:documentation>The classification for the event.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="SharingData" type="evt:AnyContentComplexType" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                  <xs:documentation>This element contains data relating to the sharing of an event between different systems or organisations. The data contained within this element will confirm to a specification defined outside of this schema.</xs:documentation>
                 </xs:annotation>
               </xs:element>
               <xs:element name="EventTime" minOccurs="1" maxOccurs="1" type="evt:EventTimeComplexType">
@@ -2904,6 +2914,11 @@
       <xs:element name="Organisation" type="xs:string" minOccurs="0" maxOccurs="1">
         <xs:annotation>
           <xs:documentation>Describes the organisation that owns or has responsibility for the system.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SecurityDomain" type="xs:string" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>An optional element to define the domain that the system exists in.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="Version" type="xs:string" minOccurs="0" maxOccurs="1">

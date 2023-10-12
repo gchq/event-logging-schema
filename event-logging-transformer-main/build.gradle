@@ -56,10 +56,13 @@ dependencies {
     runtimeOnly "ch.qos.logback:logback-classic:${versions.logback}"
     runtimeOnly "net.sf.saxon:Saxon-HE:${versions.saxon}"
 
-    testImplementation "com.github.stefanbirkner:system-rules:${versions.systemRules}"
+    //testImplementation "com.github.stefanbirkner:system-rules:${versions.systemRules}"
+    testImplementation "com.github.stefanbirkner:system-lambda:${versions.systemLambda}"
     testImplementation "io.github.java-diff-utils:java-diff-utils:${versions.javaDiffUtils}"
-    testImplementation "junit:junit:${versions.junit}"
     testImplementation "org.assertj:assertj-core:${versions.assertj}"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:${versions.junit_jupiter}"
+
+    testRuntimeOnly  "org.junit.jupiter:junit-jupiter-engine:${versions.junit_jupiter}"
 }
 
 run {
@@ -143,6 +146,8 @@ tasks.compileJava.dependsOn validateSchemaVersions
 def failedTestReportFiles = []
 
 test {
+    useJUnitPlatform()
+
     // Use full logging for test exceptions so we can see where the failure occurred 
     testLogging {
         events "failed"
@@ -159,6 +164,13 @@ test {
             def pair = new Tuple2("${project.name} ${desc.name}", reportFile)
             failedTestReportFiles.add(pair)
         }
+    }
+
+    // Use full logging for test exceptions so we can see where the failure occurred
+    testLogging {
+        events "failed"
+        exceptionFormat = 'full'
+        showStackTraces = true
     }
 }
 
