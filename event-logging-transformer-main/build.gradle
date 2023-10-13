@@ -46,23 +46,18 @@ shadowJar {
 // In this section you declare the dependencies for your production and test code
 dependencies {
     
+    implementation libs.bundles.jackson
     // The production code uses the SLF4J logging API at compile time
-    implementation "com.fasterxml.jackson.core:jackson-annotations:$versions.jackson"
-    implementation "com.fasterxml.jackson.core:jackson-databind:$versions.jackson"
-    implementation "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:$versions.jackson"
-    implementation "com.fasterxml.jackson.datatype:jackson-datatype-jdk8:$versions.jackson"
-    implementation "org.slf4j:slf4j-api:${versions.slf4j}"
+    implementation libs.slf4j.api
 
-    runtimeOnly "ch.qos.logback:logback-classic:${versions.logback}"
-    runtimeOnly "net.sf.saxon:Saxon-HE:${versions.saxon}"
+    runtimeOnly libs.logback.classic
+    runtimeOnly libs.saxon
 
-    //testImplementation "com.github.stefanbirkner:system-rules:${versions.systemRules}"
-    testImplementation "com.github.stefanbirkner:system-lambda:${versions.systemLambda}"
-    testImplementation "io.github.java-diff-utils:java-diff-utils:${versions.javaDiffUtils}"
-    testImplementation "org.assertj:assertj-core:${versions.assertj}"
-    testImplementation "org.junit.jupiter:junit-jupiter-api:${versions.junit_jupiter}"
+    testImplementation libs.systemLambda
+    testImplementation libs.javaDiffUtils
+    testImplementation libs.bundles.basicTest.impl
 
-    testRuntimeOnly  "org.junit.jupiter:junit-jupiter-engine:${versions.junit_jupiter}"
+    testRuntimeOnly libs.bundles.basicTest.runtime
 }
 
 run {

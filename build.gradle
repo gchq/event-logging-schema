@@ -9,9 +9,12 @@ buildscript {
 }
 
 plugins {
-    id "com.github.johnrengelman.shadow" version "8.1.1" apply false
+    //id "com.github.johnrengelman.shadow" version "8.1.1" apply false
+    alias(libs.plugins.shadow) apply false
     //must be applied to all projects including root
-    id "ca.cutterslade.analyze" version "1.9.1" apply true
+    //id "ca.cutterslade.analyze" version "1.9.1" apply true
+    alias(libs.plugins.analyze) apply true
+    id 'java-platform'
 }
 
 def projectGroup = "event-logging-transformer"
@@ -32,20 +35,7 @@ ext.getPropertyOrDefault = { propName, defaultValue ->
 }
 
 ext.versions = [
-    //------event-logging--------------
     eventLogging: getPropertyOrDefault('version', 'SNAPSHOT'),
-
-    //------------3rd-party------------
-    assertj: '3.24.2',
-    javaDiffUtils: '4.0',
-    jackson: '2.8.9',
-    junit_jupiter: '5.10.0',
-    logback: '1.2.3',
-    saxon: '9.6.0-6',
-    slf4j: '1.7.36',
-    //systemRules: '1.19.0',
-    systemLambda: '1.2.1',
-    zzDUMMYzz: 'makes sorting easier'
 ]
 
 allprojects {
@@ -53,6 +43,7 @@ allprojects {
 }
 
 subprojects {
+    apply plugin: 'java'
     apply plugin: 'java'
     apply plugin: 'ca.cutterslade.analyze'
     apply plugin: 'idea'
@@ -64,6 +55,11 @@ subprojects {
         mavenLocal()
     }
 
+    dependencies {
+        // So deps from the BOM can get the versions
+        implementation platform(libs.junit.bom)
+    }
+
     configurations {
         all {
             exclude group: "junit", module: "junit"
@@ -73,7 +69,10 @@ subprojects {
 
             resolutionStrategy {
                 dependencySubstitution {
-                    substitute module('log4j:log4j') using module('org.slf4j:log4j-over-slf4j:$versions.slf4j')
+
+                    // Ought to be a way to use the libs.slf4j.log4jOverSlf4j alias
+                    substitute module('log4j:log4j') using module("org.slf4j:log4j-over-slf4j:${libs.versions.slf4j}")
+                    //substitute module('log4j:log4j') using alias(libs.slf4j.log4jOverSlf4j)
                 }
 
                 forcedModules = [
@@ -81,5 +80,5 @@ subprojects {
             }
         }
     }
-}
 
+}
