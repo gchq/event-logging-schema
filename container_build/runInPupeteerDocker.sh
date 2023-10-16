@@ -52,20 +52,25 @@ docker_login() {
 
 clean_up() {
   echo -e "${GREEN}Stopping schema-hugo-build-env* containers${NC}"
+  # MacOS doesn't support xargs --no-run-if-empty/-r <sigh>, so need a hacky
+  # work around to deal with the case then the ls returns nothing
   docker container \
     ls \
     -q \
     --filter "name=schema-hugo-build-env*" \
-    | xargs -r docker container stop
+    | xargs -I XxX bash -c '[[ -n "XxX" ]] && docker container stop XxX'
 
+  # Seconds
   sleep 1
 
   echo -e "${GREEN}Deleting schema-hugo-build-env* containers${NC}"
+  # MacOS doesn't support xargs --no-run-if-empty/-r <sigh>, so need a hacky
+  # work around to deal with the case then the ls returns nothing
   docker container \
     ls -a \
     -q \
     --filter "name=schema-hugo-build-env*" \
-    | xargs --no-run-if-empty docker container rm
+    | xargs -I XxX bash -c '[[ -n "XxX" ]] && docker container rm XxX'
 
   remove_network
 }
@@ -150,8 +155,8 @@ wait_for_200_response() {
     fi
 
     n=$(( n + 1 ))
-    # sleep for one secs
-    sleep 0.5s
+    # Seconds
+    sleep 0.3
   done
 
   if [ "${were_dots_shown}" = true ]; then
@@ -182,8 +187,7 @@ main() {
 
   if [ "${bash_cmd}" = "bash" ]; then
     run_cmd=( "bash" )
-  elif [ "${bash_cmd}" = "PDF" ]; then
-    #run_cmd=( "node" "../generate-pdf.js" "http://site:1313/all-content/" )
+  elif [[ "${bash_cmd}" = "PDF" || "${bash_cmd}" = "pdf" ]]; then
 
     # Hugo is running in another container so use the service name 'site' as
     # the host
@@ -220,6 +224,16 @@ main() {
   echo -e "${GREEN}User ID ${BLUE}${user_id}${NC}"
   echo -e "${GREEN}Group ID ${BLUE}${group_id}${NC}"
   echo -e "${GREEN}Host repo root dir ${BLUE}${host_abs_repo_dir}${NC}"
+
+  if ! docker version >/dev/null 2>&1; then
+    echo -e "${RED}ERROR: Docker is not installed. Please install Docker or Docker Desktop.${NC}"
+    exit 1
+  fi
+
+  if ! docker buildx version >/dev/null 2>&1; then
+    echo -e "${RED}ERROR: Docker buildx is not installed. Please install it.${NC}"
+    exit 1
+  fi
 
   # So we are not rate limited, login before doing the build as this
   # will pull images
@@ -262,9 +276,12 @@ main() {
     echo -e "${GREEN}Removing old cache directories${NC}"
     #ls -1trd "${cache_dir_base}/from_"*
 
+    # List all matching dirs
+    # Remove the last item
+    # Delete each item
     ls -1trd "${cache_dir_base}/from_"* \
-      | head -n -1 \
-      | xargs -d '\n' rm -rf --
+      | sed '$d' \
+      | xargs rm -rf --
     echo -e "${GREEN}Remaining cache directories${NC}"
     ls -1trd "${cache_dir_base}/from_"*
   fi
@@ -274,6 +291,7 @@ main() {
   echo -e "${GREEN}Building image ${BLUE}${image_tag}${GREEN}" \
     "(this may take a while on first run)${NC}"
   docker buildx build \
+    --progress=plain \
     --tag "${image_tag}" \
     --build-arg "USER_ID=${user_id}" \
     --build-arg "GROUP_ID=${group_id}" \
@@ -314,6 +332,7 @@ main() {
     --workdir "${dest_dir}" \
     --name "schema_puppeteer-build-env" \
     --network "hugo-schema" \
+    --init \
     --env "BUILD_VERSION=${BUILD_VERSION:-SNAPSHOT}" \
     --env "DOCKER_USERNAME=${DOCKER_USERNAME}" \
     --env "DOCKER_PASSWORD=${DOCKER_PASSWORD}" \
@@ -321,6 +340,19 @@ main() {
     "${run_cmd[@]}"
 
   clean_up
+
+  # Would be nice to use "${bash_cmd,,}" = "pdf" for case insense compare
+  # but that is bash4, and well, you know, macOS :-(
+  if [[ "${bash_cmd}" = "PDF" || "${bash_cmd}" = "pdf" ]]; then
+    pdf_file="${local_repo_root}/event-logging-schema-docs.pdf" 
+    if [[ ! -f "${pdf_file}" ]]; then
+      echo -e "${RED}ERROR${NC} Can't find PDF file ${pdf_file}." \
+        "Has the Puppeteer PDF generation failed?"
+      exit 1
+    fi
+  fi
+
+  echo -e "${GREEN}Done${NC}"
 }
 
 main "$@"
