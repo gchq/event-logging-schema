@@ -26,12 +26,13 @@ RUN apt-get update \
       --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
-RUN npm init -y
-RUN echo "installing npm packages"
-RUN npm install puppeteer@20.5.0
-RUN npm install html2canvas
-RUN npm install jspdf
-RUN mkdir -p /builder/repo
+RUN npm init -y \
+    && echo "installing npm packages" \
+    && npm install \
+      puppeteer@20.5.0 \
+      html2canvas \
+      jspdf \
+    && mkdir -p /builder/repo
 
 # Pass in the uid/gid of the running user so we can use the same user id
 # in the container so that any files created can be read outside the 
