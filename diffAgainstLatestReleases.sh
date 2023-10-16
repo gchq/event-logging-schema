@@ -142,9 +142,9 @@ main() {
       echo -e "Diffing ${BLUE}${localFile}${NC} against ${BLUE}${downloadedFile}${NC}"
       diffFile="${downloadedFile}.diff"
       #OR with true to stop the exit code from diff stopping the script
-      diff "${localFile}" "${downloadedFile}" > "${diffFile}" || true
+      diff "${downloadedFile}" "${localFile}" > "${diffFile}" || true
       if [ "$( wc -l < "${diffFile}" )" -gt 0 ]; then
-        diff "${localFile}" "${downloadedFile}" || true
+        diff --color "${downloadedFile}" "${localFile}" || true
         echo -e "\n${RED}Warning${NC}: Local schema ${BLUE}${localFile}${NC} differs from the latest release ${BLUE}${downloadedFile}${NC}"
         echo -e "This will likely be as intended but serves as a confirmation of what has changed since the latest release"
         echo -e "(see changes in $PWD/${diffFile})${NC}"
