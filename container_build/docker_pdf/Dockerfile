@@ -2,6 +2,8 @@
 # https://github.com/puppeteer/puppeteer/blob/main/docs/troubleshooting.md
 FROM node:20.2.0-buster-slim
 
+# Comment to change cache key
+
 WORKDIR /builder
 
 # Install latest chrome dev package and fonts to support major charsets (Chinese, Japanese, Arabic, Hebrew, Thai and a few others)
