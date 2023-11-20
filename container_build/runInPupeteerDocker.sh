@@ -239,8 +239,6 @@ main() {
   # will pull images
   docker_login
 
-  echo -e "${GREEN}AAAAAAAAAAAAAAAAAAAAAAA${GREEN}"
-
   buildx_instance="${image_tag}"
 
   if ! docker buildx inspect "${buildx_instance}" >/dev/null 2>&1; then
@@ -292,8 +290,6 @@ main() {
     ls -1trd "${cache_dir_base}/from_"*
   fi
 
-  echo -e "${GREEN}XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX${GREEN}"
-
   # Pass in the location of the repo root on the docker host
   # which may have been passed down to us or we have determined
   echo -e "${GREEN}Building image ${BLUE}${image_tag}${GREEN}" \
@@ -304,11 +300,10 @@ main() {
     --build-arg "USER_ID=${user_id}" \
     --build-arg "GROUP_ID=${group_id}" \
     --build-arg "HOST_REPO_DIR=${host_abs_repo_dir}" \
+    "--cache-from=type=local,src=${cache_dir_from}" \
+    "--cache-to=type=local,dest=${cache_dir_from},mode=max" \
     --load \
     "${local_repo_root}/container_build/docker_pdf"
-
-    #"--cache-from=type=local,src=${cache_dir_from}" \
-    #"--cache-to=type=local,dest=${cache_dir_from},mode=max" \
 
   run_hugo_server
 
