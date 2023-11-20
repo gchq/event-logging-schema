@@ -239,19 +239,18 @@ main() {
   # will pull images
   docker_login
 
-  docker buildx \
-    rm \
-    schema-puppeteer-builder
+  buildx_instance="${image_tag}"
 
-  if ! docker buildx inspect schema-puppeteer-builder >/dev/null 2>&1; then
+  if ! docker buildx inspect "${buildx_instance}" >/dev/null 2>&1; then
+    echo -e "${GREEN}Creating buildx instance: ${YELLOW}${buildx_instance}${NC}"
     docker buildx \
       create \
-      --name schema-puppeteer-builder
+      --name "${buildx_instance}"
   fi
 
   docker buildx \
     use \
-    schema-puppeteer-builder
+    "${buildx_instance}"
 
   # Make a hash of these things and effectively use this as the cache key for
   # buildx so any change makes it ignore a previous cache.
