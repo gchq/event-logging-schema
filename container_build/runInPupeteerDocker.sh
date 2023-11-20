@@ -239,11 +239,16 @@ main() {
   # will pull images
   docker_login
 
+  docker buildx \
+    rm \
+    schema-puppeteer-builder
+
   if ! docker buildx inspect schema-puppeteer-builder >/dev/null 2>&1; then
     docker buildx \
       create \
       --name schema-puppeteer-builder
   fi
+
   docker buildx \
     use \
     schema-puppeteer-builder
@@ -285,6 +290,8 @@ main() {
     echo -e "${GREEN}Remaining cache directories${NC}"
     ls -1trd "${cache_dir_base}/from_"*
   fi
+
+  echo -e "${GREEN}XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX${GREEN}"
 
   # Pass in the location of the repo root on the docker host
   # which may have been passed down to us or we have determined
