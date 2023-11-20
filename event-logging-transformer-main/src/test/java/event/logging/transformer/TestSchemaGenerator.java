@@ -4,10 +4,10 @@ import com.github.difflib.DiffUtils;
 import com.github.difflib.algorithm.DiffException;
 import com.github.difflib.patch.AbstractDelta;
 import com.github.difflib.patch.Patch;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.contrib.java.lang.system.ExpectedSystemExit;
+import com.github.stefanbirkner.systemlambda.Statement;
+import com.github.stefanbirkner.systemlambda.SystemLambda;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -40,10 +40,7 @@ public class TestSchemaGenerator {
             TEST_03
     );
 
-    @Rule
-    public final ExpectedSystemExit exit = ExpectedSystemExit.none();
-
-    @Before
+    @BeforeEach
     public void setup() {
 
         // Clean out all the generated content
@@ -63,58 +60,60 @@ public class TestSchemaGenerator {
     }
 
     @Test
-    public void test01_versionChange() throws IOException {
+    public void test01_versionChange() throws Exception {
 
-        exit.expectSystemExitWithStatus(0);
-        final List<Path> generatedFiles = runTest(TEST_01);
+        assertExitStatus(0, () -> {
+            final List<Path> generatedFiles = runTest(TEST_01);
 
-        assertThat(generatedFiles)
-                .hasSize(2);
+            assertThat(generatedFiles)
+                    .hasSize(2);
 
-        String majorVersion = "v7";
-        String fullVersion = majorVersion + ".8.9";
-        String baseName = "my-new-schema";
-        String suffix1 = "-variantOne";
-        String suffix2 = "-variantTwo";
-        String expectedFile1 = baseName + "-" + majorVersion + suffix1 + ".xsd";
-        String expectedFile2 = baseName + "-" + majorVersion + suffix2 + ".xsd";
-        String expectedId1 = baseName + "-" + fullVersion + suffix1;
-        String expectedId2 = baseName + "-" + fullVersion + suffix2;
+            String majorVersion = "v7";
+            String fullVersion = majorVersion + ".8.9";
+            String baseName = "my-new-schema";
+            String suffix1 = "-variantOne";
+            String suffix2 = "-variantTwo";
+            String expectedFile1 = baseName + "-" + majorVersion + suffix1 + ".xsd";
+            String expectedFile2 = baseName + "-" + majorVersion + suffix2 + ".xsd";
+            String expectedId1 = baseName + "-" + fullVersion + suffix1;
+            String expectedId2 = baseName + "-" + fullVersion + suffix2;
 
-        assertGeneratedFilenames(generatedFiles, expectedFile1, expectedFile2);
+            assertGeneratedFilenames(generatedFiles, expectedFile1, expectedFile2);
 
-        assertThat(getFileText(generatedFiles.get(0)))
-                .contains(expectedId1);
-        assertThat(getFileText(generatedFiles.get(1)))
-                .contains(expectedId2);
+            assertThat(getFileText(generatedFiles.get(0)))
+                    .contains(expectedId1);
+            assertThat(getFileText(generatedFiles.get(1)))
+                    .contains(expectedId2);
+        });
     }
 
     @Test
-    public void test02_noChanges() throws IOException {
+    public void test02_noChanges() throws Exception {
+        assertExitStatus(0, () -> {
+            List<Path> generatedFiles = runTest(TEST_02);
 
-        exit.expectSystemExitWithStatus(0);
-        List<Path> generatedFiles = runTest(TEST_02);
+            assertThat(generatedFiles).hasSize(1);
 
-        assertThat(generatedFiles).hasSize(1);
-
-        assertThat(generatedFiles.get(0).getFileName().toString())
-                .matches("event-logging-v([0-9]|SNAPSHOT).xsd");
+            assertThat(generatedFiles.get(0).getFileName().toString())
+                    .matches("event-logging-v([0-9]|SNAPSHOT).xsd");
+        });
     }
 
     @Test
-    public void test03_addRegexSimpleType() throws IOException {
+    public void test03_addRegexSimpleType() throws Exception {
 
-        exit.expectSystemExitWithStatus(0);
-        List<Path> generatedFiles = runTest(TEST_03);
+        assertExitStatus(0, () -> {
+            List<Path> generatedFiles = runTest(TEST_03);
 
-        assertThat(generatedFiles).hasSize(1);
+            assertThat(generatedFiles).hasSize(1);
 
-        assertThat(generatedFiles.get(0).getFileName().toString())
-                .matches("event-logging-v([0-9]|SNAPSHOT).xsd");
+            assertThat(generatedFiles.get(0).getFileName().toString())
+                    .matches("event-logging-v([0-9]|SNAPSHOT).xsd");
 
-        // make sure the regex is correct in the generated file
-        assertThat(getFileText(generatedFiles.get(1)))
-                .contains("[0-9]{91,99}[A-Z]{3}$");
+            // make sure the regex is correct in the generated file
+            assertThat(getFileText(generatedFiles.get(1)))
+                    .contains("[0-9]{91,99}[A-Z]{3}$");
+        });
     }
 
     private void assertGeneratedFilenames(final List<Path> generatedFiles, final String... expectedFileNames) {
@@ -204,5 +203,11 @@ public class TestSchemaGenerator {
 
     private String getFileText(final Path file) throws IOException {
         return String.join("\n", Files.readAllLines(file));
+    }
+
+    private void assertExitStatus(final int expectedExitStatus, final Statement statement) throws Exception{
+        final int exitStatus = SystemLambda.catchSystemExit(statement);
+        assertThat(exitStatus)
+                .isEqualTo(expectedExitStatus);
     }
 }

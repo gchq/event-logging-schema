@@ -450,7 +450,7 @@ public class SchemaGenerator {
         try {
             // attempt to construct a schema object from the file. Will fail if our schema
             // is not a valid w3c XML Schema. This will ensure the transformation chain
-            //generates a valid schema
+            // generates a valid schema
             schemaFactory.newSchema(safeSchemaPath.toFile());
         } catch (final SAXException e1) {
             throw new RuntimeException("Error initialising schema object", e1);

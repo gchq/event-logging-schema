@@ -1,0 +1,43 @@
+[versions]
+assertj = '3.24.2'
+jackson = '2.8.9'
+junit = '5.10.0'
+logback = '1.2.3'
+slf4j = '1.7.36'
+
+[libraries]
+assertj-core = { module = "org.assertj:assertj-core", version.ref = "assertj" }
+jackson-annotations = { module = "com.fasterxml.jackson.core:jackson-annotations", version.ref = "jackson" }
+jackson-dataFormatYaml = { module = "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml", version.ref = "jackson" }
+jackson-dataTypeJdk8 = { module = "com.fasterxml.jackson.datatype:jackson-datatype-jdk8", version.ref = "jackson" }
+jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "jackson" }
+javaDiffUtils = "io.github.java-diff-utils:java-diff-utils:4.0"
+junit-api = { module = "org.junit.jupiter:junit-jupiter-api" } # BOM controls ver
+junit-bom = "org.junit:junit-bom:5.10.0"
+junit-engine  = { module = "org.junit.jupiter:junit-jupiter-engine" } # BOM controls ver
+junit-launcher  = { module = "org.junit.platform:junit-platform-launcher" } # BOM controls ver
+logback-classic = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
+saxon = "net.sf.saxon:Saxon-HE:9.6.0-6"
+slf4j-api = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
+slf4j-log4jOverSlf4j = { module = "org.slf4j:log4j-over-slf4j", version.ref = "slf4j" }
+systemLambda = "com.github.stefanbirkner:system-lambda:1.2.1"
+
+[bundles]
+basicTest-impl = [
+  "assertj-core",
+  "junit-api",
+]
+basicTest-runtime = [
+  "junit-engine",
+  "junit-launcher", 
+]
+jackson = [
+  "jackson.annotations",
+  "jackson.dataFormatYaml",
+  "jackson.dataTypeJdk8",
+  "jackson.databind",
+]
+
+[plugins]
+shadow = { id = "com.github.johnrengelman.shadow", version = "8.1.1" }
+analyze = { id = "ca.cutterslade.analyze", version = "1.9.1" }
