@@ -46,20 +46,18 @@ shadowJar {
 // In this section you declare the dependencies for your production and test code
 dependencies {
     
+    implementation libs.bundles.jackson
     // The production code uses the SLF4J logging API at compile time
-    implementation "com.fasterxml.jackson.core:jackson-annotations:$versions.jackson"
-    implementation "com.fasterxml.jackson.core:jackson-databind:$versions.jackson"
-    implementation "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:$versions.jackson"
-    implementation "com.fasterxml.jackson.datatype:jackson-datatype-jdk8:$versions.jackson"
-    implementation "org.slf4j:slf4j-api:${versions.slf4j}"
+    implementation libs.slf4j.api
 
-    runtimeOnly "ch.qos.logback:logback-classic:${versions.logback}"
-    runtimeOnly "net.sf.saxon:Saxon-HE:${versions.saxon}"
+    runtimeOnly libs.logback.classic
+    runtimeOnly libs.saxon
 
-    testImplementation "com.github.stefanbirkner:system-rules:${versions.systemRules}"
-    testImplementation "io.github.java-diff-utils:java-diff-utils:${versions.javaDiffUtils}"
-    testImplementation "junit:junit:${versions.junit}"
-    testImplementation "org.assertj:assertj-core:${versions.assertj}"
+    testImplementation libs.systemLambda
+    testImplementation libs.javaDiffUtils
+    testImplementation libs.bundles.basicTest.impl
+
+    testRuntimeOnly libs.bundles.basicTest.runtime
 }
 
 run {
@@ -143,6 +141,8 @@ tasks.compileJava.dependsOn validateSchemaVersions
 def failedTestReportFiles = []
 
 test {
+    useJUnitPlatform()
+
     // Use full logging for test exceptions so we can see where the failure occurred 
     testLogging {
         events "failed"
@@ -159,6 +159,13 @@ test {
             def pair = new Tuple2("${project.name} ${desc.name}", reportFile)
             failedTestReportFiles.add(pair)
         }
+    }
+
+    // Use full logging for test exceptions so we can see where the failure occurred
+    testLogging {
+        events "failed"
+        exceptionFormat = 'full'
+        showStackTraces = true
     }
 }
 

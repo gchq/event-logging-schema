@@ -59,6 +59,8 @@ pipelines:
       - "jaxbEventRoot.xsl"
       - "jaxbNoEventId.xsl"
       - "jaxbNoUserDetails.xsl"
+        # Sharing data is only intended for adding to received events
+      - "removeSharingElement.xsl"
 
   # A varient that imposes limits on the values and occurances intended
   # for untrusted sources.
@@ -70,6 +72,7 @@ pipelines:
       - "addSafeStringSimpleType.xsl"
       - "replaceStringWithSafeString.xsl"
       - "removeMetaElement.xsl"
+      - "removeSharingElement.xsl"
       - "removeAnyContentComplexType.xsl"
       - "limitOccurrence.xsl"
       - "limitDataElementRecursion.xsl"
