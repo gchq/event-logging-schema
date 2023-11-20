@@ -27,6 +27,13 @@ DO NOT ADD CHANGES HERE - ADD THEM USING log_change.sh
 ~~~
 
 
+## [v4.0.0] - 2023-11-20
+
+* Issue **#68** : Add `<SecutiryDomain>` to `<System>`.
+
+* Add `<SharingData>` element to `<Events>` and `<Event>`.
+
+
 ## [v4.0-beta.10] - 2022-05-26
 
 * Fix automated build.
@@ -308,7 +315,8 @@ DO NOT ADD CHANGES HERE - ADD THEM USING log_change.sh
 
 * Initial open source release
 
-[Unreleased]: https://github.com/gchq/event-logging-schema/compare/v4.0-beta.10...HEAD
+[Unreleased]: https://github.com/gchq/event-logging-schema/compare/v4.0.0...HEAD
+[v4.0.0]: https://github.com/gchq/event-logging-schema/compare/v4.0-beta.10...v4.0.0
 [v4.0-beta.10]: https://github.com/gchq/event-logging-schema/compare/v4.0-beta.9...v4.0-beta.10
 [v4.0-beta.9]: https://github.com/gchq/event-logging-schema/compare/v4.0-beta.8...v4.0-beta.9
 [v4.0-beta.8]: https://github.com/gchq/event-logging-schema/compare/v4.0-beta.7...v4.0-beta.8
