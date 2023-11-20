@@ -239,6 +239,8 @@ main() {
   # will pull images
   docker_login
 
+  echo -e "${GREEN}AAAAAAAAAAAAAAAAAAAAAAA${GREEN}"
+
   buildx_instance="${image_tag}"
 
   if ! docker buildx inspect "${buildx_instance}" >/dev/null 2>&1; then
