@@ -28,13 +28,13 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/releases/v04.00.00/" /><meta property="article:section" content="releases" />
 <meta property="article:published_time" content="2023-11-20T00:00:00+00:00" />
-<meta property="article:modified_time" content="2023-11-20T12:39:56+00:00" /><meta property="og:site_name" content="event-logging XML Schema" />
+<meta property="article:modified_time" content="2023-11-20T15:46:34+00:00" /><meta property="og:site_name" content="event-logging XML Schema" />
 
 <meta itemprop="name" content="Version 4.0.0">
 <meta itemprop="description" content="Key new features and changes present in v4.0.0.
 "><meta itemprop="datePublished" content="2023-11-20T00:00:00+00:00" />
-<meta itemprop="dateModified" content="2023-11-20T12:39:56+00:00" />
-<meta itemprop="wordCount" content="270">
+<meta itemprop="dateModified" content="2023-11-20T15:46:34+00:00" />
+<meta itemprop="wordCount" content="341">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Version 4.0.0"/>
 <meta name="twitter:description" content="Key new features and changes present in v4.0.0.
@@ -215,9 +215,10 @@
 
 <div class="td-toc"><nav id="TableOfContents">
   <ul>
-    <li><a href="#breaking-changes">Breaking changes</a></li>
+    <li><a href="#release-artefacts">Release Artefacts</a></li>
+    <li><a href="#breaking-changes">Breaking Changes</a></li>
     <li><a href="#additions">Additions</a></li>
-    <li><a href="#schema-structure-changes">Schema structure changes</a></li>
+    <li><a href="#schema-structure-changes">Schema Structure Changes</a></li>
   </ul>
 </nav></div>
 
@@ -435,7 +436,88 @@
 
 </div>
 
-<h2 id="breaking-changes">Breaking changes</h2>
+<h2 id="release-artefacts">Release Artefacts</h2>
+<p>The release artefacts for this release can be found at 
+
+
+
+
+
+
+  
+
+<span class="external-link">
+  <a href="https://github.com/gchq/event-logging-schema/releases/tag/v4.0.0" target="_blank" class="" style="" title="v4.0.0 (external link)">
+    <span>v4.0.0</span>
+    <i class="external-link-icon fas fa-external-link-alt fa-sm text-secondary"></i>
+  </a>
+</span>
+</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>event-logging-schema-v4.0.0_schema-4.0.pdf</td>
+<td>PDF of the documentation site 
+
+
+
+
+
+
+  
+
+<span class="external-link">
+  <a href="https://gchq.github.io/event-logging-schema/4.0" target="_blank" class="" style="" title="gchq.github.io/event-logging-schema/4.0 (external link)">
+    <span>gchq.github.io/event-logging-schema/4.0</span>
+    <i class="external-link-icon fas fa-external-link-alt fa-sm text-secondary"></i>
+  </a>
+</span>
+</td>
+</tr>
+<tr>
+<td>event-logging-schema-v4.0.0_schema-4.0.zip</td>
+<td>ZIP of the documentation site 
+
+
+
+
+
+
+  
+
+<span class="external-link">
+  <a href="https://gchq.github.io/event-logging-schema/4.0" target="_blank" class="" style="" title="gchq.github.io/event-logging-schema/4.0 (external link)">
+    <span>gchq.github.io/event-logging-schema/4.0</span>
+    <i class="external-link-icon fas fa-external-link-alt fa-sm text-secondary"></i>
+  </a>
+</span>
+</td>
+</tr>
+<tr>
+<td>event-logging-transformer-main-v4.0.0-all.jar</td>
+<td>Java library for transforming a schema</td>
+</tr>
+<tr>
+<td>event-logging-v4-client.xsd</td>
+<td>The client variant of the schema. Intended for use by client systems.</td>
+</tr>
+<tr>
+<td>event-logging-v4-safe.xsd</td>
+<td>The safe variant of the schema. Intended for use with documents from un-trusted environments</td>
+</tr>
+<tr>
+<td>event-logging-v4.xsd</td>
+<td>The full version of the schema.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="breaking-changes">Breaking Changes</h2>
 <p>The following changes have been made that break backward compatibility with documents created using older versions of the schema.</p>
 <ul>
 <li>
@@ -469,7 +551,7 @@
 <p>Add additional <code>annotation/documentation</code> elements.</p>
 </li>
 </ul>
-<h2 id="schema-structure-changes">Schema structure changes</h2>
+<h2 id="schema-structure-changes">Schema Structure Changes</h2>
 <p>These changes affect the structure of the schema itself but have no bearing on what documents are considered valid or not.
 They were made to improve the generated Java code used in the 
 
@@ -574,7 +656,7 @@ They were made to improve the generated Java code used in the
 	
 	
 	<div class="text-muted mt-5 pt-3 border-top">
-  Last modified November 20, 2023: <a href="https://github.com/gchq/event-logging-schema/commit/504811d50120119f49aa9bb6abaaeceab9498950">Improve release page (504811d)</a>
+  Last modified November 20, 2023: <a href="https://github.com/gchq/event-logging-schema/commit/c9a0054acb2c1c5e3ca4f0371d1e0e16dbe201db">Update release notes (c9a0054)</a>
 </div>
 
 </div>
