@@ -619,7 +619,7 @@ build_schema_variants() {
   echo "::endgroup::"
 }
 
-# All the documentation site versioning is based of the branch name
+# All the documentation site versioning is based off the branch name
 # so we need releases of the schema to be made on a release branch,
 # e.g. tag v4.1.2 on branch 4.1.
 check_branch_of_tag() {
