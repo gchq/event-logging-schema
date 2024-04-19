@@ -33,6 +33,7 @@ public class Modulariser {
     public void modularise(final Path schema, final Path outputDir) {
         try {
             String string = new String(Files.readAllBytes(schema), StandardCharsets.UTF_8);
+            string = string.replace("event-logging:3", "http://event-logging");
             string = replaceName(string, "IPAddress", "IpAddress");
             string = replaceName(string, "MACAddress", "MacAddress");
             string = replaceName(string, "ICMPType", "IcmpType");
@@ -597,11 +598,16 @@ public class Modulariser {
         private static final Map<String, String> GROUP_NAME_REPLACEMENTS = new HashMap<>();
 
         static {
-            GROUP_NAME_REPLACEMENTS.put("GroupsComplexType", "GroupsComplexType");
-            GROUP_NAME_REPLACEMENTS.put("GroupComplexType", "GroupsComplexType");
+            GROUP_NAME_REPLACEMENTS.put("GroupsComplexType", "UserComplexType");
+            GROUP_NAME_REPLACEMENTS.put("GroupComplexType", "UserComplexType");
+            GROUP_NAME_REPLACEMENTS.put("UserComplexType", "UserComplexType");
             GROUP_NAME_REPLACEMENTS.put("AndComplexType", "LogicComplexType");
             GROUP_NAME_REPLACEMENTS.put("OrComplexType", "LogicComplexType");
             GROUP_NAME_REPLACEMENTS.put("NotComplexType", "LogicComplexType");
+            GROUP_NAME_REPLACEMENTS.put("AssociationComplexType", "MultiObjectComplexType");
+            GROUP_NAME_REPLACEMENTS.put("CriteriaComplexType", "MultiObjectComplexType");
+            GROUP_NAME_REPLACEMENTS.put("MultiObjectComplexType", "MultiObjectComplexType");
+            GROUP_NAME_REPLACEMENTS.put("SearchResultsComplexType", "MultiObjectComplexType");
         }
 
         private final Map<String, SchemaInfo> schemaMap = new HashMap<>();

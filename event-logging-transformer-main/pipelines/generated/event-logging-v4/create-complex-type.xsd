@@ -2,38 +2,31 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
            xmlns:ConfigurationComplexType="http://event-logging/configuration-complex-type"
            xmlns:DocumentComplexType="http://event-logging/document-complex-type"
+           xmlns:MultiObjectComplexType="http://event-logging/multi-object-complex-type"
            xmlns:ShortcutComplexType="http://event-logging/shortcut-complex-type"
            xmlns:EmailComplexType="http://event-logging/email-complex-type"
            xmlns:OutcomeComplexType="http://event-logging/outcome-complex-type"
            xmlns:FileComplexType="http://event-logging/file-complex-type"
-           xmlns:CriteriaComplexType="http://event-logging/criteria-complex-type"
            xmlns:VoipComplexType="http://event-logging/voip-complex-type"
            xmlns:GroupChatComplexType="http://event-logging/group-chat-complex-type"
            xmlns:ResourceComplexType="http://event-logging/resource-complex-type"
-           xmlns:AssociationComplexType="http://event-logging/association-complex-type"
            xmlns:ChatComplexType="http://event-logging/chat-complex-type"
            xmlns:FolderComplexType="http://event-logging/folder-complex-type"
            xmlns:ObjectComplexType="http://event-logging/object-complex-type"
            xmlns:BannerComplexType="http://event-logging/banner-complex-type"
            xmlns:DataComplexType="http://event-logging/data-complex-type"
-           xmlns:SearchResultsComplexType="http://event-logging/search-results-complex-type"
            xmlns:VirtualSessionComplexType="http://event-logging/virtual-session-complex-type"
-           xmlns:GroupsComplexType="http://event-logging/groups-complex-type"
            xmlns:UserComplexType="http://event-logging/user-complex-type"
            elementFormDefault="qualified"
            id="create-complex-type-v4.0.2"
            targetNamespace="http://event-logging/create-complex-type"
            version="4.0.2">
-   <xs:import namespace="http://event-logging/association-complex-type"
-              schemaLocation="association-complex-type.xsd"/>
    <xs:import namespace="http://event-logging/banner-complex-type"
               schemaLocation="banner-complex-type.xsd"/>
    <xs:import namespace="http://event-logging/chat-complex-type"
               schemaLocation="chat-complex-type.xsd"/>
    <xs:import namespace="http://event-logging/configuration-complex-type"
               schemaLocation="configuration-complex-type.xsd"/>
-   <xs:import namespace="http://event-logging/criteria-complex-type"
-              schemaLocation="criteria-complex-type.xsd"/>
    <xs:import namespace="http://event-logging/data-complex-type"
               schemaLocation="data-complex-type.xsd"/>
    <xs:import namespace="http://event-logging/document-complex-type"
@@ -46,16 +39,14 @@
               schemaLocation="folder-complex-type.xsd"/>
    <xs:import namespace="http://event-logging/group-chat-complex-type"
               schemaLocation="group-chat-complex-type.xsd"/>
-   <xs:import namespace="http://event-logging/groups-complex-type"
-              schemaLocation="groups-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/multi-object-complex-type"
+              schemaLocation="multi-object-complex-type.xsd"/>
    <xs:import namespace="http://event-logging/object-complex-type"
               schemaLocation="object-complex-type.xsd"/>
    <xs:import namespace="http://event-logging/outcome-complex-type"
               schemaLocation="outcome-complex-type.xsd"/>
    <xs:import namespace="http://event-logging/resource-complex-type"
               schemaLocation="resource-complex-type.xsd"/>
-   <xs:import namespace="http://event-logging/search-results-complex-type"
-              schemaLocation="search-results-complex-type.xsd"/>
    <xs:import namespace="http://event-logging/shortcut-complex-type"
               schemaLocation="shortcut-complex-type.xsd"/>
    <xs:import namespace="http://event-logging/user-complex-type"
@@ -70,7 +61,7 @@
       </xs:annotation>
       <xs:sequence>
          <xs:choice maxOccurs="unbounded">
-            <xs:element name="Association" type="AssociationComplexType:AssociationComplexType">
+            <xs:element name="Association" type="MultiObjectComplexType:AssociationComplexType">
                <xs:annotation>
                   <xs:documentation>Describes the association or link between two or more entities, e.g. the link between two web resources.</xs:documentation>
                </xs:annotation>
@@ -91,7 +82,7 @@
                   <xs:documentation>Describes the configuration of entity, e.g. it can be used to describe the update to the configuration of a network device.</xs:documentation>
                </xs:annotation>
             </xs:element>
-            <xs:element name="Criteria" type="CriteriaComplexType:CriteriaComplexType">
+            <xs:element name="Criteria" type="MultiObjectComplexType:CriteriaComplexType">
                <xs:annotation>
                   <xs:documentation>Structure used to describe a criteria used to filter or limit the scope of something, e.g. in a search, view, update or delete event.</xs:documentation>
                </xs:annotation>
@@ -116,7 +107,7 @@
                   <xs:documentation>A folder object, e.g. a directory or folder on file system.</xs:documentation>
                </xs:annotation>
             </xs:element>
-            <xs:element name="Group" type="GroupsComplexType:GroupComplexType">
+            <xs:element name="Group" type="UserComplexType:GroupComplexType">
                <xs:annotation>
                   <xs:documentation>A group entity, e.g. a user group, an access control group or a named group of some kind that ties together a collection of entities/objects of some kind.</xs:documentation>
                </xs:annotation>
@@ -132,7 +123,7 @@
                </xs:annotation>
             </xs:element>
             <xs:element name="SearchResults"
-                        type="SearchResultsComplexType:SearchResultsComplexType">
+                        type="MultiObjectComplexType:SearchResultsComplexType">
                <xs:annotation>
                   <xs:documentation>A set of search results from a query where the results are viewed or interacted with in a separate event to the execution of the query. E.g. for long-running queries where the results are stored for later viewing/processing. The Search schema action should be used to describe the event for the execution of the search. Query/Id or Query/Name can be used to associate the results event with the query event.</xs:documentation>
                </xs:annotation>

@@ -25,7 +25,7 @@
            xmlns:VersionSimpleType="http://event-logging/version-simple-type"
            elementFormDefault="qualified"
            id="event-logging-v4.0.2"
-           targetNamespace="event-logging:3"
+           targetNamespace="http://event-logging"
            version="4.0.2">
    <xs:import namespace="http://event-logging/any-content-complex-type"
               schemaLocation="any-content-complex-type.xsd"/>

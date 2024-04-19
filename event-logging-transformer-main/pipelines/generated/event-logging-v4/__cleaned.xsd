@@ -15,10 +15,10 @@
   ~ limitations under the License.
 -->
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           xmlns:evt="event-logging:3"
+           xmlns:evt="http://event-logging"
            elementFormDefault="qualified"
            id="event-logging-v4.0.2"
-           targetNamespace="event-logging:3"
+           targetNamespace="http://event-logging"
            version="4.0.2">
    <xs:annotation>
       <xs:documentation>This schema describes the allowed element structure for event logging. Please refer to the documentation and examples for a description of how to use this schema in addition to the descriptions given for each element within this schema.</xs:documentation>

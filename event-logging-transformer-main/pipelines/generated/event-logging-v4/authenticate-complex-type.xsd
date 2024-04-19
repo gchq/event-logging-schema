@@ -3,7 +3,6 @@
            xmlns:AuthenticateLogonTypeSimpleType="http://event-logging/authenticate-logon-type-simple-type"
            xmlns:DataComplexType="http://event-logging/data-complex-type"
            xmlns:DeviceComplexType="http://event-logging/device-complex-type"
-           xmlns:GroupsComplexType="http://event-logging/groups-complex-type"
            xmlns:AuthenticateActionSimpleType="http://event-logging/authenticate-action-simple-type"
            xmlns:AuthenticateOutcomeComplexType="http://event-logging/authenticate-outcome-complex-type"
            xmlns:UserComplexType="http://event-logging/user-complex-type"
@@ -21,8 +20,6 @@
               schemaLocation="data-complex-type.xsd"/>
    <xs:import namespace="http://event-logging/device-complex-type"
               schemaLocation="device-complex-type.xsd"/>
-   <xs:import namespace="http://event-logging/groups-complex-type"
-              schemaLocation="groups-complex-type.xsd"/>
    <xs:import namespace="http://event-logging/user-complex-type"
               schemaLocation="user-complex-type.xsd"/>
    <xs:complexType name="AuthenticateComplexType">
@@ -54,7 +51,7 @@
                   <xs:documentation>Where a device authenticates with another device, this is the device that initiates the authentication action.</xs:documentation>
                </xs:annotation>
             </xs:element>
-            <xs:element name="Group" type="GroupsComplexType:GroupComplexType">
+            <xs:element name="Group" type="UserComplexType:GroupComplexType">
                <xs:annotation>
                   <xs:documentation>The group the authentication action relates to.</xs:documentation>
                </xs:annotation>

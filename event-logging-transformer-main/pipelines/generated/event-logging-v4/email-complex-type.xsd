@@ -5,7 +5,6 @@
            xmlns:AnyContentComplexType="http://event-logging/any-content-complex-type"
            xmlns:DataComplexType="http://event-logging/data-complex-type"
            xmlns:MetaDataTagsComplexType="http://event-logging/meta-data-tags-complex-type"
-           xmlns:GroupsComplexType="http://event-logging/groups-complex-type"
            xmlns:UserComplexType="http://event-logging/user-complex-type"
            elementFormDefault="qualified"
            id="email-complex-type-v4.0.2"
@@ -17,8 +16,6 @@
               schemaLocation="classification-complex-type.xsd"/>
    <xs:import namespace="http://event-logging/data-complex-type"
               schemaLocation="data-complex-type.xsd"/>
-   <xs:import namespace="http://event-logging/groups-complex-type"
-              schemaLocation="groups-complex-type.xsd"/>
    <xs:import namespace="http://event-logging/meta-data-tags-complex-type"
               schemaLocation="meta-data-tags-complex-type.xsd"/>
    <xs:import namespace="http://event-logging/permission-attribute-simple-type"
@@ -72,7 +69,7 @@
          </xs:element>
          <xs:element minOccurs="0"
                      name="Groups"
-                     type="GroupsComplexType:GroupsComplexType">
+                     type="UserComplexType:GroupsComplexType">
             <xs:annotation>
                <xs:documentation>Any groups associated with the object, e.g. group membership of a user account.</xs:documentation>
             </xs:annotation>
@@ -101,7 +98,7 @@
                                     <xs:documentation>A user that has been granted (or is prevented from having) some form of permission.</xs:documentation>
                                  </xs:annotation>
                               </xs:element>
-                              <xs:element name="Group" type="GroupsComplexType:GroupComplexType">
+                              <xs:element name="Group" type="UserComplexType:GroupComplexType">
                                  <xs:annotation>
                                     <xs:documentation>A named group of users that has been granted (or is prevented from having) some form of permission.</xs:documentation>
                                  </xs:annotation>
