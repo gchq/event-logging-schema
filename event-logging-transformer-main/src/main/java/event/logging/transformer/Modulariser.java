@@ -18,13 +18,13 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
-import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Stream;
 
 public class Modulariser {
@@ -55,7 +55,6 @@ public class Modulariser {
             final Document doc = builder.parse(new InputSource(new StringReader(string)));
             final String version = doc.getDocumentElement().getAttribute("version");
             final Element rootElement = doc.getDocumentElement();
-            final NodeList nodeList = rootElement.getChildNodes();
 
             // Write a version of the schema as the basis for comparison.
             writeDoc(doc, outputDir.resolve("__base.xsd"));
@@ -73,22 +72,8 @@ public class Modulariser {
             writeDoc(doc, outputDir.resolve("__no_groups.xsd"));
 
             // Get all types and remember them in a map.
-            final Map<String, SchemaInfo> typeMap = new HashMap<>();
-            for (int i = 0; i < nodeList.getLength(); i++) {
-                final Node node = nodeList.item(i);
-                if (node instanceof Element) {
-                    final Element element = (Element) node;
-                    if (element.getTagName().equals("xs:simpleType") ||
-                            element.getTagName().equals("xs:complexType")) {
-                        final String typeName = element.getAttribute("name");
-                        final String dashName = makeDashName(typeName);
-                        final String schemaLocation = dashName + ".xsd";
-                        final String targetNamespace = "http://event-logging/" + dashName;
-                        typeMap.put(typeName,
-                                new SchemaInfo(schemaLocation, targetNamespace, typeName, typeName, element));
-                    }
-                }
-            }
+            final TypeMap typeMap = new TypeMap();
+            getTypes(rootElement, typeMap);
 
             // Flatten extensions.
             replaceExtensions(typeMap, rootElement);
@@ -96,48 +81,49 @@ public class Modulariser {
             // Write a version of the schema without extensions.
             writeDoc(doc, outputDir.resolve("__no_extensions.xsd"));
 
+            final Set<SchemaInfo> remaining = typeMap.getValues();
+
             // Break out types into separate modules.
             boolean complete = false;
             while (!complete) {
                 complete = true;
-                for (int i = 0; i < nodeList.getLength(); i++) {
-                    final Node node = nodeList.item(i);
-                    if (node instanceof Element) {
-                        final Element element = (Element) node;
-                        if (element.getTagName().equals("xs:simpleType") ||
-                                element.getTagName().equals("xs:complexType")) {
+                for (final SchemaInfo schemaInfo : remaining) {
+                    final boolean hasEvt = schemaInfo.elements
+                            .stream()
+                            .anyMatch(this::hasEvt);
 
-                            if (hasEvt(node)) {
-                                complete = false;
+                    if (hasEvt) {
+                        complete = false;
 
-                            } else {
-                                final String typeName = element.getAttribute("name");
-                                final String dashName = makeDashName(typeName);
-                                final String schemaLocation = dashName + ".xsd";
-                                final String targetNamespace = "http://event-logging/" + dashName;
+                    } else {
+                        final String typeName = schemaInfo.name;
+                        final String dashName = makeDashName(typeName);
+                        final String schemaLocation = dashName + ".xsd";
+                        final String targetNamespace = "http://event-logging/" + dashName;
 
-                                final Path outputFile = outputDir.resolve(schemaLocation);
-                                try {
-                                    Document newDoc = builder.newDocument();
-                                    Element root = newDoc.createElementNS("http://www.w3.org/2001/XMLSchema", "xs:schema");
-                                    root.setAttribute("xmlns:xs", "http://www.w3.org/2001/XMLSchema");
-                                    root.setAttribute("elementFormDefault", "qualified");
-                                    root.setAttribute("id", dashName + "-v" + version);
-                                    root.setAttribute("targetNamespace", targetNamespace);
-                                    root.setAttribute("version", version);
+                        final Path outputFile = outputDir.resolve(schemaLocation);
+                        try {
+                            Document newDoc = builder.newDocument();
+                            Element root = newDoc.createElementNS("http://www.w3.org/2001/XMLSchema", "xs:schema");
+                            root.setAttribute("xmlns:xs", "http://www.w3.org/2001/XMLSchema");
+                            root.setAttribute("elementFormDefault", "qualified");
+                            root.setAttribute("id", dashName + "-v" + version);
+                            root.setAttribute("targetNamespace", targetNamespace);
+                            root.setAttribute("version", version);
 
-                                    root.appendChild(newDoc.adoptNode(node.cloneNode(true)));
-                                    newDoc.appendChild(root);
-
-                                    addImports(typeMap, newDoc, root, schemaLocation);
-                                    writeDoc(newDoc, outputFile);
-                                    rootElement.removeChild(node);
-
-                                } catch (final Exception e) {
-                                    LOGGER.error("Error writing: " + outputFile.getFileName().toString());
-                                    LOGGER.error(e.getMessage(), e);
-                                }
+                            for (final Element element : schemaInfo.elements) {
+                                root.appendChild(newDoc.adoptNode(element.cloneNode(true)));
+                                element.getParentNode().removeChild(element);
                             }
+                            newDoc.appendChild(root);
+
+                            addImports(typeMap, newDoc, root, schemaLocation);
+                            writeDoc(newDoc, outputFile);
+                            remaining.remove(schemaInfo);
+
+                        } catch (final Exception e) {
+                            LOGGER.error("Error writing: " + outputFile.getFileName().toString());
+                            LOGGER.error(e.getMessage(), e);
                         }
                     }
                 }
@@ -166,6 +152,21 @@ public class Modulariser {
         }
     }
 
+    private void getTypes(final Node parent, final TypeMap typeMap) {
+        final NodeList nodeList = parent.getChildNodes();
+        for (int i = 0; i < nodeList.getLength(); i++) {
+            final Node node = nodeList.item(i);
+            getTypes(node, typeMap);
+            if (node instanceof Element) {
+                final Element element = (Element) node;
+                if (element.getTagName().equals("xs:simpleType") ||
+                        element.getTagName().equals("xs:complexType")) {
+                    typeMap.put(element);
+                }
+            }
+        }
+    }
+
     private void validateSchema(final Path path) {
         LOGGER.info("Validating: " + path.getFileName());
         try (final InputStream inputStream = Files.newInputStream(path)) {
@@ -188,14 +189,14 @@ public class Modulariser {
                 return null;
             });
 
-            Schema schema = schemaFactory.newSchema(new StreamSource(inputStream));
+            schemaFactory.newSchema(new StreamSource(inputStream));
 
         } catch (final SAXException | IOException e) {
             LOGGER.error(e.getMessage(), e);
         }
     }
 
-    private void addImports(final Map<String, SchemaInfo> schemas,
+    private void addImports(final TypeMap schemas,
                             final Document doc,
                             final Element rootElement,
                             final String currentLocation) {
@@ -219,7 +220,7 @@ public class Modulariser {
         });
     }
 
-    private void replaceTypes(final Map<String, SchemaInfo> typeMap,
+    private void replaceTypes(final TypeMap typeMap,
                               final Node node) {
         if (node instanceof Element) {
             final Element element = (Element) node;
@@ -239,7 +240,7 @@ public class Modulariser {
         }
     }
 
-    private void replaceExtensions(final Map<String, SchemaInfo> typeMap,
+    private void replaceExtensions(final TypeMap typeMap,
                                    final Node node) {
 
         // Flatten extensions.
@@ -263,7 +264,7 @@ public class Modulariser {
                                 final Element parentElement = (Element) parentNode;
 
                                 // Get the type that we are going to replace the extension with.
-                                final Element typeNode = (Element) schemaInfo.element.cloneNode(true);
+                                final Element typeNode = (Element) schemaInfo.elements.get(0).cloneNode(true);
 
                                 // Append extensions to type.
                                 copyChildrenToDest(extensionElement, typeNode);
@@ -331,7 +332,7 @@ public class Modulariser {
         }
     }
 
-    private void getUsedTypes(final Map<String, SchemaInfo> typeMap,
+    private void getUsedTypes(final TypeMap typeMap,
                               final Map<String, SchemaInfo> usedTypes,
                               final Node node) {
         if (node instanceof Element) {
@@ -548,7 +549,7 @@ public class Modulariser {
         }
     }
 
-    private String makeDashName(final String string) {
+    private static String makeDashName(final String string) {
         String newName = string.replaceAll("([A-Z])", "-$1");
         newName = newName.toLowerCase(Locale.ROOT);
         newName = newName.replaceAll("^-", "");
@@ -566,7 +567,7 @@ public class Modulariser {
         System.out.println(toXml(node));
     }
 
-    private String toXml(final Node node) {
+    private static String toXml(final Node node) {
         try {
             TransformerFactory transFactory = TransformerFactory.newInstance();
             Transformer transformer = transFactory.newTransformer();
@@ -581,23 +582,74 @@ public class Modulariser {
         return "";
     }
 
+    private static class TypeMap {
+
+        private static final Map<String, String> TYPE_NAME_REPLACEMENTS = new HashMap<>();
+
+        static {
+            TYPE_NAME_REPLACEMENTS.put("GroupsComplexType", "GroupsComplexType");
+            TYPE_NAME_REPLACEMENTS.put("GroupComplexType", "GroupsComplexType");
+//            TYPE_NAME_REPLACEMENTS.put("AndComplexType", "LogicComplexType");
+//            TYPE_NAME_REPLACEMENTS.put("OrComplexType", "LogicComplexType");
+//            TYPE_NAME_REPLACEMENTS.put("NotComplexType", "LogicComplexType");
+        }
+
+        private final Map<String, SchemaInfo> typeMap = new HashMap<>();
+
+        public void put(final Element element) {
+            final String name = element.getAttribute("name");
+            if (!name.isEmpty()) {
+                final String typeName = getTypeName(name);
+                final String dashName = makeDashName(typeName);
+                final String schemaLocation = dashName + ".xsd";
+                final String targetNamespace = "http://event-logging/" + dashName;
+                typeMap.computeIfAbsent(typeName, k ->
+                                new SchemaInfo(schemaLocation, targetNamespace, k, k))
+                        .addElement(element);
+            } else {
+                LOGGER.debug("Anonymous type: " + toXml(element));
+            }
+        }
+
+        public SchemaInfo get(final String name) {
+            return typeMap.get(getTypeName(name));
+        }
+
+        public Set<SchemaInfo> getValues() {
+            final Set<SchemaInfo> remaining = Collections.newSetFromMap(new ConcurrentHashMap<>());
+            remaining.addAll(typeMap.values());
+            return remaining;
+        }
+
+        private String getTypeName(final String name) {
+            String typeName = TYPE_NAME_REPLACEMENTS.get(name);
+            if (typeName == null) {
+                return name;
+            }
+            return typeName;
+        }
+
+    }
+
     private static class SchemaInfo {
         private final String schemaLocation;
         private final String namespace;
         private final String prefix;
         private final String name;
-        private final Element element;
+        private final List<Element> elements = new ArrayList<>();
 
         public SchemaInfo(final String schemaLocation,
                           final String namespace,
                           final String prefix,
-                          final String name,
-                          final Element element) {
+                          final String name) {
             this.schemaLocation = schemaLocation;
             this.namespace = namespace;
             this.prefix = prefix;
             this.name = name;
-            this.element = element;
+        }
+
+        public void addElement(final Element element) {
+            elements.add(element);
         }
     }
 

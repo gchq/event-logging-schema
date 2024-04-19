@@ -9,7 +9,6 @@
            xmlns:CriteriaComplexType="http://event-logging/criteria-complex-type"
            xmlns:VoipComplexType="http://event-logging/voip-complex-type"
            xmlns:GroupChatComplexType="http://event-logging/group-chat-complex-type"
-           xmlns:GroupComplexType="http://event-logging/group-complex-type"
            xmlns:ResourceComplexType="http://event-logging/resource-complex-type"
            xmlns:AssociationComplexType="http://event-logging/association-complex-type"
            xmlns:ChatComplexType="http://event-logging/chat-complex-type"
@@ -19,6 +18,7 @@
            xmlns:DataComplexType="http://event-logging/data-complex-type"
            xmlns:SearchResultsComplexType="http://event-logging/search-results-complex-type"
            xmlns:VirtualSessionComplexType="http://event-logging/virtual-session-complex-type"
+           xmlns:GroupsComplexType="http://event-logging/groups-complex-type"
            xmlns:UserComplexType="http://event-logging/user-complex-type"
            elementFormDefault="qualified"
            id="delete-complex-type-v4.0.2"
@@ -46,8 +46,8 @@
               schemaLocation="folder-complex-type.xsd"/>
    <xs:import namespace="http://event-logging/group-chat-complex-type"
               schemaLocation="group-chat-complex-type.xsd"/>
-   <xs:import namespace="http://event-logging/group-complex-type"
-              schemaLocation="group-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/groups-complex-type"
+              schemaLocation="groups-complex-type.xsd"/>
    <xs:import namespace="http://event-logging/object-complex-type"
               schemaLocation="object-complex-type.xsd"/>
    <xs:import namespace="http://event-logging/outcome-complex-type"
@@ -116,7 +116,7 @@
                   <xs:documentation>A folder object, e.g. a directory or folder on file system.</xs:documentation>
                </xs:annotation>
             </xs:element>
-            <xs:element name="Group" type="GroupComplexType:GroupComplexType">
+            <xs:element name="Group" type="GroupsComplexType:GroupsComplexType">
                <xs:annotation>
                   <xs:documentation>A group entity, e.g. a user group, an access control group or a named group of some kind that ties together a collection of entities/objects of some kind.</xs:documentation>
                </xs:annotation>

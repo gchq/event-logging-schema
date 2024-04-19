@@ -6,7 +6,6 @@
            xmlns:AnyContentComplexType="http://event-logging/any-content-complex-type"
            xmlns:DataComplexType="http://event-logging/data-complex-type"
            xmlns:MetaDataTagsComplexType="http://event-logging/meta-data-tags-complex-type"
-           xmlns:GroupComplexType="http://event-logging/group-complex-type"
            xmlns:GroupsComplexType="http://event-logging/groups-complex-type"
            xmlns:UserComplexType="http://event-logging/user-complex-type"
            elementFormDefault="qualified"
@@ -21,8 +20,6 @@
               schemaLocation="data-complex-type.xsd"/>
    <xs:import namespace="http://event-logging/date-time-simple-type"
               schemaLocation="date-time-simple-type.xsd"/>
-   <xs:import namespace="http://event-logging/group-complex-type"
-              schemaLocation="group-complex-type.xsd"/>
    <xs:import namespace="http://event-logging/groups-complex-type"
               schemaLocation="groups-complex-type.xsd"/>
    <xs:import namespace="http://event-logging/meta-data-tags-complex-type"
@@ -107,7 +104,7 @@
                                     <xs:documentation>A user that has been granted (or is prevented from having) some form of permission.</xs:documentation>
                                  </xs:annotation>
                               </xs:element>
-                              <xs:element name="Group" type="GroupComplexType:GroupComplexType">
+                              <xs:element name="Group" type="GroupsComplexType:GroupsComplexType">
                                  <xs:annotation>
                                     <xs:documentation>A named group of users that has been granted (or is prevented from having) some form of permission.</xs:documentation>
                                  </xs:annotation>
