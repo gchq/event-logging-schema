@@ -98,7 +98,7 @@
                                     <xs:documentation>A user that has been granted (or is prevented from having) some form of permission.</xs:documentation>
                                  </xs:annotation>
                               </xs:element>
-                              <xs:element name="Group" type="GroupsComplexType:GroupsComplexType">
+                              <xs:element name="Group" type="GroupsComplexType:GroupComplexType">
                                  <xs:annotation>
                                     <xs:documentation>A named group of users that has been granted (or is prevented from having) some form of permission.</xs:documentation>
                                  </xs:annotation>

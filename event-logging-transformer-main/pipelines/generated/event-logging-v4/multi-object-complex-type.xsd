@@ -109,7 +109,7 @@
                <xs:documentation>A folder object, e.g. a directory or folder on file system.</xs:documentation>
             </xs:annotation>
          </xs:element>
-         <xs:element name="Group" type="GroupsComplexType:GroupsComplexType">
+         <xs:element name="Group" type="GroupsComplexType:GroupComplexType">
             <xs:annotation>
                <xs:documentation>A group entity, e.g. a user group, an access control group or a named group of some kind that ties together a collection of entities/objects of some kind.</xs:documentation>
             </xs:annotation>

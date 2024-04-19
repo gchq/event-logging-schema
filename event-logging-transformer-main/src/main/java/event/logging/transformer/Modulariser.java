@@ -88,15 +88,16 @@ public class Modulariser {
             while (!complete) {
                 complete = true;
                 for (final SchemaInfo schemaInfo : remaining) {
-                    final boolean hasEvt = schemaInfo.elements
-                            .stream()
+                    final boolean hasEvt = schemaInfo
+                            .types.values().stream()
+                            .map(TypeInfo::getElement)
                             .anyMatch(this::hasEvt);
 
                     if (hasEvt) {
                         complete = false;
 
                     } else {
-                        final String typeName = schemaInfo.name;
+                        final String typeName = schemaInfo.prefix;
                         final String dashName = makeDashName(typeName);
                         final String schemaLocation = dashName + ".xsd";
                         final String targetNamespace = "http://event-logging/" + dashName;
@@ -111,10 +112,10 @@ public class Modulariser {
                             root.setAttribute("targetNamespace", targetNamespace);
                             root.setAttribute("version", version);
 
-                            for (final Element element : schemaInfo.elements) {
+                            schemaInfo.types.values().stream().map(TypeInfo::getElement).forEach(element -> {
                                 root.appendChild(newDoc.adoptNode(element.cloneNode(true)));
                                 element.getParentNode().removeChild(element);
-                            }
+                            });
                             newDoc.appendChild(root);
 
                             addImports(typeMap, newDoc, root, schemaLocation);
@@ -202,11 +203,10 @@ public class Modulariser {
                             final String currentLocation) {
         rootElement.removeAttribute("xmlns:evt");
 
-        final Map<String, SchemaInfo> used = new HashMap<>();
+        final Set<SchemaInfo> used = new HashSet<>();
         getUsedTypes(schemas, used, rootElement);
-        used.keySet().stream().sorted(Comparator.reverseOrder()).forEach(type -> {
-            final SchemaInfo schemaInfo = used.get(type);
-            rootElement.setAttribute("xmlns:" + type, schemaInfo.namespace);
+        used.stream().sorted(Comparator.reverseOrder()).forEach(schemaInfo -> {
+            rootElement.setAttribute("xmlns:" + schemaInfo.prefix, schemaInfo.namespace);
             if (!schemaInfo.schemaLocation.equals(currentLocation)) {
                 Element imp = doc.createElementNS(
                         "http://www.w3.org/2001/XMLSchema",
@@ -229,7 +229,10 @@ public class Modulariser {
                 final String typeName = type.substring("evt:".length());
                 final SchemaInfo schemaInfo = typeMap.get(typeName);
                 if (schemaInfo != null) {
-                    element.setAttribute("type", schemaInfo.prefix + ":" + schemaInfo.name);
+                    final TypeInfo typeInfo = schemaInfo.getType(typeName);
+                    if (typeInfo != null) {
+                        element.setAttribute("type", schemaInfo.prefix + ":" + typeInfo.name);
+                    }
                 }
             }
         }
@@ -252,50 +255,53 @@ public class Modulariser {
                     final String typeName = base.substring("evt:".length());
                     final SchemaInfo schemaInfo = typeMap.get(typeName);
                     if (schemaInfo != null) {
-                        final Node complexContentNode = extensionElement.getParentNode();
-                        if (complexContentNode instanceof Element) {
-                            final Element complexContentElement = (Element) complexContentNode;
-                            if (!complexContentElement.getTagName().equals("xs:complexContent")) {
-                                throw new RuntimeException("Expected complexContent: " + complexContentElement.getTagName());
-                            }
-
-                            final Node parentNode = complexContentElement.getParentNode();
-                            if (parentNode instanceof Element) {
-                                final Element parentElement = (Element) parentNode;
-
-                                // Get the type that we are going to replace the extension with.
-                                final Element typeNode = (Element) schemaInfo.elements.get(0).cloneNode(true);
-
-                                // Append extensions to type.
-                                copyChildrenToDest(extensionElement, typeNode);
-
-                                // Add the type info to the parent element.
-                                final NodeList nodeList = typeNode.getChildNodes();
-                                for (int i = 0; i < nodeList.getLength(); i++) {
-                                    final Node child = nodeList.item(i);
-                                    parentElement.insertBefore(child.cloneNode(true), complexContentElement);
+                        final TypeInfo typeInfo = schemaInfo.getType(typeName);
+                        if (typeInfo != null) {
+                            final Node complexContentNode = extensionElement.getParentNode();
+                            if (complexContentNode instanceof Element) {
+                                final Element complexContentElement = (Element) complexContentNode;
+                                if (!complexContentElement.getTagName().equals("xs:complexContent")) {
+                                    throw new RuntimeException("Expected complexContent: " + complexContentElement.getTagName());
                                 }
 
-                                // Remove duplicate annotations.
-                                removeDuplicateAnnotations(parentElement);
+                                final Node parentNode = complexContentElement.getParentNode();
+                                if (parentNode instanceof Element) {
+                                    final Element parentElement = (Element) parentNode;
 
-                                complexContentElement.removeChild(extensionElement);
-                                for (int i = 0; i < complexContentElement.getChildNodes().getLength(); i++) {
-                                    if (complexContentElement.getChildNodes().item(i) instanceof Element) {
-                                        throw new RuntimeException("Unexpected child element: " + complexContentElement);
+                                    // Get the type that we are going to replace the extension with.
+                                    final Element typeNode = (Element) typeInfo.element.cloneNode(true);
+
+                                    // Append extensions to type.
+                                    copyChildrenToDest(extensionElement, typeNode);
+
+                                    // Add the type info to the parent element.
+                                    final NodeList nodeList = typeNode.getChildNodes();
+                                    for (int i = 0; i < nodeList.getLength(); i++) {
+                                        final Node child = nodeList.item(i);
+                                        parentElement.insertBefore(child.cloneNode(true), complexContentElement);
                                     }
+
+                                    // Remove duplicate annotations.
+                                    removeDuplicateAnnotations(parentElement);
+
+                                    complexContentElement.removeChild(extensionElement);
+                                    for (int i = 0; i < complexContentElement.getChildNodes().getLength(); i++) {
+                                        if (complexContentElement.getChildNodes().item(i) instanceof Element) {
+                                            throw new RuntimeException("Unexpected child element: " + complexContentElement);
+                                        }
+                                    }
+
+                                    parentElement.removeChild(complexContentElement);
+
+                                    // Collapse sequences.
+                                    collapseSequences(parentElement);
+
+                                } else {
+                                    throw new RuntimeException("Expected element: " + parentNode);
                                 }
-
-                                parentElement.removeChild(complexContentElement);
-
-                                // Collapse sequences.
-                                collapseSequences(parentElement);
-
                             } else {
-                                throw new RuntimeException("Expected element: " + parentNode);
+                                throw new RuntimeException("Expected element: " + complexContentNode);
                             }
-                        } else {
-                            throw new RuntimeException("Expected element: " + complexContentNode);
                         }
                     }
                 }
@@ -333,7 +339,7 @@ public class Modulariser {
     }
 
     private void getUsedTypes(final TypeMap typeMap,
-                              final Map<String, SchemaInfo> usedTypes,
+                              final Set<SchemaInfo> usedTypes,
                               final Node node) {
         if (node instanceof Element) {
             final Element element = (Element) node;
@@ -343,10 +349,14 @@ public class Modulariser {
                 if (parts.length != 2) {
                     throw new RuntimeException("Expected 2 parts: " + type);
                 }
-                final SchemaInfo schemaInfo = typeMap.get(parts[1]);
+                final String typeName = parts[1];
+                final SchemaInfo schemaInfo = typeMap.get(typeName);
                 if (schemaInfo != null) {
-                    element.setAttribute("type", schemaInfo.prefix + ":" + schemaInfo.name);
-                    usedTypes.put(parts[1], schemaInfo);
+                    final TypeInfo typeInfo = schemaInfo.getType(typeName);
+                    if (typeInfo != null) {
+                        element.setAttribute("type", schemaInfo.prefix + ":" + typeInfo.name);
+                        usedTypes.add(schemaInfo);
+                    }
                 }
             }
         }
@@ -584,72 +594,135 @@ public class Modulariser {
 
     private static class TypeMap {
 
-        private static final Map<String, String> TYPE_NAME_REPLACEMENTS = new HashMap<>();
+        private static final Map<String, String> GROUP_NAME_REPLACEMENTS = new HashMap<>();
 
         static {
-            TYPE_NAME_REPLACEMENTS.put("GroupsComplexType", "GroupsComplexType");
-            TYPE_NAME_REPLACEMENTS.put("GroupComplexType", "GroupsComplexType");
-//            TYPE_NAME_REPLACEMENTS.put("AndComplexType", "LogicComplexType");
-//            TYPE_NAME_REPLACEMENTS.put("OrComplexType", "LogicComplexType");
-//            TYPE_NAME_REPLACEMENTS.put("NotComplexType", "LogicComplexType");
+            GROUP_NAME_REPLACEMENTS.put("GroupsComplexType", "GroupsComplexType");
+            GROUP_NAME_REPLACEMENTS.put("GroupComplexType", "GroupsComplexType");
+//            GROUP_NAME_REPLACEMENTS.put("AndComplexType", "LogicComplexType");
+//            GROUP_NAME_REPLACEMENTS.put("OrComplexType", "LogicComplexType");
+//            GROUP_NAME_REPLACEMENTS.put("NotComplexType", "LogicComplexType");
         }
 
-        private final Map<String, SchemaInfo> typeMap = new HashMap<>();
+        private final Map<String, SchemaInfo> schemaMap = new HashMap<>();
 
         public void put(final Element element) {
-            final String name = element.getAttribute("name");
-            if (!name.isEmpty()) {
-                final String typeName = getTypeName(name);
-                final String dashName = makeDashName(typeName);
+            final String typeName = element.getAttribute("name");
+            if (!typeName.isEmpty()) {
+                final String groupName = getGroupName(typeName);
+                final String dashName = makeDashName(groupName);
                 final String schemaLocation = dashName + ".xsd";
                 final String targetNamespace = "http://event-logging/" + dashName;
-                typeMap.computeIfAbsent(typeName, k ->
-                                new SchemaInfo(schemaLocation, targetNamespace, k, k))
-                        .addElement(element);
+                schemaMap.computeIfAbsent(groupName, k ->
+                                new SchemaInfo(schemaLocation, targetNamespace, groupName))
+                        .addType(new TypeInfo(typeName, element));
             } else {
                 LOGGER.debug("Anonymous type: " + toXml(element));
             }
         }
 
         public SchemaInfo get(final String name) {
-            return typeMap.get(getTypeName(name));
+            return schemaMap.get(getGroupName(name));
         }
 
         public Set<SchemaInfo> getValues() {
             final Set<SchemaInfo> remaining = Collections.newSetFromMap(new ConcurrentHashMap<>());
-            remaining.addAll(typeMap.values());
+            remaining.addAll(schemaMap.values());
             return remaining;
         }
 
-        private String getTypeName(final String name) {
-            String typeName = TYPE_NAME_REPLACEMENTS.get(name);
-            if (typeName == null) {
+        private String getGroupName(final String name) {
+            String group = GROUP_NAME_REPLACEMENTS.get(name);
+            if (group == null) {
                 return name;
             }
-            return typeName;
+            return group;
         }
 
     }
 
-    private static class SchemaInfo {
+    private static class SchemaInfo implements Comparable<SchemaInfo> {
         private final String schemaLocation;
         private final String namespace;
         private final String prefix;
-        private final String name;
-        private final List<Element> elements = new ArrayList<>();
+        private final Map<String, TypeInfo> types = new HashMap<>();
 
         public SchemaInfo(final String schemaLocation,
                           final String namespace,
-                          final String prefix,
-                          final String name) {
+                          final String prefix) {
             this.schemaLocation = schemaLocation;
             this.namespace = namespace;
             this.prefix = prefix;
-            this.name = name;
         }
 
-        public void addElement(final Element element) {
-            elements.add(element);
+        public void addType(final TypeInfo typeInfo) {
+            if (types.put(typeInfo.name, typeInfo) != null) {
+                throw new RuntimeException("Unexpected duplicate: " + typeInfo.name);
+            }
+        }
+
+        public TypeInfo getType(final String typeName) {
+            return types.get(typeName);
+        }
+
+        @Override
+        public String toString() {
+            return prefix;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            SchemaInfo that = (SchemaInfo) o;
+            return Objects.equals(prefix, that.prefix);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(prefix);
+        }
+
+        @Override
+        public int compareTo(SchemaInfo o) {
+            return prefix.compareTo(o.prefix);
+        }
+    }
+
+    private static class TypeInfo {
+        private final String name;
+        private final Element element;
+
+        public TypeInfo(final String name,
+                        final Element element) {
+            this.name = name;
+            this.element = element;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public Element getElement() {
+            return element;
+        }
+
+        @Override
+        public String toString() {
+            return name;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            TypeInfo typeInfo = (TypeInfo) o;
+            return Objects.equals(name, typeInfo.name);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(name);
         }
     }
 
