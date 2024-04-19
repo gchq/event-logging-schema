@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified"
+           id="alert-type-simple-type-v4.0.2"
+           targetNamespace="http://event-logging/alert-type-simple-type"
+           version="4.0.2">
+   <xs:simpleType name="AlertTypeSimpleType">
+      <xs:annotation>
+         <xs:documentation>The types of alert that can be fired, for example errors in an application log, malware or antivirus detection alerts.</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="Vulnerability"/>
+         <xs:enumeration value="IDS"/>
+         <xs:enumeration value="Malware"/>
+         <xs:enumeration value="Network"/>
+         <xs:enumeration value="Change"/>
+         <xs:enumeration value="Error"/>
+         <xs:enumeration value="Other"/>
+      </xs:restriction>
+   </xs:simpleType>
+</xs:schema>
+ 

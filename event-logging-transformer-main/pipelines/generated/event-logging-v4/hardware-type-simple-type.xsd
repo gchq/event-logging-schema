@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified"
+           id="hardware-type-simple-type-v4.0.2"
+           targetNamespace="http://event-logging/hardware-type-simple-type"
+           version="4.0.2">
+   <xs:simpleType name="HardwareTypeSimpleType">
+      <xs:annotation>
+         <xs:documentation>The types of hardware that can be added or removed from a system.</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="OpticalDrive"/>
+         <xs:enumeration value="HardDisk"/>
+         <xs:enumeration value="USBMassStorage"/>
+         <xs:enumeration value="Printer"/>
+         <xs:enumeration value="Modem"/>
+         <xs:enumeration value="Keyboard"/>
+         <xs:enumeration value="Mouse"/>
+         <xs:enumeration value="Webcam"/>
+         <xs:enumeration value="Other"/>
+      </xs:restriction>
+   </xs:simpleType>
+</xs:schema>
+ 

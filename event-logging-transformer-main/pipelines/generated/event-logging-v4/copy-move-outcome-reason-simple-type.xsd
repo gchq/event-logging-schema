@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified"
+           id="copy-move-outcome-reason-simple-type-v4.0.2"
+           targetNamespace="http://event-logging/copy-move-outcome-reason-simple-type"
+           version="4.0.2">
+   <xs:simpleType name="CopyMoveOutcomeReasonSimpleType">
+      <xs:annotation>
+         <xs:documentation>The types of reason for failure during copy or move operations.</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="DeviceFull"/>
+         <xs:enumeration value="IOError"/>
+         <xs:enumeration value="InvalidPath"/>
+         <xs:enumeration value="PermissionDenied"/>
+         <xs:enumeration value="ReadOnly"/>
+      </xs:restriction>
+   </xs:simpleType>
+</xs:schema>
+ 

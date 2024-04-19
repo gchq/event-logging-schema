@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:CountryTrigraphSimpleType="http://event-logging/country-trigraph-simple-type"
+           elementFormDefault="qualified"
+           id="organisation-complex-type-v4.0.2"
+           targetNamespace="http://event-logging/organisation-complex-type"
+           version="4.0.2">
+   <xs:import namespace="http://event-logging/country-trigraph-simple-type"
+              schemaLocation="country-trigraph-simple-type.xsd"/>
+   <xs:complexType name="OrganisationComplexType">
+      <xs:annotation>
+         <xs:documentation>Describes an organisation optionally qualified by its country</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element minOccurs="0"
+                     name="Country"
+                     type="CountryTrigraphSimpleType:CountryTrigraphSimpleType">
+            <xs:annotation>
+               <xs:documentation>An ISO 3166 alpha-3 trigraph for the country the organisation belongs to. E.g. 'GBR'.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Organisation" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>The code or name for the organisation. E.g. 'Group HQ', 'Telecoms Division', etc.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>
+ 

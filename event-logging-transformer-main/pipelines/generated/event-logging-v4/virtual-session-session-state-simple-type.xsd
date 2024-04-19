@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified"
+           id="virtual-session-session-state-simple-type-v4.0.2"
+           targetNamespace="http://event-logging/virtual-session-session-state-simple-type"
+           version="4.0.2">
+   <xs:simpleType name="VirtualSessionSessionStateSimpleType">
+      <xs:annotation>
+         <xs:documentation>Describes the state of a virtual session when viewing another user's session, e.g. screen sharing or remote assistance type activities.</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="Parked"/>
+         <xs:enumeration value="Unparked"/>
+      </xs:restriction>
+   </xs:simpleType>
+</xs:schema>
+ 

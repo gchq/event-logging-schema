@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified"
+           id="alert-severity-simple-type-v4.0.2"
+           targetNamespace="http://event-logging/alert-severity-simple-type"
+           version="4.0.2">
+   <xs:simpleType name="AlertSeveritySimpleType">
+      <xs:annotation>
+         <xs:documentation>The severities that can be assigned to an alert, e.g. an error in a system or the alert from the detection of malware. They indicate how far-reaching the symptoms of the cause of the alert are.</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="Info"/>
+         <xs:enumeration value="Minor"/>
+         <xs:enumeration value="Major"/>
+         <xs:enumeration value="Critical"/>
+      </xs:restriction>
+   </xs:simpleType>
+</xs:schema>
+ 

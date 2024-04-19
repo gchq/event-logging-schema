@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:CoordinatesComplexType="http://event-logging/coordinates-complex-type"
+           elementFormDefault="qualified"
+           id="location-complex-type-v4.0.2"
+           targetNamespace="http://event-logging/location-complex-type"
+           version="4.0.2">
+   <xs:import namespace="http://event-logging/coordinates-complex-type"
+              schemaLocation="coordinates-complex-type.xsd"/>
+   <xs:complexType name="LocationComplexType">
+      <xs:annotation>
+         <xs:documentation>Describes the geographic location of the device.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element minOccurs="0" name="Country" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>The ISO-3166 country short name, e.g. 'UNITED KINGDOM OF GREAT BRITAIN AND NORTHERN IRELAND' or 'ANDORRA'</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="State" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>The location State or Province.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="City" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>The location City.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="Town" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>The location Town.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="Site" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>The name of the site of the location, e.g. where an organisation has multiple distinct sites or campuses. Specifying the site is particularly important when the sites are in the same town/city.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:sequence minOccurs="0">
+            <xs:element minOccurs="0" name="Building" type="xs:string">
+               <xs:annotation>
+                  <xs:documentation>The name of the building.</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="Floor" type="xs:integer">
+               <xs:annotation>
+                  <xs:documentation>The floor of the building that the location refers to.</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="Room" type="xs:string">
+               <xs:annotation>
+                  <xs:documentation>The identifier (e.g. name) of the room that the location refers to.</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:choice>
+               <xs:element minOccurs="0" name="Desk" type="xs:string">
+                  <xs:annotation>
+                     <xs:documentation>The identifier (e.g. name) of the desk that the location refers to.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="Rack" type="xs:string">
+                     <xs:annotation>
+                        <xs:documentation>The identifier for the rack/cabinet where the location refers to a rack mounted device, e.g. a rack mounted 4U server in a cabinet.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:element minOccurs="0" name="Position" type="xs:string">
+                     <xs:annotation>
+                        <xs:documentation>The position of the device where the location refers to a rack mounted device in a rack/cabinet. E.g. where a 4U device occupies U positions 1-4 in a cabinet (numbered from the bottom of the cabinet, starting from 1), the position would be '1'.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+               </xs:sequence>
+            </xs:choice>
+         </xs:sequence>
+         <xs:element minOccurs="0" name="TimeZoneName" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>The timezone name for the location as defined by the IANA Timezone Database (https://www.iana.org/time-zones), e.g. 'Europe/London' or 'Australia/NSW'.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0"
+                     name="Coordinates"
+                     type="CoordinatesComplexType:CoordinatesComplexType">
+            <xs:annotation>
+               <xs:documentation>The geographic coordinates of the location (i.e. the latitude/longitude).</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="AccessZone" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>The name of a zone within a building or site with some form of access control/monitoring for entry/exit to the zone.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>
+ 

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:AuthenticateLogonTypeSimpleType="http://event-logging/authenticate-logon-type-simple-type"
+           xmlns:DataComplexType="http://event-logging/data-complex-type"
+           xmlns:DeviceComplexType="http://event-logging/device-complex-type"
+           xmlns:GroupComplexType="http://event-logging/group-complex-type"
+           xmlns:AuthenticateActionSimpleType="http://event-logging/authenticate-action-simple-type"
+           xmlns:AuthenticateOutcomeComplexType="http://event-logging/authenticate-outcome-complex-type"
+           xmlns:UserComplexType="http://event-logging/user-complex-type"
+           elementFormDefault="qualified"
+           id="authenticate-complex-type-v4.0.2"
+           targetNamespace="http://event-logging/authenticate-complex-type"
+           version="4.0.2">
+   <xs:import namespace="http://event-logging/authenticate-action-simple-type"
+              schemaLocation="authenticate-action-simple-type.xsd"/>
+   <xs:import namespace="http://event-logging/authenticate-logon-type-simple-type"
+              schemaLocation="authenticate-logon-type-simple-type.xsd"/>
+   <xs:import namespace="http://event-logging/authenticate-outcome-complex-type"
+              schemaLocation="authenticate-outcome-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/data-complex-type"
+              schemaLocation="data-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/device-complex-type"
+              schemaLocation="device-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/group-complex-type"
+              schemaLocation="group-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/user-complex-type"
+              schemaLocation="user-complex-type.xsd"/>
+   <xs:complexType name="AuthenticateComplexType">
+      <xs:annotation>
+         <xs:documentation>Used to record authentication events such as logon and logoff. All authentication events that originate from a client device should record details of the client device in the event source.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="Action"
+                     type="AuthenticateActionSimpleType:AuthenticateActionSimpleType">
+            <xs:annotation>
+               <xs:documentation>The authentication action that was performed, e.g. Logon, Logoff.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0"
+                     name="LogonType"
+                     type="AuthenticateLogonTypeSimpleType:AuthenticateLogonTypeSimpleType">
+            <xs:annotation>
+               <xs:documentation>This indicates the type of logon. For example, Microsoft Windows has several logon types such as Interactive (logon to domain), RemoteInteractive (logon to remote machine), CachedInteractive (logon to local machine using cached domain information due to loss of network).</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:choice>
+            <xs:element name="User" type="UserComplexType:UserComplexType">
+               <xs:annotation>
+                  <xs:documentation>The user who the authentication action relates to.</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="Device" type="DeviceComplexType:DeviceComplexType">
+               <xs:annotation>
+                  <xs:documentation>Where a device authenticates with another device, this is the device that initiates the authentication action.</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="Group" type="GroupComplexType:GroupComplexType">
+               <xs:annotation>
+                  <xs:documentation>The group the authentication action relates to.</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+         </xs:choice>
+         <xs:element minOccurs="0"
+                     name="Outcome"
+                     type="AuthenticateOutcomeComplexType:AuthenticateOutcomeComplexType">
+            <xs:annotation>
+               <xs:documentation>Used to determine if the action was successful. If omitted it is assumed that the event was successful and was permitted.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element maxOccurs="unbounded"
+                     minOccurs="0"
+                     name="Data"
+                     type="DataComplexType:DataComplexType">
+            <xs:annotation>
+               <xs:documentation>Any other event data that does not fit into a schema element but may be useful for the purpose of audit.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>
+ 

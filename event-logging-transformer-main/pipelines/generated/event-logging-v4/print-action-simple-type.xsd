@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified"
+           id="print-action-simple-type-v4.0.2"
+           targetNamespace="http://event-logging/print-action-simple-type"
+           version="4.0.2">
+   <xs:simpleType name="PrintActionSimpleType">
+      <xs:annotation>
+         <xs:documentation>The types of action relating to the use of a printer.</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="CreateJob"/>
+         <xs:enumeration value="CancelJob"/>
+         <xs:enumeration value="PauseJob"/>
+         <xs:enumeration value="ResumeJob"/>
+         <xs:enumeration value="StartPrint"/>
+         <xs:enumeration value="FinishPrint"/>
+         <xs:enumeration value="CancelPrint"/>
+         <xs:enumeration value="FailedPrint"/>
+         <xs:enumeration value="Other"/>
+      </xs:restriction>
+   </xs:simpleType>
+</xs:schema>
+ 

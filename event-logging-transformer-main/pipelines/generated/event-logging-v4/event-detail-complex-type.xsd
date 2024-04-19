@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:MoveComplexType="http://event-logging/move-complex-type"
+           xmlns:UpdateComplexType="http://event-logging/update-complex-type"
+           xmlns:ReceiveComplexType="http://event-logging/receive-complex-type"
+           xmlns:ImportComplexType="http://event-logging/import-complex-type"
+           xmlns:AlertComplexType="http://event-logging/alert-complex-type"
+           xmlns:NetworkEventActionComplexType="http://event-logging/network-event-action-complex-type"
+           xmlns:PurposeComplexType="http://event-logging/purpose-complex-type"
+           xmlns:CopyComplexType="http://event-logging/copy-complex-type"
+           xmlns:InstallComplexType="http://event-logging/install-complex-type"
+           xmlns:ProcessComplexType="http://event-logging/process-complex-type"
+           xmlns:SendComplexType="http://event-logging/send-complex-type"
+           xmlns:ApprovalComplexType="http://event-logging/approval-complex-type"
+           xmlns:ViewComplexType="http://event-logging/view-complex-type"
+           xmlns:AuthoriseComplexType="http://event-logging/authorise-complex-type"
+           xmlns:DeleteComplexType="http://event-logging/delete-complex-type"
+           xmlns:ExportComplexType="http://event-logging/export-complex-type"
+           xmlns:SearchComplexType="http://event-logging/search-complex-type"
+           xmlns:DataComplexType="http://event-logging/data-complex-type"
+           xmlns:PrintComplexType="http://event-logging/print-complex-type"
+           xmlns:UninstallComplexType="http://event-logging/uninstall-complex-type"
+           xmlns:AuthenticateComplexType="http://event-logging/authenticate-complex-type"
+           xmlns:CreateComplexType="http://event-logging/create-complex-type"
+           elementFormDefault="qualified"
+           id="event-detail-complex-type-v4.0.2"
+           targetNamespace="http://event-logging/event-detail-complex-type"
+           version="4.0.2">
+   <xs:import namespace="http://event-logging/alert-complex-type"
+              schemaLocation="alert-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/approval-complex-type"
+              schemaLocation="approval-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/authenticate-complex-type"
+              schemaLocation="authenticate-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/authorise-complex-type"
+              schemaLocation="authorise-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/copy-complex-type"
+              schemaLocation="copy-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/create-complex-type"
+              schemaLocation="create-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/data-complex-type"
+              schemaLocation="data-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/delete-complex-type"
+              schemaLocation="delete-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/export-complex-type"
+              schemaLocation="export-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/import-complex-type"
+              schemaLocation="import-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/install-complex-type"
+              schemaLocation="install-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/move-complex-type"
+              schemaLocation="move-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/network-event-action-complex-type"
+              schemaLocation="network-event-action-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/print-complex-type"
+              schemaLocation="print-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/process-complex-type"
+              schemaLocation="process-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/purpose-complex-type"
+              schemaLocation="purpose-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/receive-complex-type"
+              schemaLocation="receive-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/search-complex-type"
+              schemaLocation="search-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/send-complex-type"
+              schemaLocation="send-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/uninstall-complex-type"
+              schemaLocation="uninstall-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/update-complex-type"
+              schemaLocation="update-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/view-complex-type"
+              schemaLocation="view-complex-type.xsd"/>
+   <xs:complexType name="EventDetailComplexType">
+      <xs:annotation>
+         <xs:documentation>This type describes the details of what happened in the event: the type of the event, why it happened and the event action.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="TypeId" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>A name/code/ID to uniquely identify the logical event type within the service providing the events. E.g. a Windows eventId (i.e. representing 'Failed logon', 'Change password attempt', etc.) or for application logging: SaveRecord, ViewUserRecord, ViewSearchResults, etc. The granularity will depend on the application. Typically, the number of unique TypeIds will be in the 10s. Note, the values of the TypeId are not meant to be globally consistent, they will only be relevant within that service providing the events.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="Description" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>Some human-readable descriptive text for the event type.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0"
+                     name="Purpose"
+                     type="PurposeComplexType:PurposeComplexType">
+            <xs:annotation>
+               <xs:documentation>The purpose/justification assigned to this event for user actions that are required to be justified for reasons of corporate policy, e.g. transferring data to removable media, viewing personnel records or making a high value payment.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:choice>
+            <xs:element name="Authenticate"
+                        type="AuthenticateComplexType:AuthenticateComplexType">
+               <xs:annotation>
+                  <xs:documentation>Used to record authentication events such as logon and logoff. Also used for recording authentication by physical access controls, e.g. doors/turnstiles. All authentication events that originate from a client device should record details of the client device in the event source.</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="Authorise" type="AuthoriseComplexType:AuthoriseComplexType">
+               <xs:annotation>
+                  <xs:documentation>All events related to account management such as adding and removing user and system accounts.</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="Search" type="SearchComplexType:SearchComplexType">
+               <xs:annotation>
+                  <xs:documentation>Any events related to searching for data should use this element.</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="Copy" type="CopyComplexType:CopyComplexType">
+               <xs:annotation>
+                  <xs:documentation>All events related to copying data, files, documents, etc. should use this element.</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="Move" type="MoveComplexType:MoveComplexType">
+               <xs:annotation>
+                  <xs:documentation>All events related to moving data should use this element.</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="Create" type="CreateComplexType:CreateComplexType">
+               <xs:annotation>
+                  <xs:documentation>All events related to creating data should use this element.</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="View" type="ViewComplexType:ViewComplexType">
+               <xs:annotation>
+                  <xs:documentation>All events related to viewing data should use this element. Note that viewing data is subtly different from reading data. This event is to be used when data is displayed to an end user and not for data read by an application.</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="Import" type="ImportComplexType:ImportComplexType">
+               <xs:annotation>
+                  <xs:documentation>All events related to importing data should use this element. An import could include any batch insert of data from an external source or uploading a file.</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="Export" type="ExportComplexType:ExportComplexType">
+               <xs:annotation>
+                  <xs:documentation>All events related to exporting data should use this element. An export could include activities such as downloading data from an application or generating a report.</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="Update" type="UpdateComplexType:UpdateComplexType">
+               <xs:annotation>
+                  <xs:documentation>All events related to updating data should use this element.</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="Delete" type="DeleteComplexType:DeleteComplexType">
+               <xs:annotation>
+                  <xs:documentation>All events related to deleting data should use this element.</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="Process" type="ProcessComplexType:ProcessComplexType">
+               <xs:annotation>
+                  <xs:documentation>Whenever processes such as applications or services are started, stopped etc., this should be recorded in this element. It also covers the running of batch processes or jobs.</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="Print" type="PrintComplexType:PrintComplexType">
+               <xs:annotation>
+                  <xs:documentation>All events related to printing should use this element.</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="Install" type="InstallComplexType:InstallComplexType">
+               <xs:annotation>
+                  <xs:documentation>Details about installation of either hardware or software.</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="Uninstall" type="UninstallComplexType:UninstallComplexType">
+               <xs:annotation>
+                  <xs:documentation>Details about removal of either hardware or software.</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="Network"
+                        type="NetworkEventActionComplexType:NetworkEventActionComplexType">
+               <xs:annotation>
+                  <xs:documentation>Any events related to network traffic, filtering or access should be recorded using this element.</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="Alert" type="AlertComplexType:AlertComplexType">
+               <xs:annotation>
+                  <xs:documentation>An alert event according to the system producing the event, e.g. an event raised when an anti-malware system finds malware.</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="Send" type="SendComplexType:SendComplexType">
+               <xs:annotation>
+                  <xs:documentation>Used for send events that are at a higher level than a network/send event, e.g. sending an email</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="Receive" type="ReceiveComplexType:ReceiveComplexType">
+               <xs:annotation>
+                  <xs:documentation>Used for receive events that are at a higher level than a network/receive event, e.g. receiving an email</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="Approval" type="ApprovalComplexType:ApprovalComplexType">
+               <xs:annotation>
+                  <xs:documentation>Any events relating to the action of approving/accepting or rejecting something, e.g. an approval step in a workflow, accepting a license agreement, or acceptable use policy. The event may relate to one user approving the work/action of another user or a single user accepting something.</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="Unknown">
+               <xs:annotation>
+                  <xs:documentation>This element should be used were the type of the event cannot be described by any of the other event actions, or the event type is unknown.</xs:documentation>
+               </xs:annotation>
+               <xs:complexType>
+                  <xs:annotation>
+                     <xs:documentation>This type should be used were the type of the event cannot be described by any of the other event actions, or the event type is unknown.</xs:documentation>
+                  </xs:annotation>
+                  <xs:sequence>
+                     <xs:element maxOccurs="unbounded"
+                                 minOccurs="0"
+                                 name="Data"
+                                 type="DataComplexType:DataComplexType">
+                        <xs:annotation>
+                           <xs:documentation>Any other event data that does not fit into a schema element but may be useful for the purpose of audit.</xs:documentation>
+                        </xs:annotation>
+                     </xs:element>
+                  </xs:sequence>
+               </xs:complexType>
+            </xs:element>
+         </xs:choice>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>
+ 

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified"
+           id="latitude-simple-type-v4.0.2"
+           targetNamespace="http://event-logging/latitude-simple-type"
+           version="4.0.2">
+   <xs:simpleType name="LatitudeSimpleType">
+      <xs:annotation>
+         <xs:documentation>Latitude from the equator in decimal degrees.</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:decimal">
+         <xs:minInclusive value="-90"/>
+         <xs:maxInclusive value="90"/>
+      </xs:restriction>
+   </xs:simpleType>
+</xs:schema>
+ 

@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:PermissionAttributeSimpleType="http://event-logging/permission-attribute-simple-type"
+           xmlns:ClassificationComplexType="http://event-logging/classification-complex-type"
+           xmlns:AnyContentComplexType="http://event-logging/any-content-complex-type"
+           xmlns:DataComplexType="http://event-logging/data-complex-type"
+           xmlns:MetaDataTagsComplexType="http://event-logging/meta-data-tags-complex-type"
+           xmlns:GroupComplexType="http://event-logging/group-complex-type"
+           xmlns:GroupsComplexType="http://event-logging/groups-complex-type"
+           xmlns:UserComplexType="http://event-logging/user-complex-type"
+           elementFormDefault="qualified"
+           id="chat-complex-type-v4.0.2"
+           targetNamespace="http://event-logging/chat-complex-type"
+           version="4.0.2">
+   <xs:import namespace="http://event-logging/any-content-complex-type"
+              schemaLocation="any-content-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/classification-complex-type"
+              schemaLocation="classification-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/data-complex-type"
+              schemaLocation="data-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/group-complex-type"
+              schemaLocation="group-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/groups-complex-type"
+              schemaLocation="groups-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/meta-data-tags-complex-type"
+              schemaLocation="meta-data-tags-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/permission-attribute-simple-type"
+              schemaLocation="permission-attribute-simple-type.xsd"/>
+   <xs:import namespace="http://event-logging/user-complex-type"
+              schemaLocation="user-complex-type.xsd"/>
+   <xs:complexType name="ChatComplexType">
+      <xs:annotation>
+         <xs:documentation>Describes the details of a chat event, e.g. an instance message chat message from one user to another.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element maxOccurs="unbounded"
+                     minOccurs="0"
+                     name="Meta"
+                     type="AnyContentComplexType:AnyContentComplexType">
+            <xs:annotation>
+               <xs:documentation>This element can be used to supply any metadata relating to an object as long as it conforms to an allowed format/specification (defined outside this XML Schema). This can be used for adding metadata to the event after receipt.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="Type" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>The type of the object in question and specific to the object type from the list above, e.g. a 'Resource' object may have a type such as 'image' or 'script'.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="Id" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>An identifier for the object, e.g a document ID in a document management system. This ID is likely to be specific to the system that generated the event.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="Name" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>The name of the object, e.g. a filename.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="Description" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>Human readable description of what the object is.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0"
+                     name="Classification"
+                     type="ClassificationComplexType:ClassificationComplexType">
+            <xs:annotation>
+               <xs:documentation>Any classification, protective marking or restrictions placed on the object, e.g. for commercially sensitive reports or user health records.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="State" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>Any state information about the object, e.g. 'Archived'.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0"
+                     name="Groups"
+                     type="GroupsComplexType:GroupsComplexType">
+            <xs:annotation>
+               <xs:documentation>Any groups associated with the object, e.g. group membership of a user account.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="Permissions">
+            <xs:annotation>
+               <xs:documentation>The collection of permissions associated with the object, e.g. write access being granted to a list of named users.</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+               <xs:annotation>
+                  <xs:documentation>The collection of permissions associated with the object, e.g. write access being granted to a list of named users.</xs:documentation>
+               </xs:annotation>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" name="Permission">
+                     <xs:annotation>
+                        <xs:documentation>A permission rule associated with an object, e.g. read and write access being granted to a user.</xs:documentation>
+                     </xs:annotation>
+                     <xs:complexType>
+                        <xs:annotation>
+                           <xs:documentation>A permission rule associated with an object, e.g. read and write access being granted to a user.</xs:documentation>
+                        </xs:annotation>
+                        <xs:sequence>
+                           <xs:choice>
+                              <xs:element name="User" type="UserComplexType:UserComplexType">
+                                 <xs:annotation>
+                                    <xs:documentation>A user that has been granted (or is prevented from having) some form of permission.</xs:documentation>
+                                 </xs:annotation>
+                              </xs:element>
+                              <xs:element name="Group" type="GroupComplexType:GroupComplexType">
+                                 <xs:annotation>
+                                    <xs:documentation>A named group of users that has been granted (or is prevented from having) some form of permission.</xs:documentation>
+                                 </xs:annotation>
+                              </xs:element>
+                           </xs:choice>
+                           <xs:element maxOccurs="unbounded"
+                                       minOccurs="0"
+                                       name="Allow"
+                                       type="PermissionAttributeSimpleType:PermissionAttributeSimpleType">
+                              <xs:annotation>
+                                 <xs:documentation>The permission attributes that have been explicitly allowed.</xs:documentation>
+                              </xs:annotation>
+                           </xs:element>
+                           <xs:element maxOccurs="unbounded"
+                                       minOccurs="0"
+                                       name="Deny"
+                                       type="PermissionAttributeSimpleType:PermissionAttributeSimpleType">
+                              <xs:annotation>
+                                 <xs:documentation>The permission attributes that have been explicitly denied.</xs:documentation>
+                              </xs:annotation>
+                           </xs:element>
+                        </xs:sequence>
+                     </xs:complexType>
+                  </xs:element>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element minOccurs="0"
+                     name="Tags"
+                     type="MetaDataTagsComplexType:MetaDataTagsComplexType">
+            <xs:annotation>
+               <xs:documentation>Metadata tags that can be used for additional object tagging or categorisation. Object tagging allows for the labelling (or filtering) of objects using words that label, categorise or group similar items, using a taxonomy defined outside this schema. For example, an email could be tagged with tags like 'internal', 'spam', 'external', 'rich-content', etc.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+               <xs:element minOccurs="0" name="SessionId" type="xs:string">
+                  <xs:annotation>
+                     <xs:documentation>The ID for the chat session.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element minOccurs="0" name="Room" type="xs:string">
+                  <xs:annotation>
+                     <xs:documentation>The name of the chat room or group.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element minOccurs="0" name="From" type="UserComplexType:UserComplexType">
+                  <xs:annotation>
+                     <xs:documentation>The user that initiated the chat event.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element maxOccurs="unbounded"
+                     minOccurs="0"
+                     name="To"
+                     type="UserComplexType:UserComplexType">
+                  <xs:annotation>
+                     <xs:documentation>The user(s) that the chat event (or message) is directed at.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element minOccurs="0" name="Content" type="xs:string">
+                  <xs:annotation>
+                     <xs:documentation>The chat message or content sent by the user.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+               <xs:element maxOccurs="unbounded"
+                     minOccurs="0"
+                     name="Data"
+                     type="DataComplexType:DataComplexType">
+                  <xs:annotation>
+                     <xs:documentation>Any other event data that does not fit into a schema element but may be useful for the purpose of audit.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+            </xs:sequence>
+   </xs:complexType>
+</xs:schema>
+ 

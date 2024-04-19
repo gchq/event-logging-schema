@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified"
+           id="alert-priority-simple-type-v4.0.2"
+           targetNamespace="http://event-logging/alert-priority-simple-type"
+           version="4.0.2">
+   <xs:simpleType name="AlertPrioritySimpleType">
+      <xs:annotation>
+         <xs:documentation>The priorities that can be assigned to an alert, e.g. an error in a system or the alert from the detection of malware. They indicate how important it is to resolve or mitigate the alert.</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="None"/>
+         <xs:enumeration value="Low"/>
+         <xs:enumeration value="Normal"/>
+         <xs:enumeration value="High"/>
+         <xs:enumeration value="Urgent"/>
+         <xs:enumeration value="Immediate"/>
+      </xs:restriction>
+   </xs:simpleType>
+</xs:schema>
+ 

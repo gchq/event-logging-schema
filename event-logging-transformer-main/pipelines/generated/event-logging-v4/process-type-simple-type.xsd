@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified"
+           id="process-type-simple-type-v4.0.2"
+           targetNamespace="http://event-logging/process-type-simple-type"
+           version="4.0.2">
+   <xs:simpleType name="ProcessTypeSimpleType">
+      <xs:annotation>
+         <xs:documentation>The types of a process event, e.g. a background process running within an application.</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="OS"/>
+         <xs:enumeration value="Service"/>
+         <xs:enumeration value="Application"/>
+      </xs:restriction>
+   </xs:simpleType>
+</xs:schema>
+ 

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:ClassificationComplexType="http://event-logging/classification-complex-type"
+           xmlns:PortSimpleType="http://event-logging/port-simple-type"
+           xmlns:DataComplexType="http://event-logging/data-complex-type"
+           xmlns:DeviceMacAddressSimpleType="http://event-logging/device-mac-address-simple-type"
+           xmlns:IpAddressSimpleType="http://event-logging/ip-address-simple-type"
+           xmlns:LocationComplexType="http://event-logging/location-complex-type"
+           elementFormDefault="qualified"
+           id="device-complex-type-v4.0.2"
+           targetNamespace="http://event-logging/device-complex-type"
+           version="4.0.2">
+   <xs:import namespace="http://event-logging/classification-complex-type"
+              schemaLocation="classification-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/data-complex-type"
+              schemaLocation="data-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/device-mac-address-simple-type"
+              schemaLocation="device-mac-address-simple-type.xsd"/>
+   <xs:import namespace="http://event-logging/ip-address-simple-type"
+              schemaLocation="ip-address-simple-type.xsd"/>
+   <xs:import namespace="http://event-logging/location-complex-type"
+              schemaLocation="location-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/port-simple-type"
+              schemaLocation="port-simple-type.xsd"/>
+   <xs:complexType name="DeviceComplexType">
+      <xs:annotation>
+         <xs:documentation>Describes a device, e.g. a workstation, server or item of network infrastructure.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element minOccurs="0" name="Id" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>Identifier used to uniquely identify the device within the organisation's asset register/system. Also, this can be used to identify a device that does not have HostName/IPAddress/MACAddress.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="Name" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>A descriptive name of the device, e.g. 'Sun Fire X4600', 'HP LaserJet 4+'.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0"
+                     name="Classification"
+                     type="ClassificationComplexType:ClassificationComplexType">
+            <xs:annotation>
+               <xs:documentation>The security classification associated with this device.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="HostName" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>The network host name of the device, e.g. someserver.somenet.org.uk. Ideally this field should always contain a fully qualified DNS name of the host.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0"
+                     name="IpAddress"
+                     type="IpAddressSimpleType:IpAddressSimpleType">
+            <xs:annotation>
+               <xs:documentation>The network IP address of the device, e.g. 192.168.0.3. Ideally this should always be supplied.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0"
+                     name="MacAddress"
+                     type="DeviceMacAddressSimpleType:DeviceMacAddressSimpleType">
+            <xs:annotation>
+               <xs:documentation>The Media Access Control (MAC) address of the device.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="Port" type="PortSimpleType:PortSimpleType">
+            <xs:annotation>
+               <xs:documentation>The network port that is being used on the device, e.g. 443.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0"
+                     name="Location"
+                     type="LocationComplexType:LocationComplexType">
+            <xs:annotation>
+               <xs:documentation>Describes the geographic location of the device.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element maxOccurs="unbounded"
+                     minOccurs="0"
+                     name="Data"
+                     type="DataComplexType:DataComplexType">
+            <xs:annotation>
+               <xs:documentation>Any other event data that does not fit into a schema element but may be useful for the purpose of audit.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>
+ 

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:ActivityComplexType="http://event-logging/activity-complex-type"
+           elementFormDefault="qualified"
+           id="activity-complex-type-v4.0.2"
+           targetNamespace="http://event-logging/activity-complex-type"
+           version="4.0.2">
+   <xs:complexType name="ActivityComplexType">
+      <xs:annotation>
+         <xs:documentation>Type that describes relationships between different events. For example in an asynchronous search the viewing of the results of the search may be a separate event from the execution of the query. In this instance the view event would be a child of the execution event.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="Id" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>The unique identifier of the event that is being referenced. This will be the value of Event/EventSource/EventId on the referenced event. E.g. where an event with Event/EventSource/EventId=101 is a child of an event with Event/EventSource/EventId=99, the value in this element would be 99.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="Name" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>A descriptive name for the referenced event.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0"
+                     name="Parent"
+                     type="ActivityComplexType:ActivityComplexType">
+            <xs:annotation>
+               <xs:documentation>The details of the event that is the parent of this referenced event. E.g. if event C is a child of event B which is a child of event A, this element would record an Id of A.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>
+ 

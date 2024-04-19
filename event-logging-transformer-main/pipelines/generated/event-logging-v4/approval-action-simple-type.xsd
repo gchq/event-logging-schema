@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified"
+           id="approval-action-simple-type-v4.0.2"
+           targetNamespace="http://event-logging/approval-action-simple-type"
+           version="4.0.2">
+   <xs:simpleType name="ApprovalActionSimpleType">
+      <xs:annotation>
+         <xs:documentation>The stages in an approval workflow. E.g. when presenting a document for review before publishing.</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="Approve"/>
+         <xs:enumeration value="Accept"/>
+         <xs:enumeration value="Reject"/>
+         <xs:enumeration value="RequestApproval"/>
+         <xs:enumeration value="Other"/>
+      </xs:restriction>
+   </xs:simpleType>
+</xs:schema>
+ 

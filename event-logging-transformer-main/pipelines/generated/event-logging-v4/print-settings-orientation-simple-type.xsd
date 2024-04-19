@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified"
+           id="print-settings-orientation-simple-type-v4.0.2"
+           targetNamespace="http://event-logging/print-settings-orientation-simple-type"
+           version="4.0.2">
+   <xs:simpleType name="PrintSettingsOrientationSimpleType">
+      <xs:annotation>
+         <xs:documentation>The orientation types of a document when it is printed.</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="Portrait"/>
+         <xs:enumeration value="Landscape"/>
+      </xs:restriction>
+   </xs:simpleType>
+</xs:schema>
+ 

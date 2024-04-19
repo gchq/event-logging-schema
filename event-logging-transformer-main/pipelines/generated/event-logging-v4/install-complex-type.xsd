@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:SoftwareComplexType="http://event-logging/software-complex-type"
+           xmlns:MediaComplexType="http://event-logging/media-complex-type"
+           xmlns:OutcomeComplexType="http://event-logging/outcome-complex-type"
+           xmlns:DataComplexType="http://event-logging/data-complex-type"
+           xmlns:HardwareComplexType="http://event-logging/hardware-complex-type"
+           elementFormDefault="qualified"
+           id="install-complex-type-v4.0.2"
+           targetNamespace="http://event-logging/install-complex-type"
+           version="4.0.2">
+   <xs:import namespace="http://event-logging/data-complex-type"
+              schemaLocation="data-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/hardware-complex-type"
+              schemaLocation="hardware-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/media-complex-type"
+              schemaLocation="media-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/outcome-complex-type"
+              schemaLocation="outcome-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/software-complex-type"
+              schemaLocation="software-complex-type.xsd"/>
+   <xs:complexType name="InstallComplexType">
+      <xs:annotation>
+         <xs:documentation>Describes the installation of either hardware or software.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:choice>
+            <xs:element name="Software" type="SoftwareComplexType:SoftwareComplexType">
+               <xs:annotation>
+                  <xs:documentation>Description of the software that was installed/uninstalled.</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="Hardware" type="HardwareComplexType:HardwareComplexType">
+               <xs:annotation>
+                  <xs:documentation>Description of the hardware that was installed/uninstalled.</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element name="Media" type="MediaComplexType:MediaComplexType">
+               <xs:annotation>
+                  <xs:documentation>Description of the media that was installed/uninstalled.</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+         </xs:choice>
+         <xs:element minOccurs="0"
+                     name="Outcome"
+                     type="OutcomeComplexType:OutcomeComplexType">
+            <xs:annotation>
+               <xs:documentation>The outcome of the (un)installation.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element maxOccurs="unbounded"
+                     minOccurs="0"
+                     name="Data"
+                     type="DataComplexType:DataComplexType">
+            <xs:annotation>
+               <xs:documentation>Any other event data that does not fit into a schema element but may be useful for the purpose of audit.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>
+ 

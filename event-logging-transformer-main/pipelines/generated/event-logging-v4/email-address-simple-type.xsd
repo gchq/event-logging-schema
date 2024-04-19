@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified"
+           id="email-address-simple-type-v4.0.2"
+           targetNamespace="http://event-logging/email-address-simple-type"
+           version="4.0.2">
+   <xs:simpleType name="EmailAddressSimpleType">
+      <xs:annotation>
+         <xs:documentation>A type to define an email address.</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string"/>
+   </xs:simpleType>
+</xs:schema>
+ 

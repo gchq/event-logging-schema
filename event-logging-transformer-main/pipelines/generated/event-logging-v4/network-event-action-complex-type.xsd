@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:NetworkOutcomeComplexType="http://event-logging/network-outcome-complex-type"
+           elementFormDefault="qualified"
+           id="network-event-action-complex-type-v4.0.2"
+           targetNamespace="http://event-logging/network-event-action-complex-type"
+           version="4.0.2">
+   <xs:import namespace="http://event-logging/network-outcome-complex-type"
+              schemaLocation="network-outcome-complex-type.xsd"/>
+   <xs:complexType name="NetworkEventActionComplexType">
+      <xs:annotation>
+         <xs:documentation>Describes an event involving some form of activity on a computer network.</xs:documentation>
+      </xs:annotation>
+      <xs:choice>
+         <xs:element name="Bind" type="NetworkOutcomeComplexType:NetworkOutcomeComplexType">
+            <xs:annotation>
+               <xs:documentation>The action of a server binding a network socket to a port and IP address.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Connect"
+                     type="NetworkOutcomeComplexType:NetworkOutcomeComplexType">
+            <xs:annotation>
+               <xs:documentation>The action of a client system establishing a connection with a server.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Open" type="NetworkOutcomeComplexType:NetworkOutcomeComplexType">
+            <xs:annotation>
+               <xs:documentation>The action of opening an unnamed socket that is bound to an address.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Close" type="NetworkOutcomeComplexType:NetworkOutcomeComplexType">
+            <xs:annotation>
+               <xs:documentation>The action of closing an open socket or connection.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Send" type="NetworkOutcomeComplexType:NetworkOutcomeComplexType">
+            <xs:annotation>
+               <xs:documentation>The action of sending data on a socket.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Receive"
+                     type="NetworkOutcomeComplexType:NetworkOutcomeComplexType">
+            <xs:annotation>
+               <xs:documentation>The action of receiving data on a socket.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Listen"
+                     type="NetworkOutcomeComplexType:NetworkOutcomeComplexType">
+            <xs:annotation>
+               <xs:documentation>The action of making a socket listen for connections.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Permit"
+                     type="NetworkOutcomeComplexType:NetworkOutcomeComplexType">
+            <xs:annotation>
+               <xs:documentation>The action of network traffic being permitted by an Access Control List (ACL).</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Deny" type="NetworkOutcomeComplexType:NetworkOutcomeComplexType">
+            <xs:annotation>
+               <xs:documentation>The action of network traffic being denied by an Access Control List (ACL).</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:choice>
+   </xs:complexType>
+</xs:schema>
+ 

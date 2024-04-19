@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified"
+           id="longitude-simple-type-v4.0.2"
+           targetNamespace="http://event-logging/longitude-simple-type"
+           version="4.0.2">
+   <xs:simpleType name="LongitudeSimpleType">
+      <xs:annotation>
+         <xs:documentation>Longitude from the Greenwich Meridian in decimal degrees.</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:decimal">
+         <xs:minInclusive value="-180"/>
+         <xs:maxInclusive value="180"/>
+      </xs:restriction>
+   </xs:simpleType>
+</xs:schema>
+ 

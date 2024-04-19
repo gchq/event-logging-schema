@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:MultiObjectComplexType="http://event-logging/multi-object-complex-type"
+           xmlns:OutcomeComplexType="http://event-logging/outcome-complex-type"
+           xmlns:DataComplexType="http://event-logging/data-complex-type"
+           xmlns:ProcessActionSimpleType="http://event-logging/process-action-simple-type"
+           xmlns:ProcessTypeSimpleType="http://event-logging/process-type-simple-type"
+           elementFormDefault="qualified"
+           id="process-complex-type-v4.0.2"
+           targetNamespace="http://event-logging/process-complex-type"
+           version="4.0.2">
+   <xs:import namespace="http://event-logging/data-complex-type"
+              schemaLocation="data-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/multi-object-complex-type"
+              schemaLocation="multi-object-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/outcome-complex-type"
+              schemaLocation="outcome-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/process-action-simple-type"
+              schemaLocation="process-action-simple-type.xsd"/>
+   <xs:import namespace="http://event-logging/process-type-simple-type"
+              schemaLocation="process-type-simple-type.xsd"/>
+   <xs:complexType name="ProcessComplexType">
+      <xs:annotation>
+         <xs:documentation>Describes various actions such as the startup/shutdown/install of operating systems, services, applications. It also describes the execution of operating system commands, shell scripts and batch processes.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="Action" type="ProcessActionSimpleType:ProcessActionSimpleType">
+            <xs:annotation>
+               <xs:documentation>The action that the process event is capturing, e.g. Startup, Shutdown.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Type" type="ProcessTypeSimpleType:ProcessTypeSimpleType">
+            <xs:annotation>
+               <xs:documentation>The type of process, e.g. Application, OS, Service.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Command" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>The name of the process.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="Arguments" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>The process command arguments/parameters.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="ProcessId" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>The system identifier for the process.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="ThreadId" type="xs:positiveInteger">
+            <xs:annotation>
+               <xs:documentation>The thread identifier for the process.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="Rule" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>The rule that was triggered when this process event happened.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0"
+                     name="Input"
+                     type="MultiObjectComplexType:MultiObjectComplexType">
+            <xs:annotation>
+               <xs:documentation>Any objects used as input to the process.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0"
+                     name="Output"
+                     type="MultiObjectComplexType:MultiObjectComplexType">
+            <xs:annotation>
+               <xs:documentation>Any objects output by the process</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0"
+                     name="Outcome"
+                     type="OutcomeComplexType:OutcomeComplexType">
+            <xs:annotation>
+               <xs:documentation>Used to determine if the action was successful. If omitted it is assumed that the event was successful and was permitted.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element maxOccurs="unbounded"
+                     minOccurs="0"
+                     name="Data"
+                     type="DataComplexType:DataComplexType">
+            <xs:annotation>
+               <xs:documentation>Any other event data that does not fit into a schema element but may be useful for the purpose of audit.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>
+ 

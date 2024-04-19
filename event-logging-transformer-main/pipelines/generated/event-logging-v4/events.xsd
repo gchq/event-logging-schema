@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright 2016 - 2018 Crown Copyright
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:EventDetailComplexType="http://event-logging/event-detail-complex-type"
+           xmlns:ClassificationComplexType="http://event-logging/classification-complex-type"
+           xmlns:EventChainComplexType="http://event-logging/event-chain-complex-type"
+           xmlns:AnyContentComplexType="http://event-logging/any-content-complex-type"
+           xmlns:DataComplexType="http://event-logging/data-complex-type"
+           xmlns:EventSourceComplexType="http://event-logging/event-source-complex-type"
+           xmlns:EventTimeComplexType="http://event-logging/event-time-complex-type"
+           xmlns:VersionSimpleType="http://event-logging/version-simple-type"
+           elementFormDefault="qualified"
+           id="event-logging-v4.0.2"
+           targetNamespace="event-logging:3"
+           version="4.0.2">
+   <xs:import namespace="http://event-logging/any-content-complex-type"
+              schemaLocation="any-content-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/classification-complex-type"
+              schemaLocation="classification-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/data-complex-type"
+              schemaLocation="data-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/event-chain-complex-type"
+              schemaLocation="event-chain-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/event-detail-complex-type"
+              schemaLocation="event-detail-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/event-source-complex-type"
+              schemaLocation="event-source-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/event-time-complex-type"
+              schemaLocation="event-time-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/version-simple-type"
+              schemaLocation="version-simple-type.xsd"/>
+   <xs:annotation>
+      <xs:documentation>This schema describes the allowed element structure for event logging. Please refer to the documentation and examples for a description of how to use this schema in addition to the descriptions given for each element within this schema.</xs:documentation>
+   </xs:annotation>
+   <xs:element name="Events">
+      <xs:annotation>
+         <xs:documentation>The root element that contains multiple Event elements.</xs:documentation>
+      </xs:annotation>
+      <xs:complexType>
+         <xs:annotation>
+            <xs:documentation>The root element that contains multiple Event elements.</xs:documentation>
+         </xs:annotation>
+         <xs:sequence>
+            <xs:element minOccurs="0"
+                        name="SharingData"
+                        type="AnyContentComplexType:AnyContentComplexType">
+               <xs:annotation>
+                  <xs:documentation>This element contains data relating to the sharing of a set of events between different systems or organisations. The data contained within this element will confirm to a specification defined outside of this schema.</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element maxOccurs="unbounded" minOccurs="0" name="Event">
+               <xs:annotation>
+                  <xs:documentation>A single event that has occurred and been recorded.</xs:documentation>
+               </xs:annotation>
+               <xs:complexType>
+                  <xs:annotation>
+                     <xs:documentation>A single event that has occurred and been recorded.</xs:documentation>
+                  </xs:annotation>
+                  <xs:sequence>
+                     <xs:element maxOccurs="unbounded"
+                                 minOccurs="0"
+                                 name="Meta"
+                                 type="AnyContentComplexType:AnyContentComplexType">
+                        <xs:annotation>
+                           <xs:documentation>This element can be used to supply any metadata relating to the event as long as it conforms to an allowed format/specification (defined outside this XML Schema).</xs:documentation>
+                        </xs:annotation>
+                     </xs:element>
+                     <xs:element minOccurs="0"
+                                 name="Classification"
+                                 type="ClassificationComplexType:ClassificationComplexType">
+                        <xs:annotation>
+                           <xs:documentation>The classification for the event.</xs:documentation>
+                        </xs:annotation>
+                     </xs:element>
+                     <xs:element minOccurs="0"
+                                 name="SharingData"
+                                 type="AnyContentComplexType:AnyContentComplexType">
+                        <xs:annotation>
+                           <xs:documentation>This element contains data relating to the sharing of an event between different systems or organisations. The data contained within this element will confirm to a specification defined outside of this schema.</xs:documentation>
+                        </xs:annotation>
+                     </xs:element>
+                     <xs:element name="EventTime" type="EventTimeComplexType:EventTimeComplexType">
+                        <xs:annotation>
+                           <xs:documentation>This element contains information about the time the event was created.</xs:documentation>
+                        </xs:annotation>
+                     </xs:element>
+                     <xs:element name="EventSource" type="EventSourceComplexType:EventSourceComplexType">
+                        <xs:annotation>
+                           <xs:documentation>This element details where the event came from, i.e. what generator created the event and on what device.</xs:documentation>
+                        </xs:annotation>
+                     </xs:element>
+                     <xs:element name="EventDetail" type="EventDetailComplexType:EventDetailComplexType">
+                        <xs:annotation>
+                           <xs:documentation>This element describes the details of what happened in the event: the type of the event, why it happened and the event action.</xs:documentation>
+                        </xs:annotation>
+                     </xs:element>
+                     <xs:element minOccurs="0"
+                                 name="EventChain"
+                                 type="EventChainComplexType:EventChainComplexType">
+                        <xs:annotation>
+                           <xs:documentation>This element can be used to create relationships between different events, i.e. where one event is the child of another.</xs:documentation>
+                        </xs:annotation>
+                     </xs:element>
+                     <xs:element maxOccurs="unbounded"
+                                 minOccurs="0"
+                                 name="Data"
+                                 type="DataComplexType:DataComplexType">
+                        <xs:annotation>
+                           <xs:documentation>Any other event data that does not fit into a schema element but may be useful for the purpose of audit. Can also be used for appending data about the event after it has been received or processed, e.g. for recording details relating to the processing of the event such as the feed name.</xs:documentation>
+                        </xs:annotation>
+                     </xs:element>
+                  </xs:sequence>
+               </xs:complexType>
+            </xs:element>
+         </xs:sequence>
+         <xs:attribute name="Version"
+                       type="VersionSimpleType:VersionSimpleType"
+                       use="required">
+            <xs:annotation>
+               <xs:documentation>The version of the schema that this document conforms to.</xs:documentation>
+            </xs:annotation>
+         </xs:attribute>
+      </xs:complexType>
+   </xs:element>
+</xs:schema>
+ 

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:ClassificationComplexType="http://event-logging/classification-complex-type"
+           xmlns:TagSimpleType="http://event-logging/tag-simple-type"
+           elementFormDefault="qualified"
+           id="system-complex-type-v4.0.2"
+           targetNamespace="http://event-logging/system-complex-type"
+           version="4.0.2">
+   <xs:import namespace="http://event-logging/classification-complex-type"
+              schemaLocation="classification-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/tag-simple-type"
+              schemaLocation="tag-simple-type.xsd"/>
+   <xs:complexType name="SystemComplexType">
+      <xs:annotation>
+         <xs:documentation>Describes the system that generated the event. This is not the same as the generator as the generator is merely the application or component that created the event, e.g. auditd. The system describes the higher level project/service or capability that uses the generator as a component, e.g. 'Payroll System'.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="Name" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>The name of the system.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="Description" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>An optional description of the system.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0"
+                     name="Classification"
+                     type="ClassificationComplexType:ClassificationComplexType">
+            <xs:annotation>
+               <xs:documentation>An optional classification or protective marking of the overall system.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Environment" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>The environment describes a specific instance of a system. A system may have multiple deployment for various purposes, e.g. a development, reference or operational deployment. An instance may also be site specific e.g. a deployment at a particular data center. The way an environment is described will differ depending on the system and the way it is deployed however a good example would be REF_DC1 to indicate that the environment is a reference deployment in data center 1.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="Organisation" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>Describes the organisation that owns or has responsibility for the system.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="SecurityDomain" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>An optional element to define the domain that the system exists in.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="Version" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>The version of the system's software, e.g. 1.3.2</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="Tags">
+            <xs:annotation>
+               <xs:documentation>Optional tags that can be used for additional tagging or categorisation of the system. These tags allow for the grouping or filtering of similar systems.</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+               <xs:annotation>
+                  <xs:documentation>Optional tags that can be used for additional tagging or categorisation of the system. These tags allow for the grouping or filtering of similar systems.</xs:documentation>
+               </xs:annotation>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" name="Tag" type="TagSimpleType:TagSimpleType">
+                     <xs:annotation>
+                        <xs:documentation>A categorisation tag or label, e.g. 'critical-system', 'operational-data', 'non-operational-test-data', etc.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>
+ 

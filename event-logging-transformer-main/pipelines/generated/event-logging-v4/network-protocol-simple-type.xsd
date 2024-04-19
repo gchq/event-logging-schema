@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified"
+           id="network-protocol-simple-type-v4.0.2"
+           targetNamespace="http://event-logging/network-protocol-simple-type"
+           version="4.0.2">
+   <xs:simpleType name="NetworkProtocolSimpleType">
+      <xs:annotation>
+         <xs:documentation>The different types of network protocol.</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="TCP"/>
+         <xs:enumeration value="UDP"/>
+         <xs:enumeration value="ICMP"/>
+         <xs:enumeration value="IGMP"/>
+         <xs:enumeration value="Other"/>
+      </xs:restriction>
+   </xs:simpleType>
+</xs:schema>
+ 

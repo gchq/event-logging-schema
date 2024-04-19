@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:MultiObjectComplexType="http://event-logging/multi-object-complex-type"
+           xmlns:CopyMoveOutcomeComplexType="http://event-logging/copy-move-outcome-complex-type"
+           xmlns:DataComplexType="http://event-logging/data-complex-type"
+           elementFormDefault="qualified"
+           id="copy-complex-type-v4.0.2"
+           targetNamespace="http://event-logging/copy-complex-type"
+           version="4.0.2">
+   <xs:import namespace="http://event-logging/copy-move-outcome-complex-type"
+              schemaLocation="copy-move-outcome-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/data-complex-type"
+              schemaLocation="data-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/multi-object-complex-type"
+              schemaLocation="multi-object-complex-type.xsd"/>
+   <xs:complexType name="CopyComplexType">
+      <xs:annotation>
+         <xs:documentation>Describes an event action relating to copying data, files, documents, etc.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="Source" type="MultiObjectComplexType:MultiObjectComplexType">
+            <xs:annotation>
+               <xs:documentation>The source of the data being copied.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Destination" type="MultiObjectComplexType:MultiObjectComplexType">
+            <xs:annotation>
+               <xs:documentation>The destination for the data being copied.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0"
+                     name="Outcome"
+                     type="CopyMoveOutcomeComplexType:CopyMoveOutcomeComplexType">
+            <xs:annotation>
+               <xs:documentation>Used to determine if the copy was successful. If omitted it is assumed that the copy was successful and was permitted.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element maxOccurs="unbounded"
+                     minOccurs="0"
+                     name="Data"
+                     type="DataComplexType:DataComplexType">
+            <xs:annotation>
+               <xs:documentation>Any other event data that does not fit into a schema element but may be useful for the purpose of audit.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>
+ 

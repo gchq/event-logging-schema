@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified"
+           id="term-condition-simple-type-v4.0.2"
+           targetNamespace="http://event-logging/term-condition-simple-type"
+           version="4.0.2">
+   <xs:simpleType name="TermConditionSimpleType">
+      <xs:annotation>
+         <xs:documentation>The types of term used in query predicates.</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="Exists"/>
+         <xs:enumeration value="NotExists"/>
+         <xs:enumeration value="Contains"/>
+         <xs:enumeration value="NotContains"/>
+         <xs:enumeration value="Empty"/>
+         <xs:enumeration value="NotEmpty"/>
+         <xs:enumeration value="Equals"/>
+         <xs:enumeration value="NotEquals"/>
+         <xs:enumeration value="GreaterThan"/>
+         <xs:enumeration value="GreaterThanEqualTo"/>
+         <xs:enumeration value="LessThan"/>
+         <xs:enumeration value="LessThanEqualTo"/>
+         <xs:enumeration value="StartsWith"/>
+         <xs:enumeration value="NotStartsWith"/>
+         <xs:enumeration value="Regex"/>
+         <xs:enumeration value="NotRegex"/>
+      </xs:restriction>
+   </xs:simpleType>
+</xs:schema>
+ 

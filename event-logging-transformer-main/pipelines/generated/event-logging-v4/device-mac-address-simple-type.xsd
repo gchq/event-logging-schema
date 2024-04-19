@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified"
+           id="device-mac-address-simple-type-v4.0.2"
+           targetNamespace="http://event-logging/device-mac-address-simple-type"
+           version="4.0.2">
+   <xs:simpleType name="DeviceMacAddressSimpleType">
+      <xs:annotation>
+         <xs:documentation>This type constrains the format of a MAC address.</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:pattern value="[0123456789ABCDEF]{2}(-[0123456789ABCDEF]{2}){5}"/>
+         <xs:pattern value="[0123456789ABCDEF]{2}(:[0123456789ABCDEF]{2}){5}"/>
+      </xs:restriction>
+   </xs:simpleType>
+</xs:schema>
+ 

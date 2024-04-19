@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:DateTimeSimpleType="http://event-logging/date-time-simple-type"
+           xmlns:CountryTrigraphSimpleType="http://event-logging/country-trigraph-simple-type"
+           xmlns:DataComplexType="http://event-logging/data-complex-type"
+           xmlns:OrganisationComplexType="http://event-logging/organisation-complex-type"
+           xmlns:AccessControlGroupsComplexType="http://event-logging/access-control-groups-complex-type"
+           elementFormDefault="qualified"
+           id="classification-complex-type-v4.0.2"
+           targetNamespace="http://event-logging/classification-complex-type"
+           version="4.0.2">
+   <xs:import namespace="http://event-logging/access-control-groups-complex-type"
+              schemaLocation="access-control-groups-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/country-trigraph-simple-type"
+              schemaLocation="country-trigraph-simple-type.xsd"/>
+   <xs:import namespace="http://event-logging/data-complex-type"
+              schemaLocation="data-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/date-time-simple-type"
+              schemaLocation="date-time-simple-type.xsd"/>
+   <xs:import namespace="http://event-logging/organisation-complex-type"
+              schemaLocation="organisation-complex-type.xsd"/>
+   <xs:complexType name="ClassificationComplexType">
+      <xs:annotation>
+         <xs:documentation>Describes the classification and access controls for an item such as a document, record, file, etc.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element minOccurs="0" name="Text" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>Optional full human-readable text of the protective marking that can combine the various elements in this Classification structure, e.g 'Commercial in Confidence'.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0"
+                     name="Originator"
+                     type="OrganisationComplexType:OrganisationComplexType">
+            <xs:annotation>
+               <xs:documentation>The originator or creator of the protectively marked item. The originator is described by an Organisation and optionally qualified by the organisation's Country.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0"
+                     name="Custodian"
+                     type="OrganisationComplexType:OrganisationComplexType">
+            <xs:annotation>
+               <xs:documentation>The custodian or owner of the protectively marked item. The custodian is responsible for the lifecycle of the marked item. The custodian is described by an Organisation and optionally qualified by the organisation's Country.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="Classification" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>The classification of the protectively marked item. E.g. 'OFFICIAL', 'COMMERCIAL IN CONFIDENCE', 'CONFIDENTIAL', 'INTERNAL' etc.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="Descriptors">
+            <xs:annotation>
+               <xs:documentation>Additional descriptors or keywords to further qualify the Classification e.g. 'PERSONAL'</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+               <xs:annotation>
+                  <xs:documentation>Additional descriptors or keywords to further qualify the Classification e.g. 'PERSONAL'</xs:documentation>
+               </xs:annotation>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" name="Descriptor" type="xs:string">
+                     <xs:annotation>
+                        <xs:documentation>Descriptor or keyword to further qualify the Classification e.g. 'PERSONAL'</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element minOccurs="0"
+                     name="OrGroups"
+                     type="AccessControlGroupsComplexType:AccessControlGroupsComplexType">
+            <xs:annotation>
+               <xs:documentation>The groups that a person must belong to AT LEAST ONE OF in order to be permitted to access the protectively marked item. E.g. 'HR' OR 'Auditors'.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0"
+                     name="AndGroups"
+                     type="AccessControlGroupsComplexType:AccessControlGroupsComplexType">
+            <xs:annotation>
+               <xs:documentation>The groups that a person must belong to ALL OF in order to be permitted to access the protectively marked item. E.g. 'Sales' AND 'Management'.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="PermittedNationalities">
+            <xs:annotation>
+               <xs:documentation>The nationalities of people permitted to access this protectively marked item. E.g. 'GBR', 'USA'</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+               <xs:annotation>
+                  <xs:documentation>The nationalities of people permitted to access this protectively marked item. E.g. 'GBR', 'USA'</xs:documentation>
+               </xs:annotation>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded"
+                              name="Nationality"
+                              type="CountryTrigraphSimpleType:CountryTrigraphSimpleType">
+                     <xs:annotation>
+                        <xs:documentation>An ISO 3166 alpha-3 trigraph for a nationality permitted to view this protectively marked item. E.g. 'GBR'.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element minOccurs="0" name="PermittedOrganisations">
+            <xs:annotation>
+               <xs:documentation>The organisations permitted to access the protectively marked item.</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+               <xs:annotation>
+                  <xs:documentation>The organisations permitted to access the protectively marked item.</xs:documentation>
+               </xs:annotation>
+               <xs:sequence>
+                  <xs:element name="PermittedOrganisation"
+                              type="OrganisationComplexType:OrganisationComplexType">
+                     <xs:annotation>
+                        <xs:documentation>An organisation permitted to access the protectively marked item. The PermittedOrganisation is described by an Organisation and optionally qualified by the organisation's country code.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element minOccurs="0" name="DisseminationControls">
+            <xs:annotation>
+               <xs:documentation>Controls governing the onward handling of the protectively marked item</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+               <xs:annotation>
+                  <xs:documentation>Controls governing the onward handling of the protectively marked item</xs:documentation>
+               </xs:annotation>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" name="DisseminationControl" type="xs:string">
+                     <xs:annotation>
+                        <xs:documentation>A policy or control governing the onward handling of a protectively marked item. E.g. ORIGINATOR_CONTROLLED</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element minOccurs="0" name="Disposition">
+            <xs:annotation>
+               <xs:documentation>Describes the timescale and process for the disposal of the protectively marked item</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+               <xs:annotation>
+                  <xs:documentation>Describes the timescale and process for the disposal of the protectively marked item</xs:documentation>
+               </xs:annotation>
+               <xs:sequence>
+                  <xs:element name="Date" type="DateTimeSimpleType:DateTimeSimpleType">
+                     <xs:annotation>
+                        <xs:documentation>Date/time that the disposition process must be enacted by</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:element name="Process" type="xs:string">
+                     <xs:annotation>
+                        <xs:documentation>The action to be taken on expiry of the disposition date. E.g. 'DELETE' to delete the item.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element maxOccurs="unbounded"
+                     minOccurs="0"
+                     name="Data"
+                     type="DataComplexType:DataComplexType">
+            <xs:annotation>
+               <xs:documentation>Any other event data that does not fit into a schema element but may be useful for the purpose of audit.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>
+ 

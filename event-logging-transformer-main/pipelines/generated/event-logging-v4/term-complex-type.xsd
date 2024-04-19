@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:TermConditionSimpleType="http://event-logging/term-condition-simple-type"
+           elementFormDefault="qualified"
+           id="term-complex-type-v4.0.2"
+           targetNamespace="http://event-logging/term-complex-type"
+           version="4.0.2">
+   <xs:import namespace="http://event-logging/term-condition-simple-type"
+              schemaLocation="term-condition-simple-type.xsd"/>
+   <xs:complexType name="TermComplexType">
+      <xs:annotation>
+         <xs:documentation>Describes a field to search and what to search for using name, condition and value, e.g. Title Contains 'Fox' or Title Equals 'The Quick Brown Fox'.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="Name" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>The name of the search field.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Condition" type="TermConditionSimpleType:TermConditionSimpleType">
+            <xs:annotation>
+               <xs:documentation>The search condition, e.g. Contains, !Contains, Exists etc.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Value" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>The value that the condition is operating on.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>
+ 

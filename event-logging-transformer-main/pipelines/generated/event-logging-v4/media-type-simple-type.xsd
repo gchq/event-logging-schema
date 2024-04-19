@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified"
+           id="media-type-simple-type-v4.0.2"
+           targetNamespace="http://event-logging/media-type-simple-type"
+           version="4.0.2">
+   <xs:simpleType name="MediaTypeSimpleType">
+      <xs:annotation>
+         <xs:documentation>The types of removable media.</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="HardDisk"/>
+         <xs:enumeration value="USBMassStorage"/>
+         <xs:enumeration value="BluRay"/>
+         <xs:enumeration value="DVD"/>
+         <xs:enumeration value="CD"/>
+         <xs:enumeration value="FloppyDisk"/>
+         <xs:enumeration value="Tape"/>
+         <xs:enumeration value="MemoryCard"/>
+         <xs:enumeration value="Other"/>
+      </xs:restriction>
+   </xs:simpleType>
+</xs:schema>
+ 

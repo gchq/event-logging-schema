@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:MultiObjectComplexType="http://event-logging/multi-object-complex-type"
+           xmlns:ApprovalActionSimpleType="http://event-logging/approval-action-simple-type"
+           xmlns:OutcomeComplexType="http://event-logging/outcome-complex-type"
+           xmlns:DataComplexType="http://event-logging/data-complex-type"
+           xmlns:UserComplexType="http://event-logging/user-complex-type"
+           elementFormDefault="qualified"
+           id="approval-complex-type-v4.0.2"
+           targetNamespace="http://event-logging/approval-complex-type"
+           version="4.0.2">
+   <xs:import namespace="http://event-logging/approval-action-simple-type"
+              schemaLocation="approval-action-simple-type.xsd"/>
+   <xs:import namespace="http://event-logging/data-complex-type"
+              schemaLocation="data-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/multi-object-complex-type"
+              schemaLocation="multi-object-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/outcome-complex-type"
+              schemaLocation="outcome-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/user-complex-type"
+              schemaLocation="user-complex-type.xsd"/>
+   <xs:complexType name="ApprovalComplexType">
+      <xs:annotation>
+         <xs:documentation>This type describes an approval (or rejection) event in a workflow, e.g a workflow where a more privileged user is required to approve the work of another user.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="Action" type="ApprovalActionSimpleType:ApprovalActionSimpleType">
+            <xs:annotation>
+               <xs:documentation>The action that the approval event is capturing, e.g. Approve, Reject, etc.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="Id" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>An identifier associated with the approval step/process.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0"
+                     name="Subject"
+                     type="MultiObjectComplexType:MultiObjectComplexType">
+            <xs:annotation>
+               <xs:documentation>The object that this approval step (or request for approval) relates to, e.g. the document being approved.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="Requestors">
+            <xs:annotation>
+               <xs:documentation>The user(s) that requested the approval, e.g. jbloggs requesting approval from a manager for his finance report.</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+               <xs:annotation>
+                  <xs:documentation>The user(s) that requested the approval, e.g. jbloggs requesting approval from a manager for his finance report.</xs:documentation>
+               </xs:annotation>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded"
+                              name="Requestor"
+                              type="UserComplexType:UserComplexType">
+                     <xs:annotation>
+                        <xs:documentation>A user that requested the approval, e.g. jbloggs requesting approval from a manager for his finance report.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element minOccurs="0" name="Approvers">
+            <xs:annotation>
+               <xs:documentation>The user(s) that are providing the approval, e.g. a user requesting approval from manager fsmith for his finance report.</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+               <xs:annotation>
+                  <xs:documentation>The user(s) that are providing the approval, e.g. a user requesting approval from manager fsmith for his finance report.</xs:documentation>
+               </xs:annotation>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded"
+                              name="Approver"
+                              type="UserComplexType:UserComplexType">
+                     <xs:annotation>
+                        <xs:documentation>The user that is providing the approval, e.g. a user requesting approval from manager fsmith for his finance report.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element minOccurs="0" name="Reason" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>The reason for the approval/rejection/request, e.g. why the approval was rejected.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0"
+                     name="Outcome"
+                     type="OutcomeComplexType:OutcomeComplexType">
+            <xs:annotation>
+               <xs:documentation>Used to determine if the action was successful. If omitted it is assumed that the event was successful and was permitted.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element maxOccurs="unbounded"
+                     minOccurs="0"
+                     name="Data"
+                     type="DataComplexType:DataComplexType">
+            <xs:annotation>
+               <xs:documentation>Any other event data that does not fit into a schema element but may be useful for the purpose of audit.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>
+ 

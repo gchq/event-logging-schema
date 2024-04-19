@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified"
+           id="process-action-simple-type-v4.0.2"
+           targetNamespace="http://event-logging/process-action-simple-type"
+           version="4.0.2">
+   <xs:simpleType name="ProcessActionSimpleType">
+      <xs:annotation>
+         <xs:documentation>The types of action in a process event, e.g. executing a shell script.</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="Startup"/>
+         <xs:enumeration value="Shutdown"/>
+         <xs:enumeration value="Execute"/>
+         <xs:enumeration value="Terminate"/>
+         <xs:enumeration value="ChangeDir"/>
+         <xs:enumeration value="Call"/>
+         <xs:enumeration value="Access"/>
+         <xs:enumeration value="RequestObjectHandle"/>
+         <xs:enumeration value="Register"/>
+      </xs:restriction>
+   </xs:simpleType>
+</xs:schema>
+ 

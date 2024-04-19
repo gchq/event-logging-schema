@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified"
+           id="access-control-groups-complex-type-v4.0.2"
+           targetNamespace="http://event-logging/access-control-groups-complex-type"
+           version="4.0.2">
+   <xs:complexType name="AccessControlGroupsComplexType">
+      <xs:annotation>
+         <xs:documentation>Describes a set of groups used to control access to protectively marked items.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element maxOccurs="unbounded" name="AccessControlGroup" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>The name of an access control group that is used to control access to protectively marked items. E.g. 'HR', 'Auditors', 'Management', etc.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>
+ 

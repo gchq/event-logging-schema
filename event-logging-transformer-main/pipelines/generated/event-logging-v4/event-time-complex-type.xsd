@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:DateTimeSimpleType="http://event-logging/date-time-simple-type"
+           xmlns:DeviceComplexType="http://event-logging/device-complex-type"
+           elementFormDefault="qualified"
+           id="event-time-complex-type-v4.0.2"
+           targetNamespace="http://event-logging/event-time-complex-type"
+           version="4.0.2">
+   <xs:import namespace="http://event-logging/date-time-simple-type"
+              schemaLocation="date-time-simple-type.xsd"/>
+   <xs:import namespace="http://event-logging/device-complex-type"
+              schemaLocation="device-complex-type.xsd"/>
+   <xs:complexType name="EventTimeComplexType">
+      <xs:annotation>
+         <xs:documentation>Describes the time the event was created.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="TimeCreated" type="DateTimeSimpleType:DateTimeSimpleType">
+            <xs:annotation>
+               <xs:documentation>This element contains information about the time the event was created.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0"
+                     name="TimeSource"
+                     type="DeviceComplexType:DeviceComplexType">
+            <xs:annotation>
+               <xs:documentation>This is an optional element to be used to indicate the time source that the event creation time has been synchronised with. In most circumstances it is assumed that the event time has been synchronised with the corporate time service where the generating device resides so the inclusion of this element is not required.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>
+ 

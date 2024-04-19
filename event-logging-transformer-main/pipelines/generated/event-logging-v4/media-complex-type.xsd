@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:ClassificationComplexType="http://event-logging/classification-complex-type"
+           xmlns:DataComplexType="http://event-logging/data-complex-type"
+           xmlns:MediaTypeSimpleType="http://event-logging/media-type-simple-type"
+           elementFormDefault="qualified"
+           id="media-complex-type-v4.0.2"
+           targetNamespace="http://event-logging/media-complex-type"
+           version="4.0.2">
+   <xs:import namespace="http://event-logging/classification-complex-type"
+              schemaLocation="classification-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/data-complex-type"
+              schemaLocation="data-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/media-type-simple-type"
+              schemaLocation="media-type-simple-type.xsd"/>
+   <xs:complexType name="MediaComplexType">
+      <xs:annotation>
+         <xs:documentation>Used to describe media added or removed from a computer system, or as a location for reading and writing files.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="Type" type="MediaTypeSimpleType:MediaTypeSimpleType">
+            <xs:annotation>
+               <xs:documentation>The type of the removable media, e.g. MemoryCard</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="Id" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>The identifier for the removable media. This may be an identifier provided by the media (e.g. the Card Identification or CID of an SD card) or assigned by device monitoring software.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="Name" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>A friendly name for the media, possibly assigned by device monitoring system..</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="Removable" type="xs:boolean">
+            <xs:annotation>
+               <xs:documentation>Indicates if this media is removable, e.g. USB storage device or soft media such as DVD.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="ReadWrite" type="xs:boolean">
+            <xs:annotation>
+               <xs:documentation>Indicates if a device has read-write access. Most devices are read-write so this is assumed to be true and can therefore be omitted where this is the case.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="Capacity" type="xs:positiveInteger">
+            <xs:annotation>
+               <xs:documentation>The capacity of the media in bytes.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0"
+                     name="Classification"
+                     type="ClassificationComplexType:ClassificationComplexType">
+            <xs:annotation>
+               <xs:documentation>The classification of the media.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element maxOccurs="unbounded"
+                     minOccurs="0"
+                     name="Data"
+                     type="DataComplexType:DataComplexType">
+            <xs:annotation>
+               <xs:documentation>Any other event data that does not fit into a schema element but may be useful for the purpose of audit.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>
+ 

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:DataComplexType="http://event-logging/data-complex-type"
+           elementFormDefault="qualified"
+           id="user-details-complex-type-v4.0.2"
+           targetNamespace="http://event-logging/user-details-complex-type"
+           version="4.0.2">
+   <xs:import namespace="http://event-logging/data-complex-type"
+              schemaLocation="data-complex-type.xsd"/>
+   <xs:complexType name="UserDetailsComplexType">
+      <xs:annotation>
+         <xs:documentation>Describes the person represented by a user account or identity.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element minOccurs="0" name="Id" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>A unique identifier used across the business to identify this person.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="StaffNumber" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>A person's staff number.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="Surname" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>The person's surname.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="Initials" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>The person's initials.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="Title" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>The person's title.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="GivenName" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>The person's given name. If a preferred name also exists then use KnownAs for this preferred name, otherwise use the same name for both elements.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="KnownAs" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>The name that this person is known as.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="PersonType" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>Is the person an employee or a contractor.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="Group" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>The business group.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="Unit" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>The business unit within the business group.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="Position" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>The position within the business unit.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="Role" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>The role that the person is in.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="GradeOfPost" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>The grade required for the current post.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="EmploymentType" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>Is the person full-time, part-time etc.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="EmploymentStatus" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>The employment status of the person, e.g. Active, Retired, Maternity Leave, Sabbatical Leave, etc.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="Nationality" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>The person's nationality.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="Location" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>The building that the person usually works in.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="RoomNumber" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>The room number or name that the person usually works in.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="Phone" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>The person's primary or internal phone number or extension.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="SecondaryPhone" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>The person's secondary phone number or extension.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="SupervisorStaffNumber" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>The staff number of the person's supervisor or line manager.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="OccupancyEndDate" type="xs:date">
+            <xs:annotation>
+               <xs:documentation>When this person's current position is scheduled to end, e.g. the end date of a fixed term employment contract.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="Organisation" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>Describes a person's main employing organisation irrespective of who they are contracted or seconded to, or are performing an internship with.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="HostOrganisation" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>Describes which organisation is currently hosting a person if they are on secondment, internship or are contracted to work for.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element maxOccurs="unbounded"
+                     minOccurs="0"
+                     name="Data"
+                     type="DataComplexType:DataComplexType">
+            <xs:annotation>
+               <xs:documentation>Any other user data that does not fit into a schema element but may be useful for the purpose of audit.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>
+ 

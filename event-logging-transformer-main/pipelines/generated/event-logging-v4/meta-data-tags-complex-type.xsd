@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:TagSimpleType="http://event-logging/tag-simple-type"
+           elementFormDefault="qualified"
+           id="meta-data-tags-complex-type-v4.0.2"
+           targetNamespace="http://event-logging/meta-data-tags-complex-type"
+           version="4.0.2">
+   <xs:import namespace="http://event-logging/tag-simple-type"
+              schemaLocation="tag-simple-type.xsd"/>
+   <xs:complexType name="MetaDataTagsComplexType">
+      <xs:annotation>
+         <xs:documentation>Metadata tags that can be used for additional object tagging or categorisation. Object tagging allows for the labelling (or filtering) of objects using words that label, categorise or group similar items, using a taxonomy defined outside this schema. For example, an email could be tagged with tags like 'internal', 'spam', 'external', 'rich-content', etc.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element maxOccurs="unbounded" name="Tag" type="TagSimpleType:TagSimpleType">
+            <xs:annotation>
+               <xs:documentation>A categorisation tag or label</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>
+ 

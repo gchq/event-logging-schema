@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:DataComplexType="http://event-logging/data-complex-type"
+           elementFormDefault="qualified"
+           id="data-complex-type-v4.0.2"
+           targetNamespace="http://event-logging/data-complex-type"
+           version="4.0.2">
+   <xs:complexType name="DataComplexType">
+      <xs:annotation>
+         <xs:documentation>Describes any other event data that does not fit into a schema element but may be useful for the purpose of audit. The recursive nature of this type means it can be used to model a tree of data.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element maxOccurs="unbounded"
+                     minOccurs="0"
+                     name="Data"
+                     type="DataComplexType:DataComplexType">
+            <xs:annotation>
+               <xs:documentation>A child data item that may itself have descendants.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+      <xs:attribute name="Name" type="xs:string" use="required">
+         <xs:annotation>
+            <xs:documentation>The name of the data item. The taxonomy of the data items may be defined by the system sending the events or defined centrally for all systems to use.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="Value" type="xs:string">
+         <xs:annotation>
+            <xs:documentation>The simple string value for the data item.</xs:documentation>
+         </xs:annotation>
+      </xs:attribute>
+   </xs:complexType>
+</xs:schema>
+ 

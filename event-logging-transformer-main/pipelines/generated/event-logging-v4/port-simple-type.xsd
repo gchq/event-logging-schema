@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified"
+           id="port-simple-type-v4.0.2"
+           targetNamespace="http://event-logging/port-simple-type"
+           version="4.0.2">
+   <xs:simpleType name="PortSimpleType">
+      <xs:annotation>
+         <xs:documentation>A type to constrain the format of a network port number.</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:int">
+         <xs:minInclusive value="0"/>
+         <xs:maxInclusive value="65535"/>
+      </xs:restriction>
+   </xs:simpleType>
+</xs:schema>
+ 

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified"
+           id="country-trigraph-simple-type-v4.0.2"
+           targetNamespace="http://event-logging/country-trigraph-simple-type"
+           version="4.0.2">
+   <xs:simpleType name="CountryTrigraphSimpleType">
+      <xs:annotation>
+         <xs:documentation>An ISO 3166 alpha-3 country/nationality code. E.g 'GBR'</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:pattern value="[A-Z]{3}"/>
+      </xs:restriction>
+   </xs:simpleType>
+</xs:schema>
+ 

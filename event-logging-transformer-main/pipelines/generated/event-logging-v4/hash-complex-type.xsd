@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified"
+           id="hash-complex-type-v4.0.2"
+           targetNamespace="http://event-logging/hash-complex-type"
+           version="4.0.2">
+   <xs:complexType name="HashComplexType">
+      <xs:annotation>
+         <xs:documentation>Describes the output of a hash function and the type of has function used.</xs:documentation>
+      </xs:annotation>
+      <xs:simpleContent>
+         <xs:extension base="xs:string">
+            <xs:annotation>
+               <xs:documentation>The value obtained from applying a hash function (e.g. MD5, SHA-256, etc.) to the contents of the file.</xs:documentation>
+            </xs:annotation>
+            <xs:attribute name="Type" type="xs:string">
+               <xs:annotation>
+                  <xs:documentation>The type of hashing algorithm used, e.g. MD5, SHA-256, etc.</xs:documentation>
+               </xs:annotation>
+            </xs:attribute>
+         </xs:extension>
+      </xs:simpleContent>
+   </xs:complexType>
+</xs:schema>
+ 

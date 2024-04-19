@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified"
+           id="tag-simple-type-v4.0.2"
+           targetNamespace="http://event-logging/tag-simple-type"
+           version="4.0.2">
+   <xs:simpleType name="TagSimpleType">
+      <xs:annotation>
+         <xs:documentation>A type to allow constraining of metadata tag values in future.</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string"/>
+   </xs:simpleType>
+</xs:schema>
+ 

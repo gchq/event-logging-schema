@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified"
+           id="change-action-simple-type-v4.0.2"
+           targetNamespace="http://event-logging/change-action-simple-type"
+           version="4.0.2">
+   <xs:simpleType name="ChangeActionSimpleType">
+      <xs:annotation>
+         <xs:documentation>The action performed by the file/directory monitor, e.g. starting to scan files for changes, or the detection of a file change.</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="StartScan">
+            <xs:annotation>
+               <xs:documentation>The file/directory monitor is started.</xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="StopScan">
+            <xs:annotation>
+               <xs:documentation>The file/directory monitor is stopped.</xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="FileAdded">
+            <xs:annotation>
+               <xs:documentation>A new file had been added to the monitored directory.</xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="FileRemoved">
+            <xs:annotation>
+               <xs:documentation>A file has been removed from the monitored directory.</xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+         <xs:enumeration value="FileModified">
+            <xs:annotation>
+               <xs:documentation>A monitored file has been modified.</xs:documentation>
+            </xs:annotation>
+         </xs:enumeration>
+      </xs:restriction>
+   </xs:simpleType>
+</xs:schema>
+ 

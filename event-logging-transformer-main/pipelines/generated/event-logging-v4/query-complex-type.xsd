@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:OrComplexType="http://event-logging/or-complex-type"
+           xmlns:AndComplexType="http://event-logging/and-complex-type"
+           xmlns:TermComplexType="http://event-logging/term-complex-type"
+           xmlns:NotComplexType="http://event-logging/not-complex-type"
+           elementFormDefault="qualified"
+           id="query-complex-type-v4.0.2"
+           targetNamespace="http://event-logging/query-complex-type"
+           version="4.0.2">
+   <xs:import namespace="http://event-logging/and-complex-type"
+              schemaLocation="and-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/not-complex-type"
+              schemaLocation="not-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/or-complex-type"
+              schemaLocation="or-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/term-complex-type"
+              schemaLocation="term-complex-type.xsd"/>
+   <xs:complexType name="QueryComplexType">
+      <xs:sequence>
+         <xs:element minOccurs="0" name="Id" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>An identifier to uniquely identify the query that was executed. This may be used to link the execution of a query (i.e. Search/Query/Id) with the results that are persisted and viewed at another time (i.e. View/SearchResults/Query/Id).</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="Name" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>The name of the query that was executed. This may be used to link the execution of a query with the results that are persisted and viewed at another time.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="Description" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>A human-readable description of what the query is searching for.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="Advanced">
+            <xs:annotation>
+               <xs:documentation>A complex boolean tree or operators and terms that describes the query.</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+               <xs:annotation>
+                  <xs:documentation>A complex boolean tree or operators and terms that describes the query.</xs:documentation>
+               </xs:annotation>
+               <xs:choice maxOccurs="unbounded" minOccurs="0">
+                  <xs:element minOccurs="0" name="Term" type="TermComplexType:TermComplexType">
+                     <xs:annotation>
+                        <xs:documentation>Describes a field to search and what to search for using name, condition and value, e.g. Title Contains 'Fox' or Title Equals 'The Quick Brown Fox'.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:element minOccurs="0" name="And" type="AndComplexType:AndComplexType">
+                     <xs:annotation>
+                        <xs:documentation>All of the enclosed items are to be treated as being AND'd together.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:element minOccurs="0" name="Or" type="OrComplexType:OrComplexType">
+                     <xs:annotation>
+                        <xs:documentation>All of the enclosed items are to be treated as being OR'd together.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:element minOccurs="0" name="Not" type="NotComplexType:NotComplexType">
+                     <xs:annotation>
+                        <xs:documentation>The enclosed structure operators and terms are negated.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+               </xs:choice>
+            </xs:complexType>
+         </xs:element>
+         <xs:element minOccurs="0" name="Simple">
+            <xs:annotation>
+               <xs:documentation>A simple representation of a query using includes and excludes terms. This is suitable for simple filtered lists, e.g. for a list of names excluding "John,Bob".</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+               <xs:annotation>
+                  <xs:documentation>A simple representation of a query using includes and excludes terms. This is suitable for simple filtered lists, e.g. for a list of names excluding "John,Bob".</xs:documentation>
+               </xs:annotation>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="Include" type="xs:string">
+                     <xs:annotation>
+                        <xs:documentation>Values to include in the query results, typically delimited by a comma.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:element minOccurs="0" name="Exclude" type="xs:string">
+                     <xs:annotation>
+                        <xs:documentation>Values to exclude in the query results, typically delimited by a comma.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element minOccurs="0" name="Raw" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>The raw query in the query language used by the application executing the query, e.g. SQL, xpath, etc.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>
+ 

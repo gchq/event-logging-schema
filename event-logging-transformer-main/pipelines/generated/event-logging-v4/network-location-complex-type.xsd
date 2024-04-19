@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:PortSimpleType="http://event-logging/port-simple-type"
+           xmlns:DataComplexType="http://event-logging/data-complex-type"
+           xmlns:DeviceComplexType="http://event-logging/device-complex-type"
+           xmlns:NetworkProtocolSimpleType="http://event-logging/network-protocol-simple-type"
+           elementFormDefault="qualified"
+           id="network-location-complex-type-v4.0.2"
+           targetNamespace="http://event-logging/network-location-complex-type"
+           version="4.0.2">
+   <xs:import namespace="http://event-logging/data-complex-type"
+              schemaLocation="data-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/device-complex-type"
+              schemaLocation="device-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/network-protocol-simple-type"
+              schemaLocation="network-protocol-simple-type.xsd"/>
+   <xs:import namespace="http://event-logging/port-simple-type"
+              schemaLocation="port-simple-type.xsd"/>
+   <xs:complexType name="NetworkLocationComplexType">
+      <xs:annotation>
+         <xs:documentation>Describes an end point within a network. This may be an application running on a device or a network appliance such as a switch.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element minOccurs="0"
+                     name="Device"
+                     type="DeviceComplexType:DeviceComplexType">
+            <xs:annotation>
+               <xs:documentation>A device at the source or destination involved in the network activity.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="Application" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>The application being used by the source or destination.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0"
+                     name="TransportProtocol"
+                     type="NetworkProtocolSimpleType:NetworkProtocolSimpleType">
+            <xs:annotation>
+               <xs:documentation>The transport protocol being used by the source or destination.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="IcmpType" type="xs:integer">
+            <xs:annotation>
+               <xs:documentation>The Internet Control Message Protocol type number. See https://www.iana.org/assignments/icmp-parameters/icmp-parameters.xhtml</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="HttpMethod" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>The HTTP method, e.g. GET, POST, DELETE, PUT etc</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="ApplicationProtocol" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>The application protocol being used by the source or destination.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="Port" type="PortSimpleType:PortSimpleType">
+            <xs:annotation>
+               <xs:documentation>The port being used by the source or destination.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element maxOccurs="unbounded"
+                     minOccurs="0"
+                     name="Data"
+                     type="DataComplexType:DataComplexType">
+            <xs:annotation>
+               <xs:documentation>Any other event data that does not fit into a schema element but may be useful for the purpose of audit.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>
+ 

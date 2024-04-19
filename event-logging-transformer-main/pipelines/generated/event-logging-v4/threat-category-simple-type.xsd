@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified"
+           id="threat-category-simple-type-v4.0.2"
+           targetNamespace="http://event-logging/threat-category-simple-type"
+           version="4.0.2">
+   <xs:simpleType name="ThreatCategorySimpleType">
+      <xs:annotation>
+         <xs:documentation>The types of threat assigned to detected malware.</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="Virus"/>
+         <xs:enumeration value="Worm"/>
+         <xs:enumeration value="HackingTool"/>
+         <xs:enumeration value="Spyware"/>
+         <xs:enumeration value="TrojanHorse"/>
+         <xs:enumeration value="Adware"/>
+         <xs:enumeration value="Other"/>
+      </xs:restriction>
+   </xs:simpleType>
+</xs:schema>
+ 

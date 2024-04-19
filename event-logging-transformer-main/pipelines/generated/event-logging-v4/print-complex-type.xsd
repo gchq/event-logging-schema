@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:DateTimeSimpleType="http://event-logging/date-time-simple-type"
+           xmlns:DocumentComplexType="http://event-logging/document-complex-type"
+           xmlns:OutcomeComplexType="http://event-logging/outcome-complex-type"
+           xmlns:PrintSettingsOrientationSimpleType="http://event-logging/print-settings-orientation-simple-type"
+           xmlns:DataComplexType="http://event-logging/data-complex-type"
+           xmlns:DeviceComplexType="http://event-logging/device-complex-type"
+           xmlns:PrintActionSimpleType="http://event-logging/print-action-simple-type"
+           elementFormDefault="qualified"
+           id="print-complex-type-v4.0.2"
+           targetNamespace="http://event-logging/print-complex-type"
+           version="4.0.2">
+   <xs:import namespace="http://event-logging/data-complex-type"
+              schemaLocation="data-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/date-time-simple-type"
+              schemaLocation="date-time-simple-type.xsd"/>
+   <xs:import namespace="http://event-logging/device-complex-type"
+              schemaLocation="device-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/document-complex-type"
+              schemaLocation="document-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/outcome-complex-type"
+              schemaLocation="outcome-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/print-action-simple-type"
+              schemaLocation="print-action-simple-type.xsd"/>
+   <xs:import namespace="http://event-logging/print-settings-orientation-simple-type"
+              schemaLocation="print-settings-orientation-simple-type.xsd"/>
+   <xs:complexType name="PrintComplexType">
+      <xs:annotation>
+         <xs:documentation>Describes an event relating to a printer, e.g. printing a document.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="Action" type="PrintActionSimpleType:PrintActionSimpleType">
+            <xs:annotation>
+               <xs:documentation>The print action that was performed, e.g. CreateJob.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="PrintJob">
+            <xs:annotation>
+               <xs:documentation>Describes the print job that the event relates to.</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+               <xs:annotation>
+                  <xs:documentation>Describes the print job that the event relates to.</xs:documentation>
+               </xs:annotation>
+               <xs:sequence>
+                  <xs:element name="Document" type="DocumentComplexType:DocumentComplexType">
+                     <xs:annotation>
+                        <xs:documentation>Describes the document being printed.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:element minOccurs="0" name="Pages" type="xs:nonNegativeInteger">
+                     <xs:annotation>
+                        <xs:documentation>The number of pages being printed.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:element minOccurs="0" name="Size" type="xs:nonNegativeInteger">
+                     <xs:annotation>
+                        <xs:documentation>The size of the print job in bytes.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:element minOccurs="0"
+                              name="Submitted"
+                              type="DateTimeSimpleType:DateTimeSimpleType">
+                     <xs:annotation>
+                        <xs:documentation>The time that the print job was submitted.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element minOccurs="0" name="PrintSettings">
+            <xs:annotation>
+               <xs:documentation>The printer settings that are to be used for the print job.</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+               <xs:annotation>
+                  <xs:documentation>The printer settings that are to be used for the print job.</xs:documentation>
+               </xs:annotation>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="PaperSize" type="xs:string">
+                     <xs:annotation>
+                        <xs:documentation>The paper size, e.g. A4.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:element minOccurs="0"
+                              name="Orientation"
+                              type="PrintSettingsOrientationSimpleType:PrintSettingsOrientationSimpleType">
+                     <xs:annotation>
+                        <xs:documentation>The paper orientation, e.g. Portrait, Landscape.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:element minOccurs="0" name="Colour" type="xs:boolean">
+                     <xs:annotation>
+                        <xs:documentation>True if printing in colour. Most printing is performed in black and white so this defaults to false and can therefore be omitted if printing in black and white.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:element minOccurs="0" name="DeviceFonts" type="xs:boolean">
+                     <xs:annotation>
+                        <xs:documentation>True if fonts are to be used on the printing device. Using device fonts reduces the size of the print job as no font information needs to be supplied to the printer. However, using device fonts will result in different output on different printers. Most print jobs will not use device fonts so this defaults to false and can therefore be omitted if device fonts are not being used.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:element maxOccurs="unbounded"
+                              minOccurs="0"
+                              name="Data"
+                              type="DataComplexType:DataComplexType">
+                     <xs:annotation>
+                        <xs:documentation>Any other event data that does not fit into a schema element but may be useful for the purpose of audit.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element minOccurs="0"
+                     name="Printer"
+                     type="DeviceComplexType:DeviceComplexType">
+            <xs:annotation>
+               <xs:documentation>Describes the printer to use for the print job.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0"
+                     name="Outcome"
+                     type="OutcomeComplexType:OutcomeComplexType">
+            <xs:annotation>
+               <xs:documentation>Used to determine if the action was successful. If omitted it is assumed that the event was successful and was permitted.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element maxOccurs="unbounded"
+                     minOccurs="0"
+                     name="Data"
+                     type="DataComplexType:DataComplexType">
+            <xs:annotation>
+               <xs:documentation>Any other event data that does not fit into a schema element but may be useful for the purpose of audit.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>
+ 

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:LatitudeSimpleType="http://event-logging/latitude-simple-type"
+           xmlns:LongitudeSimpleType="http://event-logging/longitude-simple-type"
+           elementFormDefault="qualified"
+           id="coordinates-complex-type-v4.0.2"
+           targetNamespace="http://event-logging/coordinates-complex-type"
+           version="4.0.2">
+   <xs:import namespace="http://event-logging/latitude-simple-type"
+              schemaLocation="latitude-simple-type.xsd"/>
+   <xs:import namespace="http://event-logging/longitude-simple-type"
+              schemaLocation="longitude-simple-type.xsd"/>
+   <xs:complexType name="CoordinatesComplexType">
+      <xs:annotation>
+         <xs:documentation>The geographic coordinates of the location (i.e. the latitude/longitude).</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="Latitude" type="LatitudeSimpleType:LatitudeSimpleType">
+            <xs:annotation>
+               <xs:documentation>Geographic coordinate specifying the north/south position on the earth's surface, expressed as decimal degrees from the equator (0). -90 (South) to +90 (North).</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Longitude" type="LongitudeSimpleType:LongitudeSimpleType">
+            <xs:annotation>
+               <xs:documentation>Geographic coordinate specifying the east/west position on the earth's surface, expressed as decimal degrees from the Greenwich Meridian (0). -180 (West) to +180 (East).</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>
+ 

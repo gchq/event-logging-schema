@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:MultiObjectComplexType="http://event-logging/multi-object-complex-type"
+           xmlns:NetworkLocationComplexType="http://event-logging/network-location-complex-type"
+           elementFormDefault="qualified"
+           id="network-complex-type-v4.0.2"
+           targetNamespace="http://event-logging/network-complex-type"
+           version="4.0.2">
+   <xs:import namespace="http://event-logging/multi-object-complex-type"
+              schemaLocation="multi-object-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/network-location-complex-type"
+              schemaLocation="network-location-complex-type.xsd"/>
+   <xs:complexType name="NetworkComplexType">
+      <xs:annotation>
+         <xs:documentation>A type to describe part of a computer network or some activity on a network.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="Source"
+                     type="NetworkLocationComplexType:NetworkLocationComplexType">
+            <xs:annotation>
+               <xs:documentation>The source device that is attempting the network action.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0"
+                     name="Destination"
+                     type="NetworkLocationComplexType:NetworkLocationComplexType">
+            <xs:annotation>
+               <xs:documentation>The destination device for the network action.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="ProcessName" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>The name of the process responsible for the network action.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0"
+                     name="Payload"
+                     type="MultiObjectComplexType:MultiObjectComplexType">
+            <xs:annotation>
+               <xs:documentation>If the network action is related to message transfer from one place to another then this element describes the message.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="Rule" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>The network boundary filter rule that was fired to generate this event.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>
+ 

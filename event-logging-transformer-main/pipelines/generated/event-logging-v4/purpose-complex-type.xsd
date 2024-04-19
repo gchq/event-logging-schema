@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:ClassificationComplexType="http://event-logging/classification-complex-type"
+           xmlns:DataComplexType="http://event-logging/data-complex-type"
+           elementFormDefault="qualified"
+           id="purpose-complex-type-v4.0.2"
+           targetNamespace="http://event-logging/purpose-complex-type"
+           version="4.0.2">
+   <xs:import namespace="http://event-logging/classification-complex-type"
+              schemaLocation="classification-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/data-complex-type"
+              schemaLocation="data-complex-type.xsd"/>
+   <xs:complexType name="PurposeComplexType">
+      <xs:annotation>
+         <xs:documentation>Describes the purpose and justification for the event along with details of any authorisations that were required for the event to happen.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element minOccurs="0"
+                     name="Classification"
+                     type="ClassificationComplexType:ClassificationComplexType">
+            <xs:annotation>
+               <xs:documentation>The classification of this task.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="Subject" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>A description of the task.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="Stakeholders" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>Names of stakeholders.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="Justification" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>Business case supporting task.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="ExpectedOutcome" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>Expected outcome from task.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="Authorisations">
+            <xs:annotation>
+               <xs:documentation>The authorisations that were granted to allow this event action to take place.</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+               <xs:annotation>
+                  <xs:documentation>Details of authorisations that were granted to allow this event action to take place.</xs:documentation>
+               </xs:annotation>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" name="Auth">
+                     <xs:annotation>
+                        <xs:documentation>An authorisation that was granted to allow this event action to take place.</xs:documentation>
+                     </xs:annotation>
+                     <xs:complexType>
+                        <xs:annotation>
+                           <xs:documentation>Details of an authorisation that was granted to allow this event action to take place.</xs:documentation>
+                        </xs:annotation>
+                        <xs:sequence>
+                           <xs:element minOccurs="0" name="RefNo" type="xs:string">
+                              <xs:annotation>
+                                 <xs:documentation>The reference number, code or ID for the authorisation.</xs:documentation>
+                              </xs:annotation>
+                           </xs:element>
+                           <xs:element minOccurs="0" name="Detail" type="xs:string">
+                              <xs:annotation>
+                                 <xs:documentation>A textual description of the authorisation or any additional detail.</xs:documentation>
+                              </xs:annotation>
+                           </xs:element>
+                        </xs:sequence>
+                     </xs:complexType>
+                  </xs:element>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element maxOccurs="unbounded"
+                     minOccurs="0"
+                     name="Data"
+                     type="DataComplexType:DataComplexType">
+            <xs:annotation>
+               <xs:documentation>Any other event data that does not fit into a schema element but may be useful for the purpose of audit.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>
+ 

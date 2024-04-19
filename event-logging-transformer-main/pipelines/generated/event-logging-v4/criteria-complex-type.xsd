@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:MultiObjectComplexType="http://event-logging/multi-object-complex-type"
+           xmlns:PermissionAttributeSimpleType="http://event-logging/permission-attribute-simple-type"
+           xmlns:ClassificationComplexType="http://event-logging/classification-complex-type"
+           xmlns:QueryComplexType="http://event-logging/query-complex-type"
+           xmlns:AnyContentComplexType="http://event-logging/any-content-complex-type"
+           xmlns:DataComplexType="http://event-logging/data-complex-type"
+           xmlns:MetaDataTagsComplexType="http://event-logging/meta-data-tags-complex-type"
+           xmlns:GroupComplexType="http://event-logging/group-complex-type"
+           xmlns:GroupsComplexType="http://event-logging/groups-complex-type"
+           xmlns:UserComplexType="http://event-logging/user-complex-type"
+           elementFormDefault="qualified"
+           id="criteria-complex-type-v4.0.2"
+           targetNamespace="http://event-logging/criteria-complex-type"
+           version="4.0.2">
+   <xs:import namespace="http://event-logging/any-content-complex-type"
+              schemaLocation="any-content-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/classification-complex-type"
+              schemaLocation="classification-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/data-complex-type"
+              schemaLocation="data-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/group-complex-type"
+              schemaLocation="group-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/groups-complex-type"
+              schemaLocation="groups-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/meta-data-tags-complex-type"
+              schemaLocation="meta-data-tags-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/multi-object-complex-type"
+              schemaLocation="multi-object-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/permission-attribute-simple-type"
+              schemaLocation="permission-attribute-simple-type.xsd"/>
+   <xs:import namespace="http://event-logging/query-complex-type"
+              schemaLocation="query-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/user-complex-type"
+              schemaLocation="user-complex-type.xsd"/>
+   <xs:complexType name="CriteriaComplexType">
+      <xs:annotation>
+         <xs:documentation>Structure used to describe a criteria used for search, view, update or delete.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element maxOccurs="unbounded"
+                     minOccurs="0"
+                     name="Meta"
+                     type="AnyContentComplexType:AnyContentComplexType">
+            <xs:annotation>
+               <xs:documentation>This element can be used to supply any metadata relating to an object as long as it conforms to an allowed format/specification (defined outside this XML Schema). This can be used for adding metadata to the event after receipt.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="Type" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>The type of the object in question and specific to the object type from the list above, e.g. a 'Resource' object may have a type such as 'image' or 'script'.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="Id" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>An identifier for the object, e.g a document ID in a document management system. This ID is likely to be specific to the system that generated the event.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="Name" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>The name of the object, e.g. a filename.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="Description" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>Human readable description of what the object is.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0"
+                     name="Classification"
+                     type="ClassificationComplexType:ClassificationComplexType">
+            <xs:annotation>
+               <xs:documentation>Any classification, protective marking or restrictions placed on the object, e.g. for commercially sensitive reports or user health records.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="State" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>Any state information about the object, e.g. 'Archived'.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0"
+                     name="Groups"
+                     type="GroupsComplexType:GroupsComplexType">
+            <xs:annotation>
+               <xs:documentation>Any groups associated with the object, e.g. group membership of a user account.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="Permissions">
+            <xs:annotation>
+               <xs:documentation>The collection of permissions associated with the object, e.g. write access being granted to a list of named users.</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+               <xs:annotation>
+                  <xs:documentation>The collection of permissions associated with the object, e.g. write access being granted to a list of named users.</xs:documentation>
+               </xs:annotation>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" name="Permission">
+                     <xs:annotation>
+                        <xs:documentation>A permission rule associated with an object, e.g. read and write access being granted to a user.</xs:documentation>
+                     </xs:annotation>
+                     <xs:complexType>
+                        <xs:annotation>
+                           <xs:documentation>A permission rule associated with an object, e.g. read and write access being granted to a user.</xs:documentation>
+                        </xs:annotation>
+                        <xs:sequence>
+                           <xs:choice>
+                              <xs:element name="User" type="UserComplexType:UserComplexType">
+                                 <xs:annotation>
+                                    <xs:documentation>A user that has been granted (or is prevented from having) some form of permission.</xs:documentation>
+                                 </xs:annotation>
+                              </xs:element>
+                              <xs:element name="Group" type="GroupComplexType:GroupComplexType">
+                                 <xs:annotation>
+                                    <xs:documentation>A named group of users that has been granted (or is prevented from having) some form of permission.</xs:documentation>
+                                 </xs:annotation>
+                              </xs:element>
+                           </xs:choice>
+                           <xs:element maxOccurs="unbounded"
+                                       minOccurs="0"
+                                       name="Allow"
+                                       type="PermissionAttributeSimpleType:PermissionAttributeSimpleType">
+                              <xs:annotation>
+                                 <xs:documentation>The permission attributes that have been explicitly allowed.</xs:documentation>
+                              </xs:annotation>
+                           </xs:element>
+                           <xs:element maxOccurs="unbounded"
+                                       minOccurs="0"
+                                       name="Deny"
+                                       type="PermissionAttributeSimpleType:PermissionAttributeSimpleType">
+                              <xs:annotation>
+                                 <xs:documentation>The permission attributes that have been explicitly denied.</xs:documentation>
+                              </xs:annotation>
+                           </xs:element>
+                        </xs:sequence>
+                     </xs:complexType>
+                  </xs:element>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element minOccurs="0"
+                     name="Tags"
+                     type="MetaDataTagsComplexType:MetaDataTagsComplexType">
+            <xs:annotation>
+               <xs:documentation>Metadata tags that can be used for additional object tagging or categorisation. Object tagging allows for the labelling (or filtering) of objects using words that label, categorise or group similar items, using a taxonomy defined outside this schema. For example, an email could be tagged with tags like 'internal', 'spam', 'external', 'rich-content', etc.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:sequence>
+            <xs:element minOccurs="0" name="DataSources">
+               <xs:annotation>
+                  <xs:documentation>A collection of Datasource definitions that are referenced by the criteria/query</xs:documentation>
+               </xs:annotation>
+               <xs:complexType>
+                  <xs:annotation>
+                     <xs:documentation>A collection of Datasource definitions that are referenced by the criteria/query</xs:documentation>
+                  </xs:annotation>
+                  <xs:sequence>
+                     <xs:element maxOccurs="unbounded" name="DataSource" type="xs:string">
+                        <xs:annotation>
+                           <xs:documentation>The name or path of one or more datasources or datasets that are used by a criteria/query, e.g. 'EuroVoc XML distribution' or 'hdfs://mynamenode:8020/datasets/hr/grades.xml'</xs:documentation>
+                        </xs:annotation>
+                     </xs:element>
+                  </xs:sequence>
+               </xs:complexType>
+            </xs:element>
+            <xs:element minOccurs="0" name="Query" type="QueryComplexType:QueryComplexType">
+               <xs:annotation>
+                  <xs:documentation>Structure used to describe the query associated with a search event.</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="ResultPage">
+               <xs:annotation>
+                  <xs:documentation>Details of the page (or sub-set) of results actually displayed/returned to the user, if known at query time.</xs:documentation>
+               </xs:annotation>
+               <xs:complexType>
+                  <xs:annotation>
+                     <xs:documentation>Details of the page (or sub-set) of results actually displayed/returned to the user, if known at query time.</xs:documentation>
+                  </xs:annotation>
+                  <xs:sequence>
+                     <xs:element minOccurs="0" name="TotalPages" type="xs:nonNegativeInteger">
+                        <xs:annotation>
+                           <xs:documentation>The number of pages/sets that make up the complete result set.</xs:documentation>
+                        </xs:annotation>
+                     </xs:element>
+                     <xs:element minOccurs="0" name="PerPage" type="xs:nonNegativeInteger">
+                        <xs:annotation>
+                           <xs:documentation>The maximum number of results that will be displayed per page. E.g. 10 results per page.</xs:documentation>
+                        </xs:annotation>
+                     </xs:element>
+                     <xs:element minOccurs="0" name="PageNumber" type="xs:nonNegativeInteger">
+                        <xs:annotation>
+                           <xs:documentation>The number of the page/set of results displayed/returned to the user, e.g. 3 out of 24 pages.</xs:documentation>
+                        </xs:annotation>
+                     </xs:element>
+                     <xs:element minOccurs="0" name="From" type="xs:nonNegativeInteger">
+                        <xs:annotation>
+                           <xs:documentation>The index of the first result in the page out of the full result set (inclusive), e.g. 11 (in the case of showing results 11-20 of 453)</xs:documentation>
+                        </xs:annotation>
+                     </xs:element>
+                     <xs:element minOccurs="0" name="To" type="xs:nonNegativeInteger">
+                        <xs:annotation>
+                           <xs:documentation>The index of the last result in the page out of the full result set (inclusive), e.g. 20 (in the case of showing results 11-20 of 453)</xs:documentation>
+                        </xs:annotation>
+                     </xs:element>
+                  </xs:sequence>
+               </xs:complexType>
+            </xs:element>
+            <xs:element minOccurs="0" name="TotalResults" type="xs:nonNegativeInteger">
+               <xs:annotation>
+                  <xs:documentation>The total number of results returned by the query, if known at query time. In situations where only a sub-set of results are displayed/returned to the user then this element represents the count of ALL results and ResultPage should be used to provide details of which results are actually viewed/returned by the user.</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0"
+                        name="Results"
+                        type="MultiObjectComplexType:MultiObjectComplexType">
+               <xs:annotation>
+                  <xs:documentation>Describes the results returned by the search if they are known at the time of the Search event (a synchronous search). If the results are not know at execution time (an asynchronous search) and will be viewed as part of a separate event then View/SearchResults can be used to model that event.</xs:documentation>
+               </xs:annotation>
+            </xs:element>
+         </xs:sequence>
+               <xs:element maxOccurs="unbounded"
+                     minOccurs="0"
+                     name="Data"
+                     type="DataComplexType:DataComplexType">
+                  <xs:annotation>
+                     <xs:documentation>Any other event data that does not fit into a schema element but may be useful for the purpose of audit.</xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+            </xs:sequence>
+   </xs:complexType>
+</xs:schema>
+ 

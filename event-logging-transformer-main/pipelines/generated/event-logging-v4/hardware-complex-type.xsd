@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:DataComplexType="http://event-logging/data-complex-type"
+           xmlns:HardwareTypeSimpleType="http://event-logging/hardware-type-simple-type"
+           elementFormDefault="qualified"
+           id="hardware-complex-type-v4.0.2"
+           targetNamespace="http://event-logging/hardware-complex-type"
+           version="4.0.2">
+   <xs:import namespace="http://event-logging/data-complex-type"
+              schemaLocation="data-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/hardware-type-simple-type"
+              schemaLocation="hardware-type-simple-type.xsd"/>
+   <xs:complexType name="HardwareComplexType">
+      <xs:annotation>
+         <xs:documentation>Used to describe a hardware item that may be added or removed from a system.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="Type" type="HardwareTypeSimpleType:HardwareTypeSimpleType">
+            <xs:annotation>
+               <xs:documentation>The type of hardware, e.g. hard disk drive.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="Id" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>A unique identifier for the piece of hardware, e.g. an asset number.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="Name" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>A friendly name for the hardware, e.g. a name that has been defined in an asset management or device monitoring system.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="Model" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>The model name as defined by the manufacturer.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="Manufacturer" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>The manufacturer of the piece of hardware.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="Capacity" type="xs:positiveInteger">
+            <xs:annotation>
+               <xs:documentation>The capacity of the device in bytes.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element maxOccurs="unbounded"
+                     minOccurs="0"
+                     name="Data"
+                     type="DataComplexType:DataComplexType">
+            <xs:annotation>
+               <xs:documentation>Any other event data that does not fit into a schema element but may be useful for the purpose of audit.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>
+ 

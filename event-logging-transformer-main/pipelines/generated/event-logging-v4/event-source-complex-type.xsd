@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:DataComplexType="http://event-logging/data-complex-type"
+           xmlns:SystemComplexType="http://event-logging/system-complex-type"
+           xmlns:DeviceComplexType="http://event-logging/device-complex-type"
+           xmlns:LocationComplexType="http://event-logging/location-complex-type"
+           xmlns:UserComplexType="http://event-logging/user-complex-type"
+           elementFormDefault="qualified"
+           id="event-source-complex-type-v4.0.2"
+           targetNamespace="http://event-logging/event-source-complex-type"
+           version="4.0.2">
+   <xs:import namespace="http://event-logging/data-complex-type"
+              schemaLocation="data-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/device-complex-type"
+              schemaLocation="device-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/location-complex-type"
+              schemaLocation="location-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/system-complex-type"
+              schemaLocation="system-complex-type.xsd"/>
+   <xs:import namespace="http://event-logging/user-complex-type"
+              schemaLocation="user-complex-type.xsd"/>
+   <xs:complexType name="EventSourceComplexType">
+      <xs:annotation>
+         <xs:documentation>Details where the event came from, i.e. what generator created the event and on what device.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element minOccurs="0" name="EventId" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>A unique identifier known to the source system that created the event. This identifier may not be unique outside the source system. It can be used for linking related events within the source system, e.g. where an event is part of a chain of events or is child of another event. Linking of events can be recorded with the Event/EventChain element.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="SessionId" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>Where an event is part of a session the identifier for that session can be recorded here to allow subsequent grouping of events for the same session. The SessionId should be a unique identifier for the session within the source system. It is not expected that the SessionId have meaning or be unique outside the source system.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="System" type="SystemComplexType:SystemComplexType">
+            <xs:annotation>
+               <xs:documentation>The system that generated the event. This is not the same as the generator as the generator is merely the application or component that created the event, e.g. auditd. The system describes the higher level project/service or capability that uses the generator as a component, e.g. 'Payroll System'.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Generator" type="xs:string">
+            <xs:annotation>
+               <xs:documentation>The thing that generated the event. This could be the name of an application, service or OS entity. Multiple devices may host the same generator, e.g. many copies of the same OS. The event type within the event description will describe an event that is unique to the generator, i.e. the generator is treated as a namespace for event type ids.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element name="Device" type="DeviceComplexType:DeviceComplexType">
+            <xs:annotation>
+               <xs:documentation>A description of the device that the event generator is hosted upon.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0"
+                     name="Client"
+                     type="DeviceComplexType:DeviceComplexType">
+            <xs:annotation>
+               <xs:documentation>In situations where an event has been created as a result of an interaction with a client device, the client should be recorded. This will be the case for web applications that are responding to input from users with active sessions. All authentication events that originate from a connected client should populate this element.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0"
+                     name="Server"
+                     type="DeviceComplexType:DeviceComplexType">
+            <xs:annotation>
+               <xs:documentation>In situations where an event has been created as a result of an interaction with a server device, the server should be recorded.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="Door">
+            <xs:annotation>
+               <xs:documentation>Physical access events are generated by doors, barriers, turnstiles, etc. This element provides details of the door and its location and access control properties.</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+               <xs:annotation>
+                  <xs:documentation>Physical access events are generated by doors, barriers, turnstiles, etc. This type provides details of the door and its location and access control properties.</xs:documentation>
+               </xs:annotation>
+               <xs:sequence>
+                  <xs:element name="Name" type="xs:string">
+                     <xs:annotation>
+                        <xs:documentation>The site-wide name/identifier for the door.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:element minOccurs="0" name="Description" type="xs:string">
+                     <xs:annotation>
+                        <xs:documentation>A user readable description of the door.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:element name="Location" type="LocationComplexType:LocationComplexType">
+                     <xs:annotation>
+                        <xs:documentation>Describes the geographic location of the device.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:element minOccurs="0" name="SingleEntry" type="xs:boolean">
+                     <xs:annotation>
+                        <xs:documentation>It is assumed that doors only allow for a single authenticated person to enter at a time, e.g. in the case of turnstiles. Where single entry is true this element can be omitted as this is expected by default.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:element minOccurs="0" name="RemoveAll" type="xs:boolean">
+                     <xs:annotation>
+                        <xs:documentation>This element is used to tell us to remove all access zones from the list of currently accessible zones for a user before adding a new one. This is the case whenever a user moves from one zone to another and loses all possible access to the zones they were previously in, i.e. they would need to re-authenticate to regain access rather than just pass back through the door. If not specified this element is considered to be true as most movement through a door removes access to previously accessible zones. Removal of all access zones provides anti pass-back protection.</xs:documentation>
+                     </xs:annotation>
+                  </xs:element>
+                  <xs:element name="AddAccess">
+                     <xs:annotation>
+                        <xs:documentation>A list of access zones that have been added by this event assuming it is successful. For example if a person successfully enters a building at door A, the system then adds the access zone for room X within that building which ensures the person must have correctly entered the building at door A before being able to access room X.</xs:documentation>
+                     </xs:annotation>
+                     <xs:complexType>
+                        <xs:sequence>
+                           <xs:element maxOccurs="unbounded" name="AccessZone" type="xs:string">
+                              <xs:annotation>
+                                 <xs:documentation>An area within a building that is accessible only via an authenticated access method, e.g. a turnstile or door with an access control system.</xs:documentation>
+                              </xs:annotation>
+                           </xs:element>
+                        </xs:sequence>
+                     </xs:complexType>
+                  </xs:element>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element minOccurs="0" name="User" type="UserComplexType:UserComplexType">
+            <xs:annotation>
+               <xs:documentation>Where events are created as a result of a user action or within the context of a user account, the user should be recorded. To achieve this it may be necessary to map the user identifier in an application to a common user identifier when populating this element. Where an identifier exists that is unique across the organisation, such as a distinguished name (User DN) from a certificate authority or directory service, then this should be used in the &lt;Id&gt; element in preference to any other user identifier.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="RunAs" type="UserComplexType:UserComplexType">
+            <xs:annotation>
+               <xs:documentation>In some cases an account may switch to another account in order to run a process or perform a privileged action, e.g. use of sudo. Where this happens the &lt;User&gt; element should still refer to the real user and this element should indicate what the temporary user was when the event was created, e.g. root. This is also often used when a system user (processing account) executes scheduled jobs on behalf of the real user that scheduled the job. Where an identifier exists that is unique across the organisation, such as a distinguished name (User DN) from a certificate authority or directory service, then this should be used in the &lt;Id&gt; element in preference to any other user identifier.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="Interactive" type="xs:boolean">
+            <xs:annotation>
+               <xs:documentation>Indicates whether the event was produced as a result of direct interaction, i.e. user was directly responsible for the event being created and was present at the time it was created. This element will be false where an event may have been created after the user was present, e.g. where scheduled processing is performed or an action has been queued for execution later, as is the case when some form of asynchronous processing is used. All interactive events must provide the Id for the user. Can be omitted if true as this is the default.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element maxOccurs="unbounded"
+                     minOccurs="0"
+                     name="Data"
+                     type="DataComplexType:DataComplexType">
+            <xs:annotation>
+               <xs:documentation>Any other event data that does not fit into a schema element but may be useful for the purpose of audit.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>
+ 

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified"
+           id="date-time-simple-type-v4.0.2"
+           targetNamespace="http://event-logging/date-time-simple-type"
+           version="4.0.2">
+   <xs:simpleType name="DateTimeSimpleType">
+      <xs:annotation>
+         <xs:documentation>This type constrains the date time format further so that it is always represented as 'yyyy-MM-ddThh:mm:ss.sssZ'.</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:dateTime">
+         <xs:pattern value="\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z"/>
+      </xs:restriction>
+   </xs:simpleType>
+</xs:schema>
+ 

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified"
+           id="authenticate-outcome-reason-simple-type-v4.0.2"
+           targetNamespace="http://event-logging/authenticate-outcome-reason-simple-type"
+           version="4.0.2">
+   <xs:simpleType name="AuthenticateOutcomeReasonSimpleType">
+      <xs:annotation>
+         <xs:documentation>The types of outcome from an authentication event.</xs:documentation>
+      </xs:annotation>
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="IncorrectUsernameOrPassword"/>
+         <xs:enumeration value="IncorrectUsername"/>
+         <xs:enumeration value="IncorrectPassword"/>
+         <xs:enumeration value="ExpiredCertificate"/>
+         <xs:enumeration value="RevokedCertificate"/>
+         <xs:enumeration value="IncorrectCA"/>
+         <xs:enumeration value="ExpiredCA"/>
+         <xs:enumeration value="AccountLocked"/>
+         <xs:enumeration value="AccountNotValidForLoginType"/>
+         <xs:enumeration value="Other"/>
+      </xs:restriction>
+   </xs:simpleType>
+</xs:schema>
+ 

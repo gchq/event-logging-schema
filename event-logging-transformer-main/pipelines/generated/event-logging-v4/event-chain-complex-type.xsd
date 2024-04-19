@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:ActivityComplexType="http://event-logging/activity-complex-type"
+           elementFormDefault="qualified"
+           id="event-chain-complex-type-v4.0.2"
+           targetNamespace="http://event-logging/event-chain-complex-type"
+           version="4.0.2">
+   <xs:import namespace="http://event-logging/activity-complex-type"
+              schemaLocation="activity-complex-type.xsd"/>
+   <xs:complexType name="EventChainComplexType">
+      <xs:annotation>
+         <xs:documentation>This type can be used to create relationships between different events, i.e. where one event is the child of another.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+         <xs:element name="Activity" type="ActivityComplexType:ActivityComplexType">
+            <xs:annotation>
+               <xs:documentation>The event that this event has a relationship to or is referenced by.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>
+ 
