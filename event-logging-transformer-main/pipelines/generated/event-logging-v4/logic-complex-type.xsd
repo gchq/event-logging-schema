@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:LogicComplexType="http://event-logging/logic-complex-type"
+           xmlns:TermComplexType="http://event-logging/term-complex-type"
+           elementFormDefault="qualified"
+           id="logic-complex-type-v4.0.2"
+           targetNamespace="http://event-logging/logic-complex-type"
+           version="4.0.2">
+   <xs:import namespace="http://event-logging/term-complex-type"
+              schemaLocation="term-complex-type.xsd"/>
+   <xs:complexType name="OrComplexType">
+      <xs:annotation>
+         <xs:documentation>All of the enclosed items are to be treated as being OR together.</xs:documentation>
+      </xs:annotation>
+      <xs:choice maxOccurs="unbounded" minOccurs="0">
+         <xs:element minOccurs="0" name="Term" type="TermComplexType:TermComplexType">
+            <xs:annotation>
+               <xs:documentation>Describes a field to search and what to search for using name, condition and value, e.g. Title Contains 'Fox' or Title Equals 'The Quick Brown Fox'.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="And" type="LogicComplexType:AndComplexType">
+            <xs:annotation>
+               <xs:documentation>All of the enclosed items are to be treated as being AND'd together.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="Or" type="LogicComplexType:OrComplexType">
+            <xs:annotation>
+               <xs:documentation>All of the enclosed items are to be treated as being OR'd together.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="Not" type="LogicComplexType:NotComplexType">
+            <xs:annotation>
+               <xs:documentation>The enclosed structure operators and terms are negated.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:choice>
+   </xs:complexType>
+   <xs:complexType name="AndComplexType">
+      <xs:annotation>
+         <xs:documentation>All of the enclosed items are to be treated as being AND together.</xs:documentation>
+      </xs:annotation>
+      <xs:choice maxOccurs="unbounded" minOccurs="0">
+         <xs:element minOccurs="0" name="Term" type="TermComplexType:TermComplexType">
+            <xs:annotation>
+               <xs:documentation>Describes a field to search and what to search for using name, condition and value, e.g. Title Contains 'Fox' or Title Equals 'The Quick Brown Fox'.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="And" type="LogicComplexType:AndComplexType">
+            <xs:annotation>
+               <xs:documentation>All of the enclosed items are to be treated as being AND'd together.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="Or" type="LogicComplexType:OrComplexType">
+            <xs:annotation>
+               <xs:documentation>All of the enclosed items are to be treated as being OR'd together.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="Not" type="LogicComplexType:NotComplexType">
+            <xs:annotation>
+               <xs:documentation>The enclosed structure operators and terms are negated.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:choice>
+   </xs:complexType>
+   <xs:complexType name="NotComplexType">
+      <xs:annotation>
+         <xs:documentation>The enclosed structure operators and terms are negated.</xs:documentation>
+      </xs:annotation>
+      <xs:choice maxOccurs="unbounded" minOccurs="0">
+         <xs:element minOccurs="0" name="Term" type="TermComplexType:TermComplexType">
+            <xs:annotation>
+               <xs:documentation>Describes a field to search and what to search for using name, condition and value, e.g. Title Contains 'Fox' or Title Equals 'The Quick Brown Fox'.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="And" type="LogicComplexType:AndComplexType">
+            <xs:annotation>
+               <xs:documentation>All of the enclosed items are to be treated as being AND'd together.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="Or" type="LogicComplexType:OrComplexType">
+            <xs:annotation>
+               <xs:documentation>All of the enclosed items are to be treated as being OR'd together.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+         <xs:element minOccurs="0" name="Not" type="LogicComplexType:NotComplexType">
+            <xs:annotation>
+               <xs:documentation>The enclosed structure operators and terms are negated.</xs:documentation>
+            </xs:annotation>
+         </xs:element>
+      </xs:choice>
+   </xs:complexType>
+</xs:schema>
+ 

@@ -599,9 +599,9 @@ public class Modulariser {
         static {
             GROUP_NAME_REPLACEMENTS.put("GroupsComplexType", "GroupsComplexType");
             GROUP_NAME_REPLACEMENTS.put("GroupComplexType", "GroupsComplexType");
-//            GROUP_NAME_REPLACEMENTS.put("AndComplexType", "LogicComplexType");
-//            GROUP_NAME_REPLACEMENTS.put("OrComplexType", "LogicComplexType");
-//            GROUP_NAME_REPLACEMENTS.put("NotComplexType", "LogicComplexType");
+            GROUP_NAME_REPLACEMENTS.put("AndComplexType", "LogicComplexType");
+            GROUP_NAME_REPLACEMENTS.put("OrComplexType", "LogicComplexType");
+            GROUP_NAME_REPLACEMENTS.put("NotComplexType", "LogicComplexType");
         }
 
         private final Map<String, SchemaInfo> schemaMap = new HashMap<>();
