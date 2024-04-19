@@ -47,6 +47,7 @@ pipelines:
       - "extractSimpleTypes.xsl"
       - "orderElements.xsl"
       - "removeVimModeline.xsl"
+    modularise: true
           
   # A variant to be used by client systems and for use in producing the
   # JAXB Java API. Ommits much of the user details structure, the EventId and

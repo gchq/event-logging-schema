@@ -32,11 +32,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.Duration;
 import java.time.Instant;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -382,6 +378,13 @@ public class SchemaGenerator {
             }
 
             validateSchema(Paths.get(formattedFile.toUri()));
+
+            if (pipeline.isModularise()) {
+                String modularisedDir = String.format("%s-v%s%s", baseName, majorVersion, suffix);
+                Path dir = getGeneratedPath().resolve(modularisedDir);
+                new Modulariser().modularise(formattedFile, dir);
+            }
+
         } else {
             LOGGER.info("Pipeline {} does not have any transformations configured",
                     pipeline.getPipelineName());

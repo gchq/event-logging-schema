@@ -1,6 +1,5 @@
 package event.logging.transformer.configuration;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,6 +30,9 @@ public class Pipeline {
     @JsonProperty(required = true)
     private List<String> transformations;
 
+    @JsonProperty
+    private boolean modularise;
+
     //no-args constructor for jackson
     public Pipeline() {
     }
@@ -41,12 +43,29 @@ public class Pipeline {
                     boolean hasOutput,
                     String basePipelineName,
                     List<String> transformations) {
+        this(pipelineName,
+                outputBaseName,
+                outputSuffix,
+                hasOutput,
+                basePipelineName,
+                transformations,
+                false);
+    }
+
+    public Pipeline(String pipelineName,
+                    String outputBaseName,
+                    String outputSuffix,
+                    boolean hasOutput,
+                    String basePipelineName,
+                    List<String> transformations,
+                    boolean modularise) {
         this.pipelineName = pipelineName;
         this.outputBaseName = outputBaseName;
         this.outputSuffix = outputSuffix;
         this.hasOutput = hasOutput;
         this.basePipelineName = basePipelineName;
         this.transformations = transformations;
+        this.modularise = modularise;
     }
 
     public String getPipelineName() {
@@ -73,6 +92,10 @@ public class Pipeline {
         return transformations;
     }
 
+    public boolean isModularise() {
+        return modularise;
+    }
+
     public Pipeline merge(final Pipeline basePipeline) {
         LOGGER.debug("Merging basePipeline {} into this {}", basePipeline, this);
         if (!this.getBasePipelineName().orElse("").equals(basePipeline.pipelineName)) {
@@ -89,7 +112,8 @@ public class Pipeline {
                 this.outputSuffix,
                 this.hasOutput(),
                 basePipeline.getBasePipelineName().orElse(null),
-                combinedTransformations);
+                combinedTransformations,
+                this.modularise);
     }
 
     @Override
