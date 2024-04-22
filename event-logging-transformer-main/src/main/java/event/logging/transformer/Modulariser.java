@@ -136,9 +136,10 @@ public class Modulariser {
 
             // Add imports.
             final String schemaLocation = "events.xsd";
+            final Path outputEventsSchema = outputDir.resolve(schemaLocation);
             addImports(typeMap, doc, rootElement, schemaLocation);
 
-            writeDoc(doc, outputDir.resolve(schemaLocation));
+            writeDoc(doc, outputEventsSchema);
 
             // Validate all schema files.
             try (final Stream<Path> stream = Files.list(outputDir)) {
@@ -149,8 +150,75 @@ public class Modulariser {
                 });
             }
 
+            // Find used schemas
+            final Set<Path> used = new HashSet<>();
+            findUsed(outputEventsSchema, used);
+
+            // Delete unused.
+            try (final Stream<Path> stream = Files.list(outputDir)) {
+                stream.forEach(child -> {
+                    try {
+                        if (Files.isRegularFile(child) &&
+                                !child.getFileName().toString().startsWith("__") &&
+                                !used.contains(child)) {
+                            Files.delete(child);
+                        }
+                    } catch (final IOException e) {
+                        LOGGER.error(e.getMessage(), e);
+                        throw new RuntimeException(e);
+                    }
+                });
+            }
+
         } catch (final Exception e) {
             LOGGER.error(e.getMessage(), e);
+        }
+    }
+
+    private void findUsed(final Path schema, final Set<Path> used) {
+        if (used.add(schema)) {
+            final Map<String, String> imports = findImports(schema);
+            imports.values().forEach(schemaLocation -> {
+                final Path child = schema.getParent().resolve(schemaLocation);
+                findUsed(child, used);
+            });
+        }
+    }
+
+    private Map<String, String> findImports(final Path schema) {
+        try {
+            final DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+            documentBuilderFactory.setNamespaceAware(true);
+            final DocumentBuilder builder = documentBuilderFactory.newDocumentBuilder();
+            String string = new String(Files.readAllBytes(schema), StandardCharsets.UTF_8);
+            final Document doc = builder.parse(new InputSource(new StringReader(string)));
+            final Element rootElement = doc.getDocumentElement();
+            final Map<String, String> imports = new HashMap<>();
+            addImports(rootElement, imports);
+            return imports;
+        } catch (final Exception e) {
+            LOGGER.error(e.getMessage(), e);
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    /**
+     * <xs:import namespace="http://event-logging/version-simple-type" schemaLocation="version-simple-type.xsd"/>
+     **/
+    private void addImports(final Node parent, final Map<String, String> imports) {
+        final NodeList nodeList = parent.getChildNodes();
+        for (int i = 0; i < nodeList.getLength(); i++) {
+            final Node node = nodeList.item(i);
+            addImports(node, imports);
+            if (node instanceof Element) {
+                final Element element = (Element) node;
+                if (element.getTagName().equals("xs:import")) {
+                    final String namespace = element.getAttribute("namespace");
+                    final String schemaLocation = element.getAttribute("schemaLocation");
+                    imports.put(namespace, schemaLocation);
+                }
+            }
         }
     }
 
