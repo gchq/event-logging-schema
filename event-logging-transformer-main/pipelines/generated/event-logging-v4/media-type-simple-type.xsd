@@ -8,7 +8,7 @@
       <xs:annotation>
          <xs:documentation>The types of removable media.</xs:documentation>
       </xs:annotation>
-      <xs:restriction base="xs:string">
+      <xs:restriction base="xs:token">
          <xs:enumeration value="HardDisk"/>
          <xs:enumeration value="USBMassStorage"/>
          <xs:enumeration value="BluRay"/>

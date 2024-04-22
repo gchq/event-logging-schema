@@ -8,7 +8,7 @@
       <xs:annotation>
          <xs:documentation>The types of permission that can be assigned to an entity such as a document.</xs:documentation>
       </xs:annotation>
-      <xs:restriction base="xs:string">
+      <xs:restriction base="xs:token">
          <xs:enumeration value="Author"/>
          <xs:enumeration value="Owner"/>
          <xs:enumeration value="Read"/>

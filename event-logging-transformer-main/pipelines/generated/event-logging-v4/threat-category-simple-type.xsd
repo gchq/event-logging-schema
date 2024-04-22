@@ -8,7 +8,7 @@
       <xs:annotation>
          <xs:documentation>The types of threat assigned to detected malware.</xs:documentation>
       </xs:annotation>
-      <xs:restriction base="xs:string">
+      <xs:restriction base="xs:token">
          <xs:enumeration value="Virus"/>
          <xs:enumeration value="Worm"/>
          <xs:enumeration value="HackingTool"/>

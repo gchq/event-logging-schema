@@ -8,7 +8,7 @@
       <xs:annotation>
          <xs:documentation>The types of session that a logon event will relate to.</xs:documentation>
       </xs:annotation>
-      <xs:restriction base="xs:string">
+      <xs:restriction base="xs:token">
          <xs:enumeration value="Interactive"/>
          <xs:enumeration value="Network"/>
          <xs:enumeration value="Batch"/>

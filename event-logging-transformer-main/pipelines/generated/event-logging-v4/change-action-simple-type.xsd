@@ -8,7 +8,7 @@
       <xs:annotation>
          <xs:documentation>The action performed by the file/directory monitor, e.g. starting to scan files for changes, or the detection of a file change.</xs:documentation>
       </xs:annotation>
-      <xs:restriction base="xs:string">
+      <xs:restriction base="xs:token">
          <xs:enumeration value="StartScan">
             <xs:annotation>
                <xs:documentation>The file/directory monitor is started.</xs:documentation>

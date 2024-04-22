@@ -8,7 +8,7 @@
       <xs:annotation>
          <xs:documentation>The types of action in a process event, e.g. executing a shell script.</xs:documentation>
       </xs:annotation>
-      <xs:restriction base="xs:string">
+      <xs:restriction base="xs:token">
          <xs:enumeration value="Startup"/>
          <xs:enumeration value="Shutdown"/>
          <xs:enumeration value="Execute"/>

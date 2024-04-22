@@ -8,7 +8,7 @@
       <xs:annotation>
          <xs:documentation>The types of reason for failure during copy or move operations.</xs:documentation>
       </xs:annotation>
-      <xs:restriction base="xs:string">
+      <xs:restriction base="xs:token">
          <xs:enumeration value="DeviceFull"/>
          <xs:enumeration value="IOError"/>
          <xs:enumeration value="InvalidPath"/>

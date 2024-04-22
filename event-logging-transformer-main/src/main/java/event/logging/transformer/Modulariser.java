@@ -48,6 +48,10 @@ public class Modulariser {
             string = string.replace("(:[0-9a-f]{1,4}){1,1}", "(:[0-9a-f]{1,4})");
             string = string.replace("([0-9a-f]{1,4}:){1,1}", "([0-9a-f]{1,4}:)");
 
+            string = string.replaceAll("restriction base=\"xs:string\">(\\s*<xs:enumeration)",
+                    "restriction base=\"xs:token\">$1");
+
+
 
             Files.createDirectories(outputDir);
             final DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();

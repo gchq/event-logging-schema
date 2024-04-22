@@ -8,7 +8,7 @@
       <xs:annotation>
          <xs:documentation>The types of term used in query predicates.</xs:documentation>
       </xs:annotation>
-      <xs:restriction base="xs:string">
+      <xs:restriction base="xs:token">
          <xs:enumeration value="Exists"/>
          <xs:enumeration value="NotExists"/>
          <xs:enumeration value="Contains"/>

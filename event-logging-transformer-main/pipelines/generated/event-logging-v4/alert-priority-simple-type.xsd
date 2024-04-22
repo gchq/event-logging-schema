@@ -8,7 +8,7 @@
       <xs:annotation>
          <xs:documentation>The priorities that can be assigned to an alert, e.g. an error in a system or the alert from the detection of malware. They indicate how important it is to resolve or mitigate the alert.</xs:documentation>
       </xs:annotation>
-      <xs:restriction base="xs:string">
+      <xs:restriction base="xs:token">
          <xs:enumeration value="None"/>
          <xs:enumeration value="Low"/>
          <xs:enumeration value="Normal"/>

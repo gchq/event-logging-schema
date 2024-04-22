@@ -8,7 +8,7 @@
       <xs:annotation>
          <xs:documentation>The types of alert that can be fired, for example errors in an application log, malware or antivirus detection alerts.</xs:documentation>
       </xs:annotation>
-      <xs:restriction base="xs:string">
+      <xs:restriction base="xs:token">
          <xs:enumeration value="Vulnerability"/>
          <xs:enumeration value="IDS"/>
          <xs:enumeration value="Malware"/>

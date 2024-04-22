@@ -8,7 +8,7 @@
       <xs:annotation>
          <xs:documentation>Type for specifying the version numbers of XML documents that are supported by this version of the XMLSchema.</xs:documentation>
       </xs:annotation>
-      <xs:restriction base="xs:string">
+      <xs:restriction base="xs:token">
          <xs:enumeration value="4.0.2"/>
       </xs:restriction>
    </xs:simpleType>

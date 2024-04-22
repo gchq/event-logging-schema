@@ -8,7 +8,7 @@
       <xs:annotation>
          <xs:documentation>The severities that can be assigned to an alert, e.g. an error in a system or the alert from the detection of malware. They indicate how far-reaching the symptoms of the cause of the alert are.</xs:documentation>
       </xs:annotation>
-      <xs:restriction base="xs:string">
+      <xs:restriction base="xs:token">
          <xs:enumeration value="Info"/>
          <xs:enumeration value="Minor"/>
          <xs:enumeration value="Major"/>

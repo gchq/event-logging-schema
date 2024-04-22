@@ -8,7 +8,7 @@
       <xs:annotation>
          <xs:documentation>The type of action in an authorisation event, e.g. the modification of authorisation permissions/groups or the request to be authorised.</xs:documentation>
       </xs:annotation>
-      <xs:restriction base="xs:string">
+      <xs:restriction base="xs:token">
          <xs:enumeration value="Request">
             <xs:annotation>
                <xs:documentation>A request to be authorised to do a subsequent action.</xs:documentation>

@@ -8,7 +8,7 @@
       <xs:annotation>
          <xs:documentation>The types of outcome from an authentication event.</xs:documentation>
       </xs:annotation>
-      <xs:restriction base="xs:string">
+      <xs:restriction base="xs:token">
          <xs:enumeration value="IncorrectUsernameOrPassword"/>
          <xs:enumeration value="IncorrectUsername"/>
          <xs:enumeration value="IncorrectPassword"/>

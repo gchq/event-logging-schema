@@ -8,7 +8,7 @@
       <xs:annotation>
          <xs:documentation>The types of action in an authentication step.</xs:documentation>
       </xs:annotation>
-      <xs:restriction base="xs:string">
+      <xs:restriction base="xs:token">
          <xs:enumeration value="Logon"/>
          <xs:enumeration value="Logoff"/>
          <xs:enumeration value="ChangePassword"/>

@@ -8,7 +8,7 @@
       <xs:annotation>
          <xs:documentation>Describes the state of a virtual session when viewing another user's session, e.g. screen sharing or remote assistance type activities.</xs:documentation>
       </xs:annotation>
-      <xs:restriction base="xs:string">
+      <xs:restriction base="xs:token">
          <xs:enumeration value="Parked"/>
          <xs:enumeration value="Unparked"/>
       </xs:restriction>

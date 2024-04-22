@@ -8,7 +8,7 @@
       <xs:annotation>
          <xs:documentation>The stages in an approval workflow. E.g. when presenting a document for review before publishing.</xs:documentation>
       </xs:annotation>
-      <xs:restriction base="xs:string">
+      <xs:restriction base="xs:token">
          <xs:enumeration value="Approve"/>
          <xs:enumeration value="Accept"/>
          <xs:enumeration value="Reject"/>

@@ -8,7 +8,7 @@
       <xs:annotation>
          <xs:documentation>The orientation types of a document when it is printed.</xs:documentation>
       </xs:annotation>
-      <xs:restriction base="xs:string">
+      <xs:restriction base="xs:token">
          <xs:enumeration value="Portrait"/>
          <xs:enumeration value="Landscape"/>
       </xs:restriction>

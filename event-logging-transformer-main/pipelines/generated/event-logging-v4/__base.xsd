@@ -4132,7 +4132,7 @@
       <xs:annotation>
          <xs:documentation>The priorities that can be assigned to an alert, e.g. an error in a system or the alert from the detection of malware. They indicate how important it is to resolve or mitigate the alert.</xs:documentation>
       </xs:annotation>
-      <xs:restriction base="xs:string">
+      <xs:restriction base="xs:token">
          <xs:enumeration value="None"/>
          <xs:enumeration value="Low"/>
          <xs:enumeration value="Normal"/>
@@ -4145,7 +4145,7 @@
       <xs:annotation>
          <xs:documentation>The severities that can be assigned to an alert, e.g. an error in a system or the alert from the detection of malware. They indicate how far-reaching the symptoms of the cause of the alert are.</xs:documentation>
       </xs:annotation>
-      <xs:restriction base="xs:string">
+      <xs:restriction base="xs:token">
          <xs:enumeration value="Info"/>
          <xs:enumeration value="Minor"/>
          <xs:enumeration value="Major"/>
@@ -4156,7 +4156,7 @@
       <xs:annotation>
          <xs:documentation>The types of alert that can be fired, for example errors in an application log, malware or antivirus detection alerts.</xs:documentation>
       </xs:annotation>
-      <xs:restriction base="xs:string">
+      <xs:restriction base="xs:token">
          <xs:enumeration value="Vulnerability"/>
          <xs:enumeration value="IDS"/>
          <xs:enumeration value="Malware"/>
@@ -4170,7 +4170,7 @@
       <xs:annotation>
          <xs:documentation>The stages in an approval workflow. E.g. when presenting a document for review before publishing.</xs:documentation>
       </xs:annotation>
-      <xs:restriction base="xs:string">
+      <xs:restriction base="xs:token">
          <xs:enumeration value="Approve"/>
          <xs:enumeration value="Accept"/>
          <xs:enumeration value="Reject"/>
@@ -4182,7 +4182,7 @@
       <xs:annotation>
          <xs:documentation>The types of action in an authentication step.</xs:documentation>
       </xs:annotation>
-      <xs:restriction base="xs:string">
+      <xs:restriction base="xs:token">
          <xs:enumeration value="Logon"/>
          <xs:enumeration value="Logoff"/>
          <xs:enumeration value="ChangePassword"/>
@@ -4203,7 +4203,7 @@
       <xs:annotation>
          <xs:documentation>The types of session that a logon event will relate to.</xs:documentation>
       </xs:annotation>
-      <xs:restriction base="xs:string">
+      <xs:restriction base="xs:token">
          <xs:enumeration value="Interactive"/>
          <xs:enumeration value="Network"/>
          <xs:enumeration value="Batch"/>
@@ -4224,7 +4224,7 @@
       <xs:annotation>
          <xs:documentation>The types of outcome from an authentication event.</xs:documentation>
       </xs:annotation>
-      <xs:restriction base="xs:string">
+      <xs:restriction base="xs:token">
          <xs:enumeration value="IncorrectUsernameOrPassword"/>
          <xs:enumeration value="IncorrectUsername"/>
          <xs:enumeration value="IncorrectPassword"/>
@@ -4241,7 +4241,7 @@
       <xs:annotation>
          <xs:documentation>The type of action in an authorisation event, e.g. the modification of authorisation permissions/groups or the request to be authorised.</xs:documentation>
       </xs:annotation>
-      <xs:restriction base="xs:string">
+      <xs:restriction base="xs:token">
          <xs:enumeration value="Request">
             <xs:annotation>
                <xs:documentation>A request to be authorised to do a subsequent action.</xs:documentation>
@@ -4258,7 +4258,7 @@
       <xs:annotation>
          <xs:documentation>The action performed by the file/directory monitor, e.g. starting to scan files for changes, or the detection of a file change.</xs:documentation>
       </xs:annotation>
-      <xs:restriction base="xs:string">
+      <xs:restriction base="xs:token">
          <xs:enumeration value="StartScan">
             <xs:annotation>
                <xs:documentation>The file/directory monitor is started.</xs:documentation>
@@ -4290,7 +4290,7 @@
       <xs:annotation>
          <xs:documentation>The types of reason for failure during copy or move operations.</xs:documentation>
       </xs:annotation>
-      <xs:restriction base="xs:string">
+      <xs:restriction base="xs:token">
          <xs:enumeration value="DeviceFull"/>
          <xs:enumeration value="IOError"/>
          <xs:enumeration value="InvalidPath"/>
@@ -4333,7 +4333,7 @@
       <xs:annotation>
          <xs:documentation>The types of hardware that can be added or removed from a system.</xs:documentation>
       </xs:annotation>
-      <xs:restriction base="xs:string">
+      <xs:restriction base="xs:token">
          <xs:enumeration value="OpticalDrive"/>
          <xs:enumeration value="HardDisk"/>
          <xs:enumeration value="USBMassStorage"/>
@@ -4393,7 +4393,7 @@
       <xs:annotation>
          <xs:documentation>The types of removable media.</xs:documentation>
       </xs:annotation>
-      <xs:restriction base="xs:string">
+      <xs:restriction base="xs:token">
          <xs:enumeration value="HardDisk"/>
          <xs:enumeration value="USBMassStorage"/>
          <xs:enumeration value="BluRay"/>
@@ -4409,7 +4409,7 @@
       <xs:annotation>
          <xs:documentation>The different types of network protocol.</xs:documentation>
       </xs:annotation>
-      <xs:restriction base="xs:string">
+      <xs:restriction base="xs:token">
          <xs:enumeration value="TCP"/>
          <xs:enumeration value="UDP"/>
          <xs:enumeration value="ICMP"/>
@@ -4421,7 +4421,7 @@
       <xs:annotation>
          <xs:documentation>The types of permission that can be assigned to an entity such as a document.</xs:documentation>
       </xs:annotation>
-      <xs:restriction base="xs:string">
+      <xs:restriction base="xs:token">
          <xs:enumeration value="Author"/>
          <xs:enumeration value="Owner"/>
          <xs:enumeration value="Read"/>
@@ -4442,7 +4442,7 @@
       <xs:annotation>
          <xs:documentation>The types of action relating to the use of a printer.</xs:documentation>
       </xs:annotation>
-      <xs:restriction base="xs:string">
+      <xs:restriction base="xs:token">
          <xs:enumeration value="CreateJob"/>
          <xs:enumeration value="CancelJob"/>
          <xs:enumeration value="PauseJob"/>
@@ -4458,7 +4458,7 @@
       <xs:annotation>
          <xs:documentation>The orientation types of a document when it is printed.</xs:documentation>
       </xs:annotation>
-      <xs:restriction base="xs:string">
+      <xs:restriction base="xs:token">
          <xs:enumeration value="Portrait"/>
          <xs:enumeration value="Landscape"/>
       </xs:restriction>
@@ -4467,7 +4467,7 @@
       <xs:annotation>
          <xs:documentation>The types of action in a process event, e.g. executing a shell script.</xs:documentation>
       </xs:annotation>
-      <xs:restriction base="xs:string">
+      <xs:restriction base="xs:token">
          <xs:enumeration value="Startup"/>
          <xs:enumeration value="Shutdown"/>
          <xs:enumeration value="Execute"/>
@@ -4483,7 +4483,7 @@
       <xs:annotation>
          <xs:documentation>The types of a process event, e.g. a background process running within an application.</xs:documentation>
       </xs:annotation>
-      <xs:restriction base="xs:string">
+      <xs:restriction base="xs:token">
          <xs:enumeration value="OS"/>
          <xs:enumeration value="Service"/>
          <xs:enumeration value="Application"/>
@@ -4499,7 +4499,7 @@
       <xs:annotation>
          <xs:documentation>The types of term used in query predicates.</xs:documentation>
       </xs:annotation>
-      <xs:restriction base="xs:string">
+      <xs:restriction base="xs:token">
          <xs:enumeration value="Exists"/>
          <xs:enumeration value="NotExists"/>
          <xs:enumeration value="Contains"/>
@@ -4522,7 +4522,7 @@
       <xs:annotation>
          <xs:documentation>The types of threat assigned to detected malware.</xs:documentation>
       </xs:annotation>
-      <xs:restriction base="xs:string">
+      <xs:restriction base="xs:token">
          <xs:enumeration value="Virus"/>
          <xs:enumeration value="Worm"/>
          <xs:enumeration value="HackingTool"/>
@@ -4536,7 +4536,7 @@
       <xs:annotation>
          <xs:documentation>Type for specifying the version numbers of XML documents that are supported by this version of the XMLSchema.</xs:documentation>
       </xs:annotation>
-      <xs:restriction base="xs:string">
+      <xs:restriction base="xs:token">
          <xs:enumeration value="4.0.2"/>
       </xs:restriction>
    </xs:simpleType>
@@ -4544,7 +4544,7 @@
       <xs:annotation>
          <xs:documentation>Describes the state of a virtual session when viewing another user's session, e.g. screen sharing or remote assistance type activities.</xs:documentation>
       </xs:annotation>
-      <xs:restriction base="xs:string">
+      <xs:restriction base="xs:token">
          <xs:enumeration value="Parked"/>
          <xs:enumeration value="Unparked"/>
       </xs:restriction>

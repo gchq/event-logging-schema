@@ -8,7 +8,7 @@
       <xs:annotation>
          <xs:documentation>The types of a process event, e.g. a background process running within an application.</xs:documentation>
       </xs:annotation>
-      <xs:restriction base="xs:string">
+      <xs:restriction base="xs:token">
          <xs:enumeration value="OS"/>
          <xs:enumeration value="Service"/>
          <xs:enumeration value="Application"/>

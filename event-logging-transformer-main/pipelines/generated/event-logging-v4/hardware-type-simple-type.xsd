@@ -8,7 +8,7 @@
       <xs:annotation>
          <xs:documentation>The types of hardware that can be added or removed from a system.</xs:documentation>
       </xs:annotation>
-      <xs:restriction base="xs:string">
+      <xs:restriction base="xs:token">
          <xs:enumeration value="OpticalDrive"/>
          <xs:enumeration value="HardDisk"/>
          <xs:enumeration value="USBMassStorage"/>

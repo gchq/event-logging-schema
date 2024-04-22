@@ -8,7 +8,7 @@
       <xs:annotation>
          <xs:documentation>The different types of network protocol.</xs:documentation>
       </xs:annotation>
-      <xs:restriction base="xs:string">
+      <xs:restriction base="xs:token">
          <xs:enumeration value="TCP"/>
          <xs:enumeration value="UDP"/>
          <xs:enumeration value="ICMP"/>
