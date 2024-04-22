@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           xmlns:SoftwareComplexType="http://event-logging/software-complex-type"
-           xmlns:MediaComplexType="http://event-logging/media-complex-type"
-           xmlns:OutcomeComplexType="http://event-logging/outcome-complex-type"
-           xmlns:DataComplexType="http://event-logging/data-complex-type"
-           xmlns:HardwareComplexType="http://event-logging/hardware-complex-type"
+           xmlns:SoftwareComplexType="http://software-complex-type"
+           xmlns:MediaComplexType="http://media-complex-type"
+           xmlns:OutcomeComplexType="http://outcome-complex-type"
+           xmlns:DataComplexType="http://data-complex-type"
+           xmlns:HardwareComplexType="http://hardware-complex-type"
            elementFormDefault="qualified"
            id="uninstall-complex-type-v4.0.2"
-           targetNamespace="http://event-logging/uninstall-complex-type"
+           targetNamespace="http://uninstall-complex-type"
            version="4.0.2">
-   <xs:import namespace="http://event-logging/data-complex-type"
+   <xs:import namespace="http://data-complex-type"
               schemaLocation="data-complex-type.xsd"/>
-   <xs:import namespace="http://event-logging/hardware-complex-type"
+   <xs:import namespace="http://hardware-complex-type"
               schemaLocation="hardware-complex-type.xsd"/>
-   <xs:import namespace="http://event-logging/media-complex-type"
+   <xs:import namespace="http://media-complex-type"
               schemaLocation="media-complex-type.xsd"/>
-   <xs:import namespace="http://event-logging/outcome-complex-type"
+   <xs:import namespace="http://outcome-complex-type"
               schemaLocation="outcome-complex-type.xsd"/>
-   <xs:import namespace="http://event-logging/software-complex-type"
+   <xs:import namespace="http://software-complex-type"
               schemaLocation="software-complex-type.xsd"/>
    <xs:complexType name="UninstallComplexType">
       <xs:annotation>

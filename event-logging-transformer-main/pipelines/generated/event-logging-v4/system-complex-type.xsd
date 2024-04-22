@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           xmlns:ClassificationComplexType="http://event-logging/classification-complex-type"
-           xmlns:TagSimpleType="http://event-logging/tag-simple-type"
+           xmlns:ClassificationComplexType="http://classification-complex-type"
+           xmlns:TagSimpleType="http://tag-simple-type"
            elementFormDefault="qualified"
            id="system-complex-type-v4.0.2"
-           targetNamespace="http://event-logging/system-complex-type"
+           targetNamespace="http://system-complex-type"
            version="4.0.2">
-   <xs:import namespace="http://event-logging/classification-complex-type"
+   <xs:import namespace="http://classification-complex-type"
               schemaLocation="classification-complex-type.xsd"/>
-   <xs:import namespace="http://event-logging/tag-simple-type"
-              schemaLocation="tag-simple-type.xsd"/>
+   <xs:import namespace="http://tag-simple-type" schemaLocation="tag-simple-type.xsd"/>
    <xs:complexType name="SystemComplexType">
       <xs:annotation>
          <xs:documentation>Describes the system that generated the event. This is not the same as the generator as the generator is merely the application or component that created the event, e.g. auditd. The system describes the higher level project/service or capability that uses the generator as a component, e.g. 'Payroll System'.</xs:documentation>

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           xmlns:ClassificationComplexType="http://event-logging/classification-complex-type"
-           xmlns:DataComplexType="http://event-logging/data-complex-type"
+           xmlns:ClassificationComplexType="http://classification-complex-type"
+           xmlns:DataComplexType="http://data-complex-type"
            elementFormDefault="qualified"
            id="purpose-complex-type-v4.0.2"
-           targetNamespace="http://event-logging/purpose-complex-type"
+           targetNamespace="http://purpose-complex-type"
            version="4.0.2">
-   <xs:import namespace="http://event-logging/classification-complex-type"
+   <xs:import namespace="http://classification-complex-type"
               schemaLocation="classification-complex-type.xsd"/>
-   <xs:import namespace="http://event-logging/data-complex-type"
+   <xs:import namespace="http://data-complex-type"
               schemaLocation="data-complex-type.xsd"/>
    <xs:complexType name="PurposeComplexType">
       <xs:annotation>

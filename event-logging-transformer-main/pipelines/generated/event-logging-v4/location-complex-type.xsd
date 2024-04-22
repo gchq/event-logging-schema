@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           xmlns:CoordinatesComplexType="http://event-logging/coordinates-complex-type"
+           xmlns:CoordinatesComplexType="http://coordinates-complex-type"
            elementFormDefault="qualified"
            id="location-complex-type-v4.0.2"
-           targetNamespace="http://event-logging/location-complex-type"
+           targetNamespace="http://location-complex-type"
            version="4.0.2">
-   <xs:import namespace="http://event-logging/coordinates-complex-type"
+   <xs:import namespace="http://coordinates-complex-type"
               schemaLocation="coordinates-complex-type.xsd"/>
    <xs:complexType name="LocationComplexType">
       <xs:annotation>

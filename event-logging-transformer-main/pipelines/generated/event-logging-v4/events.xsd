@@ -15,33 +15,33 @@
   ~ limitations under the License.
 -->
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           xmlns:EventDetailComplexType="http://event-logging/event-detail-complex-type"
-           xmlns:ClassificationComplexType="http://event-logging/classification-complex-type"
-           xmlns:EventChainComplexType="http://event-logging/event-chain-complex-type"
-           xmlns:AnyContentComplexType="http://event-logging/any-content-complex-type"
-           xmlns:DataComplexType="http://event-logging/data-complex-type"
-           xmlns:EventSourceComplexType="http://event-logging/event-source-complex-type"
-           xmlns:EventTimeComplexType="http://event-logging/event-time-complex-type"
-           xmlns:VersionSimpleType="http://event-logging/version-simple-type"
+           xmlns:EventDetailComplexType="http://event-detail-complex-type"
+           xmlns:ClassificationComplexType="http://classification-complex-type"
+           xmlns:EventChainComplexType="http://event-chain-complex-type"
+           xmlns:AnyContentComplexType="http://any-content-complex-type"
+           xmlns:DataComplexType="http://data-complex-type"
+           xmlns:EventSourceComplexType="http://event-source-complex-type"
+           xmlns:EventTimeComplexType="http://event-time-complex-type"
+           xmlns:VersionSimpleType="http://version-simple-type"
            elementFormDefault="qualified"
            id="event-logging-v4.0.2"
            targetNamespace="http://event-logging"
            version="4.0.2">
-   <xs:import namespace="http://event-logging/any-content-complex-type"
+   <xs:import namespace="http://any-content-complex-type"
               schemaLocation="any-content-complex-type.xsd"/>
-   <xs:import namespace="http://event-logging/classification-complex-type"
+   <xs:import namespace="http://classification-complex-type"
               schemaLocation="classification-complex-type.xsd"/>
-   <xs:import namespace="http://event-logging/data-complex-type"
+   <xs:import namespace="http://data-complex-type"
               schemaLocation="data-complex-type.xsd"/>
-   <xs:import namespace="http://event-logging/event-chain-complex-type"
+   <xs:import namespace="http://event-chain-complex-type"
               schemaLocation="event-chain-complex-type.xsd"/>
-   <xs:import namespace="http://event-logging/event-detail-complex-type"
+   <xs:import namespace="http://event-detail-complex-type"
               schemaLocation="event-detail-complex-type.xsd"/>
-   <xs:import namespace="http://event-logging/event-source-complex-type"
+   <xs:import namespace="http://event-source-complex-type"
               schemaLocation="event-source-complex-type.xsd"/>
-   <xs:import namespace="http://event-logging/event-time-complex-type"
+   <xs:import namespace="http://event-time-complex-type"
               schemaLocation="event-time-complex-type.xsd"/>
-   <xs:import namespace="http://event-logging/version-simple-type"
+   <xs:import namespace="http://version-simple-type"
               schemaLocation="version-simple-type.xsd"/>
    <xs:annotation>
       <xs:documentation>This schema describes the allowed element structure for event logging. Please refer to the documentation and examples for a description of how to use this schema in addition to the descriptions given for each element within this schema.</xs:documentation>

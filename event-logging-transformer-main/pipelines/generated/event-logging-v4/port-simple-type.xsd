@@ -2,7 +2,7 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
            elementFormDefault="qualified"
            id="port-simple-type-v4.0.2"
-           targetNamespace="http://event-logging/port-simple-type"
+           targetNamespace="http://port-simple-type"
            version="4.0.2">
    <xs:simpleType name="PortSimpleType">
       <xs:annotation>

@@ -2,7 +2,7 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
            elementFormDefault="qualified"
            id="approval-action-simple-type-v4.0.2"
-           targetNamespace="http://event-logging/approval-action-simple-type"
+           targetNamespace="http://approval-action-simple-type"
            version="4.0.2">
    <xs:simpleType name="ApprovalActionSimpleType">
       <xs:annotation>

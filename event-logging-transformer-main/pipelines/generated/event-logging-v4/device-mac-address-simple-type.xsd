@@ -2,7 +2,7 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
            elementFormDefault="qualified"
            id="device-mac-address-simple-type-v4.0.2"
-           targetNamespace="http://event-logging/device-mac-address-simple-type"
+           targetNamespace="http://device-mac-address-simple-type"
            version="4.0.2">
    <xs:simpleType name="DeviceMacAddressSimpleType">
       <xs:annotation>

@@ -105,7 +105,7 @@ public class Modulariser {
                         final String typeName = schemaInfo.prefix;
                         final String dashName = makeDashName(typeName);
                         final String schemaLocation = dashName + ".xsd";
-                        final String targetNamespace = "http://event-logging/" + dashName;
+                        final String targetNamespace = "http://" + dashName;
 
                         final Path outputFile = outputDir.resolve(schemaLocation);
                         try {
@@ -208,7 +208,7 @@ public class Modulariser {
 
 
     /**
-     * <xs:import namespace="http://event-logging/version-simple-type" schemaLocation="version-simple-type.xsd"/>
+     * <xs:import namespace="http://version-simple-type" schemaLocation="version-simple-type.xsd"/>
      **/
     private void addImports(final Node parent, final Map<String, String> imports) {
         final NodeList nodeList = parent.getChildNodes();
@@ -690,7 +690,7 @@ public class Modulariser {
                 final String groupName = getGroupName(typeName);
                 final String dashName = makeDashName(groupName);
                 final String schemaLocation = dashName + ".xsd";
-                final String targetNamespace = "http://event-logging/" + dashName;
+                final String targetNamespace = "http://" + dashName;
                 schemaMap.computeIfAbsent(groupName, k ->
                                 new SchemaInfo(schemaLocation, targetNamespace, groupName))
                         .addType(new TypeInfo(typeName, element));

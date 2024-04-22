@@ -2,7 +2,7 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
            elementFormDefault="qualified"
            id="email-address-simple-type-v4.0.2"
-           targetNamespace="http://event-logging/email-address-simple-type"
+           targetNamespace="http://email-address-simple-type"
            version="4.0.2">
    <xs:simpleType name="EmailAddressSimpleType">
       <xs:annotation>

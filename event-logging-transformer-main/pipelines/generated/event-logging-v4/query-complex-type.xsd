@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           xmlns:LogicComplexType="http://event-logging/logic-complex-type"
-           xmlns:TermComplexType="http://event-logging/term-complex-type"
+           xmlns:LogicComplexType="http://logic-complex-type"
+           xmlns:TermComplexType="http://term-complex-type"
            elementFormDefault="qualified"
            id="query-complex-type-v4.0.2"
-           targetNamespace="http://event-logging/query-complex-type"
+           targetNamespace="http://query-complex-type"
            version="4.0.2">
-   <xs:import namespace="http://event-logging/logic-complex-type"
+   <xs:import namespace="http://logic-complex-type"
               schemaLocation="logic-complex-type.xsd"/>
-   <xs:import namespace="http://event-logging/term-complex-type"
+   <xs:import namespace="http://term-complex-type"
               schemaLocation="term-complex-type.xsd"/>
    <xs:complexType name="QueryComplexType">
       <xs:sequence>

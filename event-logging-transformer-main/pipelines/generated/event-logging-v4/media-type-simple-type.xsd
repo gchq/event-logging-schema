@@ -2,7 +2,7 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
            elementFormDefault="qualified"
            id="media-type-simple-type-v4.0.2"
-           targetNamespace="http://event-logging/media-type-simple-type"
+           targetNamespace="http://media-type-simple-type"
            version="4.0.2">
    <xs:simpleType name="MediaTypeSimpleType">
       <xs:annotation>

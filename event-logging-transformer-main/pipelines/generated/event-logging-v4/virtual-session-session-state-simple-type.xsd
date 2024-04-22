@@ -2,7 +2,7 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
            elementFormDefault="qualified"
            id="virtual-session-session-state-simple-type-v4.0.2"
-           targetNamespace="http://event-logging/virtual-session-session-state-simple-type"
+           targetNamespace="http://virtual-session-session-state-simple-type"
            version="4.0.2">
    <xs:simpleType name="VirtualSessionSessionStateSimpleType">
       <xs:annotation>

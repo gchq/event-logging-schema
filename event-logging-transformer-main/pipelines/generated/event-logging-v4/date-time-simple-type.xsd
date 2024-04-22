@@ -2,7 +2,7 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
            elementFormDefault="qualified"
            id="date-time-simple-type-v4.0.2"
-           targetNamespace="http://event-logging/date-time-simple-type"
+           targetNamespace="http://date-time-simple-type"
            version="4.0.2">
    <xs:simpleType name="DateTimeSimpleType">
       <xs:annotation>

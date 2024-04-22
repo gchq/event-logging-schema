@@ -2,7 +2,7 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
            elementFormDefault="qualified"
            id="hash-complex-type-v4.0.2"
-           targetNamespace="http://event-logging/hash-complex-type"
+           targetNamespace="http://hash-complex-type"
            version="4.0.2">
    <xs:complexType name="HashComplexType">
       <xs:annotation>

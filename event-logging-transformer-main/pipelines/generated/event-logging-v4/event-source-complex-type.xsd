@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           xmlns:DataComplexType="http://event-logging/data-complex-type"
-           xmlns:SystemComplexType="http://event-logging/system-complex-type"
-           xmlns:DeviceComplexType="http://event-logging/device-complex-type"
-           xmlns:LocationComplexType="http://event-logging/location-complex-type"
-           xmlns:UserComplexType="http://event-logging/user-complex-type"
+           xmlns:DataComplexType="http://data-complex-type"
+           xmlns:SystemComplexType="http://system-complex-type"
+           xmlns:DeviceComplexType="http://device-complex-type"
+           xmlns:LocationComplexType="http://location-complex-type"
+           xmlns:UserComplexType="http://user-complex-type"
            elementFormDefault="qualified"
            id="event-source-complex-type-v4.0.2"
-           targetNamespace="http://event-logging/event-source-complex-type"
+           targetNamespace="http://event-source-complex-type"
            version="4.0.2">
-   <xs:import namespace="http://event-logging/data-complex-type"
+   <xs:import namespace="http://data-complex-type"
               schemaLocation="data-complex-type.xsd"/>
-   <xs:import namespace="http://event-logging/device-complex-type"
+   <xs:import namespace="http://device-complex-type"
               schemaLocation="device-complex-type.xsd"/>
-   <xs:import namespace="http://event-logging/location-complex-type"
+   <xs:import namespace="http://location-complex-type"
               schemaLocation="location-complex-type.xsd"/>
-   <xs:import namespace="http://event-logging/system-complex-type"
+   <xs:import namespace="http://system-complex-type"
               schemaLocation="system-complex-type.xsd"/>
-   <xs:import namespace="http://event-logging/user-complex-type"
+   <xs:import namespace="http://user-complex-type"
               schemaLocation="user-complex-type.xsd"/>
    <xs:complexType name="EventSourceComplexType">
       <xs:annotation>

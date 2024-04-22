@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           xmlns:CountryTrigraphSimpleType="http://event-logging/country-trigraph-simple-type"
+           xmlns:CountryTrigraphSimpleType="http://country-trigraph-simple-type"
            elementFormDefault="qualified"
            id="organisation-complex-type-v4.0.2"
-           targetNamespace="http://event-logging/organisation-complex-type"
+           targetNamespace="http://organisation-complex-type"
            version="4.0.2">
-   <xs:import namespace="http://event-logging/country-trigraph-simple-type"
+   <xs:import namespace="http://country-trigraph-simple-type"
               schemaLocation="country-trigraph-simple-type.xsd"/>
    <xs:complexType name="OrganisationComplexType">
       <xs:annotation>

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           xmlns:DataComplexType="http://event-logging/data-complex-type"
-           xmlns:CopyMoveOutcomeReasonSimpleType="http://event-logging/copy-move-outcome-reason-simple-type"
+           xmlns:DataComplexType="http://data-complex-type"
+           xmlns:CopyMoveOutcomeReasonSimpleType="http://copy-move-outcome-reason-simple-type"
            elementFormDefault="qualified"
            id="copy-move-outcome-complex-type-v4.0.2"
-           targetNamespace="http://event-logging/copy-move-outcome-complex-type"
+           targetNamespace="http://copy-move-outcome-complex-type"
            version="4.0.2">
-   <xs:import namespace="http://event-logging/copy-move-outcome-reason-simple-type"
+   <xs:import namespace="http://copy-move-outcome-reason-simple-type"
               schemaLocation="copy-move-outcome-reason-simple-type.xsd"/>
-   <xs:import namespace="http://event-logging/data-complex-type"
+   <xs:import namespace="http://data-complex-type"
               schemaLocation="data-complex-type.xsd"/>
    <xs:complexType name="CopyMoveOutcomeComplexType">
       <xs:annotation>

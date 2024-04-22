@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           xmlns:LatitudeSimpleType="http://event-logging/latitude-simple-type"
-           xmlns:LongitudeSimpleType="http://event-logging/longitude-simple-type"
+           xmlns:LatitudeSimpleType="http://latitude-simple-type"
+           xmlns:LongitudeSimpleType="http://longitude-simple-type"
            elementFormDefault="qualified"
            id="coordinates-complex-type-v4.0.2"
-           targetNamespace="http://event-logging/coordinates-complex-type"
+           targetNamespace="http://coordinates-complex-type"
            version="4.0.2">
-   <xs:import namespace="http://event-logging/latitude-simple-type"
+   <xs:import namespace="http://latitude-simple-type"
               schemaLocation="latitude-simple-type.xsd"/>
-   <xs:import namespace="http://event-logging/longitude-simple-type"
+   <xs:import namespace="http://longitude-simple-type"
               schemaLocation="longitude-simple-type.xsd"/>
    <xs:complexType name="CoordinatesComplexType">
       <xs:annotation>

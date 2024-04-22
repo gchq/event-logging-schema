@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           xmlns:ActivityComplexType="http://event-logging/activity-complex-type"
+           xmlns:ActivityComplexType="http://activity-complex-type"
            elementFormDefault="qualified"
            id="activity-complex-type-v4.0.2"
-           targetNamespace="http://event-logging/activity-complex-type"
+           targetNamespace="http://activity-complex-type"
            version="4.0.2">
    <xs:complexType name="ActivityComplexType">
       <xs:annotation>

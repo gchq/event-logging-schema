@@ -2,7 +2,7 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
            elementFormDefault="qualified"
            id="ip-address-simple-type-v4.0.2"
-           targetNamespace="http://event-logging/ip-address-simple-type"
+           targetNamespace="http://ip-address-simple-type"
            version="4.0.2">
    <xs:simpleType name="IpAddressSimpleType">
       <xs:annotation>

@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           xmlns:MultiObjectComplexType="http://event-logging/multi-object-complex-type"
-           xmlns:OutcomeComplexType="http://event-logging/outcome-complex-type"
-           xmlns:DataComplexType="http://event-logging/data-complex-type"
-           xmlns:DeviceComplexType="http://event-logging/device-complex-type"
-           xmlns:UserComplexType="http://event-logging/user-complex-type"
+           xmlns:MultiObjectComplexType="http://multi-object-complex-type"
+           xmlns:OutcomeComplexType="http://outcome-complex-type"
+           xmlns:DataComplexType="http://data-complex-type"
+           xmlns:DeviceComplexType="http://device-complex-type"
+           xmlns:UserComplexType="http://user-complex-type"
            elementFormDefault="qualified"
            id="send-complex-type-v4.0.2"
-           targetNamespace="http://event-logging/send-complex-type"
+           targetNamespace="http://send-complex-type"
            version="4.0.2">
-   <xs:import namespace="http://event-logging/data-complex-type"
+   <xs:import namespace="http://data-complex-type"
               schemaLocation="data-complex-type.xsd"/>
-   <xs:import namespace="http://event-logging/device-complex-type"
+   <xs:import namespace="http://device-complex-type"
               schemaLocation="device-complex-type.xsd"/>
-   <xs:import namespace="http://event-logging/multi-object-complex-type"
+   <xs:import namespace="http://multi-object-complex-type"
               schemaLocation="multi-object-complex-type.xsd"/>
-   <xs:import namespace="http://event-logging/outcome-complex-type"
+   <xs:import namespace="http://outcome-complex-type"
               schemaLocation="outcome-complex-type.xsd"/>
-   <xs:import namespace="http://event-logging/user-complex-type"
+   <xs:import namespace="http://user-complex-type"
               schemaLocation="user-complex-type.xsd"/>
    <xs:complexType name="SendComplexType">
       <xs:annotation>

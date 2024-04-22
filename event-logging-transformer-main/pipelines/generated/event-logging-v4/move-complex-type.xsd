@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           xmlns:MultiObjectComplexType="http://event-logging/multi-object-complex-type"
-           xmlns:CopyMoveOutcomeComplexType="http://event-logging/copy-move-outcome-complex-type"
-           xmlns:DataComplexType="http://event-logging/data-complex-type"
+           xmlns:MultiObjectComplexType="http://multi-object-complex-type"
+           xmlns:CopyMoveOutcomeComplexType="http://copy-move-outcome-complex-type"
+           xmlns:DataComplexType="http://data-complex-type"
            elementFormDefault="qualified"
            id="move-complex-type-v4.0.2"
-           targetNamespace="http://event-logging/move-complex-type"
+           targetNamespace="http://move-complex-type"
            version="4.0.2">
-   <xs:import namespace="http://event-logging/copy-move-outcome-complex-type"
+   <xs:import namespace="http://copy-move-outcome-complex-type"
               schemaLocation="copy-move-outcome-complex-type.xsd"/>
-   <xs:import namespace="http://event-logging/data-complex-type"
+   <xs:import namespace="http://data-complex-type"
               schemaLocation="data-complex-type.xsd"/>
-   <xs:import namespace="http://event-logging/multi-object-complex-type"
+   <xs:import namespace="http://multi-object-complex-type"
               schemaLocation="multi-object-complex-type.xsd"/>
    <xs:complexType name="MoveComplexType">
       <xs:annotation>

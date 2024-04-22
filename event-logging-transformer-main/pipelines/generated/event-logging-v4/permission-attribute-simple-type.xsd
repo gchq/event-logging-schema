@@ -2,7 +2,7 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
            elementFormDefault="qualified"
            id="permission-attribute-simple-type-v4.0.2"
-           targetNamespace="http://event-logging/permission-attribute-simple-type"
+           targetNamespace="http://permission-attribute-simple-type"
            version="4.0.2">
    <xs:simpleType name="PermissionAttributeSimpleType">
       <xs:annotation>

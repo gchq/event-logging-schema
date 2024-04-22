@@ -2,7 +2,7 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
            elementFormDefault="qualified"
            id="alert-type-simple-type-v4.0.2"
-           targetNamespace="http://event-logging/alert-type-simple-type"
+           targetNamespace="http://alert-type-simple-type"
            version="4.0.2">
    <xs:simpleType name="AlertTypeSimpleType">
       <xs:annotation>

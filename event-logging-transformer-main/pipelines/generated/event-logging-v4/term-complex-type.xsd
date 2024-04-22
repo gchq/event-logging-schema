@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           xmlns:TermConditionSimpleType="http://event-logging/term-condition-simple-type"
+           xmlns:TermConditionSimpleType="http://term-condition-simple-type"
            elementFormDefault="qualified"
            id="term-complex-type-v4.0.2"
-           targetNamespace="http://event-logging/term-complex-type"
+           targetNamespace="http://term-complex-type"
            version="4.0.2">
-   <xs:import namespace="http://event-logging/term-condition-simple-type"
+   <xs:import namespace="http://term-condition-simple-type"
               schemaLocation="term-condition-simple-type.xsd"/>
    <xs:complexType name="TermComplexType">
       <xs:annotation>

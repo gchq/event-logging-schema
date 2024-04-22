@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           xmlns:DateTimeSimpleType="http://event-logging/date-time-simple-type"
-           xmlns:DeviceComplexType="http://event-logging/device-complex-type"
+           xmlns:DateTimeSimpleType="http://date-time-simple-type"
+           xmlns:DeviceComplexType="http://device-complex-type"
            elementFormDefault="qualified"
            id="event-time-complex-type-v4.0.2"
-           targetNamespace="http://event-logging/event-time-complex-type"
+           targetNamespace="http://event-time-complex-type"
            version="4.0.2">
-   <xs:import namespace="http://event-logging/date-time-simple-type"
+   <xs:import namespace="http://date-time-simple-type"
               schemaLocation="date-time-simple-type.xsd"/>
-   <xs:import namespace="http://event-logging/device-complex-type"
+   <xs:import namespace="http://device-complex-type"
               schemaLocation="device-complex-type.xsd"/>
    <xs:complexType name="EventTimeComplexType">
       <xs:annotation>

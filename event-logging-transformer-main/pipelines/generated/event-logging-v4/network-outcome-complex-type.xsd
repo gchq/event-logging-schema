@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           xmlns:MultiObjectComplexType="http://event-logging/multi-object-complex-type"
-           xmlns:OutcomeComplexType="http://event-logging/outcome-complex-type"
-           xmlns:NetworkLocationComplexType="http://event-logging/network-location-complex-type"
-           xmlns:DataComplexType="http://event-logging/data-complex-type"
+           xmlns:MultiObjectComplexType="http://multi-object-complex-type"
+           xmlns:OutcomeComplexType="http://outcome-complex-type"
+           xmlns:NetworkLocationComplexType="http://network-location-complex-type"
+           xmlns:DataComplexType="http://data-complex-type"
            elementFormDefault="qualified"
            id="network-outcome-complex-type-v4.0.2"
-           targetNamespace="http://event-logging/network-outcome-complex-type"
+           targetNamespace="http://network-outcome-complex-type"
            version="4.0.2">
-   <xs:import namespace="http://event-logging/data-complex-type"
+   <xs:import namespace="http://data-complex-type"
               schemaLocation="data-complex-type.xsd"/>
-   <xs:import namespace="http://event-logging/multi-object-complex-type"
+   <xs:import namespace="http://multi-object-complex-type"
               schemaLocation="multi-object-complex-type.xsd"/>
-   <xs:import namespace="http://event-logging/network-location-complex-type"
+   <xs:import namespace="http://network-location-complex-type"
               schemaLocation="network-location-complex-type.xsd"/>
-   <xs:import namespace="http://event-logging/outcome-complex-type"
+   <xs:import namespace="http://outcome-complex-type"
               schemaLocation="outcome-complex-type.xsd"/>
    <xs:complexType name="NetworkOutcomeComplexType">
       <xs:annotation>

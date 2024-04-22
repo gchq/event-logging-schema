@@ -2,7 +2,7 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
            elementFormDefault="qualified"
            id="country-trigraph-simple-type-v4.0.2"
-           targetNamespace="http://event-logging/country-trigraph-simple-type"
+           targetNamespace="http://country-trigraph-simple-type"
            version="4.0.2">
    <xs:simpleType name="CountryTrigraphSimpleType">
       <xs:annotation>

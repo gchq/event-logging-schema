@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           xmlns:DateTimeSimpleType="http://event-logging/date-time-simple-type"
-           xmlns:CountryTrigraphSimpleType="http://event-logging/country-trigraph-simple-type"
-           xmlns:DataComplexType="http://event-logging/data-complex-type"
-           xmlns:OrganisationComplexType="http://event-logging/organisation-complex-type"
-           xmlns:AccessControlGroupsComplexType="http://event-logging/access-control-groups-complex-type"
+           xmlns:DateTimeSimpleType="http://date-time-simple-type"
+           xmlns:CountryTrigraphSimpleType="http://country-trigraph-simple-type"
+           xmlns:DataComplexType="http://data-complex-type"
+           xmlns:OrganisationComplexType="http://organisation-complex-type"
+           xmlns:AccessControlGroupsComplexType="http://access-control-groups-complex-type"
            elementFormDefault="qualified"
            id="classification-complex-type-v4.0.2"
-           targetNamespace="http://event-logging/classification-complex-type"
+           targetNamespace="http://classification-complex-type"
            version="4.0.2">
-   <xs:import namespace="http://event-logging/access-control-groups-complex-type"
+   <xs:import namespace="http://access-control-groups-complex-type"
               schemaLocation="access-control-groups-complex-type.xsd"/>
-   <xs:import namespace="http://event-logging/country-trigraph-simple-type"
+   <xs:import namespace="http://country-trigraph-simple-type"
               schemaLocation="country-trigraph-simple-type.xsd"/>
-   <xs:import namespace="http://event-logging/data-complex-type"
+   <xs:import namespace="http://data-complex-type"
               schemaLocation="data-complex-type.xsd"/>
-   <xs:import namespace="http://event-logging/date-time-simple-type"
+   <xs:import namespace="http://date-time-simple-type"
               schemaLocation="date-time-simple-type.xsd"/>
-   <xs:import namespace="http://event-logging/organisation-complex-type"
+   <xs:import namespace="http://organisation-complex-type"
               schemaLocation="organisation-complex-type.xsd"/>
    <xs:complexType name="ClassificationComplexType">
       <xs:annotation>

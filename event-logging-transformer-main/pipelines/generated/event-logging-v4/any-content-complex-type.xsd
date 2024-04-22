@@ -2,7 +2,7 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
            elementFormDefault="qualified"
            id="any-content-complex-type-v4.0.2"
-           targetNamespace="http://event-logging/any-content-complex-type"
+           targetNamespace="http://any-content-complex-type"
            version="4.0.2">
    <xs:complexType mixed="true" name="AnyContentComplexType">
       <xs:annotation>

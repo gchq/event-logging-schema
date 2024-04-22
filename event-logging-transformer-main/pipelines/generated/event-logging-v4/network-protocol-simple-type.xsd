@@ -2,7 +2,7 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
            elementFormDefault="qualified"
            id="network-protocol-simple-type-v4.0.2"
-           targetNamespace="http://event-logging/network-protocol-simple-type"
+           targetNamespace="http://network-protocol-simple-type"
            version="4.0.2">
    <xs:simpleType name="NetworkProtocolSimpleType">
       <xs:annotation>

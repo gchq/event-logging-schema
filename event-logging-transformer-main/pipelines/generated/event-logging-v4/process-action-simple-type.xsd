@@ -2,7 +2,7 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
            elementFormDefault="qualified"
            id="process-action-simple-type-v4.0.2"
-           targetNamespace="http://event-logging/process-action-simple-type"
+           targetNamespace="http://process-action-simple-type"
            version="4.0.2">
    <xs:simpleType name="ProcessActionSimpleType">
       <xs:annotation>

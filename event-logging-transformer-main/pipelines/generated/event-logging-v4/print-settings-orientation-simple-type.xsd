@@ -2,7 +2,7 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
            elementFormDefault="qualified"
            id="print-settings-orientation-simple-type-v4.0.2"
-           targetNamespace="http://event-logging/print-settings-orientation-simple-type"
+           targetNamespace="http://print-settings-orientation-simple-type"
            version="4.0.2">
    <xs:simpleType name="PrintSettingsOrientationSimpleType">
       <xs:annotation>

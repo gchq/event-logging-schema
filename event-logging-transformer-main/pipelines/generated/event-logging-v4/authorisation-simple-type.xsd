@@ -2,7 +2,7 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
            elementFormDefault="qualified"
            id="authorisation-simple-type-v4.0.2"
-           targetNamespace="http://event-logging/authorisation-simple-type"
+           targetNamespace="http://authorisation-simple-type"
            version="4.0.2">
    <xs:simpleType name="AuthorisationSimpleType">
       <xs:annotation>
