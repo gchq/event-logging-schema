@@ -18,11 +18,14 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 
 ## [Unreleased]
 
+* Issue **#86**: Change `PermittedOrganisation` to be unbounded within `PermittedOrganisations`.
+
+
 ## [v3.5.2] - 2020-11-02
 
 * No changes to the schema.
 
-* Fix version enumeration in scheam.
+* Fix version enumeration in schema.
 
 
 ## [v3.5.1] - 2020-10-30

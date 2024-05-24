@@ -1348,7 +1348,7 @@
                 </xs:annotation>
                 <xs:complexType>
                     <xs:sequence>
-                        <xs:element name="PermittedOrganisation" type="evt:OrganisationComplexType">
+                        <xs:element name="PermittedOrganisation" type="evt:OrganisationComplexType" maxOccurs="unbounded">
                             <xs:annotation>
                                 <xs:documentation>An organisation permitted to access the protectively marked item. The PermittedOrganisation is described by an Organisation and optionally qualified by the organisation's country code.</xs:documentation>
                             </xs:annotation>
