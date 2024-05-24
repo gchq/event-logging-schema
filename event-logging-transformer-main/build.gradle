@@ -76,8 +76,7 @@ task transformersDist(type: Zip) {
 // Run the python script to validate all the version numbers in the schema file
 task validateSchemaVersions(type: Exec) {
     workingDir '../'
-    //commandLine "python3", "validateSchemaVersions.py", versions.eventLogging
-    commandLine "sh", "-c", "cat validateSchemaVersions.py && echo '-----------' && python3 validateSchemaVersions.py ${versions.eventLogging}"
+    commandLine "python3", "validateSchemaVersions.py", versions.eventLogging
 }
 
 // Run a bash script to compare the currennt jaxb source with the latest released version so
