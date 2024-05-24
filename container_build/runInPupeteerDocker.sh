@@ -187,10 +187,10 @@ main() {
 
   if [ "${bash_cmd}" = "bash" ]; then
     run_cmd=( "bash" )
-  elif [[ "${bash_cmd}" = "PDF" || "${bash_cmd}" = "pdf" ]]; then
 
-    # Hugo is running in another container so use the service name 'site' as
-    # the host
+  elif [[ "${bash_cmd}" = "PDF" || "${bash_cmd}" = "pdf" ]]; then
+    # Hugo is running in another container so use the service name 
+    # 'schema-hugo-build-env' for the host
     run_cmd=( \
       "node" \
       "../generate-pdf.js" \

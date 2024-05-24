@@ -769,6 +769,11 @@ main() {
   # Now build each of the release branches (if they have changed)
   for branch_name in "${release_branches[@]}"; do
 
+    if [[ "${branch_name}" = "3.5" ]]; then
+      # 3.5 is not set up with the hugo docs site so skip it
+      break
+    fi
+
     if ! git ls-remote --exit-code --heads origin "refs/heads/${branch_name}"; then
       echo -e "${RED}ERROR: Branch ${BLUE}${branch_name}${RED}" \
         "does not exist. Check contents of release_branches array.${NC}"
