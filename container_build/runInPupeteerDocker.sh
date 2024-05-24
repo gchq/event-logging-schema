@@ -239,7 +239,7 @@ main() {
   # will pull images
   docker_login
 
-  #buildx_instance="${image_tag}"
+  buildx_instance="${image_tag}"
 
   if ! docker buildx inspect "${buildx_instance}" >/dev/null 2>&1; then
     echo -e "${GREEN}Creating buildx instance: ${YELLOW}${buildx_instance}${NC}"
