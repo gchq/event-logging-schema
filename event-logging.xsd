@@ -1029,7 +1029,7 @@
               <xs:documentation>Optional description of the media that the file exists on or that the file is being written to.</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element name="Hash" minOccurs="0" maxOccurs="1" type="evt:HashComplexType">
+          <xs:element name="Hash" minOccurs="0" maxOccurs="unbounded" type="evt:HashComplexType">
             <xs:annotation>
               <xs:documentation>Describes the output of a hash function and the type of has function used.</xs:documentation>
             </xs:annotation>
