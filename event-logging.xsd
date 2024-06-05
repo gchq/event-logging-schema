@@ -2073,7 +2073,7 @@
             <xs:documentation>The name of the building.</xs:documentation>
           </xs:annotation>
         </xs:element>
-        <xs:element name="Floor" type="xs:integer" minOccurs="0" maxOccurs="1">
+        <xs:element name="Floor" type="xs:string" minOccurs="0" maxOccurs="1">
           <xs:annotation>
             <xs:documentation>The floor of the building that the location refers to.</xs:documentation>
           </xs:annotation>
