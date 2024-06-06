@@ -1725,6 +1725,11 @@
               <xs:documentation>This type should be used were the type of the event cannot be described by any of the other event actions, or the event type is unknown.</xs:documentation>
             </xs:annotation>
             <xs:sequence minOccurs="1" maxOccurs="1">
+              <xs:element name="Outcome" type="evt:OutcomeComplexType" minOccurs="0" maxOccurs="1">
+                <xs:annotation>
+                  <xs:documentation>Used to determine if the action was successful. If omitted it is assumed that the event was successful and was permitted.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
               <xs:element name="Data" type="evt:DataComplexType" minOccurs="0" maxOccurs="unbounded">
                 <xs:annotation>
                   <xs:documentation>Any other event data that does not fit into a schema element but may be useful for the purpose of audit.</xs:documentation>
