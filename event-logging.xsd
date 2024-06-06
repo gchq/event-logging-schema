@@ -2983,10 +2983,18 @@
           <xs:documentation>Describes the state of one or more object properties before it was changed.</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element name="After" type="evt:MultiObjectComplexType" minOccurs="1" maxOccurs="1">
+      <xs:element name="After" type="evt:MultiObjectComplexType" minOccurs="0" maxOccurs="1">
         <xs:annotation>
           <xs:documentation>Describes the state of one or more object properties after it was changed.</xs:documentation>
         </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Deltas">
+        <xs:complexType>
+          <xs:choice maxOccurs="unbounded">
+            <xs:element name="Add" type="evt:MultiObjectComplexType"/>
+            <xs:element name="Remove" type="evt:MultiObjectComplexType"/>
+          </xs:choice>
+        </xs:complexType>
       </xs:element>
       <xs:element name="Outcome" type="evt:OutcomeComplexType" minOccurs="0" maxOccurs="1">
         <xs:annotation>
