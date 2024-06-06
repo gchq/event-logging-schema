@@ -710,6 +710,11 @@
         <xs:documentation>Defines the version of data structure specification.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
+    <xs:attribute name="Id" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>An identifier, name or key to distinguish this block of content from others in the document.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
   </xs:complexType>
   <xs:complexType name="ApprovalComplexType">
     <xs:annotation>
