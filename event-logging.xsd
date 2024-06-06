@@ -3520,11 +3520,7 @@
       <xs:documentation>The types of permission that can be assigned to an entity such as a document.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="Author"/>
-      <xs:enumeration value="Owner"/>
-      <xs:enumeration value="Read"/>
-      <xs:enumeration value="Write"/>
-      <xs:enumeration value="Execute"/>
+      <xs:pattern value="^(Author|Owner|Read|Write|Execute|Create|Delete|Use|Other: .*)$"/>
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="PortSimpleType">
