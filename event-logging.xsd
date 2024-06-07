@@ -367,6 +367,11 @@
           <xs:documentation>A user entity which may represent a person or some form of non-human processing user.</xs:documentation>
         </xs:annotation>
       </xs:element>
+      <xs:element name="VirtualDevice" type="evt:VirtualDeviceComplexType">
+        <xs:annotation>
+          <xs:documentation>A virtual machine, virtualised server or container running on a host device, e.g. a Docker container, a VMWare/VirtualBox virtual machine or a virtual host running on a cloud provider.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
       <xs:element name="VirtualSession" type="evt:VirtualSessionComplexType" minOccurs="1" maxOccurs="1">
         <xs:annotation>
           <xs:documentation>This is used to describe the session used when viewing another user's session, e.g. screen sharing or remote assistance type activities.</xs:documentation>
@@ -3171,6 +3176,39 @@
       <xs:extension base="evt:BaseObjectOutcomeComplexType"> </xs:extension>
     </xs:complexContent>
   </xs:complexType>
+  <xs:complexType name="VirtualDeviceComplexType">
+    <xs:complexContent>
+      <xs:extension base="evt:DeviceComplexType">
+        <xs:sequence>
+          <xs:element name="Type" type="evt:VirtualDeviceSimpleType">
+            <xs:annotation>
+              <xs:documentation>The type of the virtual device, e.g. Container, System Virtual Machine (running directly on the host device, e.g. EC2), or Process Virtual Machine (running on top of a host operating system, e.g. VirtualBox). </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="Hypervisor" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>Details of the hypervisor software that is running this virtual device, e.g. VMWare Fusion, KVM, Docker, etc.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="Image" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>The name of the image or snapshot</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="Version" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>The version of the image in use.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="VirtualHost" type="evt:DeviceComplexType">
+            <xs:annotation>
+              <xs:documentation>Details of the host device on which this virtualised guest virtual machine/container is deployed, e.g. the device running the Docker container, or a cluster of hosts running the virtual machine.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
   <xs:complexType name="VirtualSessionComplexType">
     <xs:annotation>
       <xs:documentation>Describes the session used when viewing another user's session, e.g. screen sharing or remote assistance type activities.</xs:documentation>
@@ -3636,6 +3674,17 @@
     </xs:annotation>
     <xs:restriction base="xs:string">
       <xs:enumeration value="4.0.3"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="VirtualDeviceSimpleType">
+    <xs:annotation>
+      <xs:documentation>The type of the virtual device, e.g. Container, System Virtual Machine (running directly on the host device, e.g. EC2), or Process Virtual Machine (running on top of a host operating system, e.g. VirtualBox).</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Container"/>
+      <xs:enumeration value="System Virtual Machine"/>
+      <xs:enumeration value="Process Virtual Machine"/>
+      <xs:enumeration value="Other"/>
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="VirtualSessionSessionStateSimpleType">
