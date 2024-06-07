@@ -691,6 +691,11 @@
           <xs:documentation>Describes the infected item if one has been found.</xs:documentation>
         </xs:annotation>
       </xs:element>
+      <xs:element name="Data" type="evt:DataComplexType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Any other event data that does not fit into a schema element but may be useful for the purpose of audit. Can also be used for appending data about the event after it has been received or processed, e.g. for recording details relating to the processing of the event such as the feed name.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="AnyContentComplexType" mixed="true">
@@ -1824,6 +1829,11 @@
                 </xs:sequence>
               </xs:complexType>
             </xs:element>
+            <xs:element name="Data" type="evt:DataComplexType" minOccurs="0" maxOccurs="unbounded">
+              <xs:annotation>
+                <xs:documentation>Any other event data that does not fit into a schema element but may be useful for the purpose of audit. Can also be used for appending data about the event after it has been received or processed, e.g. for recording details relating to the processing of the event such as the feed name.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
           </xs:sequence>
         </xs:complexType>
       </xs:element>
@@ -1862,6 +1872,11 @@
       <xs:element name="TimeSource" type="evt:DeviceComplexType" minOccurs="0" maxOccurs="1">
         <xs:annotation>
           <xs:documentation>This is an optional element to be used to indicate the time source that the event creation time has been synchronised with. In most circumstances it is assumed that the event time has been synchronised with the corporate time service where the generating device resides so the inclusion of this element is not required.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Data" type="evt:DataComplexType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Any other event data that does not fit into a schema element but may be useful for the purpose of audit. Can also be used for appending data about the event after it has been received or processed, e.g. for recording details relating to the processing of the event such as the feed name.</xs:documentation>
         </xs:annotation>
       </xs:element>
     </xs:sequence>
@@ -2118,6 +2133,11 @@
           <xs:documentation>The name of a zone within a building or site with some form of access control/monitoring for entry/exit to the zone.</xs:documentation>
         </xs:annotation>
       </xs:element>
+      <xs:element name="Data" type="evt:DataComplexType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Any other event data that does not fit into a schema element but may be useful for the purpose of audit. Can also be used for appending data about the event after it has been received or processed, e.g. for recording details relating to the processing of the event such as the feed name.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="MediaComplexType">
@@ -2268,6 +2288,11 @@
       <xs:element name="Deny" type="evt:NetworkOutcomeComplexType" minOccurs="1" maxOccurs="1">
         <xs:annotation>
           <xs:documentation>The action of network traffic being denied by an Access Control List (ACL).</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Data" type="evt:DataComplexType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Any other event data that does not fit into a schema element but may be useful for the purpose of audit. Can also be used for appending data about the event after it has been received or processed, e.g. for recording details relating to the processing of the event such as the feed name.</xs:documentation>
         </xs:annotation>
       </xs:element>
     </xs:choice>
@@ -2942,6 +2967,11 @@
             </xs:element>
           </xs:sequence>
         </xs:complexType>
+      </xs:element>
+      <xs:element name="Data" type="evt:DataComplexType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Any other event data that does not fit into a schema element but may be useful for the purpose of audit. Can also be used for appending data about the event after it has been received or processed, e.g. for recording details relating to the processing of the event such as the feed name.</xs:documentation>
+        </xs:annotation>
       </xs:element>
     </xs:sequence>
   </xs:complexType>
