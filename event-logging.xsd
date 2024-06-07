@@ -1574,6 +1574,11 @@
               <xs:documentation>The MIME (Multipurpose Internet Mail Extensions) type of the email body, i.e. the format of the message body, e.g. 'text/plain' or 'text/html'. </xs:documentation>
             </xs:annotation>
           </xs:element>
+          <xs:element minOccurs="0" name="Date" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>The date taken from the email 'Date' header. This date is in string form and in the format and timezone as produced by the email client. It may be local time or UTC depending on the client, therefore it may differ to the EventTime of this event. It is also possible it is invalid if the email client device is misconfigured, e.g. in the future.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
           <xs:element name="Data" type="evt:DataComplexType" minOccurs="0" maxOccurs="unbounded">
             <xs:annotation>
               <xs:documentation>Any other event data that does not fit into a schema element but may be useful for the purpose of audit.</xs:documentation>
