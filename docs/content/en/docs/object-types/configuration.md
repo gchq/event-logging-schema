@@ -1,7 +1,7 @@
 ---
 title: "Configuration"
 linkTitle: "Configuration"
-#weight:
+weight: 40
 date: 2022-05-05
 tags: 
   - object-type

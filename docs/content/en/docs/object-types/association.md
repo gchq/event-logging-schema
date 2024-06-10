@@ -1,7 +1,7 @@
 ---
 title: "Association"
 linkTitle: "Association"
-#weight:
+weight: 10
 date: 2022-05-05
 tags:
   - object-type

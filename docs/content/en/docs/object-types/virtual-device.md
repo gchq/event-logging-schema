@@ -1,7 +1,7 @@
 ---
 title: "Virtual Device"
 linkTitle: "Virtual Device"
-#weight:
+weight: 180
 date: 2024-06-10
 tags: 
   - object-type
