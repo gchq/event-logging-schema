@@ -1389,6 +1389,48 @@
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
+  <xs:complexType name="CloudServiceComplexType">
+    <xs:annotation>
+      <xs:documentation>Describes a service on a cloud provider, e.g. an AWS Lambda or a Google BigQuery database. This normally descirbes a Software As A Serivce offering. Cloud infrastructure such as AWS EC2s should be modelled with the VirtualDevice object type instead.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="evt:BaseObjectComplexType">
+        <xs:sequence>
+          <xs:element name="Provder" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>The name of the provider, providing the cloud service, e.g. AWS, Google, Azure, etc.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CloudType">
+            <xs:annotation>
+              <xs:documentation>The type of cloud the service exists in, e.g. Public or Private.</xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:enumeration value="Private"/>
+                <xs:enumeration value="Public"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" name="Region" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>The cloud region that the service is deployed in. A region typically contains multiple zones.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="Zone" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>The cloud zone that the service is deployed in. A zone is typically a sub-division of a region.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Data" type="evt:DataComplexType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Any other event data that does not fit into a schema element but may be useful for the purpose of audit.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
   <xs:complexType name="DataComplexType">
     <xs:annotation>
       <xs:documentation>Describes any other event data that does not fit into a schema element but may be useful for the purpose of audit. The recursive nature of this type means it can be used to model a tree of data.</xs:documentation>
