@@ -3177,6 +3177,9 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:complexType name="VirtualDeviceComplexType">
+    <xs:annotation>
+      <xs:documentation>Describes a virtual device/machine running in a virtualised hosting environment. A virtual device will typically be a virtual machine, network appliance or other piece of infrastructure that is addressable on the network. It may be hosted on on-premesis or cloud infrastructure.</xs:documentation>
+    </xs:annotation>
     <xs:complexContent>
       <xs:extension base="evt:DeviceComplexType">
         <xs:sequence>
@@ -3200,9 +3203,37 @@
               <xs:documentation>The version of the image in use.</xs:documentation>
             </xs:annotation>
           </xs:element>
+          <xs:element name="CloudProvder" type="xs:string" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>The name of the cloud provider if this virtual device is hosted on a cloud provider, e.g. AWS, Google, Azure, etc.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="CloudType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>The type of cloud the device is deployed in, e.g. public or private or on-premesis infrastructure.</xs:documentation>
+            </xs:annotation>
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:enumeration value="On-premesis"/>
+                <xs:enumeration value="Private"/>
+                <xs:enumeration value="Public"/>
+                <xs:enumeration value="Other"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element minOccurs="0" name="CloudRegion" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>The cloud region that the service is deployed in. A region typically contains multiple zones.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="CloudZone" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>The cloud zone that the service is deployed in. A zone is typically a sub-division of a region.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
           <xs:element maxOccurs="unbounded" minOccurs="0" name="VirtualHost" type="evt:DeviceComplexType">
             <xs:annotation>
-              <xs:documentation>Details of the host device on which this virtualised guest virtual machine/container is deployed, e.g. the device running the Docker container, or a cluster of hosts running the virtual machine.</xs:documentation>
+              <xs:documentation>Details of the host device on which this guest virtual machine/container is deployed, e.g. the device running the Docker container, or a cluster of hosts running the virtual machine.</xs:documentation>
             </xs:annotation>
           </xs:element>
         </xs:sequence>
@@ -3684,6 +3715,7 @@
       <xs:enumeration value="Container"/>
       <xs:enumeration value="System Virtual Machine"/>
       <xs:enumeration value="Process Virtual Machine"/>
+      <xs:enumeration value="Cloud Device"/>
       <xs:enumeration value="Other"/>
     </xs:restriction>
   </xs:simpleType>
