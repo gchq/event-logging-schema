@@ -3208,18 +3208,10 @@
               <xs:documentation>The name of the cloud provider if this virtual device is hosted on a cloud provider, e.g. AWS, Google, Azure, etc.</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element name="CloudType" minOccurs="0">
+          <xs:element name="CloudType" minOccurs="0" type="evt:CloudTypeSimpleType">
             <xs:annotation>
               <xs:documentation>The type of cloud the device is deployed in, e.g. public or private or on-premesis infrastructure.</xs:documentation>
             </xs:annotation>
-            <xs:simpleType>
-              <xs:restriction base="xs:string">
-                <xs:enumeration value="On-premesis"/>
-                <xs:enumeration value="Private"/>
-                <xs:enumeration value="Public"/>
-                <xs:enumeration value="Other"/>
-              </xs:restriction>
-            </xs:simpleType>
           </xs:element>
           <xs:element minOccurs="0" name="CloudRegion" type="xs:string">
             <xs:annotation>
@@ -3471,6 +3463,14 @@
     </xs:annotation>
     <xs:restriction base="xs:string">
       <xs:pattern value="[A-Z]{3}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="CloudTypeSimpleType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="On-premesis"/>
+      <xs:enumeration value="Private"/>
+      <xs:enumeration value="Public"/>
+      <xs:enumeration value="Other"/>
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="DateTimeSimpleType">
