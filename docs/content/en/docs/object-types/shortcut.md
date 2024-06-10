@@ -1,7 +1,7 @@
 ---
 title: "Shortcut"
 linkTitle: "Shortcut"
-weight: 150
+weight: 160
 date: 2022-05-06
 tags: 
   - object-type

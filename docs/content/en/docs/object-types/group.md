@@ -1,7 +1,7 @@
 ---
 title: "Group"
 linkTitle: "Group"
-weight: 100
+weight: 110
 date: 2022-05-05
 tags: 
   - object-type

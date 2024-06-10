@@ -1,7 +1,7 @@
 ---
 title: "Resource"
 linkTitle: "Resource"
-weight: 130
+weight: 140
 date: 2022-05-06
 tags: 
   - object-type
