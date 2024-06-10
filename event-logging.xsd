@@ -1406,16 +1406,15 @@
               <xs:documentation>The name of the provider, providing the cloud service, e.g. AWS, Google, Azure, etc.</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element name="CloudType">
+          <xs:element name="CloudType" type="evt:CloudSimpleType">
             <xs:annotation>
               <xs:documentation>The type of cloud the service exists in, e.g. Public or Private.</xs:documentation>
             </xs:annotation>
-            <xs:simpleType>
-              <xs:restriction base="xs:string">
-                <xs:enumeration value="Private"/>
-                <xs:enumeration value="Public"/>
-              </xs:restriction>
-            </xs:simpleType>
+          </xs:element>
+          <xs:element name="CloudServiceType" type="evt:CloudServiceSimpleType">
+            <xs:annotation>
+              <xs:documentation>The type of cloud the service exists in, e.g. Public or Private.</xs:documentation>
+            </xs:annotation>
           </xs:element>
           <xs:element minOccurs="0" name="CloudRegion" type="xs:string">
             <xs:annotation>
@@ -3507,7 +3506,21 @@
       <xs:pattern value="[A-Z]{3}"/>
     </xs:restriction>
   </xs:simpleType>
+  <xs:simpleType name="CloudServiceSimpleType">
+    <xs:annotation>
+      <xs:documentation>The types or categories of cloud service, e.g. a service for processing data.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Processing"/>
+      <xs:enumeration value="Data Storage"/>
+      <xs:enumeration value="Database"/>
+      <xs:enumeration value="Other"/>
+    </xs:restriction>
+  </xs:simpleType>
   <xs:simpleType name="CloudSimpleType">
+    <xs:annotation>
+      <xs:documentation>The types of cloud e.g. a public cloud.</xs:documentation>
+    </xs:annotation>
     <xs:restriction base="xs:string">
       <xs:enumeration value="On-premesis"/>
       <xs:enumeration value="Private"/>
