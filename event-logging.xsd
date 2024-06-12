@@ -307,6 +307,11 @@
           <xs:documentation>Describes part of a chat session between a user and one or more other users, e.g. in an instant messaging application.</xs:documentation>
         </xs:annotation>
       </xs:element>
+      <xs:element name="CloudService" type="evt:CloudServiceComplexType">
+        <xs:annotation>
+          <xs:documentation>Describes a service on a cloud provider, e.g. an AWS Lambda or a Google BigQuery database. This normally descirbes a Software As A Serivce offering. Cloud infrastructure such as AWS EC2s should be modelled with the VirtualDevice object type instead.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
       <xs:element name="Configuration" type="evt:ConfigurationComplexType" minOccurs="1" maxOccurs="1">
         <xs:annotation>
           <xs:documentation>Describes the configuration of entity, e.g. it can be used to describe the update to the configuration of a network device.</xs:documentation>
