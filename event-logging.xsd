@@ -2975,25 +2975,41 @@
   </xs:complexType>
   <xs:complexType name="UpdateComplexType">
     <xs:annotation>
-      <xs:documentation>Describes the update/modification/change to a file, object, entity, piece of data, etc.</xs:documentation>
+      <xs:documentation>Describes the update/modification/change to a file, object, entity, piece of data, etc. The update can be recorded by providing the Before and After state to describe the change. Alternatively, if the change is a small change to an object with many parts, it may be preferable to record the individual deltas rather than the whole state. As a minimum the After state should be recorded to describe the object being changed with/without the detail of its state.</xs:documentation>
     </xs:annotation>
     <xs:sequence minOccurs="1" maxOccurs="1">
       <xs:element name="Before" type="evt:MultiObjectComplexType" minOccurs="0" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation>Describes the state of one or more object properties before it was changed.</xs:documentation>
+          <xs:documentation>Describes the state of one or more object properties before it was changed. Essentially a snapshot of the object before the change.</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element name="After" type="evt:MultiObjectComplexType" minOccurs="0" maxOccurs="1">
+      <xs:element name="After" type="evt:MultiObjectComplexType" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation>Describes the state of one or more object properties after it was changed.</xs:documentation>
+          <xs:documentation>Describes the state of one or more object properties after it was changed. Essentially a snapshot of the object after the change.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element minOccurs="0" name="Deltas">
+        <xs:annotation>
+          <xs:documentation>Describe one or more differences that have been applied to an object. When using this element, the object that the deltas/differences are applied to should be described in the After element.</xs:documentation>
+        </xs:annotation>
         <xs:complexType>
-          <xs:choice maxOccurs="unbounded">
-            <xs:element name="Add" type="evt:MultiObjectComplexType"/>
-            <xs:element name="Remove" type="evt:MultiObjectComplexType"/>
-          </xs:choice>
+          <xs:sequence>
+            <xs:element name="Addittion" type="evt:MultiObjectComplexType" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>Describes the addition of one of more parts of an object or entity. For example if the user is adding two files to a zip file containing 1000 files, this can be recorded as the addition of the two files. The details of the zip file can be recorded in the After element without the need to record the before and after state of all 1000/1002 files.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="Replacement" type="evt:MultiObjectComplexType" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>Describes the replacement of one of more parts of an object or entity. For example if the user is updating a single file in a zip file containing 1000 files, this can be recorded as the replacement of just that file. The details of the zip file can be record in the After element without the need to recorded the before and after state of all 1000 files.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="Removal" type="evt:MultiObjectComplexType" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>Describes the removal of one of more parts of an object or entity. For example if the user is removing two files from a zip file containing 1000 files, this can be recorded as the addition of the two files. The details of the zip file can be recorded in the After element without the need to record the before and after state of all 1000/998 files.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
         </xs:complexType>
       </xs:element>
       <xs:element name="Outcome" type="evt:OutcomeComplexType" minOccurs="0" maxOccurs="1">
