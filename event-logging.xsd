@@ -217,6 +217,35 @@
       </xs:element>
     </xs:sequence>
   </xs:group>
+  <xs:group name="CloudDetailsObjectGroup">
+    <xs:sequence>
+      <xs:element name="CloudProvider" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>The name of the provider, providing the cloud service, e.g. AWS, Google, Azure, etc.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CloudType" type="evt:CloudSimpleType">
+        <xs:annotation>
+          <xs:documentation>The type of cloud the service exists in, e.g. Public or Private.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CloudServiceType" type="evt:CloudServiceSimpleType">
+        <xs:annotation>
+          <xs:documentation>The type of cloud the service exists in, e.g. Public or Private.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="CloudRegion" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>The cloud region that the service is deployed in. A region typically contains multiple zones.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="CloudZone" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>The cloud zone that the service is deployed in. A zone is typically a sub-division of a region.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:group>
   <xs:group name="CriteriaExtensionGroup">
     <xs:sequence>
       <xs:element name="DataSources" minOccurs="0" maxOccurs="1">
@@ -307,6 +336,11 @@
           <xs:documentation>Describes part of a chat session between a user and one or more other users, e.g. in an instant messaging application.</xs:documentation>
         </xs:annotation>
       </xs:element>
+      <xs:element name="CloudService" type="evt:CloudServiceComplexType">
+        <xs:annotation>
+          <xs:documentation>Describes a service on a cloud provider, e.g. an AWS Lambda or a Google BigQuery database. This normally descirbes a Software As A Serivce offering. Cloud infrastructure such as AWS EC2s should be modelled with the VirtualDevice object type instead.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
       <xs:element name="Configuration" type="evt:ConfigurationComplexType" minOccurs="1" maxOccurs="1">
         <xs:annotation>
           <xs:documentation>Describes the configuration of entity, e.g. it can be used to describe the update to the configuration of a network device.</xs:documentation>
@@ -365,6 +399,11 @@
       <xs:element name="User" type="evt:UserComplexType" minOccurs="1" maxOccurs="1">
         <xs:annotation>
           <xs:documentation>A user entity which may represent a person or some form of non-human processing user.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="VirtualDevice" type="evt:VirtualDeviceComplexType">
+        <xs:annotation>
+          <xs:documentation>A virtual machine, virtualised server or container running on a host device, e.g. a Docker container, a VMWare/VirtualBox virtual machine or a virtual host running on a cloud provider.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="VirtualSession" type="evt:VirtualSessionComplexType" minOccurs="1" maxOccurs="1">
@@ -1380,6 +1419,23 @@
       <xs:extension base="evt:BaseObjectComplexType">
         <xs:sequence minOccurs="1" maxOccurs="1">
           <xs:group ref="evt:CriteriaExtensionGroup" minOccurs="1" maxOccurs="1"/>
+          <xs:element name="Data" type="evt:DataComplexType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Any other event data that does not fit into a schema element but may be useful for the purpose of audit.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="CloudServiceComplexType">
+    <xs:annotation>
+      <xs:documentation>Describes a service on a cloud provider, e.g. an AWS Lambda or a Google BigQuery database. This normally descirbes a Software As A Serivce offering. Cloud infrastructure such as AWS EC2s should be modelled with the VirtualDevice object type instead.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="evt:BaseObjectComplexType">
+        <xs:sequence>
+          <xs:group minOccurs="1" ref="evt:CloudDetailsObjectGroup"/>
           <xs:element name="Data" type="evt:DataComplexType" minOccurs="0" maxOccurs="unbounded">
             <xs:annotation>
               <xs:documentation>Any other event data that does not fit into a schema element but may be useful for the purpose of audit.</xs:documentation>
@@ -3171,6 +3227,43 @@
       <xs:extension base="evt:BaseObjectOutcomeComplexType"> </xs:extension>
     </xs:complexContent>
   </xs:complexType>
+  <xs:complexType name="VirtualDeviceComplexType">
+    <xs:annotation>
+      <xs:documentation>Describes a virtual device/machine running in a virtualised hosting environment. A virtual device will typically be a virtual machine, network appliance or other piece of infrastructure that is addressable on the network. It may be hosted on on-premesis or cloud infrastructure.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="evt:DeviceComplexType">
+        <xs:sequence>
+          <xs:element name="Type" type="evt:VirtualDeviceSimpleType">
+            <xs:annotation>
+              <xs:documentation>The type of the virtual device, e.g. Container, System Virtual Machine (running directly on the host device, e.g. EC2), or Process Virtual Machine (running on top of a host operating system, e.g. VirtualBox). </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="Hypervisor" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>Details of the hypervisor software that is running this virtual device, e.g. VMWare Fusion, KVM, Docker, etc.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="Image" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>The name of the image or snapshot</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="Version" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>The version of the image in use.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:group minOccurs="0" ref="evt:CloudDetailsObjectGroup"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="VirtualHost" type="evt:DeviceComplexType">
+            <xs:annotation>
+              <xs:documentation>Details of the host device on which this guest virtual machine/container is deployed, e.g. the device running the Docker container, or a cluster of hosts running the virtual machine.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
   <xs:complexType name="VirtualSessionComplexType">
     <xs:annotation>
       <xs:documentation>Describes the session used when viewing another user's session, e.g. screen sharing or remote assistance type activities.</xs:documentation>
@@ -3402,6 +3495,33 @@
     </xs:annotation>
     <xs:restriction base="xs:string">
       <xs:pattern value="[A-Z]{3}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="CloudServiceSimpleType">
+    <xs:annotation>
+      <xs:documentation>The types or categories of cloud service, e.g. a service for processing data.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Analytics"/>
+      <xs:enumeration value="Data Storage"/>
+      <xs:enumeration value="Database"/>
+      <xs:enumeration value="Developer Tools"/>
+      <xs:enumeration value="Machine Learning"/>
+      <xs:enumeration value="Networking"/>
+      <xs:enumeration value="Processing"/>
+      <xs:enumeration value="Security and Identity"/>
+      <xs:enumeration value="Other"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="CloudSimpleType">
+    <xs:annotation>
+      <xs:documentation>The types of cloud e.g. a public cloud.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="On-premises"/>
+      <xs:enumeration value="Private"/>
+      <xs:enumeration value="Public"/>
+      <xs:enumeration value="Other"/>
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="DateTimeSimpleType">
@@ -3636,6 +3756,18 @@
     </xs:annotation>
     <xs:restriction base="xs:string">
       <xs:enumeration value="4.0.3"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="VirtualDeviceSimpleType">
+    <xs:annotation>
+      <xs:documentation>The type of the virtual device, e.g. Container, System Virtual Machine (running directly on the host device, e.g. EC2), or Process Virtual Machine (running on top of a host operating system, e.g. VirtualBox).</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Container"/>
+      <xs:enumeration value="System Virtual Machine"/>
+      <xs:enumeration value="Process Virtual Machine"/>
+      <xs:enumeration value="Cloud Device"/>
+      <xs:enumeration value="Other"/>
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="VirtualSessionSessionStateSimpleType">
