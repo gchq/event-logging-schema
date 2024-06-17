@@ -74,9 +74,11 @@ populate_branches_arr() {
   local release_branches
   # Sort them by major then minor part
   release_branches="$( \
-    git branch \
-    | sed 's/..//' \
-    | grep -E "^[0-9]+\.[0-9]+$" \
+    git branch --all \
+    | grep \
+      --only-matching \
+      --perl-regexp \
+      "(?<=^  remotes/origin/)[0-9]+\.[0-9]+$" \
     | sort -t . -k 1,1n -k 2,2n )"
 
   for branch in ${release_branches}; do
@@ -212,7 +214,7 @@ confirm_branches() {
   echo
   echo -e "${GREEN}It will stop if there are merge conflicts.${NC}"
 
-  read -rsp $'Press [y|Y] to continue, or ctrl-c to exit...\n' -n1 keyPressed
+  read -rsp $'Press [y|Y] to continue, or ctrl+c to exit...\n' -n1 keyPressed
 
   if [[ "${keyPressed}X" =~ ^(y|Y)?X$ ]] ; then
     echo
@@ -230,7 +232,8 @@ main() {
   local start_branch="$1"
 
   local REMOTE_NAME="origin"
-  local TAIL_BRANCHES=()
+  local TAIL_BRANCHES=( \
+    "legacy" )
   local HEAD_BRANCHES=( \
     "master" )
 
