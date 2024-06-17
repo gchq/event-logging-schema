@@ -32,7 +32,7 @@ SCHEMA_FILENAME = "event-logging.xsd"
 root_path = os.path.dirname(os.path.realpath(__file__))
 
 def getMinorVersion(versionStr):
-    minorVer = re.match("[0-9]*\.([0-9]*)[.-].*", versionStr).group(1)
+    minorVer = re.match("[0-9]*\\.([0-9]*)[.-].*", versionStr).group(1)
     return minorVer
 
 def validateVersions(newVersion, schemaFile):
@@ -82,7 +82,7 @@ def validateVersions(newVersion, schemaFile):
         enumVersions.append(enumElm.get("value"))
 
     print("")
-    versionRegex = "[0-9]+\.[0-9]+(\.[0-9]+|-(alpha|beta)\.[0-9]+)"
+    versionRegex = "[0-9]+\\.[0-9]+(\\.[0-9]+|-(alpha|beta)\\.[0-9]+)"
 
     if (newVersion and not re.match(".*SNAPSHOT", newVersionNum)):
         if (versionAttrVersion != newVersionNum):

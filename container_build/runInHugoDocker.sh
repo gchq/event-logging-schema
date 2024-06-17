@@ -102,6 +102,7 @@ main() {
         "-c"  \
         "cd docs; hugo server" \
       )
+        #"hugo server --cleanDestinationDir --watch" \
         #"hugo server --baseURL 'localhost:1313/stroom-docs'" \
       if [[ $# -eq 2 ]] && [[ "${2}" = "detach" ]]; then
         extra_docker_args=( "--detach" )
@@ -111,8 +112,9 @@ main() {
         # Build the site and output to ./public
         "bash" \
         "-c"  \
-        "cd docs; hugo --buildDrafts" \
+        "cd docs; hugo --environment production" \
       )
+        #"hugo --environment production --cleanDestinationDir" \
         #"hugo --buildDrafts --baseURL '/stroom-docs'" \
     elif [[ $# -ge 1 ]] && [[ "$1" = "build" ]]; then
       echo "Using baseUrl: $2"
@@ -121,7 +123,7 @@ main() {
         # Build the site and output to ./public
         "bash" \
         "-c"  \
-        "cd docs; hugo --buildDrafts --baseUrl \"$2\"" \
+        "cd docs; hugo --environment production --baseUrl \"$2\"" \
       )
     else
       run_cmd=( \
@@ -132,6 +134,12 @@ main() {
     fi
   fi
 
+  local is_mac_os
+  if [[ "$( uname -s )" == "Darwin" ]]; then
+    is_mac_os=true
+  else
+    is_mac_os=false
+  fi
   user_id=
   user_id="$(id -u)"
 
@@ -150,7 +158,12 @@ main() {
 
   dest_dir="/builder/shared"
 
-  docker_group_id="$(stat -c '%g' /var/run/docker.sock)"
+  if [[ "${is_mac_os}" = true ]]; then
+    # No GNU binutils on macos
+    docker_group_id="$(stat -f '%g' /var/run/docker.sock)"
+  else
+    docker_group_id="$(stat -c '%g' /var/run/docker.sock)"
+  fi
 
   echo -e "${GREEN}HOME ${BLUE}${HOME}${NC}"
   echo -e "${GREEN}User ID ${BLUE}${user_id}${NC}"
@@ -158,11 +171,26 @@ main() {
   echo -e "${GREEN}Host repo root dir ${BLUE}${host_abs_repo_dir}${NC}"
   echo -e "${GREEN}Docker group id ${BLUE}${docker_group_id}${NC}"
 
+  if ! docker version >/dev/null 2>&1; then
+    echo -e "${RED}ERROR: Docker is not installed. Please install Docker or Docker Desktop.${NC}"
+    exit 1
+  fi
+
+  if ! docker buildx version >/dev/null 2>&1; then
+    echo -e "${RED}ERROR: Docker buildx is not installed. Please install it.${NC}"
+    exit 1
+  fi
+
+  # Create a persistent vol for the home dir, idempotent
+  docker volume create builder-home-dir-vol
+
   # Create a persistent vol for the hugo cache which contains the downloaded
   # go modules, else they will end up in /tmp and have to be downloaded
   # on each run.
   hugo_cache_vol="builder-hugo-cache-vol"
   docker volume create "${hugo_cache_vol}"
+  npm_cache_vol="builder-npm-cache-vol"
+  docker volume create "${npm_cache_vol}"
 
   # So we are not rate limited, login before doing the build as this
   # will pull images
@@ -206,9 +234,12 @@ main() {
     echo -e "${GREEN}Removing old cache directories${NC}"
     #ls -1trd "${cache_dir_base}/from_"*
 
+    # List all matching dirs
+    # Remove the last item
+    # Delete each item
     ls -1trd "${cache_dir_base}/from_"* \
-      | head -n -1 \
-      | xargs -d '\n' rm -rf --
+      | sed '$d' \
+      | xargs rm -rf --
     echo -e "${GREEN}Remaining cache directories${NC}"
     ls -1trd "${cache_dir_base}/from_"*
   fi
@@ -231,18 +262,6 @@ main() {
 
     #--workdir "${dest_dir}" \
 
-  # The cache gets written into a different dir to where it is read from
-  # so we can clear out anything stale in the old ones and then move
-  # the new one over ready to be read on next run
-  #echo
-  #ls -l "${cache_dir_base}"
-  #rm -rf "${cache_dir_base:?}/from_"*
-  #echo
-  #ls -l "${cache_dir_base}"
-  #mv "${cache_dir_to}" "${cache_dir_from}"
-  #echo
-  #ls -l "${cache_dir_base}"
-  #echo
 
   if [ -t 1 ]; then 
     # In a terminal
@@ -267,8 +286,12 @@ main() {
   echo -e "${GREEN}Hugo cache is in docker volume" \
     "${YELLOW}${hugo_cache_vol}${GREEN}, use" \
     "${BLUE}docker volume rm ${hugo_cache_vol}${GREEN} to clear it.${NC}"
+  echo -e "${GREEN}NPM cache is in docker volume" \
+    "${YELLOW}${npm_cache_vol}${GREEN}, use" \
+    "${BLUE}docker volume rm ${npm_cache_vol}${GREEN} to clear it.${NC}"
 
   hudo_cache_dir="/hugo-cache"
+  npm_cache_dir="/npm-cache"
 
   docker run \
     "${tty_args[@]+"${tty_args[@]}"}" \
@@ -277,13 +300,15 @@ main() {
     --tmpfs /tmp:exec \
     --mount "type=bind,src=${host_abs_repo_dir},dst=${dest_dir}" \
     --volume "${hugo_cache_vol}:${hudo_cache_dir}" \
+    --volume "${npm_cache_vol}:${npm_cache_dir}" \
     --read-only \
     --name "schema-hugo-build-env" \
     --network "hugo-schema" \
     --env "BUILD_VERSION=${BUILD_VERSION:-SNAPSHOT}" \
     --env "DOCKER_USERNAME=${DOCKER_USERNAME}" \
     --env "DOCKER_PASSWORD=${DOCKER_PASSWORD}" \
-    --env "HUGO_CACHEDIR=/${hudo_cache_dir}" \
+    --env "HUGO_CACHEDIR=${hudo_cache_dir}" \
+    --env "npm_config_cache=${npm_cache_dir}" \
     "${extra_docker_args[@]}" \
     "${image_tag}" \
     "${run_cmd[@]}"
