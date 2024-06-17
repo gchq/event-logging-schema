@@ -3527,7 +3527,7 @@
       <xs:documentation>The types of cloud e.g. a public cloud.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="On-premesis"/>
+      <xs:enumeration value="On-premises"/>
       <xs:enumeration value="Private"/>
       <xs:enumeration value="Public"/>
       <xs:enumeration value="Other"/>
