@@ -2975,7 +2975,7 @@
   </xs:complexType>
   <xs:complexType name="UpdateComplexType">
     <xs:annotation>
-      <xs:documentation>Describes the update/modification/change to a file, object, entity, piece of data, etc. The update can be recorded by providing the Before and After state to describe the change. Alternatively, if the change is a small change to an object with many parts, it may be preferable to record the individual deltas rather than the whole state. As a minimum the After state should be recorded to describe the object being changed with/without the detail of its state.</xs:documentation>
+      <xs:documentation>Describes the update/modification/change to a file, object, entity, piece of data, etc. The update can be recorded by providing the Before and After state to describe the change. Alternatively, if the change is a small change to an object with many parts, it may be preferable to record the individual changes rather than the whole state. As a minimum the After state should be recorded to describe the object being changed with/without the detail of its state.</xs:documentation>
     </xs:annotation>
     <xs:sequence minOccurs="1" maxOccurs="1">
       <xs:element name="Before" type="evt:MultiObjectComplexType" minOccurs="0" maxOccurs="1">
@@ -2988,13 +2988,13 @@
           <xs:documentation>Describes the state of one or more object properties after it was changed. Essentially a snapshot of the object after the change.</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element minOccurs="0" name="Deltas">
+      <xs:element minOccurs="0" name="Changes">
         <xs:annotation>
-          <xs:documentation>Describe one or more differences that have been applied to an object. When using this element, the object that the deltas/differences are applied to should be described in the After element.</xs:documentation>
+          <xs:documentation>Describe one or more differences that have been applied to an object. When using this element, the object that the changes/differences are applied to should be described in the After element.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
           <xs:sequence>
-            <xs:element name="Addittion" type="evt:MultiObjectComplexType" minOccurs="0">
+            <xs:element name="Addition" type="evt:MultiObjectComplexType" minOccurs="0">
               <xs:annotation>
                 <xs:documentation>Describes the addition of one of more parts of an object or entity. For example if the user is adding two files to a zip file containing 1000 files, this can be recorded as the addition of the two files. The details of the zip file can be recorded in the After element without the need to record the before and after state of all 1000/1002 files.</xs:documentation>
               </xs:annotation>
