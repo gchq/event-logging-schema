@@ -119,7 +119,7 @@ copyright = "Crown Copyright"
 
 # Menu title if your navbar has a versions selector to access old versions of your site.
 # This menu appears only if you have at least one [params.versions] set.
-version_menu = "Schema v4.0"
+version_menu = "Schema v4.1"
 
 # Flag used in the "version-banner" partial to decide whether to display a 
 # banner on every page indicating that this is an archived version of the docs.
@@ -131,7 +131,7 @@ archived_version = false
 # Used in the "version-banner" partial to display a version number for the 
 # current doc set.
 # Must match the value in brackets in "version_menu" above
-version = "4.0"
+version = "4.1"
 
 # A link to latest version of the docs. Used in the "version-banner" partial to
 # point people to the main doc site.
@@ -148,7 +148,7 @@ github_project_repo = "https://github.com/gchq/event-logging-schema"
 
 # Uncomment this if your GitHub repo does not have "main" as the default branch,
 # or specify a new value if you want to reference another branch in your GitHub links
-github_branch= "4.0"
+github_branch= "4.1"
 
 # Google Custom Search Engine ID. Remove or comment out to disable search.
 #gcs_engine_id = "d72aa9b2712488cc3"
