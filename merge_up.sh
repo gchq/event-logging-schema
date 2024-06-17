@@ -73,12 +73,14 @@ populate_branches_arr() {
 
   local release_branches
   # Sort them by major then minor part
+  # Ignore 3.5 as we don't do docs for 3.5
   release_branches="$( \
     git branch --all \
     | grep \
       --only-matching \
       --perl-regexp \
       "(?<=^  remotes/origin/)[0-9]+\.[0-9]+$" \
+    | grep -v "3.5" \
     | sort -t . -k 1,1n -k 2,2n )"
 
   for branch in ${release_branches}; do
@@ -232,8 +234,7 @@ main() {
   local start_branch="$1"
 
   local REMOTE_NAME="origin"
-  local TAIL_BRANCHES=( \
-    "legacy" )
+  local TAIL_BRANCHES=( )
   local HEAD_BRANCHES=( \
     "master" )
 
