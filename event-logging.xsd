@@ -2994,17 +2994,17 @@
         </xs:annotation>
         <xs:complexType>
           <xs:sequence>
-            <xs:element name="Addition" type="evt:MultiObjectComplexType" minOccurs="0">
+            <xs:element name="Add" type="evt:MultiObjectComplexType" minOccurs="0">
               <xs:annotation>
                 <xs:documentation>Describes the addition of one of more parts of an object or entity. For example if the user is adding two files to a zip file containing 1000 files, this can be recorded as the addition of the two files. The details of the zip file can be recorded in the After element without the need to record the before and after state of all 1000/1002 files.</xs:documentation>
               </xs:annotation>
             </xs:element>
-            <xs:element name="Replacement" type="evt:MultiObjectComplexType" minOccurs="0">
+            <xs:element name="Replace" type="evt:MultiObjectComplexType" minOccurs="0">
               <xs:annotation>
                 <xs:documentation>Describes the replacement of one of more parts of an object or entity. For example if the user is updating a single file in a zip file containing 1000 files, this can be recorded as the replacement of just that file. The details of the zip file can be record in the After element without the need to recorded the before and after state of all 1000 files.</xs:documentation>
               </xs:annotation>
             </xs:element>
-            <xs:element name="Removal" type="evt:MultiObjectComplexType" minOccurs="0">
+            <xs:element name="Remove" type="evt:MultiObjectComplexType" minOccurs="0">
               <xs:annotation>
                 <xs:documentation>Describes the removal of one of more parts of an object or entity. For example if the user is removing two files from a zip file containing 1000 files, this can be recorded as the addition of the two files. The details of the zip file can be recorded in the After element without the need to record the before and after state of all 1000/998 files.</xs:documentation>
               </xs:annotation>
