@@ -217,6 +217,35 @@
       </xs:element>
     </xs:sequence>
   </xs:group>
+  <xs:group name="CloudDetailsObjectGroup">
+    <xs:sequence>
+      <xs:element name="CloudProvider" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>The name of the provider, providing the cloud service, e.g. AWS, Google, Azure, etc.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CloudType" type="evt:CloudSimpleType">
+        <xs:annotation>
+          <xs:documentation>The type of cloud the service exists in, e.g. Public or Private.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CloudServiceType" type="evt:CloudServiceSimpleType">
+        <xs:annotation>
+          <xs:documentation>The type of cloud the service exists in, e.g. Public or Private.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="CloudRegion" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>The cloud region that the service is deployed in. A region typically contains multiple zones.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="CloudZone" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>The cloud zone that the service is deployed in. A zone is typically a sub-division of a region.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:group>
   <xs:group name="CriteriaExtensionGroup">
     <xs:sequence>
       <xs:element name="DataSources" minOccurs="0" maxOccurs="1">
@@ -1406,31 +1435,7 @@
     <xs:complexContent>
       <xs:extension base="evt:BaseObjectComplexType">
         <xs:sequence>
-          <xs:element name="CloudProvider" type="xs:string">
-            <xs:annotation>
-              <xs:documentation>The name of the provider, providing the cloud service, e.g. AWS, Google, Azure, etc.</xs:documentation>
-            </xs:annotation>
-          </xs:element>
-          <xs:element name="CloudType" type="evt:CloudSimpleType">
-            <xs:annotation>
-              <xs:documentation>The type of cloud the service exists in, e.g. Public or Private.</xs:documentation>
-            </xs:annotation>
-          </xs:element>
-          <xs:element name="CloudServiceType" type="evt:CloudServiceSimpleType">
-            <xs:annotation>
-              <xs:documentation>The type of cloud the service exists in, e.g. Public or Private.</xs:documentation>
-            </xs:annotation>
-          </xs:element>
-          <xs:element minOccurs="0" name="CloudRegion" type="xs:string">
-            <xs:annotation>
-              <xs:documentation>The cloud region that the service is deployed in. A region typically contains multiple zones.</xs:documentation>
-            </xs:annotation>
-          </xs:element>
-          <xs:element minOccurs="0" name="CloudZone" type="xs:string">
-            <xs:annotation>
-              <xs:documentation>The cloud zone that the service is deployed in. A zone is typically a sub-division of a region.</xs:documentation>
-            </xs:annotation>
-          </xs:element>
+          <xs:group minOccurs="1" ref="evt:CloudDetailsObjectGroup"/>
           <xs:element name="Data" type="evt:DataComplexType" minOccurs="0" maxOccurs="unbounded">
             <xs:annotation>
               <xs:documentation>Any other event data that does not fit into a schema element but may be useful for the purpose of audit.</xs:documentation>
@@ -3249,26 +3254,7 @@
               <xs:documentation>The version of the image in use.</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element name="CloudProvder" type="xs:string" minOccurs="0">
-            <xs:annotation>
-              <xs:documentation>The name of the cloud provider if this virtual device is hosted on a cloud provider, e.g. AWS, Google, Azure, etc.</xs:documentation>
-            </xs:annotation>
-          </xs:element>
-          <xs:element name="CloudType" minOccurs="0" type="evt:CloudSimpleType">
-            <xs:annotation>
-              <xs:documentation>The type of cloud the device is deployed in, e.g. public or private or on-premesis infrastructure.</xs:documentation>
-            </xs:annotation>
-          </xs:element>
-          <xs:element minOccurs="0" name="CloudRegion" type="xs:string">
-            <xs:annotation>
-              <xs:documentation>The cloud region that the service is deployed in. A region typically contains multiple zones.</xs:documentation>
-            </xs:annotation>
-          </xs:element>
-          <xs:element minOccurs="0" name="CloudZone" type="xs:string">
-            <xs:annotation>
-              <xs:documentation>The cloud zone that the service is deployed in. A zone is typically a sub-division of a region.</xs:documentation>
-            </xs:annotation>
-          </xs:element>
+          <xs:group minOccurs="0" ref="evt:CloudDetailsObjectGroup"/>
           <xs:element maxOccurs="unbounded" minOccurs="0" name="VirtualHost" type="evt:DeviceComplexType">
             <xs:annotation>
               <xs:documentation>Details of the host device on which this guest virtual machine/container is deployed, e.g. the device running the Docker container, or a cluster of hosts running the virtual machine.</xs:documentation>
@@ -3516,9 +3502,14 @@
       <xs:documentation>The types or categories of cloud service, e.g. a service for processing data.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="Processing"/>
+      <xs:enumeration value="Analytics"/>
       <xs:enumeration value="Data Storage"/>
       <xs:enumeration value="Database"/>
+      <xs:enumeration value="Developer Tools"/>
+      <xs:enumeration value="Machine Learning"/>
+      <xs:enumeration value="Networking"/>
+      <xs:enumeration value="Processing"/>
+      <xs:enumeration value="Security and Identity"/>
       <xs:enumeration value="Other"/>
     </xs:restriction>
   </xs:simpleType>
