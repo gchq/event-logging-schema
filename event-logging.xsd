@@ -3614,6 +3614,7 @@
       <xs:enumeration value="NotStartsWith"/>
       <xs:enumeration value="Regex"/>
       <xs:enumeration value="NotRegex"/>
+      <xs:enumeration value="In"/>
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="ThreatCategorySimpleType">
