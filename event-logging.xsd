@@ -1731,27 +1731,10 @@
             <xs:documentation>Any events relating to the action of approving/accepting or rejecting something, e.g. an approval step in a workflow, accepting a license agreement, or acceptable use policy. The event may relate to one user approving the work/action of another user or a single user accepting something.</xs:documentation>
           </xs:annotation>
         </xs:element>
-        <xs:element name="Unknown" minOccurs="1" maxOccurs="1">
+        <xs:element name="Unknown" minOccurs="1" maxOccurs="1" type="evt:UnknownComplexType">
           <xs:annotation>
             <xs:documentation>This element should be used were the type of the event cannot be described by any of the other event actions, or the event type is unknown.</xs:documentation>
           </xs:annotation>
-          <xs:complexType>
-            <xs:annotation>
-              <xs:documentation>This type should be used were the type of the event cannot be described by any of the other event actions, or the event type is unknown.</xs:documentation>
-            </xs:annotation>
-            <xs:sequence minOccurs="1" maxOccurs="1">
-              <xs:element name="Outcome" type="evt:OutcomeComplexType" minOccurs="0" maxOccurs="1">
-                <xs:annotation>
-                  <xs:documentation>Used to determine if the action was successful. If omitted it is assumed that the event was successful and was permitted.</xs:documentation>
-                </xs:annotation>
-              </xs:element>
-              <xs:element name="Data" type="evt:DataComplexType" minOccurs="0" maxOccurs="unbounded">
-                <xs:annotation>
-                  <xs:documentation>Any other event data that does not fit into a schema element but may be useful for the purpose of audit.</xs:documentation>
-                </xs:annotation>
-              </xs:element>
-            </xs:sequence>
-          </xs:complexType>
         </xs:element>
       </xs:choice>
     </xs:sequence>
@@ -3017,6 +3000,23 @@
       <xs:documentation>Describes the removal of either hardware or software.</xs:documentation>
     </xs:annotation>
     <xs:group maxOccurs="1" minOccurs="1" ref="evt:InstallationGroup"/>
+  </xs:complexType>
+  <xs:complexType name="UnknownComplexType">
+    <xs:annotation>
+      <xs:documentation>This type should be used were the type of the event cannot be described by any of the other event actions, or the event type is unknown.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence minOccurs="1" maxOccurs="1">
+      <xs:element name="Outcome" type="evt:OutcomeComplexType" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Used to determine if the action was successful. If omitted it is assumed that the event was successful and was permitted.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Data" type="evt:DataComplexType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Any other event data that does not fit into a schema element but may be useful for the purpose of audit.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
   </xs:complexType>
   <xs:complexType name="UpdateComplexType">
     <xs:annotation>
