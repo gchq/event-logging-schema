@@ -204,6 +204,11 @@
                       <xs:documentation>The permission attributes that have been explicitly denied.</xs:documentation>
                     </xs:annotation>
                   </xs:element>
+                  <xs:element name="Data" type="evt:DataComplexType" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                      <xs:documentation>Any other event data that does not fit into a schema element but may be useful for the purpose of audit.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
                 </xs:sequence>
               </xs:complexType>
             </xs:element>
@@ -3590,10 +3595,13 @@
     </xs:annotation>
     <xs:restriction base="xs:string">
       <xs:enumeration value="Author"/>
+      <xs:enumeration value="Create"/>
+      <xs:enumeration value="Delete"/>
+      <xs:enumeration value="Execute"/>
       <xs:enumeration value="Owner"/>
       <xs:enumeration value="Read"/>
+      <xs:enumeration value="Use"/>
       <xs:enumeration value="Write"/>
-      <xs:enumeration value="Execute"/>
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="PortSimpleType">
