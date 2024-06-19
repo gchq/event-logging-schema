@@ -27,6 +27,31 @@ DO NOT ADD CHANGES HERE - ADD THEM USING log_change.sh
 ~~~
 
 
+## [v4.1.0] - 2024-06-19
+
+* Issue **#86** : Change `PermittedOrganisation` to be unbounded within `PermittedOrganisations`.
+
+* Issue **#85** : Add `In` enumeration to `TermConditionSimpleType` to support the SQL `IN` condition.
+
+* Issue **#84** : Change `Hash` in `BaseFileComplexType` to be unbounded to allow multiple hashes for a file to be recorded.
+
+* Issue **#80** : Change `Location.Floor` from `xs:integer` to `xs:string` to allow for floors with names, e.g. `Ground`.
+
+* Issue **#75** : Add `Changes` element to `Update` to allow recording of a change where the before/after state is not known or is too large to record, e.g. adding a user to an long allow-list.
+
+* Issue **#62** : Add the `Id` attribute to `AnyContentComplextType`, e.g. `Meta/@Id`. This is to distinguish between multiple sibling `Meta` elements.
+
+* Issue **#67** : Add optional `Outcome` to `EventDetail/Unknown` to allow the outcome of the event to be recorded.
+
+* Issue **#74** : Add `Date` to `EmailComnplexType`.
+
+* Issue **#69** : Add optional unbounded `Data` element to the following elements or complex types: `AntiMalwareThreatComplexType`, `Door`, `EventTimeComplexType`, `LocationComplexType`, `NetworkOutcomeComplexType` and `SystemComplexType`.
+
+* Refactor element `EventDetail.Unknown` into `UnknownComplexType`. Doesn't impact validity of XML documents.
+
+* Issue **#76** : Add `Data` element to `Permission` to allow for non-enumerated permission types. Add `Create`, `Delete` and `Use` to `PermissionAttributeSimpleType`.
+
+
 ## [v4.0.2] - 2023-11-28
 
 * Fix build. No schema changes.
@@ -325,7 +350,8 @@ DO NOT ADD CHANGES HERE - ADD THEM USING log_change.sh
 
 * Initial open source release
 
-[Unreleased]: https://github.com/gchq/event-logging-schema/compare/v4.0.2...HEAD
+[Unreleased]: https://github.com/gchq/event-logging-schema/compare/v4.1.0...HEAD
+[v4.1.0]: https://github.com/gchq/event-logging-schema/compare/v4.0.2...v4.1.0
 [v4.0.2]: https://github.com/gchq/event-logging-schema/compare/v4.0.1...v4.0.2
 [v4.0.1]: https://github.com/gchq/event-logging-schema/compare/v4.0.0...v4.0.1
 [v4.0.0]: https://github.com/gchq/event-logging-schema/compare/v4.0-beta.10...v4.0.0

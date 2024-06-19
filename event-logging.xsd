@@ -14,7 +14,7 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
 -->
-<xs:schema xmlns:evt="event-logging:3" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="event-logging:3" elementFormDefault="qualified" attributeFormDefault="unqualified" version="4.0.3" id="event-logging-v4.0.3">
+<xs:schema xmlns:evt="event-logging:3" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="event-logging:3" elementFormDefault="qualified" attributeFormDefault="unqualified" version="4.1.0" id="event-logging-v4.1.0">
   <xs:annotation>
     <xs:documentation>This schema describes the allowed element structure for event logging. Please refer to the documentation and examples for a description of how to use this schema in addition to the descriptions given for each element within this schema.</xs:documentation>
   </xs:annotation>
@@ -202,6 +202,11 @@
                   <xs:element name="Deny" type="evt:PermissionAttributeSimpleType" minOccurs="0" maxOccurs="unbounded">
                     <xs:annotation>
                       <xs:documentation>The permission attributes that have been explicitly denied.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="Data" type="evt:DataComplexType" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                      <xs:documentation>Any other event data that does not fit into a schema element but may be useful for the purpose of audit.</xs:documentation>
                     </xs:annotation>
                   </xs:element>
                 </xs:sequence>
@@ -1731,27 +1736,10 @@
             <xs:documentation>Any events relating to the action of approving/accepting or rejecting something, e.g. an approval step in a workflow, accepting a license agreement, or acceptable use policy. The event may relate to one user approving the work/action of another user or a single user accepting something.</xs:documentation>
           </xs:annotation>
         </xs:element>
-        <xs:element name="Unknown" minOccurs="1" maxOccurs="1">
+        <xs:element name="Unknown" minOccurs="1" maxOccurs="1" type="evt:UnknownComplexType">
           <xs:annotation>
             <xs:documentation>This element should be used were the type of the event cannot be described by any of the other event actions, or the event type is unknown.</xs:documentation>
           </xs:annotation>
-          <xs:complexType>
-            <xs:annotation>
-              <xs:documentation>This type should be used were the type of the event cannot be described by any of the other event actions, or the event type is unknown.</xs:documentation>
-            </xs:annotation>
-            <xs:sequence minOccurs="1" maxOccurs="1">
-              <xs:element name="Outcome" type="evt:OutcomeComplexType" minOccurs="0" maxOccurs="1">
-                <xs:annotation>
-                  <xs:documentation>Used to determine if the action was successful. If omitted it is assumed that the event was successful and was permitted.</xs:documentation>
-                </xs:annotation>
-              </xs:element>
-              <xs:element name="Data" type="evt:DataComplexType" minOccurs="0" maxOccurs="unbounded">
-                <xs:annotation>
-                  <xs:documentation>Any other event data that does not fit into a schema element but may be useful for the purpose of audit.</xs:documentation>
-                </xs:annotation>
-              </xs:element>
-            </xs:sequence>
-          </xs:complexType>
         </xs:element>
       </xs:choice>
     </xs:sequence>
@@ -3018,6 +3006,23 @@
     </xs:annotation>
     <xs:group maxOccurs="1" minOccurs="1" ref="evt:InstallationGroup"/>
   </xs:complexType>
+  <xs:complexType name="UnknownComplexType">
+    <xs:annotation>
+      <xs:documentation>This type should be used were the type of the event cannot be described by any of the other event actions, or the event type is unknown.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence minOccurs="1" maxOccurs="1">
+      <xs:element name="Outcome" type="evt:OutcomeComplexType" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Used to determine if the action was successful. If omitted it is assumed that the event was successful and was permitted.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Data" type="evt:DataComplexType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Any other event data that does not fit into a schema element but may be useful for the purpose of audit.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
   <xs:complexType name="UpdateComplexType">
     <xs:annotation>
       <xs:documentation>Describes the update/modification/change to a file, object, entity, piece of data, etc. The update can be recorded by providing the Before and After state to describe the change. Alternatively, if the change is a small change to an object with many parts, it may be preferable to record the individual changes rather than the whole state. As a minimum the After state should be recorded to describe the object being changed with/without the detail of its state.</xs:documentation>
@@ -3590,10 +3595,13 @@
     </xs:annotation>
     <xs:restriction base="xs:string">
       <xs:enumeration value="Author"/>
+      <xs:enumeration value="Create"/>
+      <xs:enumeration value="Delete"/>
+      <xs:enumeration value="Execute"/>
       <xs:enumeration value="Owner"/>
       <xs:enumeration value="Read"/>
+      <xs:enumeration value="Use"/>
       <xs:enumeration value="Write"/>
-      <xs:enumeration value="Execute"/>
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="PortSimpleType">
@@ -3705,7 +3713,7 @@
       <xs:documentation>Type for specifying the version numbers of XML documents that are supported by this version of the XMLSchema.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="4.0.3"/>
+      <xs:enumeration value="4.1.0"/>
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="VirtualSessionSessionStateSimpleType">
