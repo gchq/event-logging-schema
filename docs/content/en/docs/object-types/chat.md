@@ -1,7 +1,7 @@
 ---
 title: "Chat"
 linkTitle: "Chat"
-#weight:
+weight: 30
 date: 2022-05-05
 tags: 
   - object-type

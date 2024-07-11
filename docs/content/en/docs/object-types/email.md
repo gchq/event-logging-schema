@@ -1,7 +1,7 @@
 ---
 title: "Email"
 linkTitle: "Email"
-#weight:
+weight: 80
 date: 2022-05-05
 tags: 
   - object-type
