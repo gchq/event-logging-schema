@@ -1298,6 +1298,48 @@
       </xs:element>
     </xs:sequence>
   </xs:complexType>
+  <xs:complexType name="CommandComplexType">
+    <xs:annotation>
+      <xs:documentation>Describes a command executed in a shell or similar Command Line Interface (CLI), e.g. a Bash shell or a MySQL CLI.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Command" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>The complete command executed including any arguments, e.g. 'rm -rf document1.md' or 'select * from employee where user_id = "jblogs"'.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="InterfaceType" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>The type of the command line interface, e.g. bash, sh, MySQL, SQLPlus, AWS CLI, etc.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Description" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Description of the command being executed.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="InboundContent" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>If data/content is piped to a command or it reads from something equivalent to stdin record it here. If the content is large omit this element or truncate the content as applicable.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="OutboundContent" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Any data/content returned from the command, e.g. stdout in a linux shell.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="ResponseCode" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Any response code returned from the command in addition to the OutboundContent.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Data" type="evt:DataComplexType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Any other event data that does not fit into a schema element but may be useful for the purpose of audit.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
   <xs:complexType name="ConfigurationComplexType">
     <xs:annotation>
       <xs:documentation>Describes the configuration of entity, e.g. it can be used to describe the update to the configuration of a network device.</xs:documentation>
@@ -1635,6 +1677,11 @@
           <xs:documentation>The purpose/justification assigned to this event for user actions that are required to be justified for reasons of corporate policy, e.g. transferring data to removable media, viewing personnel records or making a high value payment.</xs:documentation>
         </xs:annotation>
       </xs:element>
+      <xs:element minOccurs="0" name="Method" type="evt:MethodComplexType">
+        <xs:annotation>
+          <xs:documentation>The method the user used to perform the action. This is optional information that is supplementary to the action performed by the user. For example, a user may use a web user interface, a command line interface (CLI) or an application programming interface (API) to delete a document.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
       <xs:choice minOccurs="1" maxOccurs="1">
         <xs:element name="Authenticate" minOccurs="1" maxOccurs="1" type="evt:AuthenticateComplexType">
           <xs:annotation>
@@ -1842,12 +1889,12 @@
       </xs:element>
       <xs:element name="User" type="evt:UserComplexType" minOccurs="0" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation>Where events are created as a result of a user action or within the context of a user account, the user should be recorded. To achieve this it may be necessary to map the user identifier in an application to a common user identifier when populating this element. Where an identifier exists that is unique across the organisation, such as a distinguished name (User DN) from a certificate authority or directory service, then this should be used in the &lt;Id&gt; element in preference to any other user identifier.</xs:documentation>
+          <xs:documentation>Where events are created as a result of a user action or within the context of a user account, the user should be recorded. To achieve this it may be necessary to map the user identifier in an application to a common user identifier when populating this element. Where an identifier exists that is unique across the organisation, such as a distinguished name (User DN) from a certificate authority or directory service, then this should be used in the &lt;Id> element in preference to any other user identifier.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="RunAs" type="evt:UserComplexType" minOccurs="0" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation>In some cases an account may switch to another account in order to run a process or perform a privileged action, e.g. use of sudo. Where this happens the &lt;User> element should still refer to the real user and this element should indicate what the temporary user was when the event was created, e.g. root. This is also often used when a system user (processing account) executes scheduled jobs on behalf of the real user that scheduled the job. Where an identifier exists that is unique across the organisation, such as a distinguished name (User DN) from a certificate authority or directory service, then this should be used in the &lt;Id&gt; element in preference to any other user identifier.</xs:documentation>
+          <xs:documentation>In some cases an account may switch to another account in order to run a process or perform a privileged action, e.g. use of sudo. Where this happens the &lt;User> element should still refer to the real user and this element should indicate what the temporary user was when the event was created, e.g. root. This is also often used when a system user (processing account) executes scheduled jobs on behalf of the real user that scheduled the job. Where an identifier exists that is unique across the organisation, such as a distinguished name (User DN) from a certificate authority or directory service, then this should be used in the &lt;Id> element in preference to any other user identifier.</xs:documentation>
         </xs:annotation>
       </xs:element>
       <xs:element name="Interactive" type="xs:boolean" minOccurs="0" maxOccurs="1">
@@ -2201,6 +2248,23 @@
         </xs:annotation>
       </xs:element>
     </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="MethodComplexType">
+    <xs:annotation>
+      <xs:documentation>The method the user used to perform the action. This is optional information that is supplementary to the action performed by the user. For example, a user may use a web user interface, a command line interface (CLI) or an application programming interface (API) to delete a document. The action (e.g. Create, Delete, etc.) will describe what the user did, while this element will describe how they did it.</xs:documentation>
+    </xs:annotation>
+    <xs:choice>
+      <xs:element name="WebResource" type="evt:ResourceComplexType">
+        <xs:annotation>
+          <xs:documentation>Describes the web resource, web API or REST endpoint used to perform the action. The 'UserAgent' element should indicate whether this resource was accessed using a browser or programmatically using something like curl.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Command" type="evt:CommandComplexType">
+        <xs:annotation>
+          <xs:documentation>Describes a command executed in a shell or similar Command Line Interface (CLI), e.g. a Bash shell or a MySQL CLI.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:choice>
   </xs:complexType>
   <xs:complexType name="MoveComplexType">
     <xs:annotation>
@@ -2735,7 +2799,7 @@
           </xs:element>
           <xs:element name="URL" type="xs:string" minOccurs="0" maxOccurs="1">
             <xs:annotation>
-              <xs:documentation>The URL of the resource the event relates to</xs:documentation>
+              <xs:documentation>The URL of the resource including any query parameters used.</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element name="Referrer" type="xs:string" minOccurs="0" maxOccurs="1">
@@ -2775,7 +2839,17 @@
           </xs:element>
           <xs:element name="InboundHeader" type="xs:string" minOccurs="0" maxOccurs="1">
             <xs:annotation>
-              <xs:documentation>The HTTP request header.</xs:documentation>
+              <xs:documentation>The HTTP request headers as a single string. Each header should ideally be represented as 'field: value' and delimited by a line break. Headers with more than one value can either use two lines, with the field repeated, or use a single line with comma delimited values, e.g. 'field: value1, value2'.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="InboundContent" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>The content or payload of the inbound request, e.g the 'x-www-form-urlencoded' or 'application/json' content in a POST/PUT. If the size of the content is large, either omit this element or truncate the data as applicable.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="InboundMimeType" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>The Internet Media Type identifying the type of data in the inbound content, i.e. the value of the 'Content-Type' request header.</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element name="OutboundSize" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1">
@@ -2790,7 +2864,17 @@
           </xs:element>
           <xs:element name="OutboundHeader" type="xs:string" minOccurs="0" maxOccurs="1">
             <xs:annotation>
-              <xs:documentation>The HTTP response header.</xs:documentation>
+              <xs:documentation>The HTTP response header as a single string. Each header should ideally be represented as 'field: value' and delimited by a line break. Headers with more than one value can either use two lines, with the field repeated, or use a single line with comma delimited values, e.g. 'field: value1, value2'.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="OutboundContent" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>The content or payload of the outbound response, e.g 'application/json' data in the response to a GET request. If the size of the content is large, either omit this element or truncate the data as applicable.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element minOccurs="0" name="OutboundMimeType" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>The Internet Media Type identifying the type of data in the outbound content, i.e. the value of the 'Content-Type' response header.</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element name="RequestTime" type="xs:nonNegativeInteger" minOccurs="0" maxOccurs="1">
@@ -2815,7 +2899,7 @@
           </xs:element>
           <xs:element name="MimeType" type="xs:string" minOccurs="0" maxOccurs="1">
             <xs:annotation>
-              <xs:documentation>The Internet Media Type identifying the file format of the resource provided (format of request or response body). This string typically appears in the 'Content-Type' field of a Request or Response Header.</xs:documentation>
+              <xs:documentation>DEPRECATED - Use 'InboundMimeType' and/or 'OutboundMimeType' instead. The Internet Media Type identifying the file format of the resource provided (format of request or response body). This string typically appears in the 'Content-Type' field of a Request or Response Header.</xs:documentation>
             </xs:annotation>
           </xs:element>
           <xs:element name="Category" type="xs:string" minOccurs="0" maxOccurs="1">
