@@ -20,9 +20,9 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /// Performs tests against the generated schemas that will actually be released
-public class TestRealPipelines {
+public class TestReleaseSchemas {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(TestRealPipelines.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(TestReleaseSchemas.class);
     private static final Path GENERATED_PATH = Paths.get("pipelines/generated");
     private static final MockSystemService systemService = new MockSystemService();
     private static final Set<Path> schemaFiles = new HashSet<>();

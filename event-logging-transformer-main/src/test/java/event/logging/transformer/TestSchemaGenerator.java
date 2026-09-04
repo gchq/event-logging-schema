@@ -19,7 +19,7 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class TestSchemaGenerator {
-    private static final Logger LOGGER = LoggerFactory.getLogger(TestRealPipelines.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(TestReleaseSchemas.class);
 
     private static final Path SOURCE_SCHEMA = Paths.get("../event-logging.xsd");
     private static final Path TEST_DATA_ROOT_DIR = Paths.get("src/test/resources/test-data");
