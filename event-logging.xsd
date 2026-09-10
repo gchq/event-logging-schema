@@ -85,6 +85,11 @@
                 </xs:annotation>
               </xs:element>
             </xs:sequence>
+            <xs:attribute name="Version" type="evt:VersionSimpleType" use="optional">
+              <xs:annotation>
+                <xs:documentation>The version of the schema that this event conforms to. This is useful for standalone Event fragments that are not wrapped in an Events element.</xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
           </xs:complexType>
         </xs:element>
       </xs:sequence>
