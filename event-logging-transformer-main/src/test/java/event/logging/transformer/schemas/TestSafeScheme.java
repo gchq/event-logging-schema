@@ -206,6 +206,12 @@ class TestSafeScheme extends AbstractReleaseSchemaTest {
     }
 
     @Test
+    void test07_pass_validVersion() {
+        final String version = "4.1.0";
+        validateXmlString(getTemplatedXml("test-07-template.xml", version), true);
+    }
+
+    @Test
     void test07_fail_invalidVersion() {
         final String version = "xyz";
         final ListErrorHandler errorHandler = validateXmlString(
@@ -230,7 +236,7 @@ class TestSafeScheme extends AbstractReleaseSchemaTest {
                 .collect(Collectors.joining("\n"));
 
         validateXmlString(
-                getTemplatedXml("test-08-template.xml", "myData", dataElms),
+                getTemplatedXml("test-08-template.xml", dataElms),
                 true);
     }
 
@@ -248,11 +254,73 @@ class TestSafeScheme extends AbstractReleaseSchemaTest {
                 .collect(Collectors.joining("\n"));
 
         final ListErrorHandler errorHandler = validateXmlString(
-                getTemplatedXml("test-08-template.xml", "myData", dataElms),
+                getTemplatedXml("test-08-template.xml", dataElms),
                 false);
         errorHandler.assertErrorsContainString("Data");
         errorHandler.assertErrorsContainString("a maximum of");
         errorHandler.assertErrorsContainString("500");
+    }
+
+    @Test
+    void test08_pass_deeplyNestedDataElements() {
+        // Strip all the whitespace so we don't use a tonne of memory
+        final String openDataElmTemplate = """
+                <Data Name="{}">""";
+        final String closeDataElm = """
+                </Data>""";
+
+        final String leafDataElm = """
+                <Data Name="leafName" Value="leafVal"></Data>""";
+        final StringBuilder sb = new StringBuilder();
+        // This gives 4 levels of branch + one leaf, which is ok
+        final int count = 4;
+        IntStream.rangeClosed(1, count)
+                .boxed()
+                .map(i -> MessageFormatter.basicArrayFormat(
+                        openDataElmTemplate, new String[]{"data-" + i}))
+                .forEach(sb::append);
+        sb.append("\n");
+        sb.append(leafDataElm);
+        sb.append("\n");
+        IntStream.rangeClosed(1, count)
+                .boxed()
+                .map(i -> closeDataElm)
+                .forEach(sb::append);
+
+        validateXmlString(
+                getTemplatedXml("test-08-template.xml", sb.toString()),
+                true);
+    }
+
+    @Test
+    void test08_fail_tooManyNestedDataElements() {
+        // Strip all the whitespace so we don't use a tonne of memory
+        final String openDataElmTemplate = """
+                <Data Name="{}">""";
+        final String closeDataElm = """
+                </Data>""";
+
+        final String leafDataElm = """
+                <Data Name="leafName" Value="leafVal"/>""";
+        final StringBuilder sb = new StringBuilder();
+        // This gives 5 levels of branch + one leaf, which is one level too many
+        final int count = 5;
+        IntStream.rangeClosed(1, count)
+                .boxed()
+                .map(i -> MessageFormatter.basicArrayFormat(
+                        openDataElmTemplate, new String[]{"data-" + i}))
+                .forEach(sb::append);
+        sb.append(leafDataElm);
+        IntStream.rangeClosed(1, count)
+                .boxed()
+                .map(i -> closeDataElm)
+                .forEach(sb::append);
+
+        final ListErrorHandler errorHandler = validateXmlString(
+                getTemplatedXml("test-08-template.xml", sb.toString()),
+                false);
+        errorHandler.assertErrorsContainString("Data");
+        errorHandler.assertErrorsContainString("must have no character or element information item");
     }
 
     @Override

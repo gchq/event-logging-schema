@@ -31,6 +31,7 @@ import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+/// Abstract class for testing schemas produced by {@link SchemaGenerator} that will be released.
 abstract class AbstractReleaseSchemaTest {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AbstractReleaseSchemaTest.class);
@@ -40,6 +41,7 @@ abstract class AbstractReleaseSchemaTest {
     private static final MockSystemService MOCK_SYSTEM_SERVICE = new MockSystemService();
     private static final Set<Path> schemaFiles = new HashSet<>();
     protected static final Pattern STRIP_WHITESPACE_PATTERN = Pattern.compile("(\\s\\s+|\n)");
+
     public static final String EVENT_BLOCK = """
             <Event>
                 <EventTime>
