@@ -8,10 +8,8 @@ import event.logging.transformer.configuration.Pipeline;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 
-import javax.xml.XMLConstants;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import javax.xml.transform.OutputKeys;
@@ -23,7 +21,6 @@ import javax.xml.transform.sax.SAXTransformerFactory;
 import javax.xml.transform.sax.TransformerHandler;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
-import javax.xml.validation.SchemaFactory;
 import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
@@ -76,7 +73,7 @@ public class SchemaGenerator {
         this.systemService = systemService;
     }
 
-    public static void main(final String[] args) {
+    static void main(final String[] args) {
         run(new SystemServiceImpl(), args);
     }
 
@@ -200,7 +197,7 @@ public class SchemaGenerator {
                     .distinct()
                     .count();
 
-            Map<String, Long> duplicateCombos = configuration.getPipelines().stream()
+            final Map<String, Long> duplicateCombos = configuration.getPipelines().stream()
                     .map(pipeline ->
                             // combine the basename and suffix
                             String.format("outputBaseName: [%s], outputSuffix: [%s]",
@@ -216,7 +213,7 @@ public class SchemaGenerator {
                     .flatMap(pipeline -> pipeline.getTransformations().stream())
                     .distinct()
                     .map(Paths::get)
-                    .allMatch(path -> !Files.isReadable(path));
+                    .noneMatch(Files::isReadable);
 
 
             if (distinctPipelineNames != configuration.getPipelines().size()) {
@@ -275,12 +272,11 @@ public class SchemaGenerator {
 
     private void buildPipeline(final Pipeline pipeline) {
 
-
         final SAXTransformerFactory transformerFactory = (SAXTransformerFactory) TransformerFactoryFactory
                 .newInstance();
 
         if (!pipeline.getTransformations().isEmpty()) {
-            LOGGER.info("------------------------------------------------------------", pipeline.getPipelineName());
+            LOGGER.info("------------------------------------------------------------");
             LOGGER.info("Transforming schema with pipeline [{}]", pipeline.getPipelineName());
 
             Path xsltsPath = getXsltsPath();
@@ -315,7 +311,7 @@ public class SchemaGenerator {
                         }
                         return handler;
                     })
-                    .collect(Collectors.toList());
+                    .toList();
 
             //build a replacement for the file end of the source schema
 //            StringBuilder replacement = new StringBuilder()
@@ -389,10 +385,13 @@ public class SchemaGenerator {
                 Files.deleteIfExists(unformattedFile);
             } catch (IOException e) {
                 throw new RuntimeException(String.format("Error deleting un-formatted file %s",
-                        unformattedFile.toAbsolutePath().toString()), e);
+                        unformattedFile.toAbsolutePath()), e);
             }
 
-            validateSchema(Paths.get(formattedFile.toUri()));
+            final Instant startTime = Instant.now();
+            XmlUtil.createSchema(Paths.get(formattedFile.toUri()), true);
+            LOGGER.info("Finished schema validation in {}",
+                    Duration.between(startTime, Instant.now()).toString());
         } else {
             LOGGER.info("Pipeline {} does not have any transformations configured",
                     pipeline.getPipelineName());
@@ -444,30 +443,6 @@ public class SchemaGenerator {
                     linePattern.toString()));
         }
         return version;
-    }
-
-
-    private void validateSchema(final Path safeSchemaPath) {
-        final SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-        try {
-            // schemaFactory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, false);
-        } catch (final Exception e) {
-            throw new RuntimeException("Unable to set Secure Processing feature on schema factory", e);
-        }
-        // It seems to ignore this property
-        // System.setProperty("jdk.xml.maxOccurLimit", "10000");
-        LOGGER.info("Validating file " + safeSchemaPath.toAbsolutePath().normalize());
-        final Instant startTime = Instant.now();
-        try {
-            // attempt to construct a schema object from the file. Will fail if our schema
-            // is not a valid w3c XML Schema. This will ensure the transformation chain
-            // generates a valid schema
-            schemaFactory.newSchema(safeSchemaPath.toFile());
-        } catch (final SAXException e1) {
-            throw new RuntimeException("Error initialising schema object", e1);
-        }
-        LOGGER.info("Finished schema validation in {}",
-                Duration.between(startTime, Instant.now()).toString());
     }
 
     private void formatFile(final Path in, final Path out, String idValue) {
