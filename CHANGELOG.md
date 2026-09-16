@@ -26,6 +26,8 @@ Patch version changes will typically include cosmetic changes (e.g. _xs:document
 DO NOT ADD CHANGES HERE - ADD THEM USING log_change.sh
 ~~~
 
+* Change safe schema to enforce a depth limit of 5 on `ActivityComplexType`.
+
 * Change safe schema to replace all `base="xs:string"` with `base="evt:SafeString"` to ensure all string values have the restrictions imposed by SafeString.
 
 

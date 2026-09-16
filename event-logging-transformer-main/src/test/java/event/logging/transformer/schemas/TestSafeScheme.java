@@ -323,6 +323,47 @@ class TestSafeScheme extends AbstractReleaseSchemaTest {
         errorHandler.assertErrorsContainString("must have no character or element information item");
     }
 
+    @Test
+    void test08_pass_deeplyNestedActivityElements() {
+        // The event Activity plus four Parent elements gives five levels, which is ok
+        final String activity = createNestedActivity(5);
+
+        validateXmlString(
+                getTemplatedXml("test-08-template.xml", """
+                        <EventChain>
+                            {}
+                        </EventChain>""".replace("{}", activity)),
+                true);
+    }
+
+    @Test
+    void test08_fail_tooManyNestedActivityElements() {
+        // The event Activity plus five Parent elements gives six levels, which is one too many
+        final String activity = createNestedActivity(6);
+
+        final ListErrorHandler errorHandler = validateXmlString(
+                getTemplatedXml("test-08-template.xml", """
+                        <EventChain>
+                            {}
+                        </EventChain>""".replace("{}", activity)),
+                false);
+        errorHandler.assertErrorsContainString("Parent");
+    }
+
+    private String createNestedActivity(final int depth) {
+        final StringBuilder activity = new StringBuilder();
+        activity.append("<Activity><Id>activity-1</Id>");
+        IntStream.rangeClosed(2, depth)
+                .forEach(i -> activity
+                        .append("<Parent><Id>activity-")
+                        .append(i)
+                        .append("</Id>"));
+        IntStream.rangeClosed(2, depth)
+                .forEach(i -> activity.append("</Parent>"));
+        activity.append("</Activity>");
+        return activity.toString();
+    }
+
     @Override
     String getSubDirectoryName() {
         return "safe";

@@ -76,6 +76,7 @@ pipelines:
       - "removeAnyContentComplexType.xsl"
       - "limitOccurrence.xsl"
       - "limitDataElementRecursion.xsl"
+      - "limitActivityElementRecursion.xsl"
 
   # This pipeline is used solely for creating a schema to validate the example
   # XML in the documentation. It should be identical to the fullSchema version
