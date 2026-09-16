@@ -73,8 +73,8 @@ abstract class AbstractReleaseSchemaTest {
     protected final Path schemaFile;
     protected final Validator validator;
 
-    AbstractReleaseSchemaTest(final String schemaFilePattern) {
-        this.schemaFile = getFileByPattern(schemaFilePattern);
+    AbstractReleaseSchemaTest() {
+        this.schemaFile = getFileByPattern(getSchemaFilePattern());
 
         assertThat(schemaFile)
                 .isRegularFile();
@@ -83,6 +83,8 @@ abstract class AbstractReleaseSchemaTest {
         this.validator = schema.newValidator();
         LOGGER.debug("Created validator for schema: {}", schemaFile);
     }
+
+    abstract String getSchemaFilePattern();
 
     abstract String getSubDirectoryName();
 

@@ -11,13 +11,10 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-class TestSafeScheme extends AbstractReleaseSchemaTest {
+class TestSafeSchema extends AbstractReleaseSchemaTest {
 
+    public static final String SUB_DIR_NAME = "safe";
     public static final String SCHEMA_FILE_PATTERN_STR = "event-logging-.*-safe";
-
-    TestSafeScheme() {
-        super(SCHEMA_FILE_PATTERN_STR);
-    }
 
     @Test
     void test01() {
@@ -365,7 +362,12 @@ class TestSafeScheme extends AbstractReleaseSchemaTest {
     }
 
     @Override
+    String getSchemaFilePattern() {
+        return SCHEMA_FILE_PATTERN_STR;
+    }
+
+    @Override
     String getSubDirectoryName() {
-        return "safe";
+        return SUB_DIR_NAME;
     }
 }
