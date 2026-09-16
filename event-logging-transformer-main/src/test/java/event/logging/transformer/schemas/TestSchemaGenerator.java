@@ -1,8 +1,9 @@
-package event.logging.transformer;
+package event.logging.transformer.schemas;
 
 import com.github.difflib.DiffUtils;
 import com.github.difflib.patch.AbstractDelta;
 import com.github.difflib.patch.Patch;
+import event.logging.transformer.SchemaGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
@@ -19,7 +20,7 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class TestSchemaGenerator {
-    private static final Logger LOGGER = LoggerFactory.getLogger(TestReleaseSchemas.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(TestSchemaGenerator.class);
 
     private static final Path SOURCE_SCHEMA = Paths.get("../event-logging.xsd");
     private static final Path TEST_DATA_ROOT_DIR = Paths.get("src/test/resources/test-data");

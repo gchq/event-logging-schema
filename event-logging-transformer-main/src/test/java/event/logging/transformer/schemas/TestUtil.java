@@ -1,7 +1,9 @@
-package event.logging.transformer;
+package event.logging.transformer.schemas;
 
 
-import event.logging.transformer.MockSystemService.SystemExitException;
+import event.logging.transformer.SchemaGenerator;
+import event.logging.transformer.SystemService;
+import event.logging.transformer.schemas.MockSystemService.SystemExitException;
 import org.assertj.core.api.Assertions;
 
 import java.io.IOException;

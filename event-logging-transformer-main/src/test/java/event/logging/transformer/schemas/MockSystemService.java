@@ -1,6 +1,8 @@
-package event.logging.transformer;
+package event.logging.transformer.schemas;
 
 
+import event.logging.transformer.SystemService;
+import event.logging.transformer.SystemServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

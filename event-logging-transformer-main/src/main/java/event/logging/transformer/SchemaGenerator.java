@@ -73,12 +73,12 @@ public class SchemaGenerator {
         this.systemService = systemService;
     }
 
-    static void main(final String[] args) {
+    public static void main(final String[] args) {
         run(new SystemServiceImpl(), args);
     }
 
     /// To aid testing the main method
-    static void run(final SystemService systemService, final String... args) {
+    public static void run(final SystemService systemService, final String... args) {
         Objects.requireNonNull(systemService);
 
         if (args.length == 2
@@ -167,7 +167,7 @@ public class SchemaGenerator {
     /**
      * Recursively deletes everything inside dir without deleting dir itself
      */
-    static void emptyDirectory(Path dir) throws IOException {
+    public static void emptyDirectory(Path dir) throws IOException {
         LOGGER.info("Clearing directory {}", dir.toAbsolutePath());
 
         try (Stream<Path> pathStream = Files.walk(dir)) {
