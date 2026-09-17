@@ -47,7 +47,7 @@ pipelines:
       - "extractSimpleTypes.xsl"
       - "orderElements.xsl"
       - "removeVimModeline.xsl"
-          
+
   # A variant to be used by client systems and for use in producing the
   # JAXB Java API. Ommits much of the user details structure, the EventId and
   # adds Event as a root element for sending single events.
@@ -76,6 +76,7 @@ pipelines:
       - "removeAnyContentComplexType.xsl"
       - "limitOccurrence.xsl"
       - "limitDataElementRecursion.xsl"
+      - "limitActivityElementRecursion.xsl"
 
   # This pipeline is used solely for creating a schema to validate the example
   # XML in the documentation. It should be identical to the fullSchema version

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Event xmlns="event-logging:3">
+    <EventTime>
+        <TimeCreated>2026-09-04T09:00:00.000Z</TimeCreated>
+    </EventTime>
+    <EventSource>
+        <System>
+            <Name>Some System</Name>
+            <Environment>Operational</Environment>
+        </System>
+        <Generator>Some-Event-Log-Provider</Generator>
+        <Device>
+            <HostName>someserver.someorg.org</HostName>
+        </Device>
+    </EventSource>
+    <EventDetail>
+        <TypeId>InteractiveLogon</TypeId>
+        <Description>A user has logged on.</Description>
+        <Authenticate>
+            <Action>Logon</Action>
+            <LogonType>Interactive</LogonType>
+            <User>
+                <Id>jboggs</Id>
+            </User>
+        </Authenticate>
+    </EventDetail>
+</Event>
