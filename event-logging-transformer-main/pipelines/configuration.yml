@@ -59,6 +59,7 @@ pipelines:
       - "jaxbEventRoot.xsl"
       - "jaxbNoEventId.xsl"
       - "jaxbNoUserDetails.xsl"
+      - "addEventVersion.xsl"
         # Sharing data is only intended for adding to received events
       - "removeSharingElement.xsl"
 
