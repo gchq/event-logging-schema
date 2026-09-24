@@ -1,7 +1,7 @@
 ---
 title: "Banner"
 linkTitle: "Banner"
-#weight:
+weight: 20
 date: 2022-05-05
 tags:
   - object-type

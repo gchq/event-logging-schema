@@ -15,13 +15,13 @@ description: >
 
 ---
 
-user is viewing a set of search results independently of the search event that generated them.
-the query/id element can be used to link the two events together.
+User is viewing a set of search results independently of the search event that generated them.
+The query/id element can be used to link the two events together.
 
-this object type can be used when the results of the query are not know at the time the search is executed and the search event is created.
+This object type can be used when the results of the query are not know at the time the search is executed and the search event is created.
 
-a view event is used here simply to illustrate the use of searchresults.
-searchresults can be used within other schema actions.
+A view event is used here simply to illustrate the use of searchresults.
+`searchresults` can be used within other schema actions.
 
 ``` xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -71,7 +71,7 @@ searchresults can be used within other schema actions.
           <Query>
             <!-- 
             Provides a link back to the Search event generated when the 
-            query was executed. The link can also be acheived using EventLinks below.
+            query was executed. The link can also be achieved using EventLinks below.
             -->
             <Id>query-538393</Id>
           </Query>
