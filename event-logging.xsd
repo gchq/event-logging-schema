@@ -3581,15 +3581,73 @@
       <xs:documentation>The types or categories of cloud service, e.g. a service for processing data.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="Analytics"/>
-      <xs:enumeration value="Data Storage"/>
-      <xs:enumeration value="Database"/>
-      <xs:enumeration value="Developer Tools"/>
-      <xs:enumeration value="Machine Learning"/>
-      <xs:enumeration value="Networking"/>
-      <xs:enumeration value="Processing"/>
-      <xs:enumeration value="Security and Identity"/>
-      <xs:enumeration value="Other"/>
+      <xs:enumeration value="AIAndMachineLearning">
+        <xs:annotation>
+          <xs:documentation>Services for artificial intelligence, generative AI foundation models, and machine learning workflows.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Analytics">
+        <xs:annotation>
+          <xs:documentation>Services for big data processing, data warehousing, real-time streaming, and business intelligence.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ApplicationIntegration">
+        <xs:annotation>
+          <xs:documentation>Services for messaging, pub/sub queuing, event routing, and multi-service workflow orchestration.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Compute">
+        <xs:annotation>
+          <xs:documentation>Services providing virtual machine capacity, serverless functions, and core processing resources.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ContainersAndOrchestration">
+        <xs:annotation>
+          <xs:documentation>Services for container execution, image registries, and managed Kubernetes cluster operations.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DataStorage">
+        <xs:annotation>
+          <xs:documentation>Services for scalable object, block, file, and long-term archival storage of unstructured data.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Database">
+        <xs:annotation>
+          <xs:documentation>Managed relational, NoSQL, key-value, in-memory, and specialized vector database engines.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="DeveloperTools">
+        <xs:annotation>
+          <xs:documentation>Services supporting continuous integration/deployment (CI/CD), source control, and developer SDKs.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="MigrationAndTransfer">
+        <xs:annotation>
+          <xs:documentation>Tools and physical appliances for moving servers, databases, and large datasets to the cloud.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Networking">
+        <xs:annotation>
+          <xs:documentation>Services for virtual private networks, DNS, load balancing, content delivery (CDN), and hybrid links.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Observability">
+        <xs:annotation>
+          <xs:documentation>Services for system performance monitoring, log aggregation, auditing, and cost governance.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="SecurityAndIdentity">
+        <xs:annotation>
+          <xs:documentation>Services for identity and access management (IAM), key encryption, network firewalls, and threat detection.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Other">
+        <xs:annotation>
+          <xs:documentation>Miscellaneous cloud products and services that fall outside standard functional categories.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+
+
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="CloudSimpleType">
