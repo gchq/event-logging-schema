@@ -398,6 +398,7 @@ An example of this can be seen in the search event [here]({{< relref "complete-e
 It is anticipated that the schema will evole over time to accomodate new types of auditable event and to better describe existing events.
 Each version of the schema is marked with a unique version number using the `version` attribute in the `<xs:schema>` element.
 All events should be marked with the version of the schema that they are based upon using the `Version` attribute of the `<Events>` element.
+When events are sent as fragment `<Event>` elements with no wrapping `<Events>` element, the `Version` attribute on `<Event>` should be used instead.
 This allows systems processing the events to correctly interpret the structure.
 
 ### Schema Versioning

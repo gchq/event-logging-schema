@@ -75,7 +75,7 @@ Javadoc will be added to property getters/setters and Builder add/with methods u
 In the above example there is documentation at both the element and annonymous complex type leve that essentiall describes the same thing as the type has one one use. If only the complex type annotation is used then some schema editors, e.g. OxygenXML, will not display the annotation. Thus for clarity both positons should be used.
 
 
-## Building the schema
+## Building the schemas
 
 The master version of the schema is located in the root of this repository (`event-logging.xsd`). 
 This is the version that changes are made to. 
@@ -96,12 +96,19 @@ To test a build with a release version applied:
 
 `./gradlew clean build -Pversion=vX.Y.Z`
 
+
 ## Impact on event-logging
 
 [event-logging](https://github.com/gchq/event-logging) is the java library for creating events conforming to this schema.
 It is **STRONGLY** advised that when making changes to this schema that the build for _event-logging_ is run to establish what impact the schema changes on the generated Java code.
 Changes to the schema that would have no impact on XML documents, e.g. a complext type name change would result in a breaking change to the _event-logging_ library.
-See the _README.md_ for _event-logging_ for more details on how to build it.
+
+See the _README.md_ for _event-logging_ for full details on how to build it.
+Generally you want to run something like this (in the _event-logging_ repo) to see how changes to the schema impact the java model.
+
+```sh
+./gradlew -PschemaFilePath=/home/dev/git_work/gchq/event-logging-schema/event-logging-transformer-main/pipelines/generated/event-logging-v4-client.xsd clean build 
+```
 
 
 ## Process for releasing a new version of the schema
