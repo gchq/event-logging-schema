@@ -336,6 +336,17 @@ The action specific detail of the auditable event is recorded in a 'schema actio
 The schema action element structures are defined in more detail in [Schema Actions]({{< relref "schema-actions" >}}).
 
 
+#### Method
+
+This optionally describes the method used to perform the _Schema Action_, if applicable.
+For example a user may be deleting a document but the method used to delete that document may be via a web request or a Command Line Interface command, e.g. `rm`.
+
+A Method can contain one of:
+
+* `<WebResource>` - describe a web resource or API/REST endpoint.
+* `<Command>` - describes a command that has been executed, e.g. in a Command Line Interface.
+
+
 ### Event Chain
 
 Sometimes events occur that are directly related to another event, for example when an asynchronous search is initiated by a user and at some later point they view the search results.
