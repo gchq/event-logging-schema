@@ -85,12 +85,17 @@
                 </xs:annotation>
               </xs:element>
             </xs:sequence>
+            <xs:attribute name="Version" type="evt:VersionSimpleType">
+              <xs:annotation>
+                <xs:documentation>The version of the schema that this event conforms to. Only for use when sending event fragments.</xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
           </xs:complexType>
         </xs:element>
       </xs:sequence>
       <xs:attribute name="Version" type="evt:VersionSimpleType" use="required">
         <xs:annotation>
-          <xs:documentation>The version of the schema that this document conforms to.</xs:documentation>
+          <xs:documentation>The version of the schema that this document and all events within it conform to.</xs:documentation>
         </xs:annotation>
       </xs:attribute>
     </xs:complexType>
@@ -3684,6 +3689,7 @@
       <xs:enumeration value="Execute"/>
       <xs:enumeration value="Owner"/>
       <xs:enumeration value="Read"/>
+      <xs:enumeration value="Update"/>
       <xs:enumeration value="Use"/>
       <xs:enumeration value="Write"/>
     </xs:restriction>

@@ -21,7 +21,7 @@ pipelines:
   # Pipeline to created an unchanged, but formatted scheme to use for comparing
   # the changes we make in other pipelines.
   - pipelineName: "no-change"
-    outputSuffix: "unchanged"
+    outputSuffix: "identity"
     hasOutput: true
     transformations:
       - "noChange.xsl"
