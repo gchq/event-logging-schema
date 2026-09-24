@@ -1,5 +1,9 @@
-def EXAMPLE_XML_DIR="../docs/content/en/docs/complete-examples"
-def MASTER_SCHEMA_FILE_PATH="../event-logging.xsd"
+import groovy.xml.XmlParser
+import org.gradle.api.tasks.testing.logging.TestLogEvent
+import org.gradle.api.tasks.testing.logging.TestExceptionFormat
+
+def EXAMPLE_XML_DIR = "../docs/content/en/docs/complete-examples"
+def MASTER_SCHEMA_FILE_PATH = "../event-logging.xsd"
 def jarName = "event-logging-transformer-${versions.eventLogging}.jar"
 def fatJarName = "event-logging-transformer-${versions.eventLogging}-all.jar"
 
@@ -13,24 +17,26 @@ apply plugin: 'java'
 apply plugin: 'application'
 apply plugin: 'ca.cutterslade.analyze'
 apply plugin: 'idea'
-apply plugin: 'com.github.johnrengelman.shadow'
+apply plugin: 'com.gradleup.shadow'
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(8)
+        languageVersion = JavaLanguageVersion.of(25)
         vendor = JvmVendorSpec.ADOPTIUM
     }
 }
 
 // required for application plugin
-mainClassName = "event.logging.transformer.SchemaGenerator"
+application {
+    mainClass = "event.logging.transformer.SchemaGenerator"
+}
 
 jar {
     manifest {
         attributes(
                 "Implementation-Title": "event-Logging-transformer",
                 "Implementation-Version": versions.eventLogging,
-                "Main-Class" : mainClassName
+                "Main-Class": application.mainClass.get()
         )
     }
     archiveFileName = jarName
@@ -45,7 +51,7 @@ shadowJar {
 
 // In this section you declare the dependencies for your production and test code
 dependencies {
-    
+
     implementation libs.bundles.jackson
     // The production code uses the SLF4J logging API at compile time
     implementation libs.slf4j.api
@@ -53,7 +59,6 @@ dependencies {
     runtimeOnly libs.logback.classic
     runtimeOnly libs.saxon
 
-    testImplementation libs.systemLambda
     testImplementation libs.javaDiffUtils
     testImplementation libs.bundles.basicTest.impl
 
@@ -68,27 +73,27 @@ runShadow {
     args = ['pipelines', '../event-logging.xsd']
 }
 
-task transformersDist(type: Zip) {
+tasks.register('transformersDist', Zip) {
     archiveFileName = "transformations-${versions.eventLogging}.zip"
     from 'pipelines/transformations'
 }
 
 // Run the python script to validate all the version numbers in the schema file
-task validateSchemaVersions(type: Exec) {
+tasks.register('validateSchemaVersions', Exec) {
     workingDir '../'
     commandLine "python3", "validateSchemaVersions.py", versions.eventLogging
 }
 
 // Run a bash script to compare the currennt jaxb source with the latest released version so
 // we can see what impact schema changes have had on the library
-task diffAgainstLatest(type: Exec) {
+tasks.register('diffAgainstLatest', Exec) {
     dependsOn runShadow
     executable "../diffAgainstLatestReleases.sh"
     args "./pipelines"
 }
 
 // Find the non-client generated schema file for use in xml validation
-def getSchemaFileForValidation = {  
+def getSchemaFileForValidation = {
     def pattern = ~/.*event-logging-v999-documentation\.xsd/
     def schemas = []
     def dir = project.file(generatedDir)
@@ -103,27 +108,31 @@ def getSchemaFileForValidation = {
     return schemas[0]
 }
 
-// Validate any XML files found in EXAMPLE_XML_DIR (or sub directories of it) against the 
-// non-client generated schema. This is to ensure that the examples are kept up to date 
+// Validate any XML files found in EXAMPLE_XML_DIR (or sub directories of it) against the
+// non-client generated schema. This is to ensure that the examples are kept up to date
 // and to highlight breaking changes
-task validateExampleXmlAgainstSchema() {
-    dependsOn runShadow
+tasks.register('validateExampleXmlAgainstSchema', Exec) {
+    dependsOn 'runShadow'
+
+    // Define files lazily to avoid configuration issues
+    def schemaFile = getSchemaFileForValidation()
+    def absExamplesDir = project.file(EXAMPLE_XML_DIR).absolutePath
+    def scriptFile = project.file('../validateExampleXml.sh')
+
+    // Declare inputs/outputs for Gradle up-to-date checks
+    inputs.file(schemaFile)
+    inputs.dir(project.file(EXAMPLE_XML_DIR))
+    inputs.file(scriptFile)
+
+    executable scriptFile.absolutePath
+    args schemaFile.absolutePath, absExamplesDir
+
+    ignoreExitValue = true
+
     doLast {
-        def schemaFile = getSchemaFileForValidation()
-        if (!schemaFile.exists()) {
-            throw new GradleException("Schema ${schemaFile} does not exist")
-        }
-        def absExamplesDir = project.file(EXAMPLE_XML_DIR).absolutePath
-
-        def execResult = exec() {
-            //xmlint is available in libxml2-utils
-            executable '../validateExampleXml.sh'
-            args schemaFile.absolutePath, absExamplesDir
-            ignoreExitValue true
-        }
-
-        if (execResult.exitValue != 0) {
-            throw new GradleException("XML file ${xmlFilePath} failed vaildation, or 'xmllint' (in 'libxml2-utils' pkg) is not installed ")
+        if (executionResult.get().exitValue != 0) {
+            throw new GradleException(
+                    "XML files in ${absExamplesDir} failed validation, or 'xmllint' (in 'libxml2-utils' pkg) is not installed")
         }
     }
 }
@@ -136,56 +145,76 @@ tasks.build.dependsOn validateExampleXmlAgainstSchema
 
 tasks.compileJava.dependsOn validateSchemaVersions
 
-//list to hold details of any failed test classes
-def failedTestReportFiles = []
+// 1. Create a lazy FileCollection to collect XML output directories
+def testXmlOutputs = objects.fileCollection()
 
-test {
+tasks.withType(Test).configureEach { testTask ->
     useJUnitPlatform()
-
-    // Use full logging for test exceptions so we can see where the failure occurred 
-    testLogging {
-        events "failed"
-        exceptionFormat = 'full'
-        showStackTraces = true
-    }
-
-    afterSuite { desc, result -> 
-        if (desc != null && desc.className != null && result.resultType.toString() == "FAILURE") {
-            //test class failed so add its project info and test report file to a global list for
-            //processing at the end of the build
-            def reportFileName = "${reports.junitXml.destination}/TEST-${desc.className}.xml"
-            def reportFile = file(reportFileName)
-            def pair = new Tuple2("${project.name} ${desc.name}", reportFile)
-            failedTestReportFiles.add(pair)
-        }
-    }
 
     // Use full logging for test exceptions so we can see where the failure occurred
     testLogging {
-        events "failed"
-        exceptionFormat = 'full'
-        showStackTraces = true
+        events TestLogEvent.FAILED
+        exceptionFormat TestExceptionFormat.FULL
+        showExceptions true
+        showCauses true
+        showStackTraces true
     }
+
+    // Lazily attach this task's report output directory property
+    testXmlOutputs.from({ testTask.reports.junitXml.outputLocation.orNull?.asFile })
+    testXmlOutputs.builtBy(testTask)
+
+    // Automatically run the aggregator after tests execute
+    finalizedBy('processFailedTestReports')
 }
 
-gradle.buildFinished {
-    //if any of the tests failed dump the junit xml to the console
-    //this is useful for running in travis where you have no access to the test output files
-    if (getPropertyOrDefault('dumpFailedTestXml', 'false') == 'true' && failedTestReportFiles.size > 0) {
-        println "Build has ${failedTestReportFiles.size} failed test classes, dumping JUnit xml output"
-        failedTestReportFiles.each { pair -> 
-            def info = pair.first
-            def reportFile = pair.second
 
-            if (reportFile.exists()) {
-                println "-----Failed test class ${info} ------------------"
-                def lines = reportFile.readLines()
-                lines.each { String line -> 
-                    println "${line}"
+// 3. Register the aggregator task
+tasks.register('processFailedTestReports') {
+    // Declare inputs for Gradle caching and dependency tracking
+    inputs.files(testXmlOutputs)
+
+    doLast {
+        // Safe to iterate: 'testXmlOutputs.files' resolves to java.io.File objects
+        // without touching the TaskCollection during execution phase
+        testXmlOutputs.files.each { xmlDir ->
+            if (!xmlDir.exists()) return
+
+            xmlDir.eachFileMatch(~$/TEST-.*\.xml/$) { xmlFile ->
+//                println "xml file: ${xmlFile.absolutePath}"
+
+                def xml = new XmlParser().parse(xmlFile)
+                int failures = (xml.@failures ?: '0').toInteger()
+                int errors = (xml.@errors ?: '0').toInteger()
+
+                if (failures > 0 || errors > 0) {
+                    def className = xml.@name
+                    def count = failures + errors
+                    println "--------------------------------------------------------------------------------"
+                    println "${count} failure(s) in test class ${className}:"
+                    println "  Report file:     ${xmlFile.absolutePath}"
+
+                    // Find and process each testcase that contains a failure
+                    xml.testcase.findAll { it.failure.size() > 0 }.each { testCaseElm ->
+                        def testCaseName = testCaseElm.@name
+
+                        testCaseElm.failure.each { failureElm ->
+//                            def message = failureElm.@message
+                            def failureText = failureElm.text().trim()
+
+                            println "  Test Case:       ${testCaseName}"
+//                            println "  Failure Message: ${message}"
+                            println "  Details:         ${failureText}"
+                        }
+                    }
+
+                    // Extract CDATA / text content from <system-out>
+                    def sysOut = xml.'system-out'?.text()?.trim()
+                    if (sysOut) {
+                        println "  System Out (${className}):\n${sysOut}"
+                    }
+                    println "--------------------------------------------------------------------------------"
                 }
-                println "-----End of test class ${info} ------------------"
-            } else {
-                println "File ${reportFile.toString()}"
             }
         }
     }

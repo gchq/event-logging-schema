@@ -14,7 +14,7 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
 -->
-<xs:schema xmlns:evt="event-logging:3" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="event-logging:3" elementFormDefault="qualified" attributeFormDefault="unqualified" version="4.0.3" id="event-logging-v4.0.3">
+<xs:schema xmlns:evt="event-logging:3" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="event-logging:3" elementFormDefault="qualified" attributeFormDefault="unqualified" version="4.1.0" id="event-logging-v4.1.0">
   <xs:annotation>
     <xs:documentation>This schema describes the allowed element structure for event logging. Please refer to the documentation and examples for a description of how to use this schema in addition to the descriptions given for each element within this schema.</xs:documentation>
   </xs:annotation>
@@ -85,12 +85,17 @@
                 </xs:annotation>
               </xs:element>
             </xs:sequence>
+            <xs:attribute name="Version" type="evt:VersionSimpleType">
+              <xs:annotation>
+                <xs:documentation>The version of the schema that this event conforms to. Only for use when sending event fragments.</xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
           </xs:complexType>
         </xs:element>
       </xs:sequence>
       <xs:attribute name="Version" type="evt:VersionSimpleType" use="required">
         <xs:annotation>
-          <xs:documentation>The version of the schema that this document conforms to.</xs:documentation>
+          <xs:documentation>The version of the schema that this document and all events within it conform to.</xs:documentation>
         </xs:annotation>
       </xs:attribute>
     </xs:complexType>
@@ -202,6 +207,11 @@
                   <xs:element name="Deny" type="evt:PermissionAttributeSimpleType" minOccurs="0" maxOccurs="unbounded">
                     <xs:annotation>
                       <xs:documentation>The permission attributes that have been explicitly denied.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="Data" type="evt:DataComplexType" minOccurs="0" maxOccurs="unbounded">
+                    <xs:annotation>
+                      <xs:documentation>Any other event data that does not fit into a schema element but may be useful for the purpose of audit.</xs:documentation>
                     </xs:annotation>
                   </xs:element>
                 </xs:sequence>
@@ -730,6 +740,11 @@
           <xs:documentation>Describes the infected item if one has been found.</xs:documentation>
         </xs:annotation>
       </xs:element>
+      <xs:element name="Data" type="evt:DataComplexType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Any other event data that does not fit into a schema element but may be useful for the purpose of audit. Can also be used for appending data about the event after it has been received or processed, e.g. for recording details relating to the processing of the event such as the feed name.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="AnyContentComplexType" mixed="true">
@@ -747,6 +762,11 @@
     <xs:attribute name="Version" type="xs:string">
       <xs:annotation>
         <xs:documentation>Defines the version of data structure specification.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="Id" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>An identifier, name or key to distinguish this block of content from others in the document. It can either be globally unqiue, unique within the document or unique within its siblings.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
@@ -1068,7 +1088,7 @@
               <xs:documentation>Optional description of the media that the file exists on or that the file is being written to.</xs:documentation>
             </xs:annotation>
           </xs:element>
-          <xs:element name="Hash" minOccurs="0" maxOccurs="1" type="evt:HashComplexType">
+          <xs:element name="Hash" minOccurs="0" maxOccurs="unbounded" type="evt:HashComplexType">
             <xs:annotation>
               <xs:documentation>Describes the output of a hash function and the type of has function used.</xs:documentation>
             </xs:annotation>
@@ -1630,6 +1650,11 @@
               <xs:documentation>The MIME (Multipurpose Internet Mail Extensions) type of the email body, i.e. the format of the message body, e.g. 'text/plain' or 'text/html'. </xs:documentation>
             </xs:annotation>
           </xs:element>
+          <xs:element minOccurs="0" name="Date" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>The date taken from the email 'Date' header. This date is in string form and in the format and timezone as produced by the email client. It may be local time or UTC depending on the client, therefore it may differ to the EventTime of this event. It is also possible it is invalid if the email client device is misconfigured, e.g. in the future.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
           <xs:element name="Data" type="evt:DataComplexType" minOccurs="0" maxOccurs="unbounded">
             <xs:annotation>
               <xs:documentation>Any other event data that does not fit into a schema element but may be useful for the purpose of audit.</xs:documentation>
@@ -1772,22 +1797,10 @@
             <xs:documentation>Any events relating to the action of approving/accepting or rejecting something, e.g. an approval step in a workflow, accepting a license agreement, or acceptable use policy. The event may relate to one user approving the work/action of another user or a single user accepting something.</xs:documentation>
           </xs:annotation>
         </xs:element>
-        <xs:element name="Unknown" minOccurs="1" maxOccurs="1">
+        <xs:element name="Unknown" minOccurs="1" maxOccurs="1" type="evt:UnknownComplexType">
           <xs:annotation>
             <xs:documentation>This element should be used were the type of the event cannot be described by any of the other event actions, or the event type is unknown.</xs:documentation>
           </xs:annotation>
-          <xs:complexType>
-            <xs:annotation>
-              <xs:documentation>This type should be used were the type of the event cannot be described by any of the other event actions, or the event type is unknown.</xs:documentation>
-            </xs:annotation>
-            <xs:sequence minOccurs="1" maxOccurs="1">
-              <xs:element name="Data" type="evt:DataComplexType" minOccurs="0" maxOccurs="unbounded">
-                <xs:annotation>
-                  <xs:documentation>Any other event data that does not fit into a schema element but may be useful for the purpose of audit.</xs:documentation>
-                </xs:annotation>
-              </xs:element>
-            </xs:sequence>
-          </xs:complexType>
         </xs:element>
       </xs:choice>
     </xs:sequence>
@@ -1880,6 +1893,11 @@
                 </xs:sequence>
               </xs:complexType>
             </xs:element>
+            <xs:element name="Data" type="evt:DataComplexType" minOccurs="0" maxOccurs="unbounded">
+              <xs:annotation>
+                <xs:documentation>Any other event data that does not fit into a schema element but may be useful for the purpose of audit. Can also be used for appending data about the event after it has been received or processed, e.g. for recording details relating to the processing of the event such as the feed name.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
           </xs:sequence>
         </xs:complexType>
       </xs:element>
@@ -1918,6 +1936,11 @@
       <xs:element name="TimeSource" type="evt:DeviceComplexType" minOccurs="0" maxOccurs="1">
         <xs:annotation>
           <xs:documentation>This is an optional element to be used to indicate the time source that the event creation time has been synchronised with. In most circumstances it is assumed that the event time has been synchronised with the corporate time service where the generating device resides so the inclusion of this element is not required.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Data" type="evt:DataComplexType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Any other event data that does not fit into a schema element but may be useful for the purpose of audit. Can also be used for appending data about the event after it has been received or processed, e.g. for recording details relating to the processing of the event such as the feed name.</xs:documentation>
         </xs:annotation>
       </xs:element>
     </xs:sequence>
@@ -2129,7 +2152,7 @@
             <xs:documentation>The name of the building.</xs:documentation>
           </xs:annotation>
         </xs:element>
-        <xs:element name="Floor" type="xs:integer" minOccurs="0" maxOccurs="1">
+        <xs:element name="Floor" type="xs:string" minOccurs="0" maxOccurs="1">
           <xs:annotation>
             <xs:documentation>The floor of the building that the location refers to.</xs:documentation>
           </xs:annotation>
@@ -2172,6 +2195,11 @@
       <xs:element name="AccessZone" type="xs:string" minOccurs="0" maxOccurs="1">
         <xs:annotation>
           <xs:documentation>The name of a zone within a building or site with some form of access control/monitoring for entry/exit to the zone.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Data" type="evt:DataComplexType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Any other event data that does not fit into a schema element but may be useful for the purpose of audit. Can also be used for appending data about the event after it has been received or processed, e.g. for recording details relating to the processing of the event such as the feed name.</xs:documentation>
         </xs:annotation>
       </xs:element>
     </xs:sequence>
@@ -2324,6 +2352,11 @@
       <xs:element name="Deny" type="evt:NetworkOutcomeComplexType" minOccurs="1" maxOccurs="1">
         <xs:annotation>
           <xs:documentation>The action of network traffic being denied by an Access Control List (ACL).</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Data" type="evt:DataComplexType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Any other event data that does not fit into a schema element but may be useful for the purpose of audit. Can also be used for appending data about the event after it has been received or processed, e.g. for recording details relating to the processing of the event such as the feed name.</xs:documentation>
         </xs:annotation>
       </xs:element>
     </xs:choice>
@@ -2999,6 +3032,11 @@
           </xs:sequence>
         </xs:complexType>
       </xs:element>
+      <xs:element name="Data" type="evt:DataComplexType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Any other event data that does not fit into a schema element but may be useful for the purpose of audit. Can also be used for appending data about the event after it has been received or processed, e.g. for recording details relating to the processing of the event such as the feed name.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="TermComplexType">
@@ -3029,20 +3067,61 @@
     </xs:annotation>
     <xs:group maxOccurs="1" minOccurs="1" ref="evt:InstallationGroup"/>
   </xs:complexType>
+  <xs:complexType name="UnknownComplexType">
+    <xs:annotation>
+      <xs:documentation>This type should be used were the type of the event cannot be described by any of the other event actions, or the event type is unknown.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence minOccurs="1" maxOccurs="1">
+      <xs:element name="Outcome" type="evt:OutcomeComplexType" minOccurs="0" maxOccurs="1">
+        <xs:annotation>
+          <xs:documentation>Used to determine if the action was successful. If omitted it is assumed that the event was successful and was permitted.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Data" type="evt:DataComplexType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Any other event data that does not fit into a schema element but may be useful for the purpose of audit.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
   <xs:complexType name="UpdateComplexType">
     <xs:annotation>
-      <xs:documentation>Describes the update/modification/change to a file, object, entity, piece of data, etc.</xs:documentation>
+      <xs:documentation>Describes the update/modification/change to a file, object, entity, piece of data, etc. The update can be recorded by providing the Before and After state to describe the change. Alternatively, if the change is a small change to an object with many parts, it may be preferable to record the individual changes rather than the whole state. As a minimum the After state should be recorded to describe the object being changed with/without the detail of its state.</xs:documentation>
     </xs:annotation>
     <xs:sequence minOccurs="1" maxOccurs="1">
       <xs:element name="Before" type="evt:MultiObjectComplexType" minOccurs="0" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation>Describes the state of one or more object properties before it was changed.</xs:documentation>
+          <xs:documentation>Describes the state of one or more object properties before it was changed. Essentially a snapshot of the object before the change.</xs:documentation>
         </xs:annotation>
       </xs:element>
-      <xs:element name="After" type="evt:MultiObjectComplexType" minOccurs="1" maxOccurs="1">
+      <xs:element name="After" type="evt:MultiObjectComplexType" maxOccurs="1">
         <xs:annotation>
-          <xs:documentation>Describes the state of one or more object properties after it was changed.</xs:documentation>
+          <xs:documentation>Describes the state of one or more object properties after it was changed. Essentially a snapshot of the object after the change.</xs:documentation>
         </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Changes">
+        <xs:annotation>
+          <xs:documentation>Describe one or more differences that have been applied to an object. When using this element, the object that the changes/differences are applied to should be described in the After element.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="Add" type="evt:MultiObjectComplexType" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>Describes the addition of one of more parts of an object or entity. For example if the user is adding two files to a zip file containing 1000 files, this can be recorded as the addition of the two files. The details of the zip file can be recorded in the After element without the need to record the before and after state of all 1000/1002 files.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="Replace" type="evt:MultiObjectComplexType" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>Describes the replacement of one of more parts of an object or entity. For example if the user is updating a single file in a zip file containing 1000 files, this can be recorded as the replacement of just that file. The details of the zip file can be record in the After element without the need to recorded the before and after state of all 1000 files.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="Remove" type="evt:MultiObjectComplexType" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>Describes the removal of one of more parts of an object or entity. For example if the user is removing two files from a zip file containing 1000 files, this can be recorded as the addition of the two files. The details of the zip file can be recorded in the After element without the need to record the before and after state of all 1000/998 files.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
       </xs:element>
       <xs:element name="Outcome" type="evt:OutcomeComplexType" minOccurs="0" maxOccurs="1">
         <xs:annotation>
@@ -3641,10 +3720,14 @@
     </xs:annotation>
     <xs:restriction base="xs:string">
       <xs:enumeration value="Author"/>
+      <xs:enumeration value="Create"/>
+      <xs:enumeration value="Delete"/>
+      <xs:enumeration value="Execute"/>
       <xs:enumeration value="Owner"/>
       <xs:enumeration value="Read"/>
+      <xs:enumeration value="Update"/>
+      <xs:enumeration value="Use"/>
       <xs:enumeration value="Write"/>
-      <xs:enumeration value="Execute"/>
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="PortSimpleType">
@@ -3734,6 +3817,7 @@
       <xs:enumeration value="NotStartsWith"/>
       <xs:enumeration value="Regex"/>
       <xs:enumeration value="NotRegex"/>
+      <xs:enumeration value="In"/>
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="ThreatCategorySimpleType">
@@ -3755,7 +3839,7 @@
       <xs:documentation>Type for specifying the version numbers of XML documents that are supported by this version of the XMLSchema.</xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
-      <xs:enumeration value="4.0.3"/>
+      <xs:enumeration value="4.1.0"/>
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name="VirtualDeviceSimpleType">

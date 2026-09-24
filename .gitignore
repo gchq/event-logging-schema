@@ -23,6 +23,7 @@ _book
 #Gradle stuff (from https://github.com/github/gitignore/blob/master/Gradle.gitignore)
 .gradle
 */build/
+build/
 
 # Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
 !gradle-wrapper.jar

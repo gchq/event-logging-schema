@@ -8,10 +8,8 @@ import event.logging.transformer.configuration.Pipeline;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 
-import javax.xml.XMLConstants;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import javax.xml.transform.OutputKeys;
@@ -23,7 +21,6 @@ import javax.xml.transform.sax.SAXTransformerFactory;
 import javax.xml.transform.sax.TransformerHandler;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
-import javax.xml.validation.SchemaFactory;
 import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
@@ -64,29 +61,38 @@ public class SchemaGenerator {
     private final Path basePath;
     private final Path sourceSchema;
     private final Configuration configuration;
+    private final SystemService systemService;
 
     public SchemaGenerator(final Path basePath,
                            final Path sourceSchema,
-                           final Configuration configuration) {
+                           final Configuration configuration,
+                           final SystemService systemService) {
         this.basePath = basePath;
         this.configuration = configuration;
         this.sourceSchema = sourceSchema;
+        this.systemService = systemService;
     }
 
     public static void main(final String[] args) {
+        run(new SystemServiceImpl(), args);
+    }
 
-        if (args.length == 2 &&
-                args[0].length() > 1 &&
-                args[1].length() > 1) {
+    /// To aid testing the main method
+    public static void run(final SystemService systemService, final String... args) {
+        Objects.requireNonNull(systemService);
+
+        if (args.length == 2
+                && isNonBlankArg(args, 0)
+                && isNonBlankArg(args, 1)) {
 
             String basePathStr = args[0];
             Path basePath = Paths.get(basePathStr).toAbsolutePath().normalize();
-            LOGGER.info("Using basePath [{}]", basePath.toString());
+            LOGGER.info("Using basePath [{}]", basePath);
 
             if (!Files.isDirectory(basePath)) {
                 LOGGER.info("basePath [{}] is not a valid directory", basePath);
                 LOGGER.info("Supplied arguments: {}", Arrays.toString(args));
-                displayUsageAndExit();
+                displayUsageAndExit(systemService);
             }
 
             String sourceSchemaPathStr = args[1];
@@ -95,30 +101,31 @@ public class SchemaGenerator {
             if (!Files.isReadable(basePath)) {
                 LOGGER.info("sourceSchema [{}] is not a readable file", sourceSchema);
                 LOGGER.info("Supplied arguments: {}", Arrays.toString(args));
-                displayUsageAndExit();
+                displayUsageAndExit(systemService);
             }
 
             try {
                 Configuration configuration = loadConfiguration(basePath);
-                new SchemaGenerator(basePath, sourceSchema, configuration).build();
+                new SchemaGenerator(basePath, sourceSchema, configuration, systemService).build();
             } catch (SchemaTransformerException ste) {
                 LOGGER.error("Error - {}", ste.getMessage());
-                System.exit(1);
+                systemService.exit(1);
             } catch (Exception e) {
                 LOGGER.error("Error transforming schema", e);
-                System.exit(1);
+                systemService.exit(1);
             }
 
             LOGGER.info("Finished!");
         } else {
             LOGGER.error("ERROR - Invalid arguments");
             LOGGER.info("Supplied arguments: {}", Arrays.toString(args));
-            displayUsageAndExit();
+            displayUsageAndExit(systemService);
         }
-        System.exit(0);
+        systemService.exit(0);
     }
 
-    private static void displayUsageAndExit() {
+
+    private static void displayUsageAndExit(final SystemService systemService) {
         String jarName = new java.io.File(
                 SchemaGenerator.class.getProtectionDomain()
                         .getCodeSource()
@@ -126,13 +133,14 @@ public class SchemaGenerator {
                         .getPath()
         ).getName();
 
-        System.out.println();
-        System.out.println(String.format("Usage: java -jar %s BASE_PATH SOURCE_SCHEMA_PATH", jarName));
-        System.out.println("BASE_PATH - the path where the configuration file 'configuration.yml' lives \n" +
+        systemService.println();
+        systemService.println(String.format("Usage: java -jar %s BASE_PATH SOURCE_SCHEMA_PATH", jarName));
+        systemService.println("BASE_PATH - the path where the configuration file 'configuration.yml' lives \n" +
                 "            and all generated output will be created");
-        System.out.println("SOURCE_SCHEMA_PATH - Path to the source XMLSchema");
-        System.out.println("An example configuration file can be found inside this jar file [example.configuration.yml]");
-        System.exit(1);
+        systemService.println("SOURCE_SCHEMA_PATH - Path to the source XMLSchema");
+        systemService.println("An example configuration file can be found inside this jar file " +
+                "[example.configuration.yml]");
+        systemService.exit(1);
     }
 
     private static Configuration loadConfiguration(Path basePath) throws IOException {
@@ -146,12 +154,11 @@ public class SchemaGenerator {
         Jdk8Module module = new Jdk8Module();
         module.configureAbsentsAsNulls(true);
         objectMapper.registerModule(module);
-        Configuration configuration = null;
+        Configuration configuration;
         try {
             configuration = objectMapper.readValue(configFile.toFile(), Configuration.class);
         } catch (IOException e) {
-            throw new RuntimeException("Error reading YAML configuration in " +
-                    configFile.toAbsolutePath().toString(), e);
+            throw new RuntimeException("Error reading YAML configuration in " + configFile.toAbsolutePath(), e);
         }
         validateConfiguration(basePath, configuration);
         return configuration;
@@ -160,14 +167,15 @@ public class SchemaGenerator {
     /**
      * Recursively deletes everything inside dir without deleting dir itself
      */
-    static void emptyDirectory(Path dir) throws IOException {
-        LOGGER.info("Clearing directory {}", dir.toAbsolutePath().toString());
+    public static void emptyDirectory(Path dir) throws IOException {
+        LOGGER.info("Clearing directory {}", dir.toAbsolutePath());
 
         try (Stream<Path> pathStream = Files.walk(dir)) {
             pathStream
                     .sorted(Comparator.reverseOrder())
                     .filter(path -> !path.equals(dir))
-                    .peek(path -> LOGGER.info("  Deleting {}", path.toAbsolutePath().toString()))
+                    .peek(path ->
+                            LOGGER.info("  Deleting {}", path.toAbsolutePath().toString()))
                     .map(Path::toFile)
                     .forEach(File::delete);
         }
@@ -189,7 +197,7 @@ public class SchemaGenerator {
                     .distinct()
                     .count();
 
-            Map<String, Long> duplicateCombos = configuration.getPipelines().stream()
+            final Map<String, Long> duplicateCombos = configuration.getPipelines().stream()
                     .map(pipeline ->
                             // combine the basename and suffix
                             String.format("outputBaseName: [%s], outputSuffix: [%s]",
@@ -205,7 +213,7 @@ public class SchemaGenerator {
                     .flatMap(pipeline -> pipeline.getTransformations().stream())
                     .distinct()
                     .map(Paths::get)
-                    .allMatch(path -> !Files.isReadable(path));
+                    .noneMatch(Files::isReadable);
 
 
             if (distinctPipelineNames != configuration.getPipelines().size()) {
@@ -264,12 +272,11 @@ public class SchemaGenerator {
 
     private void buildPipeline(final Pipeline pipeline) {
 
-
         final SAXTransformerFactory transformerFactory = (SAXTransformerFactory) TransformerFactoryFactory
                 .newInstance();
 
         if (!pipeline.getTransformations().isEmpty()) {
-            LOGGER.info("------------------------------------------------------------", pipeline.getPipelineName());
+            LOGGER.info("------------------------------------------------------------");
             LOGGER.info("Transforming schema with pipeline [{}]", pipeline.getPipelineName());
 
             Path xsltsPath = getXsltsPath();
@@ -304,7 +311,7 @@ public class SchemaGenerator {
                         }
                         return handler;
                     })
-                    .collect(Collectors.toList());
+                    .toList();
 
             //build a replacement for the file end of the source schema
 //            StringBuilder replacement = new StringBuilder()
@@ -378,10 +385,13 @@ public class SchemaGenerator {
                 Files.deleteIfExists(unformattedFile);
             } catch (IOException e) {
                 throw new RuntimeException(String.format("Error deleting un-formatted file %s",
-                        unformattedFile.toAbsolutePath().toString()), e);
+                        unformattedFile.toAbsolutePath()), e);
             }
 
-            validateSchema(Paths.get(formattedFile.toUri()));
+            final Instant startTime = Instant.now();
+            XmlUtil.createSchema(Paths.get(formattedFile.toUri()), true);
+            LOGGER.info("Finished schema validation in {}",
+                    Duration.between(startTime, Instant.now()).toString());
         } else {
             LOGGER.info("Pipeline {} does not have any transformations configured",
                     pipeline.getPipelineName());
@@ -433,30 +443,6 @@ public class SchemaGenerator {
                     linePattern.toString()));
         }
         return version;
-    }
-
-
-    private void validateSchema(final Path safeSchemaPath) {
-        final SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-        try {
-            // schemaFactory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, false);
-        } catch (final Exception e) {
-            throw new RuntimeException("Unable to set Secure Processing feature on schema factory", e);
-        }
-        // It seems to ignore this property
-        // System.setProperty("jdk.xml.maxOccurLimit", "10000");
-        LOGGER.info("Validating file " + safeSchemaPath.toAbsolutePath().normalize());
-        final Instant startTime = Instant.now();
-        try {
-            // attempt to construct a schema object from the file. Will fail if our schema
-            // is not a valid w3c XML Schema. This will ensure the transformation chain
-            // generates a valid schema
-            schemaFactory.newSchema(safeSchemaPath.toFile());
-        } catch (final SAXException e1) {
-            throw new RuntimeException("Error initialising schema object", e1);
-        }
-        LOGGER.info("Finished schema validation in {}",
-                Duration.between(startTime, Instant.now()).toString());
     }
 
     private void formatFile(final Path in, final Path out, String idValue) {
@@ -514,4 +500,28 @@ public class SchemaGenerator {
     Path getXsltsPath() {
         return basePath.resolve(XSL_SUB_DIR);
     }
+
+    private static boolean isNonBlankArg(final String[] args, final int idx) {
+        Objects.requireNonNull(args);
+        Objects.checkIndex(idx, args.length);
+        final String arg = args[idx];
+        return arg != null && !arg.isBlank();
+    }
+
+
+    // --------------------------------------------------------------------------------
+
+
+//    private static final class CliRunner {
+//
+//        private final SystemService systemService;
+//
+//        private CliRunner(final SystemService systemService) {
+//            this.systemService = systemService;
+//        }
+//
+//        private void run(final String[] args) {
+//            new SchemaGenerator(systemService).run(args);
+//        }
+//    }
 }
