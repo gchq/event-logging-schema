@@ -3607,6 +3607,7 @@
       <xs:enumeration value="Read"/>
       <xs:enumeration value="Update"/>
       <xs:enumeration value="Use"/>
+      <xs:enumeration value="Update"/>
       <xs:enumeration value="Write"/>
     </xs:restriction>
   </xs:simpleType>
